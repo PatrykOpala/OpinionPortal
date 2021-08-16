@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "mytest-project-4e4d6": {
+      "hosting": {
+        "opinion-portal": [
+          "mytest-project-4e4d6"
+        ]
+      }
+    }
+  }
+}
