@@ -41,45 +41,6 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    if(this.loginElement.nativeElement.parentNode.childNodes[0].checked){
-      this.LRConLElement.nativeElement.style.display = "flex";
-    }
-    this.loginElement.nativeElement.addEventListener("click", ()=>{
-      if(this.loginElement.nativeElement.parentNode.childNodes[0].checked){
-        this.LRConLElement.nativeElement.style.display = "flex";
-      }
-
-      this.loginElement.nativeElement.style.fontSize = "1.4em";
-      this.loginElement.nativeElement.style.color = "red";
-
-      this.LRConRegisterElement.nativeElement.style.display = "none";
-      this.LRConRegisterElement.nativeElement.classList.remove("LRConReg")
-
-      this.LRConLElement.nativeElement.style.display = "flex";
-      this.LRConLElement.nativeElement.classList.add("LRCon")
-
-      this.registerElement.nativeElement.style.fontSize = "1.2em";
-      this.registerElement.nativeElement.style.color = "white";
-      
-    })
-
-    this.registerElement.nativeElement.addEventListener("click", ()=>{
-      if(this.registerElement.nativeElement.parentNode.childNodes[0].checked){
-        this.LRConRegisterElement.nativeElement.style.display = "flex";
-      }
-
-      this.registerElement.nativeElement.style.fontSize = "1.4em";
-      this.registerElement.nativeElement.style.color = "red";
-
-      this.LRConLElement.nativeElement.style.display = "none";
-      this.LRConLElement.nativeElement.classList.remove("LRCon")
-
-      this.LRConRegisterElement.nativeElement.style.display = "flex";
-      this.LRConRegisterElement.nativeElement.classList.add("LRConReg")
-
-      this.loginElement.nativeElement.style.fontSize = "1.2em";
-      this.loginElement.nativeElement.style.color = "white";
-
-    })
+    
   }
 }

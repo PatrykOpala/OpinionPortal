@@ -9,6 +9,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DialogModalComponent } from './components/dialog-modal/dialog-modal.component';
 import { OpinieComponent } from './components/opinie/opinie.component';
 import { LoginnedComponent } from './components/loginned/loginned.component';
+import { MenuBarComponent } from './components/menu-bar/menu-bar.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LoginnedComponent } from './components/loginned/loginned.component';
     DashboardComponent,
     DialogModalComponent,
     OpinieComponent,
-    LoginnedComponent
+    LoginnedComponent,
+    MenuBarComponent
   ],
   imports: [
     BrowserModule,

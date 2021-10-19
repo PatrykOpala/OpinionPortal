@@ -1,15 +1,2 @@
-
-<nav>
-  <p><a href="#" routerLink="/" routerLinkActive="active"
-    style=" display: inline-block; max-width: 200px; text-decoration: none; color: white; margin-left: 20px;">Opinier<small>Leń version</small></a></p>
-  <ul>
-    <li *ngIf="logginStat" (click)="opinionAdd">Dodaj Opinie</li>
-    <li><a href="#" routerLink="/opinie" routerLinkActive="active" 
-      style="text-decoration: none; color: white;">Opinie</a></li>
-    <li>O stronie</li>
-  </ul>
-</nav>
-<!-- (click)="cjd()" -->
-<!-- (click)="opinionAdd()" -->
-<!-- *ngIf="c.isLogg" -->
+<app-menu-bar></app-menu-bar>
 <router-outlet></router-outlet>
