@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import { AngularFirestore } from '@angular/fire/firestore';
+
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,10 +9,10 @@ import { Observable } from 'rxjs';
 })
 export class LoginnedComponent implements OnInit {
 
-  titemmObs: Observable<any[]>;
+  //titemmObs: Observable<any[]>;
 
-  constructor(public fdb: AngularFirestore) { 
-    this.titemmObs = fdb.collection('opinion').valueChanges()
+  constructor() { 
+    //this.titemmObs = fdb.collection('opinion').valueChanges()
   }
 
   @ViewChild('opinionTopic') opTopic!: ElementRef
@@ -29,12 +29,12 @@ export class LoginnedComponent implements OnInit {
       opContent: this.opContent.nativeElement.value,
       opTopic: this.opTopic.nativeElement.value
     }
-    this.fdb.collection('opinion').add(fhy).then(g =>{
-      // console.log("udało się")
-      this.opTopic.nativeElement.value = "";
-      this.opContent.nativeElement.value = "";
-      console.log(g.id)
-    }).catch(e=>{console.log(e)})
+    // this.fdb.collection('opinion').add(fhy).then(g =>{
+    //   // console.log("udało się")
+    //   this.opTopic.nativeElement.value = "";
+    //   this.opContent.nativeElement.value = "";
+    //   console.log(g.id)
+    // }).catch(e=>{console.log(e)})
   }
 
 }
