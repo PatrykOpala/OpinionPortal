@@ -11,21 +11,19 @@ div#formigInup{
         height: 83vh;
         h1{
             margin-bottom: 7%;
-            font-family: 'KOActivistaBold';
         }
-        Button{
+        button{
             margin-bottom: 60px;
             padding: 7px;
             border: none;
             font-size: 1.6rem;
-            font-family: 'KOActivistaBold';
             font-weight: bold;
             font-style: normal;
             letter-spacing: 3px;
-            width: 200px;
+            min-width: 200px;
             background-color: transparent;
         }
-        Button:hover{
+        button:hover{
             background-color: rgb(253, 10, 10);
             color: white;
         }

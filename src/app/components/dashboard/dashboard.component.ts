@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   cx: string = "DashBoard"
 
-  constructor(public ads: AddOpinionService) {}
+  constructor(private ads: AddOpinionService, private router: Router) {}
 
   @ViewChild("log") loginElement!: ElementRef;
   @ViewChild("res") registerElement!: ElementRef;
@@ -26,13 +27,13 @@ export class DashboardComponent implements OnInit {
   @ViewChild("uppass") cvvvccc!: ElementRef;
 
   sign(em: string, pas: string){
-    this.ads.llogin(em, pas);
+    // this.ads.llogin(em, pas);
     this.cn.nativeElement.value = "";
     this.cvvv.nativeElement.value = "";
   }
 
   signUp(em: string, pas: string){
-    this.ads.lregister(em, pas);
+    // this.ads.lregister(em, pas);
     this.cnn.nativeElement.value = "";
     this.cvvvccc.nativeElement.value = "";
   }
@@ -41,6 +42,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    
+    this.loginElement.nativeElement.addEventListener("click", ()=>{
+      this.router.navigate(["logowanie"]);
+    })
   }
 }
