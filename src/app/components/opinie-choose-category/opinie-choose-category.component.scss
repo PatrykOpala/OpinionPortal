@@ -1,0 +1,20 @@
+.opinie__choose__category{
+    min-width: 40vw;
+    height: 87vh;
+    background-color: blue;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+
+    ul{
+        display: grid;
+        grid-template-columns: repeat(3, 200px);
+        gap: 10px;
+        li{
+            list-style-type: none;
+            width: 200px;
+            height: 100px;
+            background-color: red;
+        }
+    }
+}

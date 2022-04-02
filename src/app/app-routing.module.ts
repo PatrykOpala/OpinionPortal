@@ -1,13 +1,17 @@
-import { OpinieComponent } from './components/opinie/opinie.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { OpinieComponent } from './views/opinie/opinie.component';
+import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginnedComponent } from './components/loginned/loginned.component';
+import { LoginnedComponent } from './views/loginned/loginned.component';
+import { LogowanieComponent } from './views/logowanie/logowanie.component';
+import { RejestracjaComponent } from './views/rejestracja/rejestracja.component';
 
 const routes: Routes = [
-  {path: 'loginned', component: LoginnedComponent},
+  {path: '', component: DashboardComponent},
   {path: 'opinie', component: OpinieComponent},
-  {path: '', component: DashboardComponent}
+  {path: 'logowanie', component: LogowanieComponent},
+  {path: 'rejestracja', component: RejestracjaComponent},
+  {path: 'loginned', component: LoginnedComponent},
 ];
 
 @NgModule({
