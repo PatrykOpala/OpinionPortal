@@ -1,33 +1,62 @@
-@use "./../../../utils/scss/op-colors.scss" as *;
+@use "./../../../utils/scss/op-colors.scss" as op-colors;
 
-div#formigInup{
+#formigInup{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    div#formsignin{
+    align-items: center;
+    width: 100%;
+    height: 98vh;
+    .logoOpn{
+        width: 60vw;
+        height: 40vh;
+        p{
+            font-size: 5rem;
+            color: op-colors.$op-color-green;
+            font-weight: 600;
+            letter-spacing: 3px;
+            margin-bottom: 2px;
+        }
+        span{
+            font-size: 1.5rem;
+            background-color: op-colors.$op-color-green;
+            padding: 3px 13px;
+            letter-spacing: 3px;
+            margin-left: 8vw;
+            color: #fdfdfd;
+        }
+
+        .motto{
+            font-size: 4rem;
+            width: 50vw;
+            margin-left: 27vw;
+            margin-top: -14vh;
+        }
+    }
+
+    .downButtons{
+        width: 50vw;
+        padding: 10px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        width: 100%;
-        height: 83vh;
-        h1{
-            margin-bottom: 7%;
-        }
         button{
-            margin-bottom: 60px;
-            padding: 7px;
-            border: none;
-            font-size: 1.6rem;
-            font-weight: bold;
-            font-style: normal;
+            display: block;
+            width: 300px;
+            font-size: 2rem;
+            margin-left: 20px;
+            padding: 10px;
+            background-color: op-colors.$op-color-green;
+            color: #fdfdfd;
+            font-weight: 600;
             letter-spacing: 3px;
-            min-width: 200px;
-            background-color: transparent;
+            border: none;
         }
+
         button:hover{
-            background-color: $op-color-green;
-            color: white;
+            cursor: pointer;
+            background-color: op-colors.$op-color-dark-green;
         }
     }
 }

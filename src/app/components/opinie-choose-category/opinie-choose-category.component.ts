@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Category } from 'src/utils/ts/Category';
 
 @Component({
   selector: 'app-opinie-choose-category',
@@ -7,9 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class OpinieChooseCategoryComponent implements OnInit {
 
-  @Input("chooseItem") chooseItem: any[] | undefined;
+  @Input("chooseItem") chooseItem: Category[] | undefined;
 
-  choose: any[] | undefined;
+  choose: Category[] | undefined = [];
 
   constructor() { 
     

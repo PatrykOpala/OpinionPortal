@@ -20,11 +20,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    this.loginElement.nativeElement.addEventListener("click", ()=>{
-      this.router.navigate(["logowanie"]);
-    });
-    this.registerElement.nativeElement.addEventListener("click", ()=>{
-      this.router.navigate(["rejestracja"]);
-    });
+    // this.loginElement.nativeElement.addEventListener("click", ()=>{
+    //   this.router.navigate(["logowanie"]);
+    // });
+    // this.registerElement.nativeElement.addEventListener("click", ()=>{
+    //   this.router.navigate(["rejestracja"]);
+    // });
   }
 }
