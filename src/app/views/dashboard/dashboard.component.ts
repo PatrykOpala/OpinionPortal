@@ -9,8 +9,6 @@ import { AddOpinionService } from 'src/app/addopinion.service';
 })
 export class DashboardComponent implements OnInit {
 
-  cx: string = "DashBoard"
-
   constructor(private ads: AddOpinionService, private router: Router) {}
 
   @ViewChild("log") loginElement!: ElementRef;
@@ -20,11 +18,11 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    // this.loginElement.nativeElement.addEventListener("click", ()=>{
-    //   this.router.navigate(["logowanie"]);
-    // });
-    // this.registerElement.nativeElement.addEventListener("click", ()=>{
-    //   this.router.navigate(["rejestracja"]);
-    // });
+    this.loginElement.nativeElement.addEventListener("click", ()=>{
+      this.router.navigate(["logowanie"]);
+    });
+    this.registerElement.nativeElement.addEventListener("click", ()=>{
+      this.router.navigate(["rejestracja"]);
+    });
   }
 }

@@ -1,11 +1,11 @@
-<div id="formigInup">
-    <div class="logoOpn">
-        <p>Opinier</p>
-        <span>Leń Version</span>
-        <p class="motto">Podziel się swoimi doświadczeniami z innymi.</p>
-    </div>
+<opn-pane-container>
+    <opn-logo-opinier [beta-mode]="true"></opn-logo-opinier>
     <div class="downButtons">
-        <button #log>Zaloguj</button>
+        <button #log>Podziel się opinią</button>
         <button class="res" #res>Zarejestruj</button>
     </div>
-</div>
+</opn-pane-container>
+
+<opn-pane-container [background-color]="'#1ef01e'">
+    <opn-pane-container-header></opn-pane-container-header>
+</opn-pane-container>

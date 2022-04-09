@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'app-logowanie',
+  selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrls: ['./logowanie.component.scss']
 })
