@@ -10,7 +10,8 @@ import { PaneContainerComponent } from '../../components/pane-container/pane-con
 import { LogoOpinierComponent } from '../../components/logo-opinier/logo-opinier.component';
 import { OpinieChooseCategoryComponent } from '../../components/opinie-choose-category/opinie-choose-category.component';
 import { OpinieChooseCategoryItemComponent } from '../../components/opinie-choose-category/opinie-choose-category-item/opinie-choose-category-item.component';
-import { PaneContainerHeaderComponent } from '../../components/pane-container-header/pane-container-header.component';
+
+import { OpinieContainerComponent } from '../../components/opinie-container/opinie-container.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { PaneContainerHeaderComponent } from '../../components/pane-container-he
     LogoOpinierComponent,
     OpinieChooseCategoryComponent,
     OpinieChooseCategoryItemComponent,
-    PaneContainerHeaderComponent,
+    OpinieContainerComponent
   ],
   imports: [
     CommonModule,
@@ -38,6 +39,7 @@ import { PaneContainerHeaderComponent } from '../../components/pane-container-he
     LogoOpinierComponent,
     OpinieChooseCategoryComponent,
     OpinieChooseCategoryItemComponent,
+    OpinieContainerComponent
   ]
 })
 export class ViewsModuleModule { }

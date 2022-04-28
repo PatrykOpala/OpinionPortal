@@ -7,10 +7,8 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-left: 20vw;
     button{
         display: inline-block;
-        // width: 400px;
         font-size: 2rem;
         margin-left: 30px;
         padding: 13px;
@@ -20,19 +18,34 @@
         letter-spacing: 3px;
         border: none;
     }
-
     button:hover{
         cursor: pointer;
         background-color: op-colors.$op-color-dark-green;
     }
-
     .res{
         background-color: transparent;
         color: op-colors.$op-color-green;
     }
-
     .res:hover{
         background-color: transparent;
         color: rgb(22, 196, 22);
     }
+}
+
+
+opn-pane-container{
+    p{
+        font-size: 4rem;
+        color: white;
+        letter-spacing: 3px;
+        margin-top: 1.2vh;
+    }
+    .opn-pane-container-body{
+        width: 70.4vw;
+        height: 54.3vh;
+        display: grid;
+        grid-template-columns: repeat(3, 26.4vw);
+        margin-right: 15vw;
+        gap: 28px;
+    }   
 }
