@@ -1,7 +1,7 @@
 <div class="logowanieContainer">
     <form class="formContainer" (submit)="$event.preventDefault()">
         <label class="labelC">Logowanie</label>
-        <input type="email" name="userEmail" class="inputC" placeholder="Adres Email" #uEmail/>
+        <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail" #uEmail/>
         <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło" #uPassword/>
         <button type="submit" (click)="signIn()">Zaloguj się</button>
     </form>
