@@ -1,7 +1,7 @@
 @use "./../../../utils/scss/op-colors.scss" as op-colors;
 
 .logoOpn{
-    width: 60vw;
+    width: fit-content;
     height: 40vh;
     margin-top: 20vh;
     p{
@@ -10,15 +10,19 @@
         font-weight: 600;
         letter-spacing: 3px;
         margin-bottom: 2px;
+        display: flex;
+        flex-direction: column;
+        span{
+            font-size: 1.5rem;
+            background-color: op-colors.$op-color-green;
+            padding: 3px 13px;
+            letter-spacing: 3px;
+            width: fit-content;
+            margin-left: 8vw;
+            color: #fdfdfd;
+        }
     }
-    span{
-        font-size: 1.5rem;
-        background-color: op-colors.$op-color-green;
-        padding: 3px 13px;
-        letter-spacing: 3px;
-        margin-left: 8vw;
-        color: #fdfdfd;
-    }
+    
 
     .motto{
         font-size: 4rem;

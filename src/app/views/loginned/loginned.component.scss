@@ -1,3 +1,4 @@
+@use "./../../../utils/scss/op-colors.scss" as op-colors;
 .loginned__container{
     display: flex;
     flex-direction: column;
@@ -5,5 +6,32 @@
     width: 96.4vw;
     height: 86vh;
     margin-top: 6px;
+    .profile__menu{
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        margin-top: -7vh;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        .button__LogOut{
+            font-size: 1.6em;
+            padding: 6px;
+            letter-spacing: 2px;
+            border: 1px solid transparent;
+            color: op-colors.$op-color-green;
+            background-color: transparent;
+            font-weight: 580;
+            cursor: pointer;
+            // background-color: op-colors.$op-color-green;
+            // color: #fefefe;
+        }
+        .button__LogOut:hover{
+            border-bottom: 2px solid op-colors.$op-color-green;
+        }
+    }
     
 }

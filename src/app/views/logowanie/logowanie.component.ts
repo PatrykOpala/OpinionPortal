@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'opn-logowanie',
@@ -10,7 +11,7 @@ export class LogowanieComponent implements OnInit {
   @ViewChild("uEmail") EmailField!: ElementRef;
   @ViewChild("uPassword") PasswordField!: ElementRef;
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
@@ -18,6 +19,8 @@ export class LogowanieComponent implements OnInit {
   signIn(): void{
     let email = this.EmailField.nativeElement.value;
     let password = this.PasswordField.nativeElement.value;
+
+    this.route.navigate(["/loginned"]);
   }
 
 }

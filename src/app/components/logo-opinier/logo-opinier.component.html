@@ -1,5 +1,6 @@
 <div class="logoOpn">
-    <p>Opinier</p>
-    <span *ngIf="betaMode">Leń Version</span>
-    <p class="motto">Podziel się swoimi doświadczeniami z innymi.</p>
+    <p [ngStyle]="{'margin-left': lg_MarginLeft}">Opinier
+        <span *ngIf="betaMode">Leń Version</span>
+    </p>
+    <p class="motto">{{mott}}</p>
 </div>

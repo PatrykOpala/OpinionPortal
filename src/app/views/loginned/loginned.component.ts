@@ -10,9 +10,6 @@ import { Observable } from 'rxjs';
 export class LoginnedComponent implements OnInit {
 
   constructor() {}
-
-  @ViewChild('opinionTopic') opTopic!: ElementRef
-  @ViewChild('opinionContent') opContent!: ElementRef
   
   ngOnInit(): void {}
 
