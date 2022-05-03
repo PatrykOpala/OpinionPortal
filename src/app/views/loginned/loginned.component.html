@@ -1,7 +1,15 @@
 <div class="loginned__container">
+    <button class="addOpinion">D</button>
     <opn-logo-opinier [beta-mode]="true"></opn-logo-opinier>
     <div class="profile__menu">
         <p>Witaj Użytkowniku!</p>
         <button class="button__LogOut">Wyloguj mnie</button>
     </div>
+    <p *ngIf="yourOpinionsPublishing.length == 0; else onContainer">Brak opublikowanych opinii</p>
+    <ng-template #onContainer>
+        <div class="opinion__container">
+            <!-- <div class="opinion__item"></div> -->
+            <opn-opinie-container *ngFor="let yOP of yourOpinionsPublishing" [header]="yOP.head" [content]="yOP.content"></opn-opinie-container>
+        </div>
+    </ng-template>
 </div>

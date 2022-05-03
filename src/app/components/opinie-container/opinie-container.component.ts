@@ -10,6 +10,7 @@ export class OpinieContainerComponent implements OnInit {
   constructor() { }
 
   @Input("header") header: string = "";
+  @Input("content") content: string = "";
 
   ngOnInit(): void {
   }
