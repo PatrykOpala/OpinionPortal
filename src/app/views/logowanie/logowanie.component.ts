@@ -22,5 +22,4 @@ export class LogowanieComponent implements OnInit {
 
     this.route.navigate(["/loginned"]);
   }
-
 }

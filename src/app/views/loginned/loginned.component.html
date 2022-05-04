@@ -8,7 +8,6 @@
     <p *ngIf="yourOpinionsPublishing.length == 0; else onContainer">Brak opublikowanych opinii</p>
     <ng-template #onContainer>
         <div class="opinion__container">
-            <!-- <div class="opinion__item"></div> -->
             <opn-opinie-container *ngFor="let yOP of yourOpinionsPublishing" [header]="yOP.head" [content]="yOP.content"></opn-opinie-container>
         </div>
     </ng-template>
