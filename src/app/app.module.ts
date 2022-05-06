@@ -9,6 +9,8 @@ import { ViewsModuleModule } from './views/views-module/views-module.module';
 
 import { AddOpinionService } from './addopinion.service';
 
+
+
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./views/opinie/opinie.module').then(m => m.OpinieModule)},

@@ -1,6 +1,8 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { DialogDirective } from 'src/app/components/add-opinion-dialog/dialog.directive';
+import {AddOpinionDialogComponent} from 'src/app/components/add-opinion-dialog/add-opinion-dialog.component';
 
 interface Opinions {
   head: string,
@@ -13,6 +15,9 @@ interface Opinions {
   styleUrls: ['./loginned.component.scss']
 })
 export class LoginnedComponent implements OnInit {
+
+  @ViewChild(DialogDirective, {static: true}) dialogHost!: DialogDirective;
+  dialogSub!: Subscription
 
   constructor() {}
 
@@ -48,5 +53,16 @@ export class LoginnedComponent implements OnInit {
   ]
   
   ngOnInit(): void {}
+
+  showAddDialog(){
+    const containerRef = this.dialogHost.viewContainerRef;
+    containerRef.clear();
+
+    const componentRef = containerRef.createComponent(AddOpinionDialogComponent);
+    this.dialogSub = componentRef.instance.close.subscribe(()=>{
+      this.dialogSub.unsubscribe();
+      containerRef.clear();
+    })
+  }
 
 }
