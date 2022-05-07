@@ -17,6 +17,7 @@
         font-size: 2em;
         color: #fefefe;
         background-color: op-colors.$op-color-green;
+        z-index: 10;
     }
     .addOpinion:hover{cursor: pointer;}
     .profile__menu{

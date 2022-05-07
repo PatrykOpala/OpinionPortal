@@ -1,0 +1,18 @@
+.choose-pn-steps{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .choose-buttons{
+        margin-right: 4vw;
+        font-size: 1.8em;
+    }
+
+    .positive{
+        color: rgba(20, 150, 20);
+    }
+
+    .negative{
+        color: rgba(150, 20, 20);
+    }
+}

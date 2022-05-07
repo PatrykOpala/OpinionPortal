@@ -8,6 +8,7 @@ import { LoginnedComponent } from './views/loginned/loginned.component';
 import { ViewsModuleModule } from './views/views-module/views-module.module';
 
 import { AddOpinionService } from './addopinion.service';
+import { DialogChoosePnStepComponent } from './components/dialog-choose-pn-step/dialog-choose-pn-step.component';
 
 
 
@@ -22,6 +23,7 @@ const AppRoutes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
+    DialogChoosePnStepComponent,
   ],
   imports: [
     BrowserModule,
