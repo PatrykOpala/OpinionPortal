@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category } from 'src/utils/ts/Category';
+import { Category } from 'src/utils/ts/classes/Category';
 
 @Component({
   selector: 'opn-opinie-choose-category',

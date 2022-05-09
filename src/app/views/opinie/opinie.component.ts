@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Category} from '../../../utils/ts/Category';
+import {Category} from '../../../utils/ts/classes/Category';
 import { Observable } from 'rxjs';
 
 @Component({

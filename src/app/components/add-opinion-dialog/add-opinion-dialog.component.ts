@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import {DialogContainerDirective} from '../../../utils/directives/dialog-container.directive';
+import { Subscription } from 'rxjs';
+import { ViewPN } from 'src/utils/ts/enums/ViewPN';
+import {DialogContainerDirective} from '../../../utils/ts/directives/dialog-container.directive';
 import {DialogChoosePnStepComponent} from '../dialog-choose-pn-step/dialog-choose-pn-step.component';
+import { DialogOpinionComponent } from '../dialog-opinion/dialog-opinion.component';
 
 @Component({
   selector: 'opn-add-opinion-dialog',
@@ -12,6 +15,8 @@ export class AddOpinionDialogComponent implements OnInit {
   @ViewChild(DialogContainerDirective) dialogContainerDirective!: DialogContainerDirective;
   @Output() close = new EventEmitter<void>();
 
+  choosePNStepsSub!: Subscription;
+
   constructor() { }
 
   ngOnInit(): void {}
@@ -21,11 +26,29 @@ export class AddOpinionDialogComponent implements OnInit {
   }
 
   opnLoadDialogContent(start: string){
-    if(start === "start"){
+    if(start === ViewPN.START){
       let dContainerRef = this.dialogContainerDirective.dialogViewContainerRef;
       dContainerRef.clear();
 
-      let dialogComponentRef = dContainerRef.createComponent(DialogChoosePnStepComponent)
+      let dialogComponentRef = dContainerRef.createComponent(DialogChoosePnStepComponent);
+      this.choosePNStepsSub = dialogComponentRef.instance.changeView.subscribe((viewPN)=>{
+        this.choosePNStepsSub.unsubscribe();
+        this.opnLoadDialogContent(viewPN);
+      })
+    }
+
+    if(start === ViewPN.POSITIVE){
+      let dContainerRef = this.dialogContainerDirective.dialogViewContainerRef;
+      dContainerRef.clear();
+      let dialogComponentRef = dContainerRef.createComponent(DialogOpinionComponent);
+      dialogComponentRef.instance.pn = ViewPN.POSITIVE;
+    }
+
+    if(start === ViewPN.NEGATIVE){
+      let dContainerRef = this.dialogContainerDirective.dialogViewContainerRef;
+      dContainerRef.clear();
+      let dialogComponentRef = dContainerRef.createComponent(DialogOpinionComponent);
+      dialogComponentRef.instance.pn = ViewPN.NEGATIVE;
     }
   }
 

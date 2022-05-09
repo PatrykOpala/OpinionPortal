@@ -1,0 +1,16 @@
+<div class="opinion_add">
+    <div class="editor" *ngIf="pn == 'positive'; else negativeEditor">
+        <div class="left_container"></div>
+        <div class="right_container">
+            <div class="opinion_container">
+                
+            </div>
+        </div>
+    </div>
+
+    <ng-template #negativeEditor>
+        <div class="editor">
+            negative
+        </div>
+    </ng-template>
+</div>

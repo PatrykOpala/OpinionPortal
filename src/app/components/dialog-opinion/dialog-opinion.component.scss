@@ -1,0 +1,31 @@
+.opinion_add{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .editor{
+        width: 80vw;
+        height: 65vh;
+        display: grid;
+        grid-template-columns: 40% 60%;
+
+        .left_container{
+            // background-color: aquamarine;
+        }
+
+        .right_container{
+            // background-color: bisque;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .opinion_container{
+                width: 80%;
+                height: 47vh;
+                border: 2px solid red;
+            }
+        }
+    }
+}

@@ -4,8 +4,21 @@
     align-items: center;
 
     .choose-buttons{
-        margin-right: 4vw;
-        font-size: 1.8em;
+        width: 10vw;
+        height: 12vh;
+        margin-right: 40px;
+        font-size: 1.5em;
+        background-color: transparent;
+        border: 2px solid transparent;
+    }
+
+    .choose-buttons:hover{
+        width: 10vw;
+        height: 12vh;
+        margin-right: 40px;
+        font-size: 1.5em;
+        background-color: transparent;
+        border-bottom: 2px solid #fff;
     }
 
     .positive{

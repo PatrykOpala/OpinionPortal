@@ -8,8 +8,8 @@ import { LogoOpinierComponent } from '../../components/logo-opinier/logo-opinier
 import { OpinieContainerComponent } from '../../components/opinie-container/opinie-container.component';
 import { AddOpinionDialogComponent } from '../../components/add-opinion-dialog/add-opinion-dialog.component';
 
-import { DialogDirective } from '../../../utils/directives/dialog.directive';
-import { DialogContainerDirective } from '../../../utils/directives/dialog-container.directive';
+import { DialogDirective } from '../../../utils/ts/directives/dialog.directive';
+import { DialogContainerDirective } from '../../../utils/ts/directives/dialog-container.directive';
 
 @NgModule({
   declarations: [
