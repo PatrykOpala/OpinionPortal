@@ -1,4 +1,13 @@
 <div class="choose-pn-steps">
-    <button class="choose-buttons positive" id="positiveE" (click)="setPositiveAndNegativeLayout($event)">Pozytywna</button>
-    <button class="choose-buttons negative" id="negativeE" (click)="setPositiveAndNegativeLayout($event)">Nagatywna</button>
+   <div class="left">
+       <div class="left__component">
+            <div class="imge"></div>
+            <p>Nazwa firmy</p>
+       </div>
+   </div>
+   <div class="right">
+        <div class="opinion_container">
+            <opn-dialog-opinion-content></opn-dialog-opinion-content>
+        </div>
+   </div>
 </div>

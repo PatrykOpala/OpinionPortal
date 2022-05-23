@@ -1,7 +1,8 @@
+@use "./../../../utils/scss/op-colors.scss" as op-colors;
 .addDialogContainer{
     width: 100vw;
     height: 100vh;
-    background-color: aqua;
+    background-color: op-colors.$opn-color-dialog-bg;
     position: fixed;
     left: 0;
     top: 0;
@@ -11,5 +12,6 @@
         margin: 12vh 12vw;
         font-size: 2.5em;
         letter-spacing: 4px;
+        color: #1A1A1A;
     }
 }

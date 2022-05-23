@@ -15,7 +15,7 @@ export class DialogChoosePnStepComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setPositiveAndNegativeLayout(ev: Event, view?: ViewPN): void{
+  setPositiveAndNegativeLayout(ev: Event): void{
     if((ev.target as HTMLButtonElement).getAttribute("id") === "positiveE"){
       this.changeView.emit(ViewPN.POSITIVE);
     }

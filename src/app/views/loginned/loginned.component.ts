@@ -16,7 +16,7 @@ interface Opinions {
 })
 export class LoginnedComponent implements OnInit {
 
-  @ViewChild(DialogDirective, {static: true}) dialogHost!: DialogDirective;
+  @ViewChild(DialogDirective) dialogHost!: DialogDirective;
   dialogSub!: Subscription
 
   constructor() {}

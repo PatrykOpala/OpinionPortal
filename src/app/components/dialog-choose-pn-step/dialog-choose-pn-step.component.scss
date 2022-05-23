@@ -1,31 +1,85 @@
+@use "./../../../utils/scss/op-colors.scss" as op-colors;
+
 .choose-pn-steps{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display:grid;
+    grid-template-columns: 40% 60%;
+    width: 80vw;
+    height: 60vh;
+    margin-left: 10vw;
+    position: absolute;
 
-    .choose-buttons{
-        width: 10vw;
-        height: 12vh;
-        margin-right: 40px;
-        font-size: 1.5em;
-        background-color: transparent;
-        border: 2px solid transparent;
+    .left, .right{
+        position: relative;
+        width: 100%;
+        height: 100%;
     }
 
-    .choose-buttons:hover{
-        width: 10vw;
-        height: 12vh;
-        margin-right: 40px;
-        font-size: 1.5em;
-        background-color: transparent;
-        border-bottom: 2px solid #fff;
+    .left{
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        gap: 2px;
+        height: 60vh;
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        .left__component{
+            width: 97%;
+            height: 150px;
+            text-align: center;
+            font-size: 1.4rem;
+            background-color: op-colors.$opn-color-dialog-fg;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .imge{
+                width: 60px;
+                height: 60px;
+                margin-top: 10px;
+                border: 2px solid #EEC4F8;
+            }
+
+            p{
+                margin-top: 10px;
+                font-size: 1.1em;
+            }
+        }
     }
 
-    .positive{
-        color: rgba(20, 150, 20);
+    .left::-webkit-scrollbar{
+        width: 6px;
     }
 
-    .negative{
-        color: rgba(150, 20, 20);
+    .left:hover::-webkit-scrollbar{
+        width: 8px;
+    }
+
+    .left::-webkit-scrollbar-thumb{
+        width: 6px;
+        background-color: #fafafa;
+    }
+
+    .right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .opinion_container{
+            width: 80%;
+            height: 45vh;
+            border: 2px solid #5F0000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input{
+                display: block;
+                width: 80%;
+                font-size: 1.8em;
+                height: 60px;
+            }
+        }
     }
 }

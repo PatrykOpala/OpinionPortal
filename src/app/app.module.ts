@@ -10,6 +10,7 @@ import { ViewsModuleModule } from './views/views-module/views-module.module';
 import { AddOpinionService } from './addopinion.service';
 import { DialogChoosePnStepComponent } from './components/dialog-choose-pn-step/dialog-choose-pn-step.component';
 import { DialogOpinionComponent } from './components/dialog-opinion/dialog-opinion.component';
+import { DialogOpinionContentComponent } from './components/dialog-opinion/dialog-opinion-content/dialog-opinion-content.component';
 
 
 
@@ -26,6 +27,7 @@ const AppRoutes: Routes = [
     AppComponent,
     DialogChoosePnStepComponent,
     DialogOpinionComponent,
+    DialogOpinionContentComponent,
   ],
   imports: [
     BrowserModule,
