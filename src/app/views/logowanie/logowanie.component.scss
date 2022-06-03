@@ -1,5 +1,5 @@
-@use "./../../../utils/scss/op-colors.scss" as *;
-@use "./../../../utils/scss/op-mixins.scss" as *;
+@use "src/shared/utils/scss/op-colors.scss" as *;
+@use "src/shared/utils/scss/op-mixins.scss" as *;
 
 .logowanieContainer{
     @include flexD();

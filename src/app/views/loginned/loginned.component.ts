@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
 
 import { Observable, Subscription } from 'rxjs';
-import { DialogDirective } from 'src/utils/ts/directives/dialog.directive';
-import {AddOpinionDialogComponent} from 'src/app/components/add-opinion-dialog/add-opinion-dialog.component';
+import { DialogDirective } from '@shared/utils/ts/directives/dialog.directive';
+import {AddOpinionDialogComponent} from '@components/add-opinion-dialog/add-opinion-dialog.component';
 
 interface Opinions {
   head: string,

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ViewPN } from 'src/utils/ts/enums/ViewPN';
+import { ViewPN } from '@shared/utils/ts/enums/ViewPN';
 
 @Component({
   selector: 'opn-dialog-opinion',
