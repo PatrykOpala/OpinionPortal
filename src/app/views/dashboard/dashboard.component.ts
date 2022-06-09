@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Inject, inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddOpinionService } from 'src/app/addopinion.service';
 
@@ -9,7 +9,9 @@ import { AddOpinionService } from 'src/app/addopinion.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private ads: AddOpinionService, private router: Router) {}
+  private router = inject(Router)
+  
+  constructor(private ads: AddOpinionService) {}
 
   @ViewChild("log") loginElement!: ElementRef;
   @ViewChild("res") registerElement!: ElementRef;

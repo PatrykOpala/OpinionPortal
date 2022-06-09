@@ -1,1 +1,8 @@
-<p>rejestracja works!</p>
+<div class="logowanieContainer">
+    <form class="formContainer" (submit)="$event.preventDefault()">
+        <label class="labelC">Rejestracja</label>
+        <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail" #upEmail/>
+        <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło" #upPassword/>
+        <button type="submit" (click)="signUp()">Zaloguj się</button>
+    </form>
+</div>

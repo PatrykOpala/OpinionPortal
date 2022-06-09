@@ -2,11 +2,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "paths": {
-      "@components/*": ["src/app/components/*"],
-      "@shared/*": ["src/shared/*"],
-      "@views/*": ["src/app/views/*"]
-    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,

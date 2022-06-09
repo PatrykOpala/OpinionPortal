@@ -1,9 +1,9 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ViewPN } from '@shared/utils/ts/enums/ViewPN';
-import {DialogContainerDirective} from '@shared/utils/ts/directives/dialog-container.directive';
-import {DialogChoosePnStepComponent} from '@components/dialog-choose-pn-step/dialog-choose-pn-step.component';
-import { DialogOpinionComponent } from '@components/dialog-opinion/dialog-opinion.component';
+import { ViewPN } from '../../../shared/utils/ts/enums/ViewPN';
+import {DialogContainerDirective} from '../../../shared/utils/ts/directives/dialog-container.directive';
+import {DialogChoosePnStepComponent} from '../../components/dialog-choose-pn-step/dialog-choose-pn-step.component';
+import { DialogOpinionComponent } from '../../components/dialog-opinion/dialog-opinion.component';
 
 @Component({
   selector: 'opn-add-opinion-dialog',

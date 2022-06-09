@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-logowanie',
@@ -11,15 +12,21 @@ export class LogowanieComponent implements OnInit {
   @ViewChild("uEmail") EmailField!: ElementRef;
   @ViewChild("uPassword") PasswordField!: ElementRef;
 
+  public emailL = "";
+
   constructor(private route: Router) { }
 
   ngOnInit(): void {
   }
 
-  signIn(): void{
-    let email = this.EmailField.nativeElement.value;
-    let password = this.PasswordField.nativeElement.value;
-
-    this.route.navigate(["/loginned"]);
+  onSubmit(): void{
+    
   }
+
+  // signIn(): void{
+  //   let email = this.EmailField.nativeElement.value;
+  //   let password = this.PasswordField.nativeElement.value;
+  //   console.log(this.ads.login(email, password));
+  //   this.route.navigate(["/loginned"]);
+  // }
 }

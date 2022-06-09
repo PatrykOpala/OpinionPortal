@@ -46,5 +46,7 @@ testem.log
 Thumbs.db
 pnpm-lock.yaml
 
+/src/environments/environment.ts
+.angular
 
 /opinion-backend

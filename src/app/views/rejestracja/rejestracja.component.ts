@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-rejestracja',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RejestracjaComponent implements OnInit {
 
-  constructor() { }
+  @ViewChild("upEmail") EmailField!: ElementRef;
+  @ViewChild("upPassword") PasswordField!: ElementRef;
+
+  constructor(private route: Router, private ads: AddOpinionService) { }
 
   ngOnInit(): void {
+  }
+
+  signUp(): void{
+    let email = this.EmailField.nativeElement.value;
+    let password = this.PasswordField.nativeElement.value;
+    console.log(this.ads.register(email, password));
+    // this.route.navigate(["/loginned"]);
   }
 
 }

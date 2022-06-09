@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ViewPN } from '@shared/utils/ts/enums/ViewPN';
+import { ViewPN } from '../../../shared/utils/ts/enums/ViewPN';
 
 @Component({
   selector: 'opn-dialog-choose-pn-step',

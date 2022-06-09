@@ -1,8 +1,8 @@
 <div class="logowanieContainer">
-    <form class="formContainer" (submit)="$event.preventDefault()">
+    <form class="formContainer" (ngSubmit)="onSubmit()" #logowanieForm="ngForm">
         <label class="labelC">Logowanie</label>
-        <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail" #uEmail/>
-        <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło" #uPassword/>
-        <button type="submit" (click)="signIn()">Zaloguj się</button>
+        <input type="email" name="Email" class="inputC" placeholder="Adres e-mail" [(ngModel)]="emailL"/>
+        <input type="password" name="Password" id="uPassword" class="inputC" placeholder="Hasło"/>
+        <button type="submit" [disabled]="!logowanieForm.form.valid">Zaloguj się</button>
     </form>
 </div>

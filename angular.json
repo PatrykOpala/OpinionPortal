@@ -33,7 +33,10 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "@supabase/supabase-js"
+           ]
           },
           "configurations": {
             "production": {
@@ -114,5 +117,8 @@
       }
     }
   },
-  "defaultProject": "opinion-portal"
+  "defaultProject": "opinion-portal",
+  "cli": {
+    "analytics": false
+  }
 }
