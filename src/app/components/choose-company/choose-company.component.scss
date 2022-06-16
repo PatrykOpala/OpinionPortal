@@ -1,0 +1,26 @@
+@use "src/shared/utils/scss/op-colors.scss" as op-colors;
+
+.left__component{
+    width: 97%;
+    height: 150px;
+    text-align: center;
+    font-size: 1.4rem;
+    background-color: op-colors.$opn-color-dialog-fg;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .imge{
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+        border: 2px solid #EEC4F8;
+    }
+
+    p{
+        margin-top: 10px;
+        font-size: 1.1em;
+    }
+}

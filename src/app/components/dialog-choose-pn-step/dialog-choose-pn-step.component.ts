@@ -8,20 +8,11 @@ import { ViewPN } from '../../../shared/utils/ts/enums/ViewPN';
 })
 export class DialogChoosePnStepComponent implements OnInit {
 
-  @Output() changeView = new EventEmitter<ViewPN>();
+  // @Output() changeView = new EventEmitter<ViewPN>();
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  setPositiveAndNegativeLayout(ev: Event): void{
-    if((ev.target as HTMLButtonElement).getAttribute("id") === "positiveE"){
-      this.changeView.emit(ViewPN.POSITIVE);
-    }
-    if((ev.target as HTMLButtonElement).getAttribute("id") === "negativeE"){
-      this.changeView.emit(ViewPN.NEGATIVE);
-    }
   }
 
 }

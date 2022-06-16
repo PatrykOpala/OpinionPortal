@@ -1,6 +1,5 @@
-import { Component, ElementRef, Inject, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, } from '@angular/core';
 import { Router } from '@angular/router';
-import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-app-dashboard',
@@ -9,22 +8,21 @@ import { AddOpinionService } from 'src/app/addopinion.service';
 })
 export class DashboardComponent implements OnInit {
 
-  private router = inject(Router)
+  private router = inject(Router);
   
-  constructor(private ads: AddOpinionService) {}
-
-  @ViewChild("log") loginElement!: ElementRef;
-  @ViewChild("res") registerElement!: ElementRef;
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  ngAfterViewInit(){
-    this.loginElement.nativeElement.addEventListener("click", ()=>{
-      this.router.navigate(["logowanie"]);
-    });
-    this.registerElement.nativeElement.addEventListener("click", ()=>{
-      this.router.navigate(["rejestracja"]);
-    });
+  navigateTo(str: String): void{
+    switch(str){
+      case 'log':
+        this.router.navigate(["logowanie"]);
+      break;
+      case 'res':
+        this.router.navigate(["rejestracja"]);
+      break;
+    }
   }
 }

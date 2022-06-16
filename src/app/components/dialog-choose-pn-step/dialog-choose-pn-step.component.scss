@@ -21,31 +21,6 @@
         height: 60vh;
         overflow-x: hidden;
         overflow-y: auto;
-
-        .left__component{
-            width: 97%;
-            height: 150px;
-            text-align: center;
-            font-size: 1.4rem;
-            background-color: op-colors.$opn-color-dialog-fg;
-            color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-
-            .imge{
-                width: 60px;
-                height: 60px;
-                margin-top: 10px;
-                border: 2px solid #EEC4F8;
-            }
-
-            p{
-                margin-top: 10px;
-                font-size: 1.1em;
-            }
-        }
     }
 
     .left::-webkit-scrollbar{
@@ -65,20 +40,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
 
-        .opinion_container{
-            width: 80%;
-            height: 45vh;
-            border: 2px solid #5F0000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
-            input{
-                display: block;
-                width: 80%;
-                font-size: 1.8em;
-                height: 60px;
+        .actions{
+            margin-top: 30px;
+            button{
+                margin-left: 20px;
+                display: inline-block;
+                font-size: 2rem;
+                padding: 13px;
+                background-color: op-colors.$op-color-green;
+                color: #fdfdfd;
+                font-weight: 600;
+                letter-spacing: 3px;
+                border: none;
             }
         }
     }

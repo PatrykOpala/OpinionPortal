@@ -1,7 +1,5 @@
 .opinie-container{
-    width: 100%;
-    height: 27vh;
-    // border: 2px solid red;
+    width: 40vw;
     background-color: #fdfdfd;
     display: flex;
     flex-direction: column;
@@ -12,7 +10,13 @@
         font-size: 2em;
     }
 
-    p{
+    textarea{
+        width: 37vw;
+        height: 35vh;
         font-size: 1.5em;
+        resize: none;
+        border: 2px solid #cccccc;
+        border-radius: 6px;
+        margin-bottom: 20px;
     }
 }

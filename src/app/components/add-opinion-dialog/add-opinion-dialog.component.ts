@@ -15,7 +15,7 @@ export class AddOpinionDialogComponent implements OnInit {
   @ViewChild(DialogContainerDirective) dialogContainerDirective!: DialogContainerDirective;
   @Output() close = new EventEmitter<void>();
 
-  choosePNStepsSub!: Subscription;
+  // choosePNStepsSub!: Subscription;
 
   constructor() { }
 
@@ -31,10 +31,10 @@ export class AddOpinionDialogComponent implements OnInit {
       dContainerRef.clear();
 
       let dialogComponentRef = dContainerRef.createComponent(DialogChoosePnStepComponent);
-      this.choosePNStepsSub = dialogComponentRef.instance.changeView.subscribe((viewPN)=>{
-        this.choosePNStepsSub.unsubscribe();
-        this.opnLoadDialogContent(viewPN);
-      })
+      // this.choosePNStepsSub = dialogComponentRef.instance.changeView.subscribe((viewPN)=>{
+      //   this.choosePNStepsSub.unsubscribe();
+      //   this.opnLoadDialogContent(viewPN);
+      // })
     }
 
     if(start === ViewPN.POSITIVE){

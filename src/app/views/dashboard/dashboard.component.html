@@ -1,17 +1,14 @@
 <opn-pane-container>
     <opn-logo-opinier [beta-mode]="true" [motto]="'Podziel się swoimi doświadczeniami z innymi.'"></opn-logo-opinier>
     <div class="downButtons">
-        <button #log>Podziel się opinią</button>
-        <button class="res" #res>Zarejestruj</button>
+        <button (click)="navigateTo('log')">Podziel się opinią</button>
+        <button class="res" (click)="navigateTo('res')">Zarejestruj</button>
     </div>
 </opn-pane-container>
 
 <opn-pane-container [background-color]="'#1ef01e'">
     <p>Najlepiej oceniane opinie</p>
     <div class="opn-pane-container-body">
-        <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
-        <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
-        <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
         <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
         <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
         <opn-opinie-container [header]="'rhrhrh'" [content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>

@@ -11,6 +11,8 @@ import { AddOpinionService } from './addopinion.service';
 import { DialogChoosePnStepComponent } from './components/dialog-choose-pn-step/dialog-choose-pn-step.component';
 import { DialogOpinionComponent } from './components/dialog-opinion/dialog-opinion.component';
 import { DialogOpinionContentComponent } from './components/dialog-opinion/dialog-opinion-content/dialog-opinion-content.component';
+import { OpinieEditorComponent } from './components/opinie-editor/opinie-editor.component';
+import { ChooseCompanyComponent } from './components/choose-company/choose-company.component';
 
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -26,6 +28,8 @@ const AppRoutes: Routes = [
     DialogChoosePnStepComponent,
     DialogOpinionComponent,
     DialogOpinionContentComponent,
+    OpinieEditorComponent,
+    ChooseCompanyComponent
   ],
   imports: [
     BrowserModule,
