@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ViewPN } from '../../../shared/utils/ts/enums/ViewPN';
+import { Company } from 'src/shared/utils/ts/interfaces/company';
 
 @Component({
   selector: 'opn-dialog-choose-pn-step',
@@ -10,9 +10,14 @@ export class DialogChoosePnStepComponent implements OnInit {
 
   // @Output() changeView = new EventEmitter<ViewPN>();
 
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  consoleNameCompany(event: Company){
+    console.log(event);
   }
 
 }
