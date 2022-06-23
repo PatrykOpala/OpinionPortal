@@ -7,7 +7,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    button{
+    a{
         display: inline-block;
         font-size: 2rem;
         margin-left: 30px;
@@ -17,8 +17,9 @@
         font-weight: 600;
         letter-spacing: 3px;
         border: none;
+        text-decoration: none;
     }
-    button:hover{
+    a:hover{
         cursor: pointer;
         background-color: op-colors.$op-color-dark-green;
     }

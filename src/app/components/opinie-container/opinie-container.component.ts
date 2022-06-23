@@ -14,4 +14,6 @@ export class OpinieContainerComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  
+
 }

@@ -1,24 +1,19 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { Company } from 'src/shared/utils/ts/interfaces/company';
+import { Component, Input, OnInit} from '@angular/core';
+import { FormService } from 'src/shared/utils/ts/services/form.service';
 
 @Component({
   selector: 'opn-choose-company',
   templateUrl: './choose-company.component.html',
-  styleUrls: ['./choose-company.component.scss']
+  styleUrls: ['./choose-company.component.scss'],
 })
 export class ChooseCompanyComponent implements OnInit {
 
-  @Output() selectCompanyName = new EventEmitter<Company>();
-  @ViewChild('nameP') nameParagraph!: ElementRef;
+  @Input('choose-value') chooseValue: string = "";
 
+  inputID = Math.floor(Math.random() * 100);
 
-  constructor() { }
+  constructor(public formService: FormService) { }
 
-  ngOnInit(): void {
-  }
-
-  selectCompany(){
-    this.selectCompanyName.emit({label: this.nameParagraph.nativeElement.textContent});
-  }
+  ngOnInit(): void { }
 
 }

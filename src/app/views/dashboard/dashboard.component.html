@@ -1,8 +1,8 @@
 <opn-pane-container>
     <opn-logo-opinier [beta-mode]="true" [motto]="'Podziel się swoimi doświadczeniami z innymi.'"></opn-logo-opinier>
     <div class="downButtons">
-        <button (click)="navigateTo('log')">Podziel się opinią</button>
-        <button class="res" (click)="navigateTo('res')">Zarejestruj</button>
+        <a routerLink="/logowanie">Podziel się opinią</a>
+        <a class="res" routerLink="/rejestracja">Zarejestruj</a>
     </div>
 </opn-pane-container>
 

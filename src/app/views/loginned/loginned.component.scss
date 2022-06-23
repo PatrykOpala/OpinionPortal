@@ -16,8 +16,12 @@
         height: 80px;
         font-size: 2em;
         color: #fefefe;
+        text-decoration: none;
         background-color: op-colors.$op-color-green;
         z-index: 10;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .addOpinion:hover{cursor: pointer;}
     .profile__menu{

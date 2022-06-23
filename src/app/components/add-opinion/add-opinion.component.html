@@ -1,0 +1,22 @@
+<div class="addDialogContainer">
+    <p class="dialogParagraph">Dodaj Opinię</p>
+    <form class="flex" [formGroup]="formService.opinionForm" (ngSubmit)="sendOpinion()">
+        <aside>
+            <opn-choose-company [choose-value]="'Google'"></opn-choose-company>
+            <opn-choose-company [choose-value]="'Microsoft'"></opn-choose-company>
+            <opn-choose-company [choose-value]="'Apple'"></opn-choose-company>
+            <opn-choose-company [choose-value]="'IM'"></opn-choose-company>
+            <opn-choose-company [choose-value]="'Visual Studio Code'"></opn-choose-company>
+        </aside>
+        <div class="addContent">
+            <div class="opinie-container">
+                <h2>head-Up Display</h2>
+                <textarea id="" formControlName="opinionContent"></textarea>
+            </div>
+            <div class="actions">
+                <button>Anuluj</button>
+                <input type="submit" value="Dodaj">
+            </div>
+        </div>
+    </form>
+</div>

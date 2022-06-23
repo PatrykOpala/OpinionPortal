@@ -1,8 +1,4 @@
-import { Component, OnInit, ViewChild} from '@angular/core';
-
-import { Observable, Subscription } from 'rxjs';
-import { DialogDirective } from '../../../shared/utils/ts/directives/dialog.directive';
-import {AddOpinionDialogComponent} from '../../components/add-opinion-dialog/add-opinion-dialog.component';
+import { Component, OnInit} from '@angular/core';
 
 interface Opinions {
   head: string,
@@ -16,9 +12,6 @@ interface Opinions {
 })
 export class LoginnedComponent implements OnInit {
 
-  @ViewChild(DialogDirective) dialogHost!: DialogDirective;
-  dialogSub!: Subscription
-
   constructor() {}
 
   yourOpinionsPublishing: Opinions[] = [
@@ -26,43 +19,8 @@ export class LoginnedComponent implements OnInit {
     {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
     {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
     {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    {head: "coś", content: "tam"},
-    {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
-    {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
-    
   ]
   
   ngOnInit(): void {}
-
-  showAddDialog(){
-    const containerRef = this.dialogHost.viewContainerRef;
-    containerRef.clear();
-
-    const componentRef = containerRef.createComponent(AddOpinionDialogComponent);
-    this.dialogSub = componentRef.instance.close.subscribe(()=>{
-      this.dialogSub.unsubscribe();
-      containerRef.clear();
-    })
-  }
 
 }

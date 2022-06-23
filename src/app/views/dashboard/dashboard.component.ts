@@ -8,21 +8,8 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  private router = inject(Router);
-  
   constructor() {}
 
   ngOnInit(): void {
-  }
-
-  navigateTo(str: String): void{
-    switch(str){
-      case 'log':
-        this.router.navigate(["logowanie"]);
-      break;
-      case 'res':
-        this.router.navigate(["rejestracja"]);
-      break;
-    }
   }
 }

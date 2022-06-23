@@ -1,15 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit,} from '@angular/core';
 
 @Component({
   selector: 'opn-opinie-editor',
   templateUrl: './opinie-editor.component.html',
-  styleUrls: ['./opinie-editor.component.scss']
+  styleUrls: ['./opinie-editor.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpinieEditorComponent implements OnInit {
 
-  @Input() eHeader: string = "";
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {}
 

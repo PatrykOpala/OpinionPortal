@@ -20,7 +20,7 @@ export class LogowanieComponent implements OnInit {
   }
 
   onSubmit(): void{
-    
+    this.route.navigate(["/loginned"]);
   }
 
   // signIn(): void{
