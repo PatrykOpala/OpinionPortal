@@ -21,6 +21,7 @@ import { AddOpinionService } from './addopinion.service';
 import { DialogDirective } from './../shared/utils/ts/directives/dialog.directive';
 import { DialogContainerDirective } from './../shared/utils/ts/directives/dialog-container.directive';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent, pathMatch: 'full'},
@@ -52,7 +53,8 @@ const AppRoutes: Routes = [
     BrowserModule,
     RouterModule.forRoot(AppRoutes),
     RouterModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({}, {})
   ],
   providers: [AddOpinionService],
   bootstrap: [AppComponent]

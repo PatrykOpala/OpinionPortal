@@ -14,11 +14,11 @@
     position: relative;
     user-select: none;
 
-    input[type="checkbox"]{
+    input[type="radio"]{
         appearance: none;
     }
 
-    input[type="checkbox"]::before{
+    input[type="radio"]::before{
         content: "";
         position: absolute;
         top: 0;
@@ -31,7 +31,7 @@
         cursor: pointer;
     }
 
-    input[type="checkbox"]:checked::before{
+    input[type="radio"]:checked::before{
         transform: scale(1);
     }
 

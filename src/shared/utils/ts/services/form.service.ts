@@ -7,28 +7,17 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class FormService {
 
   opinionForm!: FormGroup
-
+  
   constructor(private formBuilder: FormBuilder) {
     this.opinionForm = this.formBuilder.group({
-      arm: this.formBuilder.array([]),
+      arm: '',
       opinionContent: ''
     });
   }
 
-  checkboxChange(e: Event){
-    const checkArray: FormArray = this.opinionForm.get('arm') as FormArray;
-    if((e.target as HTMLInputElement).checked){
-      checkArray.push(new FormControl((e.target as HTMLInputElement).value));
-    }else{
-      var i = 0;
-      checkArray.controls.forEach(item => {
-        if(item.value === (e.target as HTMLInputElement).value){
-          checkArray.removeAt(i);
-          return;
-        }
-        i++;
-      });
-    }
+  radioChange(e: Event){
+    this.opinionForm.value.arm = (e.target as HTMLInputElement).value;
+    console.log(this.opinionForm.value);
   }
 
 }

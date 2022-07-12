@@ -1,5 +1,5 @@
 <label class="left__component">
  <div class="bg"></div>
- <input type="checkbox" class="checkbox" [name]="inputID" [value]="chooseValue" (change)="formService.checkboxChange($event)" />
+<input type="radio" class="checkbox" name="companies" [value]="chooseValue" (change)="formService.radioChange($event)" />
  <span>{{ chooseValue }}</span>
 </label>
