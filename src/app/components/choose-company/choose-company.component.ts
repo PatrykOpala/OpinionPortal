@@ -10,8 +10,6 @@ export class ChooseCompanyComponent implements OnInit {
 
   @Input('choose-value') chooseValue: string = "";
 
-  inputID = Math.floor(Math.random() * 100);
-
   constructor(public formService: FormService) { }
 
   ngOnInit(): void { }

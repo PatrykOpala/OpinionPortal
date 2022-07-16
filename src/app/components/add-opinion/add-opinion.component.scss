@@ -62,6 +62,7 @@
                 h2{
                     margin-top: 4vh;
                     font-size: 2em;
+                    height: 43px;
                 }
             
                 textarea{
@@ -71,22 +72,34 @@
                     resize: none;
                     border: 2px solid #cccccc;
                     border-radius: 6px;
+                    margin-top: 20px;
                     margin-bottom: 20px;
+                    font-family: Arial, Helvetica, sans-serif;
                 }
             }
 
             .actions{
                 margin-top: 30px;
+                button:first-child{
+                    background-color: transparent;
+                    color: op-colors.$buttons-color;
+                }
                 button{
                     margin-left: 20px;
                     display: inline-block;
                     font-size: 2rem;
                     padding: 13px;
-                    background-color: op-colors.$op-color-green;
+                    background-color: op-colors.$buttons-color;
                     color: #fdfdfd;
                     font-weight: 600;
                     letter-spacing: 3px;
                     border: none;
+                    cursor: pointer;
+                }
+
+                button:hover{
+                    background-color: op-colors.$buttons-color-hover;
+                    color: #fdfdfd;
                 }
             }
         }

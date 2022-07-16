@@ -13,6 +13,6 @@ export class AddOpinionComponent implements OnInit {
   ngOnInit(): void {}
 
   sendOpinion(): void{
-    console.log(this.formService.opinionForm.value.arm);
+    console.log(this.formService.opinionForm.value)
   }
 }

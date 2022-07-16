@@ -5,17 +5,16 @@
             <opn-choose-company [choose-value]="'Google'"></opn-choose-company>
             <opn-choose-company [choose-value]="'Microsoft'"></opn-choose-company>
             <opn-choose-company [choose-value]="'Apple'"></opn-choose-company>
-            <opn-choose-company [choose-value]="'IM'"></opn-choose-company>
             <opn-choose-company [choose-value]="'Visual Studio Code'"></opn-choose-company>
         </aside>
         <div class="addContent">
             <div class="opinie-container">
-                <h2>head-Up Display</h2>
+                <h2>{{ formService.headOpinion }}</h2>
                 <textarea id="" formControlName="opinionContent"></textarea>
             </div>
             <div class="actions">
                 <button>Anuluj</button>
-                <input type="submit" value="Dodaj">
+                <button type="submit">Dodaj</button>
             </div>
         </div>
     </form>
