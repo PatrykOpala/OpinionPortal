@@ -22,6 +22,9 @@ import { DialogDirective } from './../shared/utils/ts/directives/dialog.directiv
 import { DialogContainerDirective } from './../shared/utils/ts/directives/dialog-container.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { opinionReducer } from 'src/store/reducers/opinion.reducer';
 
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent, pathMatch: 'full'},
@@ -54,7 +57,12 @@ const AppRoutes: Routes = [
     RouterModule.forRoot(AppRoutes),
     RouterModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({posts: opinionReducer}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      logOnly: environment.production, // Restrict extension to log-only mode
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [AddOpinionService],
   bootstrap: [AppComponent]

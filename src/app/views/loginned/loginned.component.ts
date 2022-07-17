@@ -1,9 +1,9 @@
 import { Component, OnInit} from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { Opinions } from 'src/shared/utils/ts/interfaces/opinion.interface';
+import { FormService } from 'src/shared/utils/ts/services/form.service';
 
-interface Opinions {
-  head: string,
-  content: string
-}
 
 @Component({
   selector: 'opn-app-loginned',
@@ -11,15 +11,16 @@ interface Opinions {
   styleUrls: ['./loginned.component.scss']
 })
 export class LoginnedComponent implements OnInit {
-
-  constructor() {}
+  
+  constructor(public formService: FormService) {}
 
   yourOpinionsPublishing: Opinions[] = [
     {head: "coś", content: "tam"},
     {head: "cośśśśśśśśś", content: "taaaaaaaaaaammmmmmmmmmmm"},
     {head: "cośdfhdahrahehhaerha", content: "tamdghdhdfh"},
     {head: "coś", content: "tam"},
-  ]
+  ];
+
   
   ngOnInit(): void {}
 

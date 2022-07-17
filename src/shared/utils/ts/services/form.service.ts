@@ -1,5 +1,10 @@
-import { Injectable } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { inject, Injectable } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs/internal/Observable';
+import { addOpinion } from 'src/store/actions/opinion.actions';
+import { OpinionClass } from '../classes/opinion-class';
+import { OpinionStateInterface } from '../interfaces/opinion-state.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -7,14 +12,22 @@ import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 export class FormService {
 
   opinionForm!: FormGroup
+  opinionPublish$: Observable<OpinionStateInterface>;
   
   headOpinion: string = "Wybierz z lewej strony, aby wystawić opinię";
+
+  store = inject(Store<{posts: OpinionStateInterface}>)
 
   constructor(private formBuilder: FormBuilder) {
     this.opinionForm = this.formBuilder.group({
       arm: new FormControl(''),
       opinionContent: new FormControl({value: '', disabled: true})
     });
+    this.opinionPublish$ = this.store.select('posts');
+  }
+
+  addOpinion(value: string){
+    this.store.dispatch(addOpinion({opinion: new OpinionClass( this.opinionForm.value.arm, value)}))
   }
 
   radioChange(e: Event){

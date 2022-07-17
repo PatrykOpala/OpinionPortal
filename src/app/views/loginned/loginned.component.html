@@ -6,10 +6,11 @@
         <p>Witaj Użytkowniku!</p>
         <button class="button__LogOut">Wyloguj mnie</button>
     </div>
-    <p *ngIf="yourOpinionsPublishing.length == 0; else onContainer">Brak opublikowanych opinii</p>
+    <!-- <p *ngIf="yourOpinionsPublishing.length == 0; else onContainer">Brak opublikowanych opinii</p> -->
+    <p>{{ formService.opinionPublish$ | async }}</p>
     <ng-template #onContainer>
         <div class="opinion__container">
-            <opn-opinie-container *ngFor="let yOP of yourOpinionsPublishing" [header]="yOP.head" [content]="yOP.content"></opn-opinie-container>
+            <!-- <opn-opinie-container *ngFor="let yOP of yourOpinionsPublishing" [header]="yOP.head" [content]="yOP.content"></opn-opinie-container> -->
         </div>
     </ng-template>
 </div>

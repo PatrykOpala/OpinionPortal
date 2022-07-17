@@ -8,11 +8,12 @@ import { FormService } from 'src/shared/utils/ts/services/form.service';
 })
 export class AddOpinionComponent implements OnInit {
 
-  constructor(public formService: FormService) { }
+  constructor(public formService: FormService) {}
 
   ngOnInit(): void {}
 
   sendOpinion(): void{
     console.log(this.formService.opinionForm.value)
+    this.formService.addOpinion(this.formService.opinionForm.value.opinionContent);
   }
 }
