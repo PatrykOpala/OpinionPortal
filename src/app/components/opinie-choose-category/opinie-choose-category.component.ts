@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Category } from '../../../shared/utils/ts/classes/Category';
 
 @Component({
+  standalone: true,
   selector: 'opn-opinie-choose-category',
   templateUrl: './opinie-choose-category.component.html',
   styleUrls: ['./opinie-choose-category.component.scss']

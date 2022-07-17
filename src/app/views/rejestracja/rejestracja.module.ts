@@ -7,7 +7,6 @@ const RejesrationRoutes: Routes = [{ path: '', component: RejestracjaComponent }
 
 @NgModule({
   declarations: [
-    RejestracjaComponent 
   ],
   imports: [
     CommonModule,

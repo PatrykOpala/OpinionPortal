@@ -1,11 +1,14 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-rejestracja',
   templateUrl: './rejestracja.component.html',
-  styleUrls: ['./rejestracja.component.scss']
+  styleUrls: ['./rejestracja.component.scss'],
+  standalone: true,
+  imports: [FormsModule]
 })
 export class RejestracjaComponent implements OnInit {
 

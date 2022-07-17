@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'opn-logo-opinier',
   templateUrl: './logo-opinier.component.html',
-  styleUrls: ['./logo-opinier.component.scss']
+  styleUrls: ['./logo-opinier.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
 export class LogoOpinierComponent implements OnInit {
 
