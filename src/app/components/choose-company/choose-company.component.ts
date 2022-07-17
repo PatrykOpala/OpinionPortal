@@ -5,7 +5,6 @@ import { FormService } from 'src/shared/utils/ts/services/form.service';
   selector: 'opn-choose-company',
   templateUrl: './choose-company.component.html',
   styleUrls: ['./choose-company.component.scss'],
-  standalone: true
 })
 export class ChooseCompanyComponent implements OnInit {
 

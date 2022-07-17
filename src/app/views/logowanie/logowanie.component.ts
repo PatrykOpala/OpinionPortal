@@ -1,17 +1,11 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AddOpinionService } from 'src/app/addopinion.service';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
-  styleUrls: ['./logowanie.component.scss'],
-  standalone: true,
-  imports: [
-    FormsModule,
-    ReactiveFormsModule
-  ]
+  styleUrls: ['./logowanie.component.scss']
 })
 export class LogowanieComponent implements OnInit {
 
@@ -19,9 +13,8 @@ export class LogowanieComponent implements OnInit {
   @ViewChild("uPassword") PasswordField!: ElementRef;
 
   public emailL = "";
-  private route = inject(Router);
 
-  constructor() { }
+  constructor(private route: Router) { }
 
   ngOnInit(): void {
   }

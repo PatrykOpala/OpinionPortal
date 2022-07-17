@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  standalone: true,
   selector: 'opn-opinie-choose-category-item',
   templateUrl: './opinie-choose-category-item.component.html',
   styleUrls: ['./opinie-choose-category-item.component.scss']
