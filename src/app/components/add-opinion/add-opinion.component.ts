@@ -10,7 +10,7 @@ export class AddOpinionComponent implements OnInit {
 
   @Input('service') ser!: FormService;
 
-  constructor() {}
+  constructor(ser: FormService) {}
 
   ngOnInit(): void {}
 
