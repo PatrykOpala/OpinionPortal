@@ -25,6 +25,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { opinionReducer } from 'src/store/reducers/opinion.reducer';
+import { FormService } from 'src/shared/utils/ts/services/form.service';
 
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent, pathMatch: 'full'},
@@ -43,7 +44,6 @@ const AppRoutes: Routes = [
     ChooseCompanyComponent,
     AddOpinionComponent,
     OpinieEditorComponent,
-
     DashboardComponent,
     LoginnedComponent,
     PaneContainerComponent,
@@ -64,7 +64,7 @@ const AppRoutes: Routes = [
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
   ],
-  providers: [AddOpinionService],
+  providers: [AddOpinionService, FormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

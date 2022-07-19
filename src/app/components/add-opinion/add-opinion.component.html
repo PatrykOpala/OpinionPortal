@@ -1,6 +1,6 @@
 <div class="addDialogContainer">
     <p class="dialogParagraph">Dodaj Opinię</p>
-    <form class="flex" [formGroup]="formService.opinionForm" (ngSubmit)="sendOpinion()">
+    <form class="flex" [formGroup]="ser.opinionForm" (ngSubmit)="sendOpinion()">
         <aside>
             <opn-choose-company [choose-value]="'Google'"></opn-choose-company>
             <opn-choose-company [choose-value]="'Microsoft'"></opn-choose-company>
@@ -9,7 +9,7 @@
         </aside>
         <div class="addContent">
             <div class="opinie-container">
-                <h2>{{ formService.headOpinion }}</h2>
+                <h2>{{ ser.headOpinion }}</h2>
                 <textarea id="" formControlName="opinionContent"></textarea>
             </div>
             <div class="actions">

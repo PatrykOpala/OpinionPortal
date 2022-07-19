@@ -1,4 +1,4 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { FormService } from 'src/shared/utils/ts/services/form.service';
 
 @Component({
@@ -8,12 +8,14 @@ import { FormService } from 'src/shared/utils/ts/services/form.service';
 })
 export class AddOpinionComponent implements OnInit {
 
-  constructor(public formService: FormService) {}
+  @Input('service') ser!: FormService;
+
+  constructor() {}
 
   ngOnInit(): void {}
 
   sendOpinion(): void{
-    console.log(this.formService.opinionForm.value)
-    this.formService.addOpinion(this.formService.opinionForm.value.opinionContent);
+    console.log(this.ser.opinionForm.value)
+    this.ser.addOpinion(this.ser.opinionForm.value.opinionContent);
   }
 }
