@@ -36,4 +36,9 @@ export class FormService {
     this.opinionForm.get('opinionContent')?.enable();
   }
 
+  clear(): void{
+    this.opinionForm.reset()
+    this.headOpinion = "Wybierz z lewej strony, aby wystawić opinię";
+  }
+
 }

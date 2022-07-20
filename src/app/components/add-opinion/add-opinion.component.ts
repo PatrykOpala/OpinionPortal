@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
 import { FormService } from 'src/shared/utils/ts/services/form.service';
 
 @Component({
@@ -9,13 +9,21 @@ import { FormService } from 'src/shared/utils/ts/services/form.service';
 export class AddOpinionComponent implements OnInit {
 
   @Input('service') ser!: FormService;
+  @Output('close') close = new EventEmitter<boolean>();
 
-  constructor(ser: FormService) {}
+  constructor() {}
+
+  // ser: FormService
 
   ngOnInit(): void {}
 
   sendOpinion(): void{
-    console.log(this.ser.opinionForm.value)
     this.ser.addOpinion(this.ser.opinionForm.value.opinionContent);
+    this.ser.clear();
+    this.closeDialog();
+  }
+
+  closeDialog(): void{
+    this.close.emit(true);
   }
 }

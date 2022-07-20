@@ -1,4 +1,4 @@
-import { Component, OnInit, inject, ViewChild} from '@angular/core';
+import { Component, OnInit, inject, ViewChild, ViewContainerRef} from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { getOpinion } from 'src/store/actions/opinion.actions';
@@ -6,6 +6,7 @@ import { OpinionStateInterface } from '../../../shared/utils/ts/interfaces/opini
 import { Opinions } from 'src/shared/utils/ts/interfaces/opinion.interface';
 import { DialogDirective } from 'src/shared/utils/ts/directives/dialog.directive';
 import { FormService } from 'src/shared/utils/ts/services/form.service';
+import { AddOpinionComponent } from 'src/app/components/add-opinion/add-opinion.component';
 
 
 @Component({
@@ -23,19 +24,23 @@ export class LoginnedComponent implements OnInit {
     {head: "coś", content: "tam"},
   ];
 
-  yourOpinionsPublishing2$: Observable<Opinions>
-
-  private store = inject(Store<{posts: OpinionStateInterface}>);
   formService = inject(FormService);
+  private viewContainerRef = inject(ViewContainerRef);
   
   constructor() {
-    this.yourOpinionsPublishing2$ = this.store.select('posts');
-    console.log(this.yourOpinionsPublishing2$);
+    this.viewContainerRef.clear();
   }
 
   runAdd(): void{
-    this.dialogD.addPlugin(this.formService);
-    this.dialogD.show();
+    const DialogComponentRef = this.viewContainerRef.createComponent(AddOpinionComponent);
+    DialogComponentRef.instance.ser = this.formService;
+
+    const obs = DialogComponentRef.instance.close.asObservable();
+    obs.subscribe((e)=>{
+      if(e === true){
+        this.viewContainerRef.clear();
+      }
+    })
   }
   
   ngOnInit(): void {}
