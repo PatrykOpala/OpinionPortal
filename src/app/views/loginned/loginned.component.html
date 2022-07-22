@@ -1,11 +1,11 @@
 <div class="loginned__container">
     <ng-template opnDialog></ng-template>
-    <a class="add__opinion" (click)="runAdd()">D</a>
+    <button class="add__opinion" (click)="runAdd()">D</button>
     <opn-logo-opinier [beta-mode]="true"></opn-logo-opinier>
     <div class="profile__menu">
         <p>Witaj Użytkowniku!</p>
-        <button class="button__loginned">Wyloguj mnie</button>
-        <button class="button__loginned">Ustawienia profilu</button>
+        <button class="button__loginned" routerLink="/logout">Wyloguj mnie</button>
+        <a routerLink="/user-account" class="button__loginned">Ustawienia profilu</a>
     </div>
     <div *ngIf="yourOpinionsPublishing.length > 0">
         <div class="opinion__container">

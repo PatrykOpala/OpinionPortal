@@ -12,7 +12,8 @@ export class LogowanieComponent implements OnInit {
   @ViewChild("uEmail") EmailField!: ElementRef;
   @ViewChild("uPassword") PasswordField!: ElementRef;
 
-  public emailL = "";
+  protected emailL = "";
+  protected passL = "";
 
   constructor(private route: Router) { }
 

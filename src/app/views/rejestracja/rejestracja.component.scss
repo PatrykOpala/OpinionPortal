@@ -1,7 +1,7 @@
 @use "src/shared/utils/scss/op-colors.scss" as *;
 @use "src/shared/utils/scss/op-mixins.scss" as *;
 
-.logowanieContainer{
+.registerContainer{
     @include flexD();
     width: 98vw;
     height: 90vh;

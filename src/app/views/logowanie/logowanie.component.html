@@ -2,7 +2,7 @@
     <form class="formContainer" (ngSubmit)="onSubmit()" #logowanieForm="ngForm">
         <label class="labelC">Logowanie</label>
         <input type="email" name="Email" class="inputC" placeholder="Adres e-mail" [(ngModel)]="emailL"/>
-        <input type="password" name="Password" id="uPassword" class="inputC" placeholder="Hasło"/>
+        <input type="password" name="Password" id="uPassword" class="inputC" placeholder="Hasło" [(ngModel)]="passL"/>
         <button type="submit" [disabled]="!logowanieForm.form.valid">Zaloguj się</button>
     </form>
 </div>

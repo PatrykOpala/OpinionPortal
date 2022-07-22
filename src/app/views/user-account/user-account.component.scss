@@ -1,29 +1,12 @@
 @use "src/shared/utils/scss/op-colors.scss" as op-colors;
-.loginned__container{
+.user__account{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 96.4vw;
     height: 86vh;
     margin-top: 6px;
-    .add__opinion{
-        position: fixed;
-        margin-left: 80vw;
-        margin-top: 86vh;
-        border-radius: 99%;
-        border: none;
-        width: 80px;
-        height: 80px;
-        font-size: 2em;
-        color: #fefefe;
-        text-decoration: none;
-        background-color: op-colors.$op-color-green;
-        z-index: 10;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .addOpinion:hover{cursor: pointer;}
+
     .profile__menu{
         width: 80vw;
         display: flex;
@@ -48,13 +31,5 @@
         .button__loginned:hover{
             border-bottom: 2px solid op-colors.$op-color-green;
         }
-    }
-
-    .opinion__container{
-        width: 90vw;
-        height: 80vh;
-        display: grid;
-        grid-template-columns: repeat(3, 30vw);
-        gap: 4px;
     }
 }

@@ -7,15 +7,12 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 
 import { AppComponent } from './app.component';
-import { LoginnedComponent } from './views/loginned/loginned.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { AddOpinionComponent } from './components/add-opinion/add-opinion.component';
-import { LogoOpinierComponent } from './components/logo-opinier/logo-opinier.component';
 import { OpinieEditorComponent } from './components/opinie-editor/opinie-editor.component';
 import { DialogOpinionComponent } from './components/dialog-opinion/dialog-opinion.component';
 import { ChooseCompanyComponent } from './components/choose-company/choose-company.component';
 import { PaneContainerComponent } from './components/pane-container/pane-container.component';
-import { OpinieContainerComponent } from './components/opinie-container/opinie-container.component';
 import { DialogOpinionContentComponent } from './components/dialog-opinion/dialog-opinion-content/dialog-opinion-content.component';
 
 
@@ -24,8 +21,6 @@ import { FormService } from 'src/shared/utils/ts/services/form.service';
 import { DialogDirective } from './../shared/utils/ts/directives/dialog.directive';
 import { environment } from 'src/environments/environment';
 import { opinionReducer } from 'src/store/reducers/opinion.reducer';
-import { OpinieHeaderComponent } from './components/opinie-container/opinie-header/opinie-header.component';
-import { OpinieContentComponent } from './components/opinie-container/opinie-content/opinie-content.component';
 import { LoginnedModule } from './views/loginned/loginned.module';
 
 const AppRoutes: Routes = [

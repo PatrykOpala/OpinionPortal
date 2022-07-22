@@ -8,8 +8,10 @@ import { LogoOpinierComponent } from 'src/app/components/logo-opinier/logo-opini
 import { OpinieContentComponent } from 'src/app/components/opinie-container/opinie-content/opinie-content.component';
 import { OpinieHeaderComponent } from 'src/app/components/opinie-container/opinie-header/opinie-header.component';
 import { OpinieContainerComponent } from 'src/app/components/opinie-container/opinie-container.component';
+import { UserAccountComponent } from '../user-account/user-account.component';
+import { LogoutComponent } from '../logout/logout.component';
 
-const loginnedRoutes: Routes = [{ path: 'loginned', component: LoginnedComponent }];
+const loginnedRoutes: Routes = [{ path: 'loginned', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}, {path: 'logout', component: LogoutComponent}];
 
 @NgModule({
   declarations: [
@@ -18,6 +20,8 @@ const loginnedRoutes: Routes = [{ path: 'loginned', component: LoginnedComponent
     OpinieContainerComponent,
     OpinieHeaderComponent,
     OpinieContentComponent,
+    UserAccountComponent,
+    LogoutComponent,
   ],
   imports: [
     CommonModule,
