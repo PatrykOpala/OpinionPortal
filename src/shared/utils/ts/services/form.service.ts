@@ -16,9 +16,7 @@ export class FormService {
   
   headOpinion: string = "Wybierz z lewej strony, aby wystawić opinię";
 
-  store = inject(Store<{posts: OpinionStateInterface}>)
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public store: Store<{posts: OpinionStateInterface}>) {
     this.opinionForm = this.formBuilder.group({
       arm: new FormControl(''),
       opinionContent: new FormControl({value: '', disabled: true})

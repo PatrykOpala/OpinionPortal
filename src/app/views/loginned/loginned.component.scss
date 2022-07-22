@@ -34,19 +34,17 @@
             font-size: 1.6em;
             font-weight: 600;
         }
-        .button__LogOut{
+        .button__loginned{
             font-size: 1.6em;
             padding: 6px;
             letter-spacing: 2px;
-            border: 1px solid transparent;
+            border: 2px solid transparent;
             color: op-colors.$op-color-green;
             background-color: transparent;
             font-weight: 580;
             cursor: pointer;
-            // background-color: op-colors.$op-color-green;
-            // color: #fefefe;
         }
-        .button__LogOut:hover{
+        .button__loginned:hover{
             border-bottom: 2px solid op-colors.$op-color-green;
         }
     }
@@ -57,9 +55,5 @@
         display: grid;
         grid-template-columns: repeat(3, 30vw);
         gap: 4px;
-        // .opinion__item{
-        //     width: 100%;
-        //     height: 40vh;
-        // }
     }
 }
