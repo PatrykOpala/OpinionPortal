@@ -10,7 +10,7 @@ export class LogoOpinierComponent implements OnInit {
   @Input("beta-mode") betaMode: boolean = false;
   @Input("motto") mott: string = "";
 
-  lg_MarginLeft: string = "0";
+  protected lg_MarginLeft: string = "0";
 
   constructor() { }
 

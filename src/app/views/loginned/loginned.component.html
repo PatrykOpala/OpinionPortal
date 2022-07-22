@@ -1,6 +1,6 @@
 <div class="loginned__container">
     <ng-template opnDialog></ng-template>
-    <a class="addOpinion" (click)="runAdd()">D</a>
+    <a class="add__opinion" (click)="runAdd()">D</a>
     <opn-logo-opinier [beta-mode]="true"></opn-logo-opinier>
     <div class="profile__menu">
         <p>Witaj Użytkowniku!</p>
@@ -10,8 +10,8 @@
     <div *ngIf="yourOpinionsPublishing.length > 0">
         <div class="opinion__container">
             <opn-opinie-container *ngFor="let ops of yourOpinionsPublishing">
-                <opn-opinie-header class="header">{{ops.head}}</opn-opinie-header>
-                <opn-opinie-content class="content">{{ops.content}}</opn-opinie-content>
+                <opn-opinie-header>{{ops.head}}</opn-opinie-header>
+                <opn-opinie-content>{{ops.content}}</opn-opinie-content>
             </opn-opinie-container>
         </div>
     </div>

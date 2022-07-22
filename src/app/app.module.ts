@@ -26,36 +26,33 @@ import { environment } from 'src/environments/environment';
 import { opinionReducer } from 'src/store/reducers/opinion.reducer';
 import { OpinieHeaderComponent } from './components/opinie-container/opinie-header/opinie-header.component';
 import { OpinieContentComponent } from './components/opinie-container/opinie-content/opinie-content.component';
+import { LoginnedModule } from './views/loginned/loginned.module';
 
 const AppRoutes: Routes = [
-  {path: '', component: DashboardComponent, pathMatch: 'full'},
+  {path: '', component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./views/opinie/opinie.module').then(m => m.OpinieModule)},
   {path: 'login', loadChildren: () => import('./views/logowanie/logowanie.module').then(m => m.LogowanieModule)},
   {path: 'register', loadChildren: () => import('./views/rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
-  {path: 'loginned', component: LoginnedComponent},
+  {path: 'loginned', loadChildren: () => import('./views/loginned/loginned.module').then(m => m.LoginnedModule)},
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginnedComponent,
     DashboardComponent,
     AddOpinionComponent,
-    LogoOpinierComponent,
     OpinieEditorComponent,
     DialogOpinionComponent,
     ChooseCompanyComponent,
     PaneContainerComponent,
-    OpinieContainerComponent,
     DialogOpinionContentComponent,
     DialogDirective,
-    OpinieHeaderComponent,
-    OpinieContentComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
+    LoginnedModule,
     RouterModule.forRoot(AppRoutes),
     StoreModule.forRoot({posts: opinionReducer}),
     StoreDevtoolsModule.instrument({maxAge: 5, logOnly: environment.production,}),

@@ -5,7 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LogowanieComponent } from './logowanie.component';
 import { FormsModule } from '@angular/forms';
 
-const routes: Routes = [{ path: '', component: LogowanieComponent }];
+const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
 
 @NgModule({
   declarations: [
@@ -14,7 +14,7 @@ const routes: Routes = [{ path: '', component: LogowanieComponent }];
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(loginRoutes)
   ]
 })
 export class LogowanieModule { }

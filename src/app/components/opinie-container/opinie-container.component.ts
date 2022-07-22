@@ -6,9 +6,6 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./opinie-container.component.scss']
 })
 export class OpinieContainerComponent implements OnInit {
-  
-  @Input("header") header: string = "";
-  @Input("content") content: string = "";
 
   constructor(){}
 

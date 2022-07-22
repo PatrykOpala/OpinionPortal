@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'opn-opinie-content',
-  templateUrl: './opinie-content.component.html',
-  styleUrls: ['./opinie-content.component.scss']
+  template: `<p><ng-content></ng-content></p>`,
+  styles: [`p{margin-top: 10px;font-size: 1.9em;}`]
 })
 export class OpinieContentComponent implements OnInit {
 
