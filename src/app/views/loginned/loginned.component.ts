@@ -28,7 +28,7 @@ export class LoginnedComponent implements OnInit {
     DialogComponentRef.instance.ser = this.formService;
 
     DialogComponentRef.instance.close.asObservable().subscribe((e)=>{
-      if(e === true){
+      if(e){
         this.viewContainerRef.clear();
       }
     })

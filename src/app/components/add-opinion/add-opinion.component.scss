@@ -2,7 +2,7 @@
 .addDialogContainer{
     width: 100vw;
     height: 100vh;
-    background-color: op-colors.$opn-color-dialog-bg;
+    background-color: op-colors.$op-color-green;
     position: fixed;
     left: 0;
     top: 0;
@@ -12,7 +12,7 @@
         margin: 12vh 12vw;
         font-size: 2.5em;
         letter-spacing: 4px;
-        color: #1A1A1A;
+        color: #fefefe;
     }
 
     .flex{
@@ -63,6 +63,7 @@
                     margin-top: 4vh;
                     font-size: 2em;
                     height: 43px;
+                    color: op-colors.$op-color-green;
                 }
             
                 textarea{
@@ -82,7 +83,7 @@
                 margin-top: 30px;
                 button:first-child{
                     background-color: transparent;
-                    color: op-colors.$buttons-color;
+                    color: #fdfdfd;
                 }
                 button{
                     margin-left: 20px;
@@ -99,7 +100,6 @@
 
                 button:hover{
                     background-color: op-colors.$buttons-color-hover;
-                    color: #fdfdfd;
                 }
             }
         }
