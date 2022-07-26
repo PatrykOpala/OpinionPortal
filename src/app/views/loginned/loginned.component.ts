@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { Opinions } from 'src/shared/utils/ts/interfaces/opinion.interface';
 import { DialogDirective } from 'src/shared/utils/ts/directives/dialog.directive';
 import { FormService } from 'src/shared/utils/ts/services/form.service';
@@ -14,12 +14,12 @@ export class LoginnedComponent implements OnInit {
 
   yourOpinionsPublishing: Opinions[] = [];
   
-  constructor(public formService: FormService, private viewContainerRef: ViewContainerRef) {}
+  constructor(protected formService: FormService, protected viewContainerRef: ViewContainerRef) {}
   
   ngOnInit(): void {
     this.viewContainerRef.clear();
-    this.formService.opinionPublish$.subscribe(e => {
-      this.yourOpinionsPublishing = e.opinion;
+    this.formService.opinionPublish$.subscribe(c => {
+      this.yourOpinionsPublishing = c.opinion;
     });
   }
   
