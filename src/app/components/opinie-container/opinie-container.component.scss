@@ -1,8 +1,10 @@
 .opinie-container{
-    width: 100%;
-    height: 27vh;
+    width: 20vw;
+    padding: auto;
     background-color: #fdfdfd;
     display: flex;
     flex-direction: column;
     align-items: center;
+    border: 2px solid red;
+    margin-bottom: 20px;
 }

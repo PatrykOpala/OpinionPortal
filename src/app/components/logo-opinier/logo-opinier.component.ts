@@ -8,18 +8,9 @@ import { Component, Input, OnInit } from '@angular/core';
 export class LogoOpinierComponent implements OnInit {
 
   @Input("beta-mode") betaMode: boolean = false;
-  @Input("motto") mott: string = "";
-
-  protected lg_MarginLeft: string = "0";
 
   constructor() { }
 
-  ngOnInit(): void {
-    if(this.mott === ""){
-      this.lg_MarginLeft = "40%";
-    }else{
-      this.lg_MarginLeft = "0";
-    }
-  }
+  ngOnInit(): void { }
 
 }

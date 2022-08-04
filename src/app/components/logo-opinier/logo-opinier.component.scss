@@ -1,33 +1,12 @@
 @use "src/shared/utils/scss/op-colors.scss" as op-colors;
 
-.logoOpn{
+p{
+    display: block;
     width: fit-content;
-    height: 40vh;
-    margin-top: 20vh;
-    p{
-        font-size: 5rem;
-        color: op-colors.$op-color-green;
-        font-weight: 600;
-        letter-spacing: 3px;
-        margin-bottom: 2px;
-        display: flex;
-        flex-direction: column;
-        span{
-            font-size: 1.5rem;
-            background-color: op-colors.$op-color-green;
-            padding: 3px 13px;
-            letter-spacing: 3px;
-            width: fit-content;
-            margin-left: 8vw;
-            color: #fdfdfd;
-        }
-    }
-    
-
-    .motto{
-        font-size: 4rem;
-        width: 50vw;
-        margin-left: 27vw;
-        margin-top: -14vh;
-    }
+    font-size: 3rem;
+    color: op-colors.$op-color-green;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin: 0;
+    margin-right: 30px;
 }

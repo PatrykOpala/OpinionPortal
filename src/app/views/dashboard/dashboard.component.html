@@ -1,25 +1,26 @@
 <opn-pane-container>
-    <opn-logo-opinier [beta-mode]="true" [motto]="'Podziel się swoimi doświadczeniami z innymi.'"></opn-logo-opinier>
-    <div class="downButtons">
+    <nav>
+        <a routerLink="/" class="link"><p class="logo-opinier">Opinier</p></a>
         <a routerLink="/login">Podziel się opinią</a>
-        <a class="res" routerLink="/register">Stwórz konto</a>
-    </div>
-</opn-pane-container>
-
-<opn-pane-container [background-color]="'#1ef01e'">
-    <p>Najlepiej oceniane opinie</p>
-    <div class="opn-pane-container-body">
-        <opn-opinie-container>
-            <opn-opinie-header>rhrhrh</opn-opinie-header>
-            <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
-        </opn-opinie-container>
-        <opn-opinie-container>
-            <opn-opinie-header>rhrhrh</opn-opinie-header>
-            <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
-        </opn-opinie-container>
-        <opn-opinie-container>
-            <opn-opinie-header>rhrhrh</opn-opinie-header>
-            <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
-        </opn-opinie-container>
+        <a class="link" routerLink="/register">Stwórz konto</a>
+        <a class="link" routerLink="/opinie">Zobacz opinie</a>
+    </nav>
+    <p class="motto">Podziel się doświadczeniami z innymi.</p>
+    <div class="newOp">
+        <span>Nowo dodane opinie</span>
+        <div class="opn-pane-container-body">
+            <opn-opinie-container>
+                <opn-opinie-header>rhrhrh</opn-opinie-header>
+                <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
+            </opn-opinie-container>
+            <opn-opinie-container>
+                <opn-opinie-header>rhrhrh</opn-opinie-header>
+                <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
+            </opn-opinie-container>
+            <opn-opinie-container>
+                <opn-opinie-header>rhrhrh</opn-opinie-header>
+                <opn-opinie-content>nvuhfgbvhigfbvsdifsh</opn-opinie-content>
+            </opn-opinie-container>
+        </div>
     </div>
 </opn-pane-container>

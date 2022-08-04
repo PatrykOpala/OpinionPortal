@@ -1,16 +1,12 @@
 @use "src/shared/utils/scss/op-colors.scss" as op-colors;
-
-.downButtons{
-    width: 50vw;
-    padding: 10px;
+nav{
+    width: 90vw;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
     align-items: center;
+    margin-top: 5vh;
     a{
-        display: inline-block;
-        font-size: 2rem;
-        margin-left: 30px;
+        font-size: 1.6rem;
+        margin-left: 10px;
         padding: 13px;
         background-color: op-colors.$op-color-green;
         color: #fdfdfd;
@@ -23,30 +19,66 @@
         cursor: pointer;
         background-color: op-colors.$op-color-dark-green;
     }
-    .res{
+    .link{
+        font-size: 1.7rem;
+        margin-left: 10px;
+        padding: 13px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        border: none;
+        text-decoration: none;
         background-color: transparent;
         color: op-colors.$op-color-green;
     }
-    .res:hover{
+    .link:hover{
         background-color: transparent;
         color: rgb(22, 196, 22);
     }
+
+    .logo-opinier{
+        display: block;
+        width: fit-content;
+        font-size: 3rem;
+        color: op-colors.$op-color-green;
+        font-weight: 600;
+        letter-spacing: 3px;
+        margin: 0;
+        margin-right: 30px;
+    }
+}
+.motto{
+    color: op-colors.$op-color-green;
+    align-self: center;
+    justify-self: center;
+    font-weight: 600;
+    text-align: center;
+    padding-right: 0.5vw;
+    font-size: 60px;
+    margin-top: 23vh;
+    margin-bottom: 17vh;
 }
 
-
-opn-pane-container{
-    p{
-        font-size: 4rem;
+.newOp{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    span{
+        align-self: center;
+        font-size: 3rem;
         color: #383838;
         letter-spacing: 3px;
         margin-top: 1.2vh;
     }
+
     .opn-pane-container-body{
-        width: 70.4vw;
-        height: 54.3vh;
-        display: grid;
-        grid-template-columns: repeat(3, 26.4vw);
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.2vh;
         margin-right: 15vw;
-        gap: 28px;
-    }   
+        overflow: hidden;
+        overflow-x: scroll;
+        gap: 10px;
+    }
 }
