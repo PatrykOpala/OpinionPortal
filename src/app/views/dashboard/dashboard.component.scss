@@ -5,10 +5,10 @@ nav{
     align-items: center;
     margin-top: 5vh;
     a{
-        font-size: 1.6rem;
+        font-size: 1.3rem;
         margin-left: 10px;
         padding: 13px;
-        background-color: op-colors.$op-color-green;
+        background-color: var(--opn-color-green);
         color: #fdfdfd;
         font-weight: 600;
         letter-spacing: 3px;
@@ -17,10 +17,10 @@ nav{
     }
     a:hover{
         cursor: pointer;
-        background-color: op-colors.$op-color-dark-green;
+        background-color: var(--opn-color-dark-green);
     }
     .link{
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         margin-left: 10px;
         padding: 13px;
         font-weight: 600;
@@ -28,7 +28,7 @@ nav{
         border: none;
         text-decoration: none;
         background-color: transparent;
-        color: op-colors.$op-color-green;
+        color: var(--opn-color-green);
     }
     .link:hover{
         background-color: transparent;
@@ -39,7 +39,7 @@ nav{
         display: block;
         width: fit-content;
         font-size: 3rem;
-        color: op-colors.$op-color-green;
+        color: var(--opn-color-green);
         font-weight: 600;
         letter-spacing: 3px;
         margin: 0;
@@ -47,7 +47,7 @@ nav{
     }
 }
 .motto{
-    color: op-colors.$op-color-green;
+    color: var(--opn-color-green);
     align-self: center;
     justify-self: center;
     font-weight: 600;

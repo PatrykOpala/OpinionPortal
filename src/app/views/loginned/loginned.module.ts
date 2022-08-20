@@ -10,7 +10,7 @@ import { OpinieContainerComponent } from 'src/app/components/opinie-container/op
 import { UserAccountComponent } from '../user-account/user-account.component';
 import { LogoutComponent } from '../logout/logout.component';
 
-const loginnedRoutes: Routes = [{ path: 'loginned', component: LoginnedComponent }, {path: 'loginned/user-account', component: UserAccountComponent}, {path: 'logout', component: LogoutComponent}];
+const loginnedRoutes: Routes = [{ path: 'zalogowano', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}, {path: 'logout', component: LogoutComponent}];
 
 @NgModule({
   declarations: [

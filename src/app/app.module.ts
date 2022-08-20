@@ -26,9 +26,9 @@ import { LoginnedModule } from './views/loginned/loginned.module';
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./views/opinie/opinie.module').then(m => m.OpinieModule)},
-  {path: 'login', loadChildren: () => import('./views/logowanie/logowanie.module').then(m => m.LogowanieModule)},
-  {path: 'register', loadChildren: () => import('./views/rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
-  {path: 'loginned', loadChildren: () => import('./views/loginned/loginned.module').then(m => m.LoginnedModule)},
+  {path: 'logowanie', loadChildren: () => import('./views/logowanie/logowanie.module').then(m => m.LogowanieModule)},
+  {path: 'rejestracja', loadChildren: () => import('./views/rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
+  {path: 'zalogowano', loadChildren: () => import('./views/loginned/loginned.module').then(m => m.LoginnedModule)},
 ];
 
 @NgModule({

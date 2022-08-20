@@ -1,4 +1,3 @@
-@use "src/shared/utils/scss/op-colors.scss" as op-colors;
 .loginned__container{
     display: flex;
     flex-direction: column;
@@ -15,9 +14,9 @@
         width: 80px;
         height: 80px;
         font-size: 2em;
-        color: #fefefe;
+        color: var(--opn-background-color);
         text-decoration: none;
-        background-color: op-colors.$op-color-green;
+        background-color: var(--opn-color-green);
         z-index: 10;
         display: flex;
         justify-content: center;
@@ -39,14 +38,14 @@
             padding: 6px;
             letter-spacing: 2px;
             border: 2px solid transparent;
-            color: op-colors.$op-color-green;
+            color: var(--opn-color-green);
             background-color: transparent;
             font-weight: 580;
             cursor: pointer;
             text-decoration: none;
         }
         .button__loginned:hover{
-            border-bottom: 2px solid op-colors.$op-color-green;
+            border-bottom: 2px solid var(--opn-color-green);
         }
     }
 

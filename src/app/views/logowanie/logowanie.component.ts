@@ -1,13 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, OnChanges, SimpleChanges} from '@angular/core';
 import { Router } from '@angular/router';
-import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrls: ['./logowanie.component.scss']
 })
-export class LogowanieComponent implements OnInit {
+export class LogowanieComponent implements OnInit, OnChanges {
 
   @ViewChild("uEmail") EmailField!: ElementRef;
   @ViewChild("uPassword") PasswordField!: ElementRef;
@@ -17,11 +16,19 @@ export class LogowanieComponent implements OnInit {
 
   constructor(private route: Router) { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    for(let prop in changes){
+      let ch = changes[prop];
+      console.log('PreviousValue: ', ch.previousValue);
+      console.log('CurrentValue: ', ch.currentValue)
+    }
+  }
+
   ngOnInit(): void {
   }
 
   onSubmit(): void{
-    this.route.navigate(["/loginned"]);
+    this.route.navigateByUrl("/zalogowano")
   }
 
   // signIn(): void{

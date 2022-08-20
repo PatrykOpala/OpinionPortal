@@ -1,4 +1,21 @@
+:root{
+    --opn-color-dark-green: rgb(11, 211, 11);
+    --opn-background-color: #ededed;
+    --opn-hex-color-green: #1ef01e;
+    --opn-color-green: #066506;
+    --opn-color-green-hover: #078b07;
+    --opn-color-dialog-bg: #57F457;
+    --opn-color-dialog-fg: #ffffff;
+    --opn-buttons-color: var(--op-color-green);
+    --opn-buttons-color-hover: #088808;
+    --opn-green-light: #0a9b0a;
+}
+
 *{
     font-family: "Alef";
     box-sizing: border-box;
+}
+
+body{
+    background-color: var(--opn-background-color);
 }
