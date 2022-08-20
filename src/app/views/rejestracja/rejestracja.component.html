@@ -1,8 +1,8 @@
 <div class="registerContainer">
-    <form class="formContainer" (submit)="$event.preventDefault()">
+    <form class="formContainer" (submit)="$event.preventDefault()" [formGroup]="registerForm">
         <label class="labelC">Rejestracja</label>
-        <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail" #upEmail/>
-        <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło" #upPassword/>
+        <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="Adres e-mail"/>
+        <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="Hasło"/>
         <button type="submit" (click)="signUp()">Stwórz konto</button>
     </form>
 </div>

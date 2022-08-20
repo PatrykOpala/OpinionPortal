@@ -1,27 +1,35 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, OnChanges, ViewChild, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AddOpinionService } from 'src/app/addopinion.service';
 
 @Component({
   selector: 'opn-rejestracja',
   templateUrl: './rejestracja.component.html',
   styleUrls: ['./rejestracja.component.scss']
 })
-export class RejestracjaComponent implements OnInit {
+export class RejestracjaComponent implements OnInit, OnChanges {
 
-  @ViewChild("upEmail") EmailField!: ElementRef;
-  @ViewChild("upPassword") PasswordField!: ElementRef;
+  protected registerForm !: FormGroup;
 
-  constructor(private route: Router, private ads: AddOpinionService) { }
+  constructor(private route: Router, private registerFormBuilder: FormBuilder) { 
+    this.registerForm = this.registerFormBuilder.group({
+      // email: ['', Validators.email],
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', Validators.minLength(16))
+    })
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   ngOnInit(): void {
   }
 
   signUp(): void{
-    let email = this.EmailField.nativeElement.value;
-    let password = this.PasswordField.nativeElement.value;
-    console.log(this.ads.register(email, password));
+    // let email = this.EmailField.nativeElement.value;
+    // let password = this.PasswordField.nativeElement.value;
+    //console.log(this.ads.register(email, password));
     // this.route.navigate(["/loginned"]);
+    console.log(this.registerForm.controls['email']);
   }
 
 }

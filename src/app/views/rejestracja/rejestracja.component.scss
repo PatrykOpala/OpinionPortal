@@ -49,3 +49,17 @@ button:hover{
     cursor: pointer;
     background-color: $op-color-green;
 }
+
+input.ng-valid, input.ng-valid.required{
+    border-bottom: 2px solid #42A948;
+    color: #42A948;
+}
+
+input.ng-invalid{
+    border-bottom: 2px solid #a94442;
+    color: #a94442;
+}
+input.ng-untouched{
+    border-bottom: 1px solid #cccccc;
+    color: #000;
+}
