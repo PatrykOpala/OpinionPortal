@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
-import { addOpinion } from 'src/store/actions/opinion.actions';
-import { OpinionClass } from '../classes/opinion-class';
-import { OpinionStateInterface } from '../interfaces/opinion-state.interface';
+import { addOpinion } from '../../store/actions/opinion.actions';
+import { OpinionClass } from '../../../shared/utils/ts/classes/opinion-class';
+import { OpinionStateInterface } from '../../../shared/utils/ts/interfaces/opinion-state.interface';
 
 @Injectable({
   providedIn: 'root'

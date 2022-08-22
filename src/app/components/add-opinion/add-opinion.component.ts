@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output, } from '@angular/core';
-import { FormService } from 'src/shared/utils/ts/services/form.service';
+import { FormService } from '../../services/form/form.service';
 
 @Component({
   selector: 'opn-add-opinion',

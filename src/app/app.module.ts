@@ -17,10 +17,10 @@ import { DialogOpinionContentComponent } from './components/dialog-opinion/dialo
 
 
 import { AddOpinionService } from './addopinion.service';
-import { FormService } from 'src/shared/utils/ts/services/form.service';
+import { FormService } from './services/form/form.service';
 import { DialogDirective } from './../shared/utils/ts/directives/dialog.directive';
 import { environment } from 'src/environments/environment';
-import { opinionReducer } from 'src/store/reducers/opinion.reducer';
+import { opinionReducer } from './store/reducers/opinion.reducer';
 import { LoginnedModule } from './views/loginned/loginned.module';
 
 const AppRoutes: Routes = [

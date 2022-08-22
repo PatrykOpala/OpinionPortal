@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { Opinions } from 'src/shared/utils/ts/interfaces/opinion.interface';
 import { DialogDirective } from 'src/shared/utils/ts/directives/dialog.directive';
-import { FormService } from 'src/shared/utils/ts/services/form.service';
+import { FormService } from '../../services/form/form.service';
 import { AddOpinionComponent } from 'src/app/components/add-opinion/add-opinion.component';
 
 @Component({
