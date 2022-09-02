@@ -8,23 +8,19 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   protected supabaseClient: SupabaseClient;
 
-  constructor() {
-    this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
-  }
+  constructor() {this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);}
 
   async register(email: string, pass: string){
-    let registerUser = await this.supabaseClient.auth.signUp({email, password: pass});
-    // let databaseUser = {name: registerUser.user?.email, type: "User", created_at: registerUser.user?.created_at};
-    // const {data, error} = await this.supabaseClient.from("users").insert(databaseUser);
-    // if(error) console.error(error);
+    let {user, error} = await this.supabaseClient.auth.signUp({email, password: pass});
+    let userLocalStorage = {
+      email: user?.email,
+      id: user?.id
+    };
+    window.localStorage.setItem("user", JSON.stringify(userLocalStorage));
+    return error
   }
 
-  async login(email: string, pass: string){
-    let loginUser = await this.supabaseClient.auth.signIn({email, password: pass});
-  }
+  async login(email: string, pass: string){return await this.supabaseClient.auth.signIn({email, password: pass});}
 
-  async logOut(){
-    let {error} = await this.supabaseClient.auth.signOut();
-    if(error) console.error(error);
-  }
+  async logOut(){return await this.supabaseClient.auth.signOut();}
 }

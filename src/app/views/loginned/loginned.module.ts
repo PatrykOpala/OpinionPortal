@@ -8,9 +8,8 @@ import { OpinieContentComponent } from 'src/app/components/opinie-container/opin
 import { OpinieHeaderComponent } from 'src/app/components/opinie-container/opinie-header/opinie-header.component';
 import { OpinieContainerComponent } from 'src/app/components/opinie-container/opinie-container.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
-import { LogoutComponent } from '../logout/logout.component';
 
-const loginnedRoutes: Routes = [{ path: 'zalogowano', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}, {path: 'logout', component: LogoutComponent}];
+const loginnedRoutes: Routes = [{ path: 'zalogowano', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}];
 
 @NgModule({
   declarations: [
@@ -19,7 +18,6 @@ const loginnedRoutes: Routes = [{ path: 'zalogowano', component: LoginnedCompone
     OpinieHeaderComponent,
     OpinieContentComponent,
     UserAccountComponent,
-    LogoutComponent,
   ],
   imports: [
     CommonModule,

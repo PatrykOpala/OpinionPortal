@@ -1,40 +1,32 @@
-import { Component, ElementRef, OnInit, ViewChild, OnChanges, SimpleChanges} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrls: ['./logowanie.component.scss']
 })
-export class LogowanieComponent implements OnInit, OnChanges {
+export class LogowanieComponent implements OnInit {
 
-  @ViewChild("uEmail") EmailField!: ElementRef;
-  @ViewChild("uPassword") PasswordField!: ElementRef;
+  protected loginForm !: FormGroup;
 
-  protected emailL = "";
-  protected passL = "";
-
-  constructor(private route: Router) { }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    for(let prop in changes){
-      let ch = changes[prop];
-      console.log('PreviousValue: ', ch.previousValue);
-      console.log('CurrentValue: ', ch.currentValue)
-    }
+  constructor(private route: Router, private loginFormBuilder: FormBuilder, private authService: AuthService) { 
+    this.loginForm = this.loginFormBuilder.group({
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('')
+    })
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onSubmit(): void{
-    this.route.navigateByUrl("/zalogowano")
+    let loginUser = this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+    loginUser.then(({error}) => {
+      if(!error && error === null){
+        this.route.navigateByUrl("/zalogowano");
+      }
+    })
   }
-
-  // signIn(): void{
-  //   let email = this.EmailField.nativeElement.value;
-  //   let password = this.PasswordField.nativeElement.value;
-  //   console.log(this.ads.login(email, password));
-  //   this.route.navigate(["/loginned"]);
-  // }
 }

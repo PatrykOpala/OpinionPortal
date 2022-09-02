@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'opn-opinie-container',
@@ -10,7 +10,4 @@ export class OpinieContainerComponent implements OnInit {
   constructor(){}
 
   ngOnInit(): void {}
-
-  
-
 }

@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { RouterModule, Routes } from '@angular/router';
 import { LogowanieComponent } from './logowanie.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
 
@@ -14,6 +14,7 @@ const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(loginRoutes)
   ]
 })

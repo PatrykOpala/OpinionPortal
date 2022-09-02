@@ -2,9 +2,9 @@
     <ng-template opnDialog></ng-template>
     <button class="add__opinion" (click)="runAdd()">D</button>
     <div class="profile__menu">
-        <p>Witaj Użytkowniku!</p>
-        <button class="button__loginned" routerLink="/logout">Wyloguj mnie</button>
-        <a routerLink="/loginned/user-account" class="button__loginned">Ustawienia profilu</a>
+        <p *ngIf="userObjectFromLocalStorage as ur">Witaj {{ ur.email }}!</p>
+        <button class="button__loginned" (click)="signOut()">Wyloguj mnie</button>
+        <a routerLink="/zalogowano/user-account" class="button__loginned">Ustawienia profilu</a>
     </div>
     <div *ngIf="yourOpinionsPublishing.length > 0">
         <div class="opinion__container">
