@@ -1,0 +1,35 @@
+@use "src/app/shared/scss/op-colors.scss" as op-colors;
+.user__account{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 96.4vw;
+    height: 86vh;
+    margin-top: 6px;
+
+    .profile__menu{
+        width: 80vw;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+        .button__loginned{
+            font-size: 1.6em;
+            padding: 6px;
+            letter-spacing: 2px;
+            border: 2px solid transparent;
+            color: op-colors.$op-color-green;
+            background-color: transparent;
+            font-weight: 580;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button__loginned:hover{
+            border-bottom: 2px solid op-colors.$op-color-green;
+        }
+    }
+}

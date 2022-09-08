@@ -1,0 +1,19 @@
+<div class="addDialogContainer">
+    <p class="dialogParagraph">Dodaj Opinię</p>
+    <form class="flex" [formGroup]="opinionForm" (ngSubmit)="sendOpinion()">
+        <aside>
+            <opn-choose-company [chooseValue]="'Microsoft'" (changeState)="changeOpinionForm($event)"></opn-choose-company>
+        </aside>
+        <div class="addContent">
+            <div class="opinie-container">
+                <h2>{{ headOpinion }}</h2>
+                <textarea id="" formControlName="opinionContent"></textarea>
+            </div>
+            <div class="actions">
+                <button (click)="closeDialog()">Anuluj</button>
+                <button type="submit">Dodaj</button>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- [formGroup]="ser.opinionForm" -->

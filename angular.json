@@ -34,9 +34,7 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": [
-              "@supabase/supabase-js"
-           ]
+            "allowedCommonJsDependencies": []
           },
           "configurations": {
             "production": {

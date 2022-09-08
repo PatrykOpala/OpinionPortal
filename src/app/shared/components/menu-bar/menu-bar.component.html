@@ -1,0 +1,17 @@
+<header [ngPlural]="menuBarService.IsTheUserLoggedInState">
+    <ng-template ngPluralCase="0">
+        <nav>
+            <a routerLink="/" class="link"><p class="logo-opinier">Opinier</p></a>
+            <a routerLink="/logowanie">Podziel się opinią</a>
+            <a class="link" routerLink="/rejestracja">Stwórz konto</a>
+            <a class="link" routerLink="/opinie">Zobacz opinie</a>
+        </nav>
+    </ng-template>
+    <ng-template ngPluralCase="1">
+        <nav class="profile__menu">
+            <p>Witaj User!</p>
+            <button class="button__loginned" (click)="signOut()">Wyloguj mnie</button>
+            <a routerLink="/zalogowano/user-account" class="button__loginned">Ustawienia profilu</a>
+        </nav>
+    </ng-template>
+</header>

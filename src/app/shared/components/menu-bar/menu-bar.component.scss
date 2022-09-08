@@ -1,0 +1,73 @@
+nav{
+    width: 90vw;
+    display: flex;
+    align-items: center;
+    margin: 2vh auto;
+    a{
+        font-size: 1.3rem;
+        margin-left: 10px;
+        padding: 13px;
+        background-color: var(--opn-color-green);
+        color: #fdfdfd;
+        font-weight: 600;
+        letter-spacing: 3px;
+        border: none;
+        text-decoration: none;
+    }
+    a:hover{
+        cursor: pointer;
+        background-color: var(--opn-color-dark-green);
+    }
+    .link{
+        font-size: 1.5rem;
+        margin-left: 10px;
+        padding: 13px;
+        font-weight: 600;
+        letter-spacing: 3px;
+        border: none;
+        text-decoration: none;
+        background-color: transparent;
+        color: var(--opn-color-green);
+    }
+    .link:hover{
+        background-color: transparent;
+        color: rgb(22, 196, 22);
+    }
+
+    .logo-opinier{
+        display: block;
+        width: fit-content;
+        font-size: 3rem;
+        color: var(--opn-color-green);
+        font-weight: 600;
+        letter-spacing: 3px;
+        margin: 0;
+        margin-right: 30px;
+    }
+}
+
+.profile__menu{
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        font-size: 1.6em;
+        font-weight: 600;
+    }
+    .button__loginned{
+        font-size: 1.6em;
+        padding: 6px;
+        letter-spacing: 2px;
+        border: 2px solid transparent;
+        color: var(--opn-color-green);
+        background-color: transparent;
+        font-weight: 580;
+        cursor: pointer;
+        text-decoration: none;
+    }
+    .button__loginned:hover{
+        border-bottom: 2px solid var(--opn-color-green);
+    }
+}
