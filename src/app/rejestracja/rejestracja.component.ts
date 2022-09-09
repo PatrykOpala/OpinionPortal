@@ -36,6 +36,7 @@ export class RejestracjaComponent implements OnInit {
     let registeredError = this.authService.register(this.registerForm.value.email, this.registerForm.value.password);
     registeredError.then(er => {
       if(!er && er === null){
+        this.authService.registerUserInDatabase(JSON.parse(window.localStorage.getItem("user") as string))
         this.authService.logOutRouter.navigateByUrl("/zalogowano");
       }
     })

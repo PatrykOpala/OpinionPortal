@@ -14,10 +14,10 @@ export class AuthService {
   constructor() {this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);}
 
   async register(email: string, pass: string){
+    
     let {user, error} = await this.supabaseClient.auth.signUp({email, password: pass});
-    let userLocalStorage: UserLocalStorage = {
-      id: user?.id as string,
-      email: user?.email as string,
+    let userLocalStorage = {
+      name: user?.email as string,
     };
     window.localStorage.setItem("user", JSON.stringify(userLocalStorage));
     return error
@@ -31,5 +31,9 @@ export class AuthService {
       this.logOutRouter.navigateByUrl('/');
     }
     this.logOutRouter.navigateByUrl('/');
+  }
+
+  async registerUserInDatabase(userObj: object){
+    await this.supabaseClient.from('companies').insert(userObj);
   }
 }

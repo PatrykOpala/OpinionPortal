@@ -10,6 +10,7 @@ import { OpinieHeaderComponent } from '../shared/components/opinie-container/opi
 import { OpinieContentComponent } from '../shared/components/opinie-container/opinie-content/opinie-content.component';
 import { MenuBarServiceService } from 'src/app/core/services/menu-bar/menu-bar-service.service';
 import { UserLoginnedInStateEnum, Opinions} from 'src/app/core/types/typesOpinier';
+import { OpinionsService } from '../core/services/opinions/opinions.service';
 
 @Component({
   selector: 'opn-loginned',
@@ -29,6 +30,7 @@ export class LoginnedComponent implements OnInit{
   protected userObjectFromLocalStorage: any;
 
   private menuBarService = inject(MenuBarServiceService);
+  private opinionsService = inject(OpinionsService);
   
   constructor() {
     this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
@@ -46,7 +48,10 @@ export class LoginnedComponent implements OnInit{
   
   runAdd(): void{
     const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
-    DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => this.yourOpinionsPublishing.push(opinions));
+    DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
+      this.yourOpinionsPublishing.push(opinions)
+      this.opinionsService.SendOpinionToDatabase(opinions);
+    });
     DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});
   }
 }

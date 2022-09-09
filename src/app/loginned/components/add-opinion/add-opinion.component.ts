@@ -35,8 +35,8 @@ export class AddOpinionComponent implements OnInit {
   ngOnInit(): void {}
 
   sendOpinion(): void{
-    if(localStorage?.getItem('user') === null){return}
-    let uid = (JSON.parse( localStorage?.getItem('user') as string) as UserLocalStorage).id;
+    if(window.localStorage?.getItem('user') === null){return}
+    let uid = (JSON.parse( window.localStorage?.getItem('user') as string) as UserLocalStorage).id;
     this.returnedData.emit(CreateOpinion(uid, this.opinionForm.value.arm, this.opinionForm.value.opinionContent));
     this.closeDialog();
   }
