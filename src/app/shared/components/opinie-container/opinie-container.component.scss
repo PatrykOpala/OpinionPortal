@@ -1,10 +1,36 @@
 .opinie-container{
     width: 20vw;
-    padding: auto;
+    height: 24vh;
     background-color: var(--opn-green-light);
     color: var(--opn-background-color);
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;
+
+    .opinie-header{
+        width: 100%;
+
+        display: grid;
+        height: 55px;
+        grid-template-columns: 20% 80%;
+        margin-top: 12px;
+
+        h1{
+            margin-top: 0;
+        }
+
+        span{
+            position: relative;
+            top: -21px;
+            width: max-content;
+            font-size: 1.1rem;
+            margin-left: 80px;
+        }
+    }
+
+    .content{
+        width: max-content;
+        margin-top: 10px;
+        p{margin-top: 10px;font-size: 1.9em;}
+    }
 }

@@ -2,15 +2,9 @@
     <form class="formContainer" (submit)="$event.preventDefault()" [formGroup]="registerForm">
         <label class="labelC">Rejestracja</label>
         <div class="radioButtons">
-            <label class="typeAccount">
-                Zwykłe konto
-                <input type="radio" name="typeAccount" checked>
-            </label>
-
-            <label class="typeAccount">
-                Firma
-                <input type="radio" name="typeAccount">
-            </label>
+            <opn-choose [name]="'Zwykłe konto'" [typeChecked]="true"></opn-choose>
+            <opn-choose [name]="'Marka osobista'"></opn-choose>
+            <opn-choose [name]="'Firma'"></opn-choose>
         </div>
         <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="Adres e-mail"/>
         <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="Hasło"/>

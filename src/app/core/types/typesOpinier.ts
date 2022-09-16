@@ -1,3 +1,5 @@
+import { EventEmitter } from "@angular/core"
+
 export enum UserLoginnedInStateEnum{
     NOTLOGGEDIN = 0,
     LOGGEDIN = 1
@@ -20,11 +22,12 @@ export interface ChangeState{
 
 export interface UserLocalStorage{
     id: string,
-    email: string
+    email: string,
+    role: string
 }
 
 export interface Opinions {
-    user_id: string,
+    user_uuid: string,
     header: string,
     content: string
 }
@@ -45,7 +48,7 @@ export interface Category{
 
 export function CreateOpinion(_user_id: string, _head: string, _content: string): Opinions{
     return {
-        user_id: _user_id,
+        user_uuid: _user_id,
         header: _head,
         content: _content
     }

@@ -17,52 +17,13 @@
     width: 30vw;
     height: 50vh;
     @include flexD(column, none);
-    margin-top: 15vh;
+    margin-top: 12vh;
 
     .radioButtons{
         display: flex;
         justify-content: space-around;
-        width: 20vw;
+        width: fit-content;
         gap: 15px;
-
-        .typeAccount{
-            display: flex;
-            width: 52%;
-            height: 90px;
-            padding: 5px;
-            border: 1px solid #b4b2b2;
-            font-size: 1.4em;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            color: var(--opn-color-green);
-
-            input[type="radio"]{
-                appearance: none;
-            }
-
-            input[type="radio"]::before{
-                content: "";
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: #b4b2b2;
-                z-index: -1;
-                scale: 0;
-                cursor: pointer;
-            }
-        
-            input[type="radio"]:checked::before{
-                scale: 1;
-            }
-        }
-
-        .typeAccount:hover{
-            background-color: #b4b2b2;
-            cursor: pointer;
-        }
     }
 }
 

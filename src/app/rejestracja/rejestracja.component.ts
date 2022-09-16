@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 import { AuthService } from '../core/services/auth/auth.service';
+import { ChooseComponent } from '../shared/components/choose/choose.component';
 
 @Component({
   selector: 'opn-rejestracja',
@@ -11,9 +11,8 @@ import { AuthService } from '../core/services/auth/auth.service';
   styleUrls: ['./rejestracja.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    PaneContainerComponent
+    CommonModule, ReactiveFormsModule,
+    PaneContainerComponent, ChooseComponent
   ]
 })
 export class RejestracjaComponent implements OnInit {
@@ -33,13 +32,6 @@ export class RejestracjaComponent implements OnInit {
   }
 
   signUp(): void{
-    let registeredError = this.authService.register(this.registerForm.value.email, this.registerForm.value.password);
-    registeredError.then(er => {
-      if(!er && er === null){
-        this.authService.registerUserInDatabase(JSON.parse(window.localStorage.getItem("user") as string))
-        this.authService.logOutRouter.navigateByUrl("/zalogowano");
-      }
-    })
+    this.authService.register(this.registerForm.value.email, this.registerForm.value.password, "user");
   }
-
 }

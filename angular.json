@@ -1,7 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
-  "newProjectRoot": "projects",
   "projects": {
     "opinion-portal": {
       "projectType": "application",
@@ -34,7 +33,10 @@
               "src/styles.scss"
             ],
             "scripts": [],
-            "allowedCommonJsDependencies": []
+            "allowedCommonJsDependencies": [
+              ".\\@supabase\\gotrue-js\\dist\\module\\lib\\helpers.js",
+              ".\\@supabase\realtime-js\\dist\\module\\RealtimeClient.js"
+            ]
           },
           "configurations": {
             "production": {

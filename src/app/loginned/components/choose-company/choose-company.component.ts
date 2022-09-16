@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { ChangeState } from '../../../core/types/typesOpinier';
 
-
 @Component({
   selector: 'opn-choose-company',
   templateUrl: './choose-company.component.html',
@@ -13,7 +12,7 @@ export class ChooseCompanyComponent implements OnInit {
   @Input('chooseValue') chooseValue: string = "";
   @Output('changeState') state = new EventEmitter<ChangeState>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void { }
 

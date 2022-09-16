@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { RouterModule} from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -26,30 +26,32 @@ import { OpinionsService } from '../core/services/opinions/opinions.service';
 export class LoginnedComponent implements OnInit{
   @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
 
-  yourOpinionsPublishing: Opinions[] = [];
+  yourOpinionsPublishing: any[] = [];
   protected userObjectFromLocalStorage: any;
 
   private menuBarService = inject(MenuBarServiceService);
   private opinionsService = inject(OpinionsService);
   
-  constructor() {
-    this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-    if(window.localStorage.getItem("user")){
-      this.userObjectFromLocalStorage = JSON.parse(window.localStorage.getItem("user")as string);
-      console.log(this.userObjectFromLocalStorage);
-    }
-  }
+  constructor() {}
   
   ngOnInit(): void {
     // this.formService.opinionPublish$.subscribe(c => {
     //   this.yourOpinionsPublishing = c.opinion;
     // });
+    this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+    if(window.localStorage.getItem("supabase.auth.token")){
+      this.opinionsService.GetOpinionFromDatabase().then(v => {
+        if(v !== null && v !== undefined){
+          this.yourOpinionsPublishing = v;
+        }
+      })
+    }
   }
   
   runAdd(): void{
     const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
     DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
-      this.yourOpinionsPublishing.push(opinions)
+      this.yourOpinionsPublishing.push(opinions);
       this.opinionsService.SendOpinionToDatabase(opinions);
     });
     DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});

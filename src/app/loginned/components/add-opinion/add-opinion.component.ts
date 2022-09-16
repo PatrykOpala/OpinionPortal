@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, OnInit, Output, } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { UserLocalStorage, ChangeState, Opinions, CreateOpinion } from 'src/app/core/types/typesOpinier';
-import { ChooseCompanyComponent } from '../../../shared/components/choose-company/choose-company.component';
+import { ChangeState, Opinions, CreateOpinion } from 'src/app/core/types/typesOpinier';
+import { ChooseCompanyComponent } from '../choose-company/choose-company.component';
 
 @Component({
   selector: 'opn-add-opinion',
@@ -10,9 +10,7 @@ import { ChooseCompanyComponent } from '../../../shared/components/choose-compan
   styleUrls: ['./add-opinion.component.scss'],
   standalone: true,
   imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    ChooseCompanyComponent
+    CommonModule, ReactiveFormsModule, ChooseCompanyComponent
   ]
 })
 export class AddOpinionComponent implements OnInit {
@@ -21,7 +19,6 @@ export class AddOpinionComponent implements OnInit {
   @Output('returnedData') returnedData = new EventEmitter<Opinions>();
 
   protected opinionForm!: FormGroup;
-  
   protected headOpinion: string = "Wybierz z lewej strony, aby wystawić opinię";
 
   private formBuilder = inject(FormBuilder);
@@ -35,9 +32,9 @@ export class AddOpinionComponent implements OnInit {
   ngOnInit(): void {}
 
   sendOpinion(): void{
-    if(window.localStorage?.getItem('user') === null){return}
-    let uid = (JSON.parse( window.localStorage?.getItem('user') as string) as UserLocalStorage).id;
-    this.returnedData.emit(CreateOpinion(uid, this.opinionForm.value.arm, this.opinionForm.value.opinionContent));
+    if(window.localStorage?.getItem('supabase.auth.token') === null){return}
+    this.returnedData.emit(CreateOpinion(JSON.parse(window.localStorage?.getItem('supabase.auth.token') as string).currentSession.user.email,
+    this.opinionForm.value.arm, this.opinionForm.value.opinionContent));
     this.closeDialog();
   }
 

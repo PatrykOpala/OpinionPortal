@@ -31,11 +31,6 @@ export class LogowanieComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void{
-    let loginUser = this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
-    loginUser.then(({error}) => {
-      if(!error && error === null){
-        this.route.navigateByUrl("/zalogowano");
-      }
-    })
+    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
   }
 }
