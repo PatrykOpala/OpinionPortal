@@ -25,12 +25,12 @@ export class MenuBarComponent implements OnInit, LogOutUser {
   
   signOut(): void {
     this.authService.logOut();
-    this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
   }
 
   ngOnInit(): void {
     if(window.localStorage?.getItem("supabase.auth.token") !== null){
-      this.user_name = JSON.parse(window.localStorage?.getItem("supabase.auth.token") as string)?.currentSession?.user?.email
+      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      this.user_name = JSON.parse(window.localStorage?.getItem("supabase.auth.token") as string)?.currentSession?.user?.email;
     }
   }
 

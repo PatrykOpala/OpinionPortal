@@ -2,6 +2,8 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { environment } from 'src/environments/environment';
+import { UserLoginnedInStateEnum } from '../../types/typesOpinier';
+import { MenuBarServiceService } from '../menu-bar/menu-bar-service.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +11,7 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   protected supabaseClient: SupabaseClient;
   public authRouter = inject(Router);
+  private menubarService = inject(MenuBarServiceService);
 
   constructor() {this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);}
 
@@ -25,7 +28,8 @@ export class AuthService {
       }
   
       this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
-      this.authRouter.navigateByUrl("/zalogowano");
+        this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+        this.authRouter.navigateByUrl("/zalogowano");
       })
     }catch(e){
       console.error(e)
@@ -35,6 +39,7 @@ export class AuthService {
   login(email: string, pass: string){
     try{
       this.supabaseClient.auth.signIn({email, password: pass}).then(loginResponse => {
+        this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
       })
     }catch(e){
@@ -45,6 +50,7 @@ export class AuthService {
   async logOut(){
     const {error} = await this.supabaseClient.auth.signOut();
     if(!error || error === null){
+      this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
       this.authRouter.navigateByUrl('/');
     }
   }

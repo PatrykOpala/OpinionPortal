@@ -1,13 +1,7 @@
 <opn-pane-container>
     <ul class="opinie-grid">
-        <li>
-            <opn-opinie-container [opinie-header]="'rhrhrh'" [opinie-content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
-        </li>
-        <li>
-            <opn-opinie-container [opinie-header]="'rhrhrh'" [opinie-content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
-        </li>
-        <li>
-            <opn-opinie-container [opinie-header]="'rhrhrh'" [opinie-content]="'nvuhfgbvhigfbvsdifsh'"></opn-opinie-container>
+        <li *ngFor="let mn of allOpinions">
+            <opn-opinie-container [user_name]="mn.user_uuid" [opinie-header]="mn.header" [opinie-content]="mn.content"></opn-opinie-container>
         </li>
     </ul>
 </opn-pane-container>

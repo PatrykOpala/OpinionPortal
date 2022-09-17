@@ -10,6 +10,8 @@
 .opinie-grid{
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(3, 30vw);
+    grid-template-columns: repeat(3, 25vw);
+    justify-content: center;
+    gap: 15px;
 }
 

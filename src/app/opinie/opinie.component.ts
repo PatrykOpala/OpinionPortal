@@ -3,9 +3,8 @@ import { OpinieChooseCategoryComponent } from '../shared/components/opinie-choos
 import { OpinieChooseCategoryItemComponent } from '../shared/components/opinie-choose-category/opinie-choose-category-item/opinie-choose-category-item.component';
 import { PaneContainerComponent } from '../shared/components/pane-container/pane-container.component';
 import { OpinieContainerComponent } from '../shared/components/opinie-container/opinie-container.component';
-import { OpinieHeaderComponent } from '../shared/components/opinie-container/opinie-header/opinie-header.component';
-import { OpinieContentComponent } from '../shared/components/opinie-container/opinie-content/opinie-content.component';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'opn-opinie',
@@ -17,19 +16,23 @@ import { OpinionsService } from '../core/services/opinions/opinions.service';
     OpinieChooseCategoryItemComponent,
     PaneContainerComponent,
     OpinieContainerComponent,
-    OpinieHeaderComponent,
-    OpinieContentComponent
+    CommonModule
   ]
 })
 export class OpinieComponent implements OnInit {
 
   private opinionsService = inject(OpinionsService);
+  protected allOpinions: any[] = [];
 
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {
-    this.opinionsService.GetOpinionFromDatabase().then(op => console.log(op));
+    this.opinionsService.GetOpinionFromDatabase().then(op => {
+      if(op !== null && op !== undefined){
+        this.allOpinions = op;
+        console.log(op)
+      }
+    });
   }
 
 }

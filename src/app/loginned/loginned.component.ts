@@ -9,7 +9,6 @@ import { OpinieContainerComponent } from '../shared/components/opinie-container/
 import { OpinieHeaderComponent } from '../shared/components/opinie-container/opinie-header/opinie-header.component';
 import { OpinieContentComponent } from '../shared/components/opinie-container/opinie-content/opinie-content.component';
 import { MenuBarServiceService } from 'src/app/core/services/menu-bar/menu-bar-service.service';
-import { UserLoginnedInStateEnum, Opinions} from 'src/app/core/types/typesOpinier';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
 
 @Component({
@@ -29,7 +28,6 @@ export class LoginnedComponent implements OnInit{
   yourOpinionsPublishing: any[] = [];
   protected userObjectFromLocalStorage: any;
 
-  private menuBarService = inject(MenuBarServiceService);
   private opinionsService = inject(OpinionsService);
   
   constructor() {}
@@ -38,7 +36,6 @@ export class LoginnedComponent implements OnInit{
     // this.formService.opinionPublish$.subscribe(c => {
     //   this.yourOpinionsPublishing = c.opinion;
     // });
-    this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
     if(window.localStorage.getItem("supabase.auth.token")){
       this.opinionsService.GetOpinionFromDatabase().then(v => {
         if(v !== null && v !== undefined){

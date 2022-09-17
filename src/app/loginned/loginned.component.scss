@@ -19,6 +19,7 @@
     width: 90vw;
     height: 80vh;
     display: grid;
-    grid-template-columns: repeat(3, 30vw);
-    gap: 4px;
+    grid-template-columns: repeat(3, 25vw);
+    gap: 15px;
+    margin: 25px 0;
 }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { UserLocalStorage } from 'src/app/core/types/typesOpinier';
 
 @Component({
   selector: 'opn-opinie-container',
@@ -16,7 +15,5 @@ export class OpinieContainerComponent implements OnInit {
 
   constructor(){}
 
-  ngOnInit(): void {
-    // this.user_name = JSON.parse(localStorage.getItem("user") as string);
-  }
+  ngOnInit(): void {}
 }

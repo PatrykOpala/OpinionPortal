@@ -1,7 +1,7 @@
 <header [ngPlural]="menuBarService.IsTheUserLoggedInState">
+    <a routerLink="/" class="link logo-opinier">Opinier</a>
     <ng-template ngPluralCase="0">
         <nav>
-            <a routerLink="/" class="link"><p class="logo-opinier">Opinier</p></a>
             <a routerLink="/logowanie">Podziel się opinią</a>
             <a class="link" routerLink="/rejestracja">Stwórz konto</a>
             <a class="link" routerLink="/opinie">Zobacz opinie</a>
@@ -9,7 +9,7 @@
     </ng-template>
     <ng-template ngPluralCase="1">
         <nav class="profile__menu">
-            <p>Witaj {{user_name}}!</p>
+            <p>{{user_name}}</p>
             <button class="button__loginned" (click)="signOut()">Wyloguj mnie</button>
             <a routerLink="/zalogowano/user-account" class="button__loginned">Ustawienia profilu</a>
         </nav>

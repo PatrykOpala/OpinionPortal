@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit} from '@angular/core';
+import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 import { AuthService } from '../core/services/auth/auth.service';
 
@@ -21,7 +20,10 @@ export class LogowanieComponent implements OnInit {
 
   protected loginForm !: FormGroup;
 
-  constructor(private route: Router, private loginFormBuilder: FormBuilder, private authService: AuthService) { 
+  private loginFormBuilder = inject(FormBuilder);
+  private authService = inject(AuthService);
+
+  constructor() { 
     this.loginForm = this.loginFormBuilder.group({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('')
