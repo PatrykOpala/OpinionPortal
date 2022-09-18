@@ -1,0 +1,11 @@
+<label class="typeAccount" *ngIf="typeChecked; else inputNoChecked">
+    {{name}}
+    <input  type="radio" name="typeAccount" [value]="name" (change)="emitTypeAction($event)" checked>
+</label>
+
+<ng-template #inputNoChecked>
+    <label class="typeAccount">
+        {{name}}
+        <input  type="radio" name="typeAccount" [value]="name" (change)="emitTypeAction($event)">
+    </label>
+</ng-template>

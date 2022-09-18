@@ -1,0 +1,36 @@
+.motto{
+    color: var(--opn-color-green);
+    align-self: center;
+    justify-self: center;
+    font-weight: 600;
+    text-align: center;
+    padding-right: 0.5vw;
+    font-size: 60px;
+    margin-top: 23vh;
+    margin-bottom: 17vh;
+}
+
+.newOp{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    span{
+        align-self: center;
+        font-size: 3rem;
+        color: #383838;
+        letter-spacing: 3px;
+        margin-top: 1.2vh;
+    }
+
+    .opn-pane-container-body{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.2vh;
+        margin-right: 15vw;
+        overflow: hidden;
+        overflow-x: scroll;
+        gap: 10px;
+    }
+}

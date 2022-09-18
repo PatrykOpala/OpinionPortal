@@ -1,0 +1,25 @@
+.add__opinion{
+    position: fixed;
+    margin-left: 80vw;
+    margin-top: 74vh;
+    border-radius: 99%;
+    border: none;
+    width: 80px;
+    height: 80px;
+    font-size: 2em;
+    color: var(--opn-background-color);
+    background-color: var(--opn-color-green);
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add__opinion:hover{cursor: pointer;}
+.opinion__container{
+    width: 90vw;
+    height: 80vh;
+    display: grid;
+    grid-template-columns: repeat(3, 25vw);
+    gap: 15px;
+    margin: 25px 0;
+}

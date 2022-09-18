@@ -1,0 +1,71 @@
+@use "src/app/shared/scss/op-mixins.scss" as *;
+
+.registerContainer{
+    @include flexD();
+    width: 98vw;
+    height: 90vh;
+}
+
+.labelC{
+    font-size: 4.4rem;
+    letter-spacing: 7px;
+    margin: 23px 0;
+    color: var(--opn-color-green);
+}
+
+.formContainer{
+    width: 30vw;
+    height: 50vh;
+    @include flexD(column, none);
+    margin-top: 12vh;
+
+    .radioButtons{
+        display: flex;
+        justify-content: space-around;
+        width: fit-content;
+        gap: 15px;
+    }
+}
+
+.inputC{
+    width: 30vw;
+    padding: 10px;
+    outline: 1px solid transparent;
+    margin-top: 7%;
+    margin-left: 4%;
+    border: 1px solid #cccccc;
+    font-size: 1.8rem;
+}
+
+.inputC:focus{
+    border: 1px solid var(--opn-color-green);
+}
+
+button{
+    margin-top: 7%;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    border: 1px solid transparent;
+    padding: 10px;
+    background-color: var(--opn-color-green);
+    color: #ffffff;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: var(--opn-color-green);
+}
+
+input.ng-valid, input.ng-valid.required{
+    border-bottom: 2px solid #42A948;
+    color: #42A948;
+}
+
+input.ng-invalid{
+    border-bottom: 2px solid #a94442;
+    color: #a94442;
+}
+input.ng-untouched{
+    border-bottom: 1px solid #cccccc;
+    color: #000;
+}
