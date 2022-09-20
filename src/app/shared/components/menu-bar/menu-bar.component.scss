@@ -16,7 +16,7 @@ header{
     text-decoration: none;
 }
 
-nav{
+.main__menu{
     width: 90vw;
     display: flex;
     align-items: center;
@@ -62,6 +62,7 @@ nav{
     p{
         font-size: 1.6em;
         font-weight: 600;
+        margin-top: 7vh;
     }
     .button__loginned{
         font-size: 1.6em;
@@ -76,5 +77,61 @@ nav{
     }
     .button__loginned:hover{
         border-bottom: 2px solid var(--opn-color-green);
+    }
+
+    .button__primary{
+        font-size: 1.4em;
+        color: var(--opn-color-green);
+        letter-spacing: 3px;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin-right: 3%;
+    }
+
+    .vertical-center{
+        margin-top: 4.3vh;
+    }
+
+    .button__primary:hover{
+        color: var(--opn-color-dark-green);
+    }
+
+    .profile__options{
+        width: 300px;
+        height: max-content;
+        padding-bottom: 3px;
+        padding-left: 1px;
+        padding-right: 1px;
+        position: absolute;
+        top: 10%;
+        left: 82%;
+        box-shadow: 0 0 7px 0 hsl(3, 0%, 40%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .profile__options-element{
+            width: 99%;
+            height: 40px;
+            margin-top: 3px;
+            margin-left: 0;
+            text-align: center;
+            font-size: 1.2em;
+            border: none;
+            text-decoration: none;
+            line-height: 100%;
+            background-color: transparent;
+            cursor: pointer;
+            color: var(--opn-color-green);
+        }
+        .profile__options-element:hover{
+            background-color: var(--opn-color-dark-green);
+            color: #fdfdfd;
+        }
+
+        .text-center{
+            line-height: 210%;
+        }
     }
 }

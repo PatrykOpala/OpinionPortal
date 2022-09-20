@@ -1,4 +1,5 @@
-import { Component, OnInit, } from '@angular/core';
+import { Component, inject, OnInit, } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'opn-app-dashboard',
@@ -7,7 +8,13 @@ import { Component, OnInit, } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() {}
+  private dashRouter = inject(Router);
+
+  constructor() {
+    if(window.localStorage.getItem("supabase.auth.token")){
+      this.dashRouter.navigateByUrl("/zalogowano");
+    }
+  }
 
   ngOnInit(): void {
   }

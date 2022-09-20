@@ -1,6 +1,6 @@
 <opn-pane-container>
     <ng-container #opn></ng-container>
-    <button class="add__opinion" (click)="runAdd()">D</button>
+    <button class="add__opinion" (click)="runAdd()">Dodaj Opinię</button>
     <div class="opinion__container">
         <opn-opinie-container *ngFor="let ops of yourOpinionsPublishing" [opinie-header]="ops.header" [user_name]="ops.user_uuid || 'Anonim'" [opinie-content]="ops.content">
         </opn-opinie-container>

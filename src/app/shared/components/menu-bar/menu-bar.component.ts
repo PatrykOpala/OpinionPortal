@@ -14,10 +14,12 @@ export class MenuBarComponent implements OnInit, LogOutUser {
   protected menuBarService = inject(MenuBarService);
   protected authService = inject(AuthService);
   protected user_name = "";
+  protected profileOptions: boolean = false;
 
   constructor() { }
 
   signOut(): void {
+    this.profileOptions = !this.profileOptions;
     this.authService.logOut();
   }
 
@@ -27,5 +29,4 @@ export class MenuBarComponent implements OnInit, LogOutUser {
       this.user_name = JSON.parse(window.localStorage?.getItem("supabase.auth.token") as string)?.currentSession?.user?.email;
     }
   }
-
 }

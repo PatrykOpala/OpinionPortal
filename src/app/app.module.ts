@@ -13,6 +13,7 @@ import { environment } from 'src/environments/environment';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.component';
 import { SharedModule } from './shared/shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent},
@@ -26,13 +27,14 @@ const AppRoutes: Routes = [
   declarations: [
     AppComponent,
     DashboardComponent,
-	  MenuBarComponent
+	  MenuBarComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule,
     ReactiveFormsModule,
     SharedModule,
+    CommonModule,
     RouterModule.forRoot(AppRoutes),
     StoreModule.forRoot({posts: opinionReducer}),
     StoreDevtoolsModule.instrument({maxAge: 5, logOnly: environment.production,}),
