@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../core/services/auth/auth.service';
-import { MenuBarServiceService } from '../../../core/services/menu-bar/menu-bar-service.service';
+import { MenuBarService } from '../../../core/services/menu-bar/menu-bar.service';
 import { LogOutUser, UserLoginnedInStateEnum  } from '../../../core/types/typesOpinier';
 
 @Component({
@@ -11,7 +11,7 @@ import { LogOutUser, UserLoginnedInStateEnum  } from '../../../core/types/typesO
 })
 export class MenuBarComponent implements OnInit, LogOutUser {
 
-  protected menuBarService = inject(MenuBarServiceService);
+  protected menuBarService = inject(MenuBarService);
   protected authService = inject(AuthService);
   protected user_name = "";
 

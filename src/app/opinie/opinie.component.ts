@@ -17,7 +17,6 @@ export class OpinieComponent implements OnInit {
     this.opinionsService.GetOpinionFromDatabase().then(op => {
       if(op !== null && op !== undefined){
         this.allOpinions = op;
-        console.log(op)
       }
     });
   }

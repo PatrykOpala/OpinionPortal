@@ -1,4 +1,4 @@
-@use "../shared/scss/op-mixins.scss" as *;
+@use "../shared/utils/scss/op-mixins.scss" as *;
 
 .logowanieContainer{
     @include flexD();

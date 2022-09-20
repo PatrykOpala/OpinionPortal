@@ -11,23 +11,25 @@ export class LoginnedComponent implements OnInit{
   @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
 
   yourOpinionsPublishing: any[] = [];
-  protected userObjectFromLocalStorage: any;
 
   private opinionsService = inject(OpinionsService);
 
-  constructor() {}
+  constructor() {
+    if(window.localStorage.getItem("supabase.auth.token")){
+      this.opinionsService.GetOpinionFromDatabase().then(v => {
+        console.log(v)
+        if(v !== null && v !== undefined){
+          this.yourOpinionsPublishing = v;
+        }
+      }).catch(e => console.error(e));
+    }
+  }
 
   ngOnInit(): void {
     // this.formService.opinionPublish$.subscribe(c => {
     //   this.yourOpinionsPublishing = c.opinion;
     // });
-    if(window.localStorage.getItem("supabase.auth.token")){
-      this.opinionsService.GetOpinionFromDatabase().then(v => {
-        if(v !== null && v !== undefined){
-          this.yourOpinionsPublishing = v;
-        }
-      })
-    }
+    
   }
 
   runAdd(): void{

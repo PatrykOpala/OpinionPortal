@@ -7,7 +7,7 @@ import { LoginnedComponent } from './loginned.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
 import { SharedModule } from '../shared/shared/shared.module';
 
-const loginnedRoutes: Routes = [{ path: 'zalogowano', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}];
+const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}];
 
 @NgModule({
   declarations: [
