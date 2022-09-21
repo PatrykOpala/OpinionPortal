@@ -33,4 +33,38 @@
         margin-top: 3vh;
         p{margin-top: 10px;font-size: 1.9em;}
     }
+
+    .container__menu{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 33%;
+        padding: 3px;
+        height: max-content;
+        // border: 2px solid #222;
+        box-shadow: 0 0 7px 0 hsl(50, 10%, 90%);
+        bottom: 40%;
+        left: 40%;
+        background-color: #fdfdfd;
+
+        button{
+            width: 99%;
+            height: 40px;
+            margin-top: 5px;
+            font-size: 1.4em;
+            border: none;
+            background-color: transparent;
+            color: var(--opn-color-green);
+        }
+
+        button:hover{
+            width: 99%;
+            height: 40px;
+            margin-top: 5px;
+            font-size: 1.4em;
+            background-color: var(--opn-green-light);
+            color: #fdfdfd;
+        }
+    }
 }

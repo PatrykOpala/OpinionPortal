@@ -15,6 +15,7 @@ import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.componen
 import { SharedModule } from './shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
 
+
 const AppRoutes: Routes = [
   {path: '', component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./opinie/opinie.module').then(m => m.OpinieModule)},

@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class OpinieContainerComponent implements OnInit {
 
+  @Input("loginP") login: boolean = false;
   @Input("opinie-header") header: string = "";
   @Input("opinie-content") content: string = "";
 
