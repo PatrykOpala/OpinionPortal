@@ -12,8 +12,8 @@
         width: 100%;
 
         display: grid;
-        height: 55px;
-        grid-template-columns: 20% 80%;
+        grid-template-columns: 20% 60% 20%;
+        grid-template-rows: 57px;
         margin-top: 12px;
 
         h1{
@@ -25,7 +25,6 @@
             top: -21px;
             width: max-content;
             font-size: 1.1rem;
-            margin-left: 5vw;
         }
     }
 
