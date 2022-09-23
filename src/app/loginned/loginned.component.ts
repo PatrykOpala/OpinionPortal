@@ -10,18 +10,11 @@ import { OpinionsService } from '../core/services/opinions/opinions.service';
 export class LoginnedComponent implements OnInit{
   @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
 
-  yourOpinionsPublishing: any[] = [];
-
-  private opinionsService = inject(OpinionsService);
+  protected opinionsService = inject(OpinionsService);
 
   constructor() {
     if(window.localStorage.getItem("supabase.auth.token")){
-      this.opinionsService.GetOpinionFromDatabase().then(v => {
-        console.log(v)
-        if(v !== null && v !== undefined){
-          this.yourOpinionsPublishing = v;
-        }
-      }).catch(e => console.error(e));
+      this.opinionsService.GetOpinionFromDatabase();
     }
   }
 
@@ -35,7 +28,6 @@ export class LoginnedComponent implements OnInit{
   runAdd(): void{
     const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
     DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
-      this.yourOpinionsPublishing.push(opinions);
       this.opinionsService.SendOpinionToDatabase(opinions);
     });
     DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});

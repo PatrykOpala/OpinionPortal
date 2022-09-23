@@ -26,6 +26,7 @@ export interface UserLocalStorage{
 
 export interface Opinions {
     user_uuid: string,
+    user_email: string,
     header: string,
     content: string
 }
@@ -44,9 +45,10 @@ export interface Category{
     CategoryName: string;
 }
 
-export function CreateOpinion(_user_id: string, _head: string, _content: string): Opinions{
+export function CreateOpinion(_user_id: string, _user_email: string, _head: string, _content: string): Opinions{
     return {
         user_uuid: _user_id,
+        user_email: _user_email,
         header: _head,
         content: _content
     }

@@ -5,15 +5,23 @@
             <h1>{{user_name}}</h1>
             <span>Zopiniował firmę: <b>{{header}}</b></span>
         </div>
-        <div *ngIf="login" id="context-m" style="margin-left: 20px; border-radius: 100%; background-color: #333333; width: 50px; height: 50px; text-align: center;">Op</div>
+        <div *ngIf="login" id="context-m" 
+                style="margin-left: 20px; width: 50px; height: 50px; text-align: center; cursor: pointer;"
+                (click)="context = !context">
+            <svg width="30" height="50" viewBox="-6 2 30 40">
+                <circle cx="10" cy="7" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                <circle cx="10" cy="22.22" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                <circle cx="10" cy="38" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
+            </svg>
+        </div>
     </div>
-    <div class="content">
-        <p>{{content}}</p>
+    <div class="content" id="content ">
+        <p [id]="opID">{{content}}</p>
     </div>
-    <!-- <div class="container__menu">
-        <button>Edytuj</button>
-        <button>Usuń</button>
-    </div> -->
+    <div class="container__menu" *ngIf="context">
+        <button (click)="changeOpinion($event)">Edytuj</button>
+        <button (click)="deleteOpinion($event)">Usuń</button>
+    </div>
 </div>
 
 <!--

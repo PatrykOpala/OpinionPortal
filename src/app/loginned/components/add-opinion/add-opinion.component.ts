@@ -33,7 +33,7 @@ export class AddOpinionComponent implements OnInit {
 
   sendOpinion(): void{
     if(window.localStorage?.getItem('supabase.auth.token') === null){return}
-    this.returnedData.emit(CreateOpinion(JSON.parse(window.localStorage?.getItem('supabase.auth.token') as string).currentSession.user.email,
+    this.returnedData.emit(CreateOpinion(JSON.parse(window.localStorage?.getItem('supabase.auth.token') as string).currentSession.user.id, JSON.parse(window.localStorage?.getItem('supabase.auth.token') as string).currentSession.user.email,
     this.opinionForm.value.arm, this.opinionForm.value.opinionContent));
     this.closeDialog();
   }

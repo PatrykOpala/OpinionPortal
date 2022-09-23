@@ -7,22 +7,39 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OpinionsService extends AuthService {
 
+  opinions: any[] | null = [];
+
   constructor() {
     super()
   }
 
   async SendOpinionToDatabase(opinions: Opinions): Promise<void>{
-    let d = await this.supabaseClient.from('opinions').insert(opinions);
-    console.log(d);
+    await this.supabaseClient.from('opinions').insert(opinions);
+    this.GetOpinionFromDatabase();
   }
 
-  async GetOpinionFromDatabase(): Promise<any[] | null | undefined>{
+  async GetOpinionFromDatabase(): Promise<void>{
     let { data, error } = await this.supabaseClient
     .from('opinions')
     .select('*');
 
     if(!error || error === null)
-    return data
-    else return undefined;
+    this.opinions = data;
+  }
+
+  async ChangeOpinion(changeData: any): Promise<void>{
+    const {error} = await this.supabaseClient
+    .from("opinions")
+    .update({content: 'Zmieniona Opinia'}).match(changeData);
+    if(error) console.error(error);
+    this.GetOpinionFromDatabase();
+  }
+
+  async DeleteOpinion(changeData: any): Promise<void>{
+    const {error} = await this.supabaseClient
+    .from("opinions")
+    .delete().match(changeData);
+    if(error) console.error(error);
+    this.GetOpinionFromDatabase();
   }
 }

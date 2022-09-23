@@ -42,7 +42,6 @@
         width: 33%;
         padding: 3px;
         height: max-content;
-        // border: 2px solid #222;
         box-shadow: 0 0 7px 0 hsl(50, 10%, 90%);
         bottom: 40%;
         left: 40%;
@@ -56,6 +55,7 @@
             border: none;
             background-color: transparent;
             color: var(--opn-color-green);
+            cursor: pointer;
         }
 
         button:hover{
@@ -67,4 +67,8 @@
             color: #fdfdfd;
         }
     }
+}
+
+svg:hover > .svg__circle{
+    fill: hsl(2,0%,86%);
 }
