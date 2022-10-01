@@ -19,6 +19,7 @@ export class OpinieContainerComponent implements OnInit {
   @Output() changeOpinionEvent = new EventEmitter<any>();
 
   protected context: boolean = false;
+  protected valu = "";
 
   constructor(protected op: OpinionsService){}
 
@@ -49,7 +50,9 @@ export class OpinieContainerComponent implements OnInit {
   }
 
   toogle(e: Event){
-    console.log((e.target as HTMLElement).textContent);
-    // this.op.toogleREMode();
+    if((e.target as HTMLElement).localName !== "div"){
+      // console.log((e.target as HTMLElement).textContent);
+    }
+    this.op.toogleREMode();
   }
 }

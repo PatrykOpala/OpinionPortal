@@ -26,8 +26,8 @@
 
 <ng-template #editor>
     <div class="opinie-container">
-        <h2 [ngClass]="op.reMode === true ? 'none' : ''">Wybierz komu wystawisz opinię</h2>
-        <div class="opinie-container-content" [ngClass]="op.reMode === true ? 'none' : ''">
+        <h2 [ngClass]="op.reMode ? 'none' : ''">Wybierz komu wystawisz opinię</h2>
+        <div class="opinie-container-content" [ngClass]="op.reMode ? 'none' : ''">
             <ul class="list-grid">
                 <li class="element" (click)="toogle($event)">Microsoft</li>
                 <li class="element" (click)="toogle($event)">Google</li>
@@ -40,6 +40,25 @@
                 <li class="element" (click)="toogle($event)">Opinier</li>
             </ul>
         </div>
+
+        <div class="opinie-header" [ngClass]="!op.reMode ? 'none' : ''">
+            <div (click)="toogle($event)" style="margin-left: 20px; background-color: #333333; cursor: pointer; width: max-content; height: max-content; padding: 4px; margin-top: 10px;">
+                Back
+            </div>
+            <div>
+                <h1>{{user_name}}</h1>
+                <span>Zopiniował firmę: 
+                    <select>
+                        <option value="">Wybierz</option>
+                        <option [value]="header">{{header}}</option>
+                    </select>
+                </span>
+            </div>
+        </div>
+        <div class="content" id="content" [ngClass]="!op.reMode ? 'none' : ''">
+            <p contentEditable="true" [id]="opID">{{content}}</p>
+        </div>
+
     </div>
 </ng-template>
 
