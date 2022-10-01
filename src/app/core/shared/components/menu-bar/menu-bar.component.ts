@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { AuthService } from '../../../core/services/auth/auth.service';
-import { MenuBarService } from '../../../core/services/menu-bar/menu-bar.service';
-import { LogOutUser, UserLoginnedInStateEnum  } from '../../../core/types/typesOpinier';
+import { AuthService } from '../../../services/auth/auth.service';
+import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
+import { LogOutUser, UserLoginnedInStateEnum } from '../../../types/typesOpinier';
 
 @Component({
   selector: 'opn-menu-bar',

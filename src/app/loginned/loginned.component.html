@@ -3,12 +3,17 @@
     <button class="add__opinion" (click)="runAdd()">Dodaj Opinię</button>
     <div class="opinion__container">
         <opn-opinie-container *ngFor="let ops of opinionsService.opinions"
+         [edit-mode]="true"
          [loginP]="true" 
          [opID]="ops.id"
          [opinie-header]="ops.header"
          [user_name]="ops.user_email || 'Anonim'" 
-         [opinie-content]="ops.content">
+         [opinie-content]="ops.content"
+         (changeOpinionEvent)="opinionEvent($event)">
         </opn-opinie-container>
     </div>
+    <!-- *opnTeleportTo -->
+    <!-- *ngIf="opinionsService.close" -->
+    <!-- <opn-add-opinion *ngIf="!opinionsService.close" (returnedData)="sendData($event)" (close)="closeAddComponent($event)"></opn-add-opinion> -->
     <!-- <opn-context-menu></opn-context-menu> -->
 </opn-pane-container>

@@ -8,6 +8,8 @@ import { AuthService } from '../auth/auth.service';
 export class OpinionsService extends AuthService {
 
   opinions: any[] | null = [];
+  close = false;
+  reMode = false;
 
   constructor() {
     super()
@@ -42,4 +44,10 @@ export class OpinionsService extends AuthService {
     if(error) console.error(error);
     this.GetOpinionFromDatabase();
   }
+
+  CloseAddComponent(){
+    this.close = true;
+  }
+
+  toogleREMode(){this.reMode = !this.reMode}
 }

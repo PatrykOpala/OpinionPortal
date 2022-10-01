@@ -1,11 +1,11 @@
 import { Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
-import { AddOpinionComponent } from 'src/app/loginned/components/add-opinion/add-opinion.component';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
+import { changeEvent, Opinions } from '../core/types/typesOpinier';
 
 @Component({
   selector: 'opn-loginned',
   templateUrl: './loginned.component.html',
-  styleUrls: ['./loginned.component.scss'],
+  styleUrls: ['./loginned.component.scss']
 })
 export class LoginnedComponent implements OnInit{
   @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
@@ -18,18 +18,32 @@ export class LoginnedComponent implements OnInit{
     }
   }
 
-  ngOnInit(): void {
-    // this.formService.opinionPublish$.subscribe(c => {
-    //   this.yourOpinionsPublishing = c.opinion;
-    // });
-    
+  ngOnInit(): void {}
+
+  sendData(data: Opinions){
+    // this.opinionsService.SendOpinionToDatabase(data);
+    console.log(data)
   }
 
-  runAdd(): void{
-    const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
-    DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
-      this.opinionsService.SendOpinionToDatabase(opinions);
-    });
-    DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});
+  closeAddComponent(e: boolean){
+    if(e){
+      this.opinionsService.CloseAddComponent();
+    }
+  }
+
+  runAdd(vallue?: changeEvent): void{
+    if(vallue !== null){
+      this.opinionsService.close = false;
+      return;
+    }
+    // const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
+    // DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
+      
+    // });
+    // DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});
+  }
+
+  opinionEvent(change: changeEvent){
+    this.runAdd(change);
   }
 }

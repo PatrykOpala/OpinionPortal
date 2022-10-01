@@ -9,6 +9,12 @@ export enum ViewPN{
     NEGATIVE = "negative"
 }
 
+export interface changeEvent{
+    id: string 
+    headOpinion: string
+    content: string
+}
+
 export interface LogOutUser{
     signOut(): void
 }

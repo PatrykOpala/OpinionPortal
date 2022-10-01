@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RejestracjaComponent } from './rejestracja.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared/shared.module';
+import { SharedModule } from '../core/shared/shared/shared.module';
 
 const RejesrationRoutes: Routes = [{ path: '', component: RejestracjaComponent }];
 

@@ -11,9 +11,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { environment } from 'src/environments/environment';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
-import { MenuBarComponent } from './shared/components/menu-bar/menu-bar.component';
-import { SharedModule } from './shared/shared/shared.module';
+import { MenuBarComponent } from '../app/core/shared/components/menu-bar/menu-bar.component';
+import { SharedModule } from '../app/core/shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
+import { TeleportOutletDirective } from './core/portals/teleports-directive/teleport-outlet.directive';
 
 
 const AppRoutes: Routes = [
@@ -29,6 +30,7 @@ const AppRoutes: Routes = [
     AppComponent,
     DashboardComponent,
 	  MenuBarComponent,
+    TeleportOutletDirective
   ],
   imports: [
     BrowserModule,

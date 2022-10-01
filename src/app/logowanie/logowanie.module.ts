@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LogowanieComponent } from './logowanie.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../shared/shared/shared.module';
+import { SharedModule } from '../core/shared/shared/shared.module';
 
 const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
 
 @NgModule({
   declarations: [
-    LogowanieComponent
+    LogowanieComponent,
   ],
   imports: [
     CommonModule,

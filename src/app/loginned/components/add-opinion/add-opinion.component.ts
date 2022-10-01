@@ -1,17 +1,15 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, OnInit, Output, } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { ChangeState, Opinions, CreateOpinion } from 'src/app/core/types/typesOpinier';
-import { ChooseCompanyComponent } from '../choose-company/choose-company.component';
+import { Component, EventEmitter, inject, Input, OnChanges, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { ChangeState, Opinions, CreateOpinion} from 'src/app/core/types/typesOpinier';
 
 @Component({
   selector: 'opn-add-opinion',
   templateUrl: './add-opinion.component.html',
   styleUrls: ['./add-opinion.component.scss'],
-  standalone: true,
-  imports: [
-    CommonModule, ReactiveFormsModule, ChooseCompanyComponent
-  ]
+  // standalone: true,
+  // imports: [
+  //   CommonModule, ReactiveFormsModule, ChooseCompanyComponent
+  // ]
 })
 export class AddOpinionComponent implements OnInit {
 
@@ -28,6 +26,7 @@ export class AddOpinionComponent implements OnInit {
       arm: new FormControl(''),
       opinionContent: new FormControl({value: '', disabled: true})
     });
+    
   }
   ngOnInit(): void {}
 
@@ -53,9 +52,4 @@ export class AddOpinionComponent implements OnInit {
     this.headOpinion = e.headOpinion;
     this.opinionForm.get('opinionContent')?.enable();
   }
-
-  // addOpinion(value: string){
-  //   this.store.dispatch(addOpinion({opinion: new OpinionClass( this.opinionForm.value.arm, value)}))
-  // }
-
 }

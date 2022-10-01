@@ -67,6 +67,45 @@
             color: #fdfdfd;
         }
     }
+
+    .none{
+        display: none;
+    }
+
+    .opinie-container-content{
+        width: 477px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        // border:2px solid red;
+
+        .list-grid{
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 32.8%);
+            gap: 3px;
+
+            .element{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border:2px solid black;
+                height: 73px;
+                cursor: pointer;
+                margin-bottom: 3px;
+                list-style: none;
+            }
+
+            .element:hover{
+                border:2px solid #555555;
+            }
+        }
+    }
+
+    .opinie-container-content::-webkit-scrollbar{
+        display: none;
+    }
 }
 
 svg:hover > .svg__circle{

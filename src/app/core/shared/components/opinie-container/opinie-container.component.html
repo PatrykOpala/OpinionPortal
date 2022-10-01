@@ -1,4 +1,4 @@
-<div class="opinie-container">
+<div *ngIf="eMode == false; else editor" class="opinie-container">
     <div class="opinie-header">
         <div style="margin-left: 20px; border-radius: 100%; background-color: #333333; width: 50px; height: 50px; text-align: center;"></div>
         <div>
@@ -23,6 +23,25 @@
         <button (click)="deleteOpinion($event)">Usuń</button>
     </div>
 </div>
+
+<ng-template #editor>
+    <div class="opinie-container">
+        <h2 [ngClass]="op.reMode === true ? 'none' : ''">Wybierz komu wystawisz opinię</h2>
+        <div class="opinie-container-content" [ngClass]="op.reMode === true ? 'none' : ''">
+            <ul class="list-grid">
+                <li class="element" (click)="toogle($event)">Microsoft</li>
+                <li class="element" (click)="toogle($event)">Google</li>
+                <li class="element" (click)="toogle($event)">Android</li>
+                <li class="element" (click)="toogle($event)">Apple</li>
+                <li class="element" (click)="toogle($event)">Xiaomi</li>
+                <li class="element" (click)="toogle($event)">Firefox</li>
+                <li class="element" (click)="toogle($event)">Chrome</li>
+                <li class="element" (click)="toogle($event)">Brave</li>
+                <li class="element" (click)="toogle($event)">Opinier</li>
+            </ul>
+        </div>
+    </div>
+</ng-template>
 
 <!--
 <ng-content select="opn-opinie-header"></ng-content>

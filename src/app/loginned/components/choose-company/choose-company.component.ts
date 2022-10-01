@@ -5,16 +5,16 @@ import { ChangeState } from '../../../core/types/typesOpinier';
   selector: 'opn-choose-company',
   templateUrl: './choose-company.component.html',
   styleUrls: ['./choose-company.component.scss'],
-  standalone: true
+  // standalone: true
 })
 export class ChooseCompanyComponent implements OnInit {
 
   @Input('chooseValue') chooseValue: string = "";
   @Output('changeState') state = new EventEmitter<ChangeState>();
 
-  constructor() {}
+  constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 
   radioChange(e: Event){
     let state: ChangeState = {

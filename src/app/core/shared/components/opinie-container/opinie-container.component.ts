@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 
 @Component({
@@ -9,24 +9,32 @@ import { OpinionsService } from 'src/app/core/services/opinions/opinions.service
 export class OpinieContainerComponent implements OnInit {
 
   @Input("loginP") login: boolean = false;
+  @Input("edit-mode") eMode: boolean = false;
   @Input() opID ?: number;
   @Input("opinie-header") header: string = "";
   @Input("opinie-content") content: string = "";
 
   @Input("user_name") user_name = "";
 
+  @Output() changeOpinionEvent = new EventEmitter<any>();
+
   protected context: boolean = false;
 
-  constructor(private op: OpinionsService){}
+  constructor(protected op: OpinionsService){}
 
   ngOnInit(): void {}
 
   changeOpinion(e: Event): void{
     const n = (e.target as HTMLDivElement).parentNode?.parentNode?.childNodes;
+    let changeValue = {};
     if((n?.item(1).childNodes[0] as HTMLParagraphElement).id !== "undefined"){
-      this.op.ChangeOpinion(
-        {id: (n?.item(1).childNodes[0] as HTMLParagraphElement).id}
-      );
+      (changeValue as any).id = (n?.item(1).childNodes[0] as HTMLParagraphElement).id;
+      (changeValue as any).headOpinion = (n?.item(0).childNodes[1].childNodes[1].childNodes[1] as HTMLElement).textContent;
+      (changeValue as any).content = (n?.item(1).childNodes[0] as HTMLParagraphElement).textContent;
+      // this.op.ChangeOpinion(
+      //   {id: (n?.item(1).childNodes[0] as HTMLParagraphElement).id}
+      // );
+      this.changeOpinionEvent.emit(changeValue);
       this.context = !this.context;
     }
   }
@@ -38,5 +46,10 @@ export class OpinieContainerComponent implements OnInit {
       );
       this.context = !this.context;
     }
+  }
+
+  toogle(e: Event){
+    console.log((e.target as HTMLElement).textContent);
+    // this.op.toogleREMode();
   }
 }
