@@ -1,15 +1,21 @@
 <opn-pane-container>
     <ng-container #opn></ng-container>
-    <button class="add__opinion" (click)="runAdd()">Dodaj Opinię</button>
+    <!-- <button class="add__opinion" (click)="runAdd()">Dodaj Opinię</button> -->
     <div class="opinion__container">
+        <opn-opinie-container
+         [mode]="1"
+         [loginP]="true"
+         [user_name]="'Anonim'"
+         (changeOpinionEvent)="opinionEvent($event)"
+         (addOpinion)="sendData($event)">
+        </opn-opinie-container>
+
         <opn-opinie-container *ngFor="let ops of opinionsService.opinions"
-         [edit-mode]="true"
-         [loginP]="true" 
-         [opID]="ops.id"
-         [opinie-header]="ops.header"
-         [user_name]="ops.user_email || 'Anonim'" 
-         [opinie-content]="ops.content"
-         (changeOpinionEvent)="opinionEvent($event)">
+         [loginP]="true"
+         [ops]="ops"
+         [user_name]="ops.user_email || 'Anonim'"
+         (changeOpinionEvent)="opinionEvent($event)"
+         (addOpinion)="sendData($event)">
         </opn-opinie-container>
     </div>
     <!-- *opnTeleportTo -->

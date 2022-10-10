@@ -29,9 +29,10 @@
     }
 
     .content{
-        width: max-content;
         margin-top: 3vh;
-        p{margin-top: 10px;font-size: 1.9em;}
+        padding-left: 6px;
+        padding-right: 6px;
+        p{margin-top: 10px;font-size: 1.9em;font-family: Arial, Helvetica, sans-serif;}
     }
 
     .container__menu{
@@ -77,6 +78,151 @@
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
+        height: 20vh;
+        // border:2px solid red;
+    }
+
+    .opinie-container-content::-webkit-scrollbar{
+        display: none;
+    }
+}
+
+.radius{
+    border-radius: 3px;
+}
+
+.edit-container{
+    width: 100%;
+    min-height: 28vh;
+    background-color: var(--opn-green-light);
+    color: var(--opn-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // border-radius: 7px;
+    // 25vw
+
+    .call-to-action{
+        width: 100%;
+        height: 28vh;
+        font-size: 1.7rem;
+        font-weight: bold;
+        color: var(--opn-background-color);
+        background-color: var(--opn-color-green);
+        border: none;
+        cursor: pointer;
+    }
+
+    .call-to-action-small{
+        width: max-content;
+        height: max-content;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: var(--opn-background-color);
+        background-color: var(--opn-color-green);
+        border: none;
+        cursor: pointer;
+        margin-right: 1.6vw;
+        padding-left: 5px;
+        padding-right: 5px;
+        letter-spacing: 2px;
+    }
+
+    .hover:hover{
+        background-color: var(--opn-color-dark-green);
+    }
+
+    .opinie-header{
+        width: 100%;
+
+        display: grid;
+        grid-template-columns: 20% 60% 20%;
+        grid-template-rows: 57px;
+        margin-top: 12px;
+
+        h1{
+            margin-top: 0;
+        }
+
+        span{
+            position: relative;
+            top: -21px;
+            width: max-content;
+            font-size: 1.1rem;
+        }
+    }
+
+    .content{
+        margin-top: 3vh;
+        p{margin-top: 10px;font-size: 1.9em;}
+
+        textarea{
+            width: 24.5vw;
+            height: 17vh;
+            resize: none;
+            font-size: 1.9rem;
+            border: none;
+            background-color: var(--opn-background-color);
+            border-radius: 7px;
+        }
+    }
+
+    .edit-content{
+        display: flex;
+        flex-direction: column;
+        height: max-content;
+
+        button{
+            align-self: flex-end;
+            margin: 10px 0;
+            border: none;
+        }
+    }
+
+    .container__menu{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 33%;
+        padding: 3px;
+        height: max-content;
+        box-shadow: 0 0 7px 0 hsl(50, 10%, 90%);
+        bottom: 40%;
+        left: 40%;
+        background-color: #fdfdfd;
+
+        button{
+            width: 99%;
+            height: 40px;
+            margin-top: 5px;
+            font-size: 1.4em;
+            border: none;
+            background-color: transparent;
+            color: var(--opn-color-green);
+            cursor: pointer;
+        }
+
+        button:hover{
+            width: 99%;
+            height: 40px;
+            margin-top: 5px;
+            font-size: 1.4em;
+            background-color: var(--opn-green-light);
+            color: #fdfdfd;
+        }
+    }
+
+    .none{
+        display: none;
+    }
+
+    .opinie-container-content{
+        width: 477px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        scrollbar-width: none;
+        height: 20vh;
         // border:2px solid red;
 
         .list-grid{
@@ -110,4 +256,21 @@
 
 svg:hover > .svg__circle{
     fill: hsl(2,0%,86%);
+}
+
+
+.primary{
+    width: max-content;
+    height: 44px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: var(--opn-background-color);
+    background-color: var(--opn-color-green);
+    padding: 7px;
+    // border-radius: 7px;
+    cursor: pointer;
+}
+
+.primary:hover{
+    background-color: var(--opn-color-dark-green);
 }

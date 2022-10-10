@@ -15,6 +15,7 @@ export class LoginnedComponent implements OnInit{
   constructor() {
     if(window.localStorage.getItem("supabase.auth.token")){
       this.opinionsService.GetOpinionFromDatabase();
+      // console.log(this.opinionsService.opinions);
     }
   }
 
@@ -22,6 +23,8 @@ export class LoginnedComponent implements OnInit{
 
   sendData(data: Opinions){
     // this.opinionsService.SendOpinionToDatabase(data);
+    this.opinionsService.opinions?.push(data);
+    window.localStorage.setItem("op", JSON.stringify(this.opinionsService.opinions));
     console.log(data)
   }
 

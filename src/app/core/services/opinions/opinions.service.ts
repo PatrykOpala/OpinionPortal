@@ -7,12 +7,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OpinionsService extends AuthService {
 
-  opinions: any[] | null = [];
+  opinions: Opinions[] | null = [];
   close = false;
-  reMode = false;
+  reMode = 100;
 
   constructor() {
     super()
+    this.opinions = JSON.parse(window.localStorage.getItem("op")as string);
   }
 
   async SendOpinionToDatabase(opinions: Opinions): Promise<void>{
@@ -24,15 +25,14 @@ export class OpinionsService extends AuthService {
     let { data, error } = await this.supabaseClient
     .from('opinions')
     .select('*');
-
     if(!error || error === null)
     this.opinions = data;
   }
 
-  async ChangeOpinion(changeData: any): Promise<void>{
+  async ChangeOpinion(match: any, updateContent: any): Promise<void>{
     const {error} = await this.supabaseClient
     .from("opinions")
-    .update({content: 'Zmieniona Opinia'}).match(changeData);
+    .update(updateContent).match(match);
     if(error) console.error(error);
     this.GetOpinionFromDatabase();
   }
@@ -48,6 +48,4 @@ export class OpinionsService extends AuthService {
   CloseAddComponent(){
     this.close = true;
   }
-
-  toogleREMode(){this.reMode = !this.reMode}
 }
