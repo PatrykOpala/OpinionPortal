@@ -15,14 +15,16 @@ import { MenuBarComponent } from '../app/core/shared/components/menu-bar/menu-ba
 import { SharedModule } from '../app/core/shared/shared/shared.module';
 import { CommonModule } from '@angular/common';
 import { TeleportOutletDirective } from './core/portals/teleports-directive/teleport-outlet.directive';
+import { LoginnedGuard } from './auth.guard';
+import { MainGuard } from './main.guard';
 
 
 const AppRoutes: Routes = [
-  {path: '', component: DashboardComponent},
+  {path: '', canActivate: [MainGuard] ,component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./opinie/opinie.module').then(m => m.OpinieModule)},
   {path: 'logowanie', loadChildren: () => import('./logowanie/logowanie.module').then(m => m.LogowanieModule)},
   {path: 'rejestracja', loadChildren: () => import('./rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
-  {path: 'zalogowano', loadChildren: () => import('./loginned/loginned.module').then(m => m.LoginnedModule)},
+  {path: 'zalogowano', canActivate: [LoginnedGuard] , loadChildren: () => import('./loginned/loginned.module').then(m => m.LoginnedModule)},
 ];
 
 @NgModule({

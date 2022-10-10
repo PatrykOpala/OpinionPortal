@@ -11,9 +11,9 @@ export class DashboardComponent implements OnInit {
   private dashRouter = inject(Router);
 
   constructor() {
-    if(window.localStorage.getItem("supabase.auth.token")){
-      this.dashRouter.navigateByUrl("/zalogowano");
-    }
+    // if(window.localStorage.getItem("supabase.auth.token")){
+    //   this.dashRouter.navigateByUrl("/zalogowano");
+    // }
   }
 
   ngOnInit(): void {
