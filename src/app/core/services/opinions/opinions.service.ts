@@ -29,10 +29,10 @@ export class OpinionsService extends AuthService {
     this.opinions = data;
   }
 
-  async ChangeOpinion(match: any, updateContent: any): Promise<void>{
+  async ChangeOpinion(matchId: any, updateContent: any): Promise<void>{
     const {error} = await this.supabaseClient
     .from("opinions")
-    .update(updateContent).match(match);
+    .update(updateContent).match({id: matchId});
     if(error) console.error(error);
     this.GetOpinionFromDatabase();
   }

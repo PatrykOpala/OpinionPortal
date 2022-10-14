@@ -7,15 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
-  private dashRouter = inject(Router);
-
-  constructor() {
-    // if(window.localStorage.getItem("supabase.auth.token")){
-    //   this.dashRouter.navigateByUrl("/zalogowano");
-    // }
-  }
-
+  constructor() {}
   ngOnInit(): void {
   }
 }

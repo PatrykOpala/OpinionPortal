@@ -43,12 +43,6 @@ export class OpinieContainerComponent implements OnInit {
     const n = (e.target as HTMLDivElement).parentNode?.parentNode?.childNodes;
     let changeValue = {};
     if((n?.item(1).childNodes[0] as HTMLParagraphElement).id !== "undefined"){
-      // (changeValue as any).id = (n?.item(1).childNodes[0] as HTMLParagraphElement).id;
-      // (changeValue as any).headOpinion = (n?.item(0).childNodes[1].childNodes[1].childNodes[1] as HTMLElement).textContent;
-      // (changeValue as any).content = (n?.item(1).childNodes[0] as HTMLParagraphElement).textContent;
-
-      // console.log(this.headOpn.nativeElement.textContent);
-
       (changeValue as any).id = this.paragraph.nativeElement.id;
       (changeValue as any).headOpinion = this.headOpn.nativeElement.textContent;
       (changeValue as any).content = this.paragraph.nativeElement.textContent;
@@ -61,7 +55,7 @@ export class OpinieContainerComponent implements OnInit {
   }
   SendChangeQuery(event?: Event) {
     let changeObj = {content: this.e.nativeElement.value}
-    this.op.ChangeOpinion({id: this.globalChangeValue.id}, changeObj);
+    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
   }
   deleteOpinion(e: Event): void{
     const n = (e.target as HTMLDivElement).parentNode?.parentNode?.childNodes;
@@ -75,7 +69,6 @@ export class OpinieContainerComponent implements OnInit {
 
   toogle(e: Event){
     if((e.target as HTMLElement).localName !== "div"){
-      // console.log((e.target as HTMLElement).textContent);
       this.valu = (e.target as HTMLElement).textContent;
       console.log(this.valu);
       this.op.reMode = 102;

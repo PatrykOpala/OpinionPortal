@@ -1,0 +1,13 @@
+<opn-pane-container [ngPlural]="placeholder">
+    <ng-template ngPluralCase="0">
+            <form class="formContainer step1"  (submit)="$event.preventDefault()">
+                <label class="labelC">Wybierz typ konta</label>
+                <div class="radioButtons">
+                    <opn-choose [name]="'Zwykłe konto'" [typeChecked]="true"></opn-choose>
+                    <opn-choose [name]="'Marka osobista'"></opn-choose>
+                    <opn-choose [name]="'Firma'"></opn-choose>
+                </div>
+            </form>
+    </ng-template>
+</opn-pane-container>
+

@@ -10,16 +10,13 @@
 
     .opinie-header{
         width: 100%;
-
         display: grid;
         grid-template-columns: 20% 60% 20%;
         grid-template-rows: 57px;
         margin-top: 12px;
-
         h1{
             margin-top: 0;
         }
-
         span{
             position: relative;
             top: -21px;
@@ -47,7 +44,6 @@
         bottom: 40%;
         left: 40%;
         background-color: #fdfdfd;
-
         button{
             width: 99%;
             height: 40px;
@@ -58,7 +54,6 @@
             color: var(--opn-color-green);
             cursor: pointer;
         }
-
         button:hover{
             width: 99%;
             height: 40px;
@@ -68,20 +63,16 @@
             color: #fdfdfd;
         }
     }
-
     .none{
         display: none;
     }
-
     .opinie-container-content{
         width: 477px;
         overflow-y: auto;
         overflow-x: hidden;
         scrollbar-width: none;
         height: 20vh;
-        // border:2px solid red;
     }
-
     .opinie-container-content::-webkit-scrollbar{
         display: none;
     }
@@ -99,8 +90,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // border-radius: 7px;
-    // 25vw
 
     .call-to-action{
         width: 100%;
@@ -161,6 +150,7 @@
             height: 17vh;
             resize: none;
             font-size: 1.9rem;
+            font-family: Arial, Helvetica, sans-serif;
             border: none;
             background-color: var(--opn-background-color);
             border-radius: 7px;
