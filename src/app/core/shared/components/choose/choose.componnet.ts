@@ -17,6 +17,6 @@ export class ChooseComponent implements OnInit {
   }
 
   emitTypeAction(e: Event){
-    console.log((e.target as HTMLInputElement).value);
+    this.action.emit((e.target as HTMLInputElement).value);
   }
 }
