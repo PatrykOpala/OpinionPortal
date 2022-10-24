@@ -1,0 +1,50 @@
+.step1{
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    label{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 14vh;
+    }
+    .radioButtons{
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 14vh;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+}
+
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+    align-items: center;
+}
+
+.labelC{
+    font-size: 30px;
+    margin-top: 20px;
+}
+
+.account{
+    font-size: 50px;
+}
+
+.inputC{
+    width: 30vw;
+    height: 50px;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+button{
+    width: max-content;
+    height: max-content;
+    margin-top: 20px;
+    font-size: 30px;
+    padding: 4px;
+}

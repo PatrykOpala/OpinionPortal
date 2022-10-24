@@ -9,7 +9,7 @@ import { Observable, switchMap } from 'rxjs';
 })
 export class RejestracjaStepComponent implements OnInit {
   placeholder = 0;
-  placeholder$?: Observable<any>;
+  placeholder$?: Observable<string>;
   accountLabel: string = "";
   constructor(private rejestracjaRoute: ActivatedRoute, private nextRouter: Router) { }
   ngOnInit(): void {
