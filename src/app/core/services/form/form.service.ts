@@ -1,40 +1,15 @@
 import { Injectable } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs/internal/Observable';
-import { OpinionStateInterface } from '../../types/typesOpinier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FormService {
 
-  opinionForm!: FormGroup
-  opinionPublish$: Observable<OpinionStateInterface>;
-  
-  headOpinion: string = "Wybierz z lewej strony, aby wystawić opinię";
+  typeAccount: string = "";
 
-  constructor(private formBuilder: FormBuilder, public store: Store<{posts: OpinionStateInterface}>) {
-    this.opinionForm = this.formBuilder.group({
-      arm: new FormControl(''),
-      opinionContent: new FormControl({value: '', disabled: true})
-    });
-    this.opinionPublish$ = this.store.select('posts');
-  }
-
-  // addOpinion(value: string){
-  //   this.store.dispatch(addOpinion({opinion: new OpinionClass( this.opinionForm.value.arm, value)}))
-  // }
-
-  radioChange(e: Event){
-    this.opinionForm.controls['arm'].setValue((e.target as HTMLInputElement).value);
-    this.headOpinion = this.opinionForm.value.arm;
-    this.opinionForm.get('opinionContent')?.enable();
-  }
-
-  clear(): void{
-    this.opinionForm.reset()
-    this.headOpinion = "Wybierz z lewej strony, aby wystawić opinię";
+  setTypeAccount(type: string): void {
+    this.typeAccount = type;
+    console.log(this.typeAccount);
   }
 
 }

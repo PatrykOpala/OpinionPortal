@@ -8,7 +8,6 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ChooseComponent implements OnInit {
 
   @Input("name") name: string = "";
-  @Input("typeChecked") typeChecked: boolean = false;
   @Output("typeAction") action = new EventEmitter();
 
   constructor() { }

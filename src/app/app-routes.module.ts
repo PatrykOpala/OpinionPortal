@@ -6,10 +6,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { MainGuard } from './main.guard';
 
 export const AppRoutes: Routes = [
-  {path: '', canActivate: [MainGuard] ,component: DashboardComponent, pathMatch: 'full'},
+  {path: '', canActivate: [MainGuard] ,component: DashboardComponent},
   {path: 'opinie', loadChildren: () => import('./opinie/opinie.module').then(m => m.OpinieModule)},
   {path: 'logowanie', loadChildren: () => import('./logowanie/logowanie.module').then(m => m.LogowanieModule)},
-  {path: 'rejestracja', loadChildren: () => import('./rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
+  {path: 'register', loadChildren: () => import('./rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
   {path: 'zalogowano', canActivate: [LoginnedGuard] , loadChildren: () => import('./loginned/loginned.module').then(m => m.LoginnedModule)},
 ];
 

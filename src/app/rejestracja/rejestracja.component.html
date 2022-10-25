@@ -1,14 +1,10 @@
-<!-- <opn-pane-container>
-    <form class="formContainer" (submit)="$event.preventDefault()" [formGroup]="registerForm">
+<opn-pane-container>
+    <form class="formContainer" (submit)="$event.preventDefault()">
         <label class="labelC">Rejestracja</label>
         <div class="radioButtons">
-            <opn-choose [name]="'Zwykłe konto'" [typeChecked]="true"></opn-choose>
-            <opn-choose [name]="'Marka osobista'"></opn-choose>
-            <opn-choose [name]="'Firma'"></opn-choose>
+            <opn-choose [name]="'Zwykłe konto'" (typeAction)="handler($event)"></opn-choose>
+            <opn-choose [name]="'Marka osobista'" (typeAction)="handler($event)"></opn-choose>
+            <opn-choose [name]="'Firma'" (typeAction)="handler($event)"></opn-choose>
         </div>
-        <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="Adres e-mail"/>
-        <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="Hasło"/>
-        <button type="submit" (click)="signUp()">Stwórz konto</button>
     </form>
-</opn-pane-container> -->
-
+</opn-pane-container>

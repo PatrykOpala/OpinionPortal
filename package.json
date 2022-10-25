@@ -1,6 +1,6 @@
 {
   "name": "opinion-portal",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -13,7 +13,7 @@
     "@angular/animations": "~14.1.3",
     "@angular/common": "~14.1.3",
     "@angular/compiler": "~14.1.3",
-    "@angular/core": "~14.2.7",
+    "@angular/core": "~14.1.3",
     "@angular/forms": "~14.1.3",
     "@angular/platform-browser": "~14.1.3",
     "@angular/platform-browser-dynamic": "~14.1.3",

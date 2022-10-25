@@ -1,7 +1,7 @@
-<!-- <ng-template [ngPlural]="typeLabel">
-    <ng-template ngPluralCase="0">
-        <form class="formContainer step1"  (submit)="$event.preventDefault()">
-            <span class="labelC account">{{type || "Typ konta"}}</span>
+<opn-pane-container>
+    <ng-template [ngIf]="formService.typeAccount === 'Zwykłe konto'">
+        <form class="formContainer step1" (submit)="$event.preventDefault()">
+            <span class="labelC account">{{formService.typeAccount || "Typ konta"}}</span>
             <span class="labelC">Wpisz dane</span>
             <input type="text" name="userName" class="inputC" placeholder="Nazwa użytkownika"/>
             <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail"/>
@@ -9,7 +9,26 @@
             <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
         </form>
     </ng-template>
-</ng-template> -->
 
+    <ng-template [ngIf]="formService.typeAccount === 'Marka osobista'">
+        <form class="formContainer step1" (submit)="$event.preventDefault()">
+            <span class="labelC account">{{formService.typeAccount || "Typ konta"}}</span>
+            <span class="labelC">Wpisz dane</span>
+            <input type="text" name="userName" class="inputC" placeholder="Nazwa użytkownika"/>
+            <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail"/>
+            <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
+            <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
+        </form>
+    </ng-template>
 
-test komponentu
+    <ng-template [ngIf]="formService.typeAccount === 'Firma'">
+        <form class="formContainer step1" (submit)="$event.preventDefault()">
+            <span class="labelC account">{{formService.typeAccount || "Typ konta"}}</span>
+            <span class="labelC">Wpisz dane</span>
+            <input type="text" name="userName" class="inputC" placeholder="Nazwa Firmy"/>
+            <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail"/>
+            <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
+            <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
+        </form>
+    </ng-template>
+</opn-pane-container>

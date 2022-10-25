@@ -1,4 +1,4 @@
-<opn-pane-container [ngPlural]="placeholder">
+<!-- <opn-pane-container [ngPlural]="placeholder">
     <ng-template ngPluralCase="0">
             <form class="formContainer step1"  (submit)="$event.preventDefault()">
                 <label class="labelC">Wybierz typ konta</label>
@@ -12,7 +12,7 @@
 
     <ng-template ngPluralCase="1">
 
-        <!-- <opn-form-registers [type]="'Zwykłe konto'"></opn-form-registers> -->
+        
         <ng-template [ngIf]="accountLabel === 'Zwykłe konto'">
             <form class="formContainer step1"  (submit)="$event.preventDefault()">
                 <span class="labelC account">{{accountLabel || "Zwykłe konto"}}</span>
@@ -24,7 +24,7 @@
             </form>
         </ng-template>
     </ng-template>
-</opn-pane-container>
+</opn-pane-container> -->
 
 <!-- <form class="formContainer step1"  (submit)="$event.preventDefault()">
     <span class="labelC account">{{accountLabel || "Zwykłe konto"}}</span>
@@ -34,3 +34,10 @@
     <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
     <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
 </form> -->
+
+<p>Rejestracja</p>
+
+<opn-pane-container>
+    
+    <router-outlet></router-outlet>
+</opn-pane-container>
