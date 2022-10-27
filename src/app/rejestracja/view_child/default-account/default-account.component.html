@@ -1,0 +1,7 @@
+<form class="formContainer step1" (submit)="signUpUser($event)" [formGroup]="userForm">
+    <span class="labelC account">{{defaultAccountService.getTypeAccount() || "Typ konta"}}</span>
+    <input type="text" name="userName" formControlName="userName" class="inputC" placeholder="Nazwa użytkownika"/>
+    <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="Adres e-mail"/>
+    <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="Hasło"/>
+    <button type="submit">Stwórz konto</button>
+</form>

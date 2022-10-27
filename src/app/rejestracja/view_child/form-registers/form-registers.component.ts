@@ -1,5 +1,4 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormService } from 'src/app/core/services/form/form.service';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'opn-form-registers',
@@ -9,13 +8,7 @@ import { FormService } from 'src/app/core/services/form/form.service';
 })
 export class FormRegistersComponent implements OnInit {
 
-  protected formService = inject(FormService);
+  constructor() {}
 
-  constructor() {
-  }
-
-  ngOnInit(): void {
-    
-  }
-
+  ngOnInit(): void {}
 }

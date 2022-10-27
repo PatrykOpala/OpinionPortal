@@ -1,0 +1,7 @@
+<form class="formContainer step1" (submit)="signUpCompany($event)" [formGroup]="companyForm">
+    <span class="labelC account">{{accountCompanyService.getTypeAccount() || "Typ konta"}}</span>
+    <input type="text" name="userName" formControlName="companyName" class="inputC" placeholder="Nazwa Firmy"/>
+    <input type="email" name="userEmail" formControlName="companyEmail" class="inputC" placeholder="Adres e-mail"/>
+    <input type="password" name="userPassword" formControlName="companyPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
+    <button type="submit">Stwórz konto</button>
+</form>

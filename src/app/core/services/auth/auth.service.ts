@@ -27,6 +27,16 @@ export class AuthService {
         }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
       }
 
+      if(registerType === "personalBrand"){
+        this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
+          const userDatabase = {
+            user_uuid: response.user?.id,
+            name: response.user?.email,
+          }
+          return this.supabaseClient.from('companies').insert(userDatabase);
+        }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
+      }
+
       this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
