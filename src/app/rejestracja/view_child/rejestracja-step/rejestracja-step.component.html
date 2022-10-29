@@ -1,43 +1,16 @@
-<!-- <opn-pane-container [ngPlural]="placeholder">
-    <ng-template ngPluralCase="0">
-            <form class="formContainer step1"  (submit)="$event.preventDefault()">
-                <label class="labelC">Wybierz typ konta</label>
-                <div class="radioButtons">
-                    <opn-choose [name]="'Zwykłe konto'" (typeAction)="setAccountLabel($event)"></opn-choose>
-                    <opn-choose [name]="'Marka osobista'" (typeAction)="setAccountLabel($event)"></opn-choose>
-                    <opn-choose [name]="'Firma'" (typeAction)="setAccountLabel($event)"></opn-choose>
-                </div>
-            </form>
-    </ng-template>
+<div class="steps_container">
+    <div class="step_element">
+        <span [ngClass]="step === 1 ? 'step' : 'step_disabled'">1</span>
+        <span class="label">Wybierz typ konta</span>
+    </div>
 
-    <ng-template ngPluralCase="1">
+    <div class="step_element">
+        <span [ngClass]="step === 2 ? 'step' : 'step_disabled'">2</span>
+        <span class="label">Wpisz dane konta</span>
+    </div>
 
-        
-        <ng-template [ngIf]="accountLabel === 'Zwykłe konto'">
-            <form class="formContainer step1"  (submit)="$event.preventDefault()">
-                <span class="labelC account">{{accountLabel || "Zwykłe konto"}}</span>
-                <span class="labelC">Wpisz dane</span>
-                <input type="text" name="userName" class="inputC" placeholder="Nazwa użytkownika"/>
-                <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail"/>
-                <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
-                <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
-            </form>
-        </ng-template>
-    </ng-template>
-</opn-pane-container> -->
-
-<!-- <form class="formContainer step1"  (submit)="$event.preventDefault()">
-    <span class="labelC account">{{accountLabel || "Zwykłe konto"}}</span>
-    <span class="labelC">Wpisz dane</span>
-    <input type="text" name="userName" class="inputC" placeholder="Nazwa użytkownika"/>
-    <input type="email" name="userEmail" class="inputC" placeholder="Adres e-mail"/>
-    <input type="password" name="userPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
-    <button type="submit" (click)="$event.preventDefault()">Stwórz konto</button>
-</form> -->
-
-<p>Rejestracja</p>
-
-<opn-pane-container>
-    
-    <router-outlet></router-outlet>
-</opn-pane-container>
+    <div class="step_element">
+        <span [ngClass]="step === 3 ? 'step' : 'step_disabled'">3</span>
+        <span class="label">Rejestracja zakończona</span>
+    </div>
+</div>

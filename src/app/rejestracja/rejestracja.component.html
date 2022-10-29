@@ -1,6 +1,7 @@
 <opn-pane-container>
     <form class="formContainer" (submit)="$event.preventDefault()">
         <label class="labelC">Rejestracja</label>
+        <opn-rejestracja-step [step]="1"></opn-rejestracja-step>
         <div class="radioButtons">
             <opn-choose [name]="'Zwykłe konto'" (typeAction)="handler($event)"></opn-choose>
             <opn-choose [name]="'Marka osobista'" (typeAction)="handler($event)"></opn-choose>
