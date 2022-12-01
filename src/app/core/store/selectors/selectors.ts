@@ -1,5 +1,5 @@
 import { createSelector } from "@ngrx/store";
-import { OpinionStateInterface } from "../../types/typesOpinier";
+import { OpinionStateInterface } from "../../types/interfaces";
 
 interface StateInterface{
     posts: OpinionStateInterface;

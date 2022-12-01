@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserLoginnedInStateEnum } from '../../types/typesOpinier';
+import { UserLoginnedInStateEnum } from '../../types/enums';
 
 @Injectable({
   providedIn: 'root'

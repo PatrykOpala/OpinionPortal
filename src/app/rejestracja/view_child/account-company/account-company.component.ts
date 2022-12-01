@@ -1,6 +1,8 @@
 import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FormService } from 'src/app/core/services/form/form.service';
+import { MIN_LENGHT } from 'src/app/core/types/constants';
 
 @Component({
   selector: 'opn-account-company',
@@ -9,14 +11,15 @@ import { FormService } from 'src/app/core/services/form/form.service';
   encapsulation: ViewEncapsulation.None
 })
 export class AccountCompanyComponent implements OnInit {
-  protected accountCompanyService = inject(FormService);
+  protected accountCompanyService = inject(AuthService);
+  protected accountFormService = inject(FormService);
   protected companyForm: FormGroup
 
   constructor(private registerFormBuilder: FormBuilder) { 
     this.companyForm = this.registerFormBuilder.group({
-      companyName: new FormControl(''),
-      companyEmail: new FormControl('', [Validators.email, Validators.required]),
-      companyPassword: new FormControl('', Validators.minLength(16))
+      name: new FormControl(''),
+      email: new FormControl('', [Validators.email, Validators.required]),
+      password: new FormControl('', Validators.minLength(MIN_LENGHT))
     })
   }
 
@@ -24,7 +27,6 @@ export class AccountCompanyComponent implements OnInit {
 
   signUpCompany(event: Event): void{
     event.preventDefault();
-    console.log(`CompanyFormData: Email: ${this.companyForm.value.companyEmail} Password: ${this.companyForm.value.companyPassword}`);
-    // this.authService.register(this.companyForm.value.email, this.companyForm.value.password, "company");
+    this.accountCompanyService.register(this.companyForm.value, "company");
   }
 }

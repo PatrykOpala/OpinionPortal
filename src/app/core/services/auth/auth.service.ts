@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
 import { environment } from 'src/environments/environment';
-import { UserLoginnedInStateEnum } from '../../types/typesOpinier';
+import { UserLoginnedInStateEnum } from '../../types/enums';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 @Injectable({
@@ -15,32 +15,40 @@ export class AuthService {
 
   constructor() {this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);}
 
-  register(email: string, pass: string, registerType: string){
+  register({name, email, password}: any, registerType: string){
     try{
       if(registerType === "company"){
-        this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
+        this.supabaseClient.auth.signUp({email, password}).then(response => {
           const userDatabase = {
             user_uuid: response.user?.id,
             name: response.user?.email,
           }
-          return this.supabaseClient.from('companies').insert(userDatabase);
+          return this.supabaseClient.from('users').insert(userDatabase);
         }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
       }
 
       if(registerType === "personalBrand"){
-        this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
+        this.supabaseClient.auth.signUp({email, password}).then(response => {
           const userDatabase = {
             user_uuid: response.user?.id,
             name: response.user?.email,
           }
-          return this.supabaseClient.from('companies').insert(userDatabase);
+          return this.supabaseClient.from('users').insert(userDatabase);
         }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
       }
 
-      this.supabaseClient.auth.signUp({email, password: pass}).then(response => {
+      this.supabaseClient.auth.signUp({email, password}).then(response => {
+        const userDatabase = {
+          user_uuid: response.user?.id,
+          name,
+          email,
+          type: registerType
+        }
+        return this.supabaseClient.from('users').insert(userDatabase);
+      }).then(u => {
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
-      })
+      });
     }catch(e){
       console.error(e)
     }

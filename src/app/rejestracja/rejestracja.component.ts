@@ -25,6 +25,5 @@ export class RejestracjaComponent implements OnInit {
     if(event === "Firma"){
       this.formService.formRouter.navigateByUrl("register/account-company");
     }
-    // this.formService.formRouter.navigateByUrl("register/ch");
   }
 }

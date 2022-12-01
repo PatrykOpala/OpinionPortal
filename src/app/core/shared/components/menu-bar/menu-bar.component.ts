@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
-import { LogOutUser, UserLoginnedInStateEnum } from '../../../types/typesOpinier';
+import { LogOutUser} from '../../../types/interfaces';
 
 @Component({
   selector: 'opn-menu-bar',

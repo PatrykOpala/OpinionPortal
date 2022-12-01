@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { ChangeState } from '../../../core/types/typesOpinier';
+import { ChangeState } from '../../../core/types/interfaces';
 
 @Component({
   selector: 'opn-choose-company',

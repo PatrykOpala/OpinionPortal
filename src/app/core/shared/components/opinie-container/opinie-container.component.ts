@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
-import { Opinions } from 'src/app/core/types/typesOpinier';
+import { Opinions } from 'src/app/core/types/interfaces';
 
 @Component({
   selector: 'opn-opinie-container',
