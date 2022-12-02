@@ -2,9 +2,9 @@
     <form class="formContainer step1" (submit)="signUpPersonalBrand($event)" [formGroup]="personalBrandForm">
         <span class="labelC account">{{accountPersonalBrandFormService.getTypeAccount() || "Typ konta"}}</span>
         <opn-rejestracja-step [step]="2"></opn-rejestracja-step>
-        <input type="text" name="userName" formControlName="personalBrandName" class="inputC" placeholder="Nazwa marki"/>
-        <input type="email" name="userEmail" formControlName="personalBrandEmail" class="inputC" placeholder="Adres e-mail"/>
-        <input type="password" name="userPassword" formControlName="personalBrandPassword" id="uPassword" class="inputC" placeholder="Hasło"/>
+        <input type="text" name="userName" formControlName="name" class="inputC" placeholder="Nazwa marki"/>
+        <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="Adres e-mail"/>
+        <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="Hasło"/>
         <button type="submit">Stwórz konto</button>
     </form>
 </opn-pane-container>

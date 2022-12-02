@@ -10,13 +10,15 @@
          (addOpinion)="sendData($event)">
         </opn-opinie-container>
 
-        <opn-opinie-container *ngFor="let ops of opinionsService.opinions"
-         [loginP]="true"
-         [ops]="ops"
-         [user_name]="ops.user_email || 'Anonim'"
-         (changeOpinionEvent)="opinionEvent($event)"
-         (addOpinion)="sendData($event)">
-        </opn-opinie-container>
+        <ng-template [ngIf]="opinionsService.opinions != null && opinionsService.opinions.length > 0">
+            <opn-opinie-container *ngFor="let ops of opinionsService.opinions"
+            [loginP]="true"
+            [ops]="ops"
+            [user_name]="ops.user_email || 'Anonim'"
+            (changeOpinionEvent)="opinionEvent($event)"
+            (addOpinion)="sendData($event)">
+           </opn-opinie-container>
+        </ng-template>
     </div>
     <!-- *opnTeleportTo -->
     <!-- *ngIf="opinionsService.close" -->

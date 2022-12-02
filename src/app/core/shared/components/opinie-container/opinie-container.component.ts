@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { Opinions } from 'src/app/core/types/interfaces';
+import {CreateOpinion} from 'src/app/core/types/functions';
 
 @Component({
   selector: 'opn-opinie-container',
@@ -38,7 +39,6 @@ export class OpinieContainerComponent implements OnInit {
       this.opID = this.ops.id;
     }
   }
-
   changeOpinion(e: Event): void{
     const n = (e.target as HTMLDivElement).parentNode?.parentNode?.childNodes;
     let changeValue = {};
@@ -55,32 +55,27 @@ export class OpinieContainerComponent implements OnInit {
   }
   SendChangeQuery(event?: Event) {
     let changeObj = {content: this.e.nativeElement.value}
-    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
+    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj, true);
   }
   deleteOpinion(e: Event): void{
     const n = (e.target as HTMLDivElement).parentNode?.parentNode?.childNodes;
-    if((n?.item(1).childNodes[0] as HTMLParagraphElement).id !== "undefined"){
-      this.op.DeleteOpinion(
-        {id: (n?.item(1).childNodes[0] as HTMLParagraphElement).id}
-      );
+    //(n?.item(1).childNodes[0] as HTMLParagraphElement)
+    if(this.paragraph.nativeElement.id !== "undefined"){
+      this.op.DeleteOpinion({id: this.paragraph.nativeElement.id}, true);
       this.context = !this.context;
     }
   }
-
   toogle(e: Event){
     if((e.target as HTMLElement).localName !== "div"){
       this.valu = (e.target as HTMLElement).textContent;
-      console.log(this.valu);
       this.op.reMode = 102;
     }
   }
-
   giveFeedback(){
-    let b = {
-      head: this.valu,
-      content: this.e.nativeElement.value
-    }
-    // this.eMode = false;
-    this.addOpinion.emit(b);
+    const {user} = JSON.parse(window.localStorage.getItem("supabase.auth.token") as string).currentSession;
+    let newOpinionObj: Opinions = CreateOpinion(user.id, user.email, Math.floor(Math.random() * 1000), this.valu != null ? this.valu : "", this.e.nativeElement.value);
+    this.addOpinion.emit(newOpinionObj);
+    this.e.nativeElement.value = "";
+    this.op.reMode = 100;
   }
 }

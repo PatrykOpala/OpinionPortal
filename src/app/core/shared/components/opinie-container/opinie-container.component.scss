@@ -83,6 +83,7 @@
 }
 
 .edit-container{
+    min-width: 477px;
     width: 100%;
     min-height: 28vh;
     background-color: var(--opn-green-light);
@@ -108,13 +109,19 @@
         font-size: 1.2rem;
         font-weight: bold;
         color: var(--opn-background-color);
-        background-color: var(--opn-color-green);
+        background-color: transparent;
         border: none;
         cursor: pointer;
-        margin-right: 1.6vw;
-        padding-left: 5px;
-        padding-right: 5px;
+        margin-right: 23px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 3px;
+        padding-bottom: 3px;
         letter-spacing: 2px;
+    }
+
+    .call-to-action-small:hover{
+        background-color: var(--opn-color-green);
     }
 
     .hover:hover{
@@ -146,14 +153,14 @@
         p{margin-top: 10px;font-size: 1.9em;}
 
         textarea{
-            width: 24.5vw;
+            width: 460px;
             height: 17vh;
             resize: none;
             font-size: 1.9rem;
             font-family: Arial, Helvetica, sans-serif;
             border: none;
             background-color: var(--opn-background-color);
-            border-radius: 7px;
+            border-radius: 3px;
         }
     }
 
@@ -220,6 +227,7 @@
             display: grid;
             grid-template-columns: repeat(3, 32.8%);
             gap: 3px;
+            margin-left: 0.7%;
 
             .element{
                 display: flex;
@@ -227,6 +235,7 @@
                 justify-content: center;
                 align-items: center;
                 border:2px solid black;
+                width: 98%;
                 height: 73px;
                 cursor: pointer;
                 margin-bottom: 3px;

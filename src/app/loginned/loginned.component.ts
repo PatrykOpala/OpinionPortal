@@ -14,18 +14,18 @@ export class LoginnedComponent implements OnInit{
 
   constructor() {
     if(window.localStorage.getItem("supabase.auth.token")){
-      this.opinionsService.GetOpinionFromDatabase();
-      // console.log(this.opinionsService.opinions);
+      // this.opinionsService.GetOpinionFromDatabase();
+      this.opinionsService.GetOpinionFromLocalStorage();
     }
   }
 
   ngOnInit(): void {}
 
   sendData(data: Opinions){
-    // this.opinionsService.SendOpinionToDatabase(data);
-    this.opinionsService.opinions?.push(data);
+    //this.opinionsService.SendOpinionToDatabase(data);
+    this.opinionsService.AddOpinionSingleDataToOpinionsTable(data);
     window.localStorage.setItem("op", JSON.stringify(this.opinionsService.opinions));
-    console.log(data)
+    this.opinionsService.GetOpinionFromLocalStorage();
   }
 
   closeAddComponent(e: boolean){
@@ -39,11 +39,6 @@ export class LoginnedComponent implements OnInit{
       this.opinionsService.close = false;
       return;
     }
-    // const DialogComponentRef = this.opn.createComponent(AddOpinionComponent);
-    // DialogComponentRef.instance.returnedData.asObservable().subscribe(opinions => {
-      
-    // });
-    // DialogComponentRef.instance.close.asObservable().subscribe((e)=>{if(e){this.opn.clear();}});
   }
 
   opinionEvent(change: changeEvent){
