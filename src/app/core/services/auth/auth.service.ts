@@ -1,9 +1,11 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { createClient, Session, SupabaseClient, User } from '@supabase/supabase-js'
 import { environment } from 'src/environments/environment';
 import { UserLoginnedInStateEnum } from '../../types/enums';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
+
+interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
 
 @Injectable({
   providedIn: 'root'
@@ -18,20 +20,20 @@ export class AuthService {
   register({name, email, password}: any, registerType: string){
     try{
       if(registerType === "company"){
-        this.supabaseClient.auth.signUp({email, password}).then(response => {
+        this.supabaseClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
-            user_uuid: response.user?.id,
-            name: response.user?.email,
+            user_uuid: response.data.user?.id,
+            name: response.data.user?.email,
           }
           return this.supabaseClient.from('users').insert(userDatabase);
         }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
       }
 
       if(registerType === "personalBrand"){
-        this.supabaseClient.auth.signUp({email, password}).then(response => {
+        this.supabaseClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
-            user_uuid: response.user?.id,
-            name: response.user?.email,
+            user_uuid: response.data.user?.id,
+            name: response.data.user?.email,
           }
           return this.supabaseClient.from('users').insert(userDatabase);
         }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
@@ -39,7 +41,7 @@ export class AuthService {
 
       this.supabaseClient.auth.signUp({email, password}).then(response => {
         const userDatabase = {
-          user_uuid: response.user?.id,
+          user_uuid: response.data.user?.id,
           name,
           email,
           type: registerType
@@ -56,7 +58,7 @@ export class AuthService {
 
   login(email: string, pass: string){
     try{
-      this.supabaseClient.auth.signIn({email, password: pass}).then(loginResponse => {
+      this.supabaseClient.auth.signInWithPassword({email, password: pass}).then(() => {
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
       })

@@ -15,7 +15,7 @@ export class LoginnedComponent implements OnInit{
   constructor() {
     if(window.localStorage.getItem("supabase.auth.token")){
       // this.opinionsService.GetOpinionFromDatabase();
-      this.opinionsService.GetOpinionFromLocalStorage();
+      this.opinionsService.GetOpinionFromLocalStorage(false);
     }
   }
 
@@ -25,7 +25,7 @@ export class LoginnedComponent implements OnInit{
     //this.opinionsService.SendOpinionToDatabase(data);
     this.opinionsService.AddOpinionSingleDataToOpinionsTable(data);
     window.localStorage.setItem("op", JSON.stringify(this.opinionsService.opinions));
-    this.opinionsService.GetOpinionFromLocalStorage();
+    this.opinionsService.GetOpinionFromLocalStorage(false);
   }
 
   closeAddComponent(e: boolean){

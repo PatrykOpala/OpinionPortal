@@ -1,5 +1,5 @@
 .opinie-container{
-    width: 98vw;
+    width: 98%;
     height: 87vh;
     background-color: blanchedalmond;
     margin: 20px 0;
@@ -10,7 +10,7 @@
 .opinie-grid{
     list-style-type: none;
     display: grid;
-    grid-template-columns: repeat(3, 25vw);
+    grid-template-columns: repeat(3, 500px);
     justify-content: center;
     gap: 15px;
 }

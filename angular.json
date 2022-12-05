@@ -36,7 +36,7 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "@supabase/supabase-js"
-           ]
+            ]
           },
           "configurations": {
             "production": {

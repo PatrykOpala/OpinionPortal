@@ -37,7 +37,7 @@ export class OpinionsService extends AuthService {
         return m;
       });
       window.localStorage.setItem("op", JSON.stringify(tmpOpn));
-      this.GetOpinionFromLocalStorage();
+      this.GetOpinionFromLocalStorage(true);
       return;
     }
     const {error} = await this.supabaseClient
@@ -50,7 +50,7 @@ export class OpinionsService extends AuthService {
   async DeleteOpinion(changeData: any, local: boolean): Promise<void>{
     if(local){
       this.FilterOpinionDataFromLocalStorage(changeData.id);
-      this.GetOpinionFromLocalStorage();
+      this.GetOpinionFromLocalStorage(true);
       return;
     }
     const {error} = await this.supabaseClient
@@ -60,11 +60,15 @@ export class OpinionsService extends AuthService {
     this.GetOpinionFromDatabase();
   }
 
-  GetOpinionFromLocalStorage(): void {
-    let obj = JSON.parse(window.localStorage.getItem("op") as string);
-    if(obj !== null){
-      this.AddOpinionDataToOpinionsTable(obj);
+  GetOpinionFromLocalStorage(localFrom: boolean): Opinions[] | null {
+    if(localFrom){
+      let obj = JSON.parse(window.localStorage.getItem("op") as string);
+      if(obj !== null){
+        this.AddOpinionDataToOpinionsTable(obj);
+        return null;
+      }
     }
+    return JSON.parse(window.localStorage.getItem("op") as string);
   }
 
   FilterOpinionDataFromLocalStorage(id: number){

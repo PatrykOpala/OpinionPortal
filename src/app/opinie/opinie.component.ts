@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
+import { Opinions } from '../core/types/interfaces';
 
 @Component({
   selector: 'opn-opinie',
@@ -9,9 +10,14 @@ import { OpinionsService } from '../core/services/opinions/opinions.service';
 export class OpinieComponent implements OnInit {
 
   private opinionsService = inject(OpinionsService);
-  protected allOpinions: any[] = [];
+  protected allOpinions: Opinions[] = [];
 
-  constructor() {}
+  constructor() {
+    let o = this.opinionsService.GetOpinionFromLocalStorage(false);
+    if(o != null){
+      this.allOpinions = o;
+    }
+  }
 
   ngOnInit(): void {
     this.opinionsService.GetOpinionFromDatabase().then(op => {
