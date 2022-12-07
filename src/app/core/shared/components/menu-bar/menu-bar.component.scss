@@ -57,7 +57,7 @@ header{
     height: 60px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     p{
         font-size: 1.6em;
@@ -86,11 +86,12 @@ header{
         background-color: transparent;
         border: none;
         cursor: pointer;
-        margin-right: 3%;
+        // margin-right: 3%;
     }
 
     .vertical-center{
         margin-top: 4.3vh;
+        margin-right: 7vw;
     }
 
     .button__primary:hover{
@@ -105,7 +106,7 @@ header{
         padding-right: 1px;
         position: absolute;
         top: 10%;
-        left: 82%;
+        left: 82vw;
         box-shadow: 0 0 7px 0 hsl(3, 0%, 40%);
         display: flex;
         flex-direction: column;

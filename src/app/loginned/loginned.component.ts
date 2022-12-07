@@ -1,5 +1,6 @@
 import { Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
+import { LOCAL_STORAGE_KEY } from '../core/types/constants';
 import { changeEvent, Opinions } from '../core/types/interfaces';
 
 @Component({
@@ -13,7 +14,7 @@ export class LoginnedComponent implements OnInit{
   protected opinionsService = inject(OpinionsService);
 
   constructor() {
-    if(window.localStorage.getItem("supabase.auth.token")){
+    if(window.localStorage.getItem(LOCAL_STORAGE_KEY)){
       // this.opinionsService.GetOpinionFromDatabase();
       this.opinionsService.GetOpinionFromLocalStorage(false);
     }

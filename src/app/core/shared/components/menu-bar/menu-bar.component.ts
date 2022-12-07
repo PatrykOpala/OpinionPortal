@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { LOCAL_STORAGE_KEY } from 'src/app/core/types/constants';
 import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
@@ -13,20 +14,22 @@ export class MenuBarComponent implements OnInit, LogOutUser {
 
   protected menuBarService = inject(MenuBarService);
   protected authService = inject(AuthService);
-  protected user_name = "";
   protected profileOptions: boolean = false;
 
-  constructor() { }
+  constructor() { 
+    if(window.localStorage?.getItem(LOCAL_STORAGE_KEY) !== null){
+      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      // this.user_name = JSON.parse(window.localStorage?.getItem(LOCAL_STORAGE_KEY) as string)?.data?.user?.email;
+    }
+  }
 
   signOut(): void {
     this.profileOptions = !this.profileOptions;
+    window.localStorage.removeItem(LOCAL_STORAGE_KEY);
     this.authService.logOut();
   }
 
   ngOnInit(): void {
-    if(window.localStorage?.getItem("supabase.auth.token") !== null){
-      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-      this.user_name = JSON.parse(window.localStorage?.getItem("supabase.auth.token") as string)?.currentSession?.user?.email;
-    }
+    
   }
 }

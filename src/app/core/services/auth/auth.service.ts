@@ -2,10 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { createClient, Session, SupabaseClient, User } from '@supabase/supabase-js'
 import { environment } from 'src/environments/environment';
+import { LOCAL_STORAGE_KEY } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
-interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
+// interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +59,8 @@ export class AuthService {
 
   login(email: string, pass: string){
     try{
-      this.supabaseClient.auth.signInWithPassword({email, password: pass}).then(() => {
+      this.supabaseClient.auth.signInWithPassword({email, password: pass}).then((value) => {
+        window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(value));
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
       })

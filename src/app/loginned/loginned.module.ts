@@ -10,7 +10,7 @@ import { TeleportToDirective } from '../core/portals/teleports-directive/telepor
 import { AddOpinionComponent } from './components/add-opinion/add-opinion.component';
 import { ChooseCompanyComponent } from './components/choose-company/choose-company.component';
 
-const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'zalogowano/user-account', component: UserAccountComponent}];
+const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}];
 
 @NgModule({
   declarations: [

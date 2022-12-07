@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LOCAL_STORAGE_KEY } from './core/types/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Observable } from 'rxjs';
 export class LoginnedGuard implements CanActivate {
   constructor(private router: Router){}
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(window.localStorage.getItem("supabase.auth.token")){
+      if(window.localStorage.getItem(LOCAL_STORAGE_KEY)){
         return true;
       }
       

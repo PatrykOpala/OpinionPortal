@@ -9,13 +9,12 @@
     </ng-template>
     <ng-template ngPluralCase="1">
         <nav class="profile__menu">
-            <p>{{user_name}}</p>
             <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions">Konto</button>
             <!-- <button class="button__loginned" (click)="signOut()">Wyloguj mnie</button>
             <a routerLink="/zalogowano/user-account" class="button__loginned">Ustawienia profilu</a> -->
             <div *ngIf="profileOptions" class="profile__options">
                 <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
-                <a routerLink="/zalogowano/user-account" class="profile__options-element text-center">Ustawienia Konta</a>
+                <a routerLink="/zalogowano/user-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
             </div>
         </nav>
     </ng-template>

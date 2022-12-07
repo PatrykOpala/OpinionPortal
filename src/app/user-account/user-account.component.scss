@@ -1,4 +1,8 @@
 @use "../core/shared/utils/scss/op-colors.scss" as op-colors;
+
+$avatar-width: 40vw;
+$avatar-height: calc($avatar-width / 2);
+
 .user__account{
     display: flex;
     flex-direction: column;
@@ -7,29 +11,65 @@
     height: 86vh;
     margin-top: 6px;
 
-    .profile__menu{
-        width: 80vw;
+    .business-card{
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        p{
-            font-size: 1.6em;
-            font-weight: 600;
+        flex-direction: column;
+        width: $avatar-width;
+        height: $avatar-height;
+        border-radius: 3px;
+        text-align: center;
+        background-color: op-colors.$op-color-green;
+        margin-left: 20px;
+        margin-top: calc(20vh / 2);
+
+        .business-card__header{
+            display: flex;
+            align-items: center;
+            // border: 1px solid azure;
+            width: calc(98% - 20px);
+            height: calc($avatar-height / 5);
+            margin-left: 20px;
+            margin-top: 20px;
+
+            .avatar{
+                display: flex;
+                justify-content: center;
+                align-self: center;
+                width: calc($avatar-width / 7);
+                height: calc($avatar-height / 7);
+                background-color: azure;
+                margin-top: 3px;
+                margin-left: 10px;
+                font-size: calc(3em - 9px);
+                // color: var(--opn-background-color);
+            }
+
+            .name{
+                width: max-content;
+                font-size: 1.8em;
+                margin-left: 40px;
+                color: azure;
+            }
         }
-        .button__loginned{
-            font-size: 1.6em;
-            padding: 6px;
-            letter-spacing: 2px;
-            border: 2px solid transparent;
-            color: op-colors.$op-color-green;
-            background-color: transparent;
-            font-weight: 580;
-            cursor: pointer;
-            text-decoration: none;
-        }
-        .button__loginned:hover{
-            border-bottom: 2px solid op-colors.$op-color-green;
+
+        .business-card__content{
+            display: flex;
+            justify-content: center;
+
+            button{
+                background-color: transparent;
+                border: none;
+                font-size: 2em;
+                margin-top: 9vh;
+                cursor: pointer;
+                color: var(--opn-background-color);
+            }
+            button:hover{
+                color: #cdcdcd;
+            }
+            button:nth-child(2){
+                margin-left: 50px;
+            }
         }
     }
 }
