@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LOCAL_STORAGE_KEY } from 'src/app/core/types/constants';
+import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
 import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
@@ -17,7 +17,7 @@ export class MenuBarComponent implements OnInit, LogOutUser {
   protected profileOptions: boolean = false;
 
   constructor() { 
-    if(window.localStorage?.getItem(LOCAL_STORAGE_KEY) !== null){
+    if(window.localStorage?.getItem(LOCAL_STORAGE_KEYS.userAuthentication) !== null){
       this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
       // this.user_name = JSON.parse(window.localStorage?.getItem(LOCAL_STORAGE_KEY) as string)?.data?.user?.email;
     }
@@ -25,7 +25,7 @@ export class MenuBarComponent implements OnInit, LogOutUser {
 
   signOut(): void {
     this.profileOptions = !this.profileOptions;
-    window.localStorage.removeItem(LOCAL_STORAGE_KEY);
+    window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userAuthentication);
     this.authService.logOut();
   }
 

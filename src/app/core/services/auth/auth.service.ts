@@ -1,9 +1,13 @@
 import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { createClient, Session, SupabaseClient, User } from '@supabase/supabase-js'
+import { Store } from '@ngrx/store';
+import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { LOCAL_STORAGE_KEY } from '../../types/constants';
+import { addUser } from '../../store/actions/opinion.actions';
+import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
+import { Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 // interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
@@ -15,8 +19,11 @@ export class AuthService {
   protected supabaseClient: SupabaseClient;
   public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
+  private opinionStore = inject(Store<OpinionStateInterface>);
 
-  constructor() {this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);}
+  constructor() {
+    this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
+  }
 
   register({name, email, password}: any, registerType: string){
     try{
@@ -47,6 +54,7 @@ export class AuthService {
           email,
           type: registerType
         }
+        this.opinionStore.dispatch(addUser({user: email}));
         return this.supabaseClient.from('users').insert(userDatabase);
       }).then(u => {
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
@@ -60,7 +68,8 @@ export class AuthService {
   login(email: string, pass: string){
     try{
       this.supabaseClient.auth.signInWithPassword({email, password: pass}).then((value) => {
-        window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(value));
+        this.opinionStore.dispatch(addUser({user: email}));
+        window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(value));
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.authRouter.navigateByUrl("/zalogowano");
       })

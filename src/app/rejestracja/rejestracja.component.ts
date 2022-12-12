@@ -15,7 +15,6 @@ export class RejestracjaComponent implements OnInit {
 
   handler(event: string){
     this.formService.setTypeAccount(event);
-    console.log(event);
     if(event === "Zwykłe konto"){
       this.formService.formRouter.navigateByUrl("register/default-account");
     }

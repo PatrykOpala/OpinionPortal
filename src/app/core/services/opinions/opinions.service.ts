@@ -1,18 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Opinions } from '../../types/interfaces';
+import { inject, Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import {getDataFromLocalStorage, setDataInLocalStorage} from '../../shared/utils/ts/localStorage.functions';
+import { ILocalStorage } from '../../shared/utils/ts/localStorage.interfaces';
+import { addOpinion, getOpinion } from '../../store/actions/opinion.actions';
+import { LOCAL_STORAGE_KEYS } from '../../types/constants';
+import { changeEvent, Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OpinionsService extends AuthService {
+export class OpinionsService extends AuthService implements ILocalStorage {
 
-  opinions: Opinions[] = [];
-  close = false;
+  opinions: Array<Opinions> = [];
+  private OpinionStore = inject(Store<OpinionStateInterface>);
+  opinions$: Observable<OpinionStateInterface>;
   reMode = 100;
 
   constructor() {
     super()
+    this.opinions$ = this.OpinionStore.select("posts");
+    this.opinions$.subscribe(x => {
+      this.opinions = x.opinion;
+    });
   }
 
   async SendOpinionToDatabase(opinions: Opinions): Promise<void>{
@@ -28,15 +39,15 @@ export class OpinionsService extends AuthService {
     this.AddOpinionDataToOpinionsTable(data != null ? data : []);
   }
 
-  async ChangeOpinion(matchId: any, updateContent: any, local: boolean): Promise<void>{
+  async ChangeOpinion(matchId: string, updateContent: Partial<changeEvent>, local: boolean): Promise<void>{
     if(local){
-      let tmpOpn = this.opinions.map(m => {
-        if(m.id == matchId){
-          m.content = updateContent.content;
-        }
-        return m;
-      });
-      window.localStorage.setItem("op", JSON.stringify(tmpOpn));
+      // let tmpOpn = this.opinions.map(m => {
+      //   if(m.id == Number(matchId)){
+      //     m.content = updateContent.content as string;
+      //   }
+      //   return m;
+      // });
+      // this.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, tmpOpn);
       this.GetOpinionFromLocalStorage(true);
       return;
     }
@@ -49,7 +60,7 @@ export class OpinionsService extends AuthService {
 
   async DeleteOpinion(changeData: any, local: boolean): Promise<void>{
     if(local){
-      this.FilterOpinionDataFromLocalStorage(changeData.id);
+      this.FilterOpinionDataFromLocalStorage(Number(changeData.id));
       this.GetOpinionFromLocalStorage(true);
       return;
     }
@@ -60,32 +71,36 @@ export class OpinionsService extends AuthService {
     this.GetOpinionFromDatabase();
   }
 
-  GetOpinionFromLocalStorage(localFrom: boolean): Opinions[] | null {
+  AddOpinionToStore(v: Opinions): void{
+    this.OpinionStore.dispatch(addOpinion({opinion: v}));
+  }
+
+  AddOpinionsToLocalStorage<TypeData>(key: string, data: TypeData){
+    setDataInLocalStorage<TypeData>(key, data);
+  }
+
+  GetOpinionFromLocalStorage(localFrom: boolean): Array<Opinions> | null {
     if(localFrom){
-      let obj = JSON.parse(window.localStorage.getItem("op") as string);
+      let obj = getDataFromLocalStorage<Array<Opinions>>("op");
       if(obj !== null){
         this.AddOpinionDataToOpinionsTable(obj);
         return null;
       }
     }
-    return JSON.parse(window.localStorage.getItem("op") as string);
+    this.AddOpinionDataToOpinionsTable(getDataFromLocalStorage<Array<Opinions>>("op"));
+    return getDataFromLocalStorage<Array<Opinions>>("op");
   }
 
   FilterOpinionDataFromLocalStorage(id: number){
-    let h = JSON.parse(window.localStorage.getItem("op") as string);
-    let b = h.filter((c: any) => c.id !== id);
-    window.localStorage.setItem("op", JSON.stringify(b));
+    let b = getDataFromLocalStorage<Array<Opinions>>("op").filter((c: any) => c.id !== id);
+    this.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, b);
   }
 
-  AddOpinionDataToOpinionsTable(d: any[]){
-    this.opinions = d;
+  AddOpinionDataToOpinionsTable(d: Array<Opinions>){
+    // this.opinions = d;
   }
 
-  AddOpinionSingleDataToOpinionsTable(d: any){
-    this.opinions.push(d);
-  }
-
-  CloseAddComponent(){
-    this.close = true;
+  AddOpinionSingleDataToOpinionsTable(d: Opinions){
+    // this.opinions.push(d);
   }
 }

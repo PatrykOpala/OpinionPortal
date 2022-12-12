@@ -1,3 +1,5 @@
+import { User, Session } from "@supabase/supabase-js"
+
 export interface changeEvent{
     id: string 
     headOpinion: string
@@ -33,11 +35,14 @@ export interface OpinionStateInterface{
     opinion: Opinions[];
 }
 
-export interface Company{
-    label: string
-}
-
 export interface Category{
     CategoryID: number;
     CategoryName: string;
+}
+
+export interface SupabaseUser{
+    data:{
+        user: User,
+        session: Session
+    }
 }

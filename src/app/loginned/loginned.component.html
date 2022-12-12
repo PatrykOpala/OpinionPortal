@@ -6,7 +6,6 @@
          [mode]="1"
          [loginP]="true"
          [user_name]="'Anonim'"
-         (changeOpinionEvent)="opinionEvent($event)"
          (addOpinion)="sendData($event)">
         </opn-opinie-container>
 
@@ -15,7 +14,6 @@
             [loginP]="true"
             [ops]="ops"
             [user_name]="ops.user_email || 'Anonim'"
-            (changeOpinionEvent)="opinionEvent($event)"
             (addOpinion)="sendData($event)">
            </opn-opinie-container>
         </ng-template>

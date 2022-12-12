@@ -1,6 +1,7 @@
 import { createAction, props } from "@ngrx/store";
 import { Opinions } from "../../types/interfaces";
 
-export const addOpinion = createAction('[FormService] add', props<{opinion: Opinions}>());
-export const getOpinion = createAction('[FormService] get');
-export const deleteOpinion = createAction('[FormService] delete');
+export const addOpinion = createAction('[OpinionsService] add', props<{opinion: Opinions}>());
+export const addUser = createAction("[AuthService] addUser", props<{user: string}>());
+export const getOpinion = createAction('[OpinionsService] get');
+export const deleteOpinion = createAction('[OpinionsService] delete');
