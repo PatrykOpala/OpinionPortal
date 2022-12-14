@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { concatMap, map, Observable, Subscription, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 import {getDataFromLocalStorage, setDataInLocalStorage} from '../../shared/utils/ts/localStorage.functions';
 import { ILocalStorage } from '../../shared/utils/ts/localStorage.interfaces';
-import { addOpinion, changeOpinion, deleteOpinion, getOpinion } from '../../store/actions/opinion.actions';
+import { addOpinion, changeOpinion, deleteOpinion } from '../../store/actions/opinion.actions';
 import { opinionSelector } from '../../store/selectors/selectors';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { changeEvent, Opinions, OpinionStateInterface } from '../../types/interfaces';
