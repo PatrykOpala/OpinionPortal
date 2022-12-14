@@ -1,13 +1,5 @@
-import { createSelector } from "@ngrx/store";
+import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { OpinionStateInterface } from "../../types/interfaces";
 
-interface StateInterface{
-    posts: OpinionStateInterface;
-}
-
-export const selectorState = (state: StateInterface) => state.posts;
-
-export const postSelector = createSelector(
-    selectorState,
-    (state) => state.opinion
-);
+export const selectorState = createFeatureSelector<OpinionStateInterface>("posts");
+export const opinionSelector = createSelector(selectorState, (state) => state.opinion);

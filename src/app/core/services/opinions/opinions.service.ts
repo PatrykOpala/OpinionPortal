@@ -1,9 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { concatMap, map, Observable, Subscription, tap } from 'rxjs';
 import {getDataFromLocalStorage, setDataInLocalStorage} from '../../shared/utils/ts/localStorage.functions';
 import { ILocalStorage } from '../../shared/utils/ts/localStorage.interfaces';
-import { addOpinion, getOpinion } from '../../store/actions/opinion.actions';
+import { addOpinion, changeOpinion, deleteOpinion, getOpinion } from '../../store/actions/opinion.actions';
+import { opinionSelector } from '../../store/selectors/selectors';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { changeEvent, Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
@@ -13,17 +14,13 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OpinionsService extends AuthService implements ILocalStorage {
 
-  opinions: Array<Opinions> = [];
   private OpinionStore = inject(Store<OpinionStateInterface>);
-  opinions$: Observable<OpinionStateInterface>;
+  opinions$: Observable<Array<Opinions>>;
   reMode = 100;
 
   constructor() {
     super()
-    this.opinions$ = this.OpinionStore.select("posts");
-    this.opinions$.subscribe(x => {
-      this.opinions = x.opinion;
-    });
+    this.opinions$ = this.OpinionStore.select(opinionSelector);
   }
 
   async SendOpinionToDatabase(opinions: Opinions): Promise<void>{
@@ -39,16 +36,31 @@ export class OpinionsService extends AuthService implements ILocalStorage {
     this.AddOpinionDataToOpinionsTable(data != null ? data : []);
   }
 
-  async ChangeOpinion(matchId: string, updateContent: Partial<changeEvent>, local: boolean): Promise<void>{
+  async ChangeOpinion(matchId: string, updateContent: changeEvent, local: boolean): Promise<void>{
     if(local){
-      // let tmpOpn = this.opinions.map(m => {
-      //   if(m.id == Number(matchId)){
-      //     m.content = updateContent.content as string;
-      //   }
-      //   return m;
-      // });
+      let bd: Opinions[] = [];
+      let sub = this.opinions$.subscribe(
+        element => {
+          if(matchId != undefined && updateContent != undefined){
+            bd = element.reduce((accu: Opinions[], next: Opinions): Opinions[] =>{
+              if(next.id == Number(matchId)){
+                let j = {...next};
+                j.content = updateContent.content;
+                accu.push(j);
+                return accu;
+              }
+              accu.push(next);
+              return accu;
+            },[]);
+          }
+        }
+      );
+      if(bd.length != 0){
+        sub.unsubscribe();
+        this.OpinionStore.dispatch(changeOpinion({opinion: bd}));
+      }
       // this.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, tmpOpn);
-      this.GetOpinionFromLocalStorage(true);
+      // this.GetOpinionFromLocalStorage(true);
       return;
     }
     const {error} = await this.supabaseClient
@@ -60,8 +72,9 @@ export class OpinionsService extends AuthService implements ILocalStorage {
 
   async DeleteOpinion(changeData: any, local: boolean): Promise<void>{
     if(local){
-      this.FilterOpinionDataFromLocalStorage(Number(changeData.id));
-      this.GetOpinionFromLocalStorage(true);
+      // this.FilterOpinionDataFromLocalStorage(Number(changeData.id));
+      // this.GetOpinionFromLocalStorage(true);
+      this.DeleteOpinionFromState(Number(changeData.id));
       return;
     }
     const {error} = await this.supabaseClient
@@ -69,6 +82,21 @@ export class OpinionsService extends AuthService implements ILocalStorage {
     .delete().match(changeData);
     if(error) console.error(error);
     this.GetOpinionFromDatabase();
+  }
+
+  DeleteOpinionFromState(id: number): void{
+    let newArray: Opinions[] = [];
+    let deletingSub = this.opinions$.subscribe(
+      deleteEl =>{
+        if(id != undefined){
+          newArray = deleteEl.filter(e => e.id !== id);
+        }
+      }
+    );
+    if(newArray.length !== 0){
+      deletingSub.unsubscribe();
+    }
+    this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
   }
 
   AddOpinionToStore(v: Opinions): void{

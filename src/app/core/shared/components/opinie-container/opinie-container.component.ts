@@ -54,7 +54,7 @@ export class OpinieContainerComponent implements OnInit {
     }
   }
   SendChangeQuery(event: Event) {
-    let changeObj = {content: this.e.nativeElement.value}
+    let changeObj = {id: this.globalChangeValue.id, headOpinion: this.globalChangeValue.headOpinion, content: this.e.nativeElement.value}
     this.op.ChangeOpinion(this.globalChangeValue.id, changeObj, true);
   }
   deleteOpinion(e: Event): void{

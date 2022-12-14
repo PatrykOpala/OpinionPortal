@@ -28,7 +28,7 @@ export class LoginnedComponent implements OnInit{
     // this.opinionsService.AddOpinionSingleDataToOpinionsTable(data);
     this.opinionsService.AddOpinionToStore(data);
     // this.opinionsService.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, this.opinionsService.opinions);
-    this.opinionsService.GetOpinionFromLocalStorage(false);
+    this.opinionsService.GetOpinionFromLocalStorage(true);
   }
 
   runAdd(vallue?: changeEvent): void{

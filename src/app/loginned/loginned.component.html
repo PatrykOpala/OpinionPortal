@@ -9,8 +9,8 @@
          (addOpinion)="sendData($event)">
         </opn-opinie-container>
 
-        <ng-template [ngIf]="opinionsService.opinions != null && opinionsService.opinions.length > 0">
-            <opn-opinie-container *ngFor="let ops of opinionsService.opinions"
+        <ng-template [ngIf]="(opinionsService.opinions$ | async)?.length">
+            <opn-opinie-container *ngFor="let ops of opinionsService.opinions$ | async"
             [loginP]="true"
             [ops]="ops"
             [user_name]="ops.user_email || 'Anonim'"
