@@ -2,12 +2,11 @@ import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
-import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { addUser } from '../../store/actions/opinion.actions';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
-import { Opinions, OpinionStateInterface } from '../../types/interfaces';
+import { OpinionStateInterface } from '../../types/interfaces';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 // interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
@@ -52,7 +51,8 @@ export class AuthService {
           user_uuid: response.data.user?.id,
           name,
           email,
-          type: registerType
+          type: registerType,
+          delete_user: false
         }
         this.opinionStore.dispatch(addUser({user: email}));
         return this.supabaseClient.from('users').insert(userDatabase);
@@ -84,5 +84,16 @@ export class AuthService {
       this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
       this.authRouter.navigateByUrl('/');
     }
+  }
+
+  async deleteUser(email: string){
+    const userToDelete = {
+      delete_user: true
+    };
+
+    const {error} = await this.supabaseClient
+    .from("users")
+    .update(userToDelete).match({email: email});
+    if(error) console.error(error);
   }
 }
