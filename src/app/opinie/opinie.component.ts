@@ -13,10 +13,6 @@ export class OpinieComponent implements OnInit {
   protected allOpinions: Opinions[] = [];
 
   constructor() {
-    let o = this.opinionsService.GetOpinionFromLocalStorage(false);
-    if(o != null){
-      this.allOpinions = o;
-    }
   }
 
   ngOnInit(): void {

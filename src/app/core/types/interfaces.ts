@@ -23,7 +23,7 @@ export interface UserLocalStorage{
 
 export interface Opinions {
     user_uuid: string,
-    user_email: string,
+    user_name: string,
     id?: number,
     created_at?: string,
     header: string,

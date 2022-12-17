@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { OpinionStateInterface } from "../../types/interfaces";
-import { addOpinion, addUser, changeOpinion, deleteOpinion, getOpinion } from "../actions/opinion.actions";
+import { addOpinion, addUser, changeOpinion, deleteOpinion, getOpinion, initOpinions } from "../actions/opinion.actions";
 
 export const OpinionState: OpinionStateInterface = {
     user: "",
@@ -9,6 +9,7 @@ export const OpinionState: OpinionStateInterface = {
 
 export const opinionReducer = createReducer(
     OpinionState,
+    on(initOpinions, (state, action) => ({...state, opinion: action.opinion})),
     on(getOpinion, (state) => ({...state})),
     on(addOpinion, (state, action) => ({...state, opinion: [...state.opinion, action.opinion]})),
     on(changeOpinion, (state, action) => ({...state, opinion: action.opinion})),

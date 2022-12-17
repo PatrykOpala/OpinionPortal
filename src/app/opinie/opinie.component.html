@@ -1,7 +1,7 @@
 <opn-pane-container>
     <ul class="opinie-grid">
         <li *ngFor="let mn of allOpinions">
-            <opn-opinie-container [user_name]="mn.user_email || 'Anonim'" [ops]="mn"></opn-opinie-container>
+            <opn-opinie-container [user_name]="mn.user_name || 'Anonim'" [ops]="mn"></opn-opinie-container>
         </li>
     </ul>
 </opn-pane-container>

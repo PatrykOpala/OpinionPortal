@@ -13,7 +13,7 @@
             <opn-opinie-container *ngFor="let ops of opinionsService.opinions$ | async"
             [loginP]="true"
             [ops]="ops"
-            [user_name]="ops.user_email || 'Anonim'"
+            [user_name]="ops.user_name || 'Anonim'"
             (addOpinion)="sendData($event)">
            </opn-opinie-container>
         </ng-template>

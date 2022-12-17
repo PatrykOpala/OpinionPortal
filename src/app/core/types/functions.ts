@@ -1,9 +1,9 @@
 import { Category, Opinions } from "./interfaces"
 
-export function CreateOpinion(_user_id: string, _user_email: string, _content_id: number, _head: string, _content: string): Opinions{
+export function CreateOpinion(_user_id: string, _user_name: string, _content_id: number, _head: string, _content: string): Opinions{
     return {
         user_uuid: _user_id,
-        user_email: _user_email,
+        user_name: _user_name,
         id: _content_id,
         header: _head,
         content: _content

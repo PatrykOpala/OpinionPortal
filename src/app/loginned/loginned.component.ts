@@ -1,8 +1,6 @@
 import { Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
-import {getDataFromLocalStorage} from '../core/shared/utils/ts/localStorage.functions';
-import { LOCAL_STORAGE_KEYS } from '../core/types/constants';
-import { changeEvent, Opinions, SupabaseUser } from '../core/types/interfaces';
+import { changeEvent, Opinions } from '../core/types/interfaces';
 
 @Component({
   selector: 'opn-loginned',
@@ -15,20 +13,13 @@ export class LoginnedComponent implements OnInit{
   protected opinionsService = inject(OpinionsService);
 
   constructor() {
-    if(getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)){
-      // this.opinionsService.GetOpinionFromDatabase();
-      this.opinionsService.GetOpinionFromLocalStorage(false);
-    }
+    this.opinionsService.GetOpinionFromDatabase();
   }
 
   ngOnInit(): void {}
 
   sendData(data: Opinions){
-    //this.opinionsService.SendOpinionToDatabase(data);
-    // this.opinionsService.AddOpinionSingleDataToOpinionsTable(data);
-    this.opinionsService.AddOpinionToStore(data);
-    // this.opinionsService.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, this.opinionsService.opinions);
-    this.opinionsService.GetOpinionFromLocalStorage(true);
+    this.opinionsService.SendOpinionToDatabase(data);
   }
 
   runAdd(vallue?: changeEvent): void{

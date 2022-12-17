@@ -30,20 +30,31 @@ export class AuthService {
         this.supabaseClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
             user_uuid: response.data.user?.id,
-            name: response.data.user?.email,
+            name,
+            email,
+            type: registerType,
+            delete_user: false
           }
           return this.supabaseClient.from('users').insert(userDatabase);
-        }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
+        }).then(() => {
+          this.authRouter.navigateByUrl("/zalogowano")
+        });
       }
 
       if(registerType === "personalBrand"){
         this.supabaseClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
             user_uuid: response.data.user?.id,
-            name: response.data.user?.email,
+            name,
+            email,
+            type: registerType,
+            delete_user: false
           }
+          this.opinionStore.dispatch(addUser({user: email}));
           return this.supabaseClient.from('users').insert(userDatabase);
-        }).then(() => this.authRouter.navigateByUrl("/zalogowano")).catch(e => console.error(e));
+        }).then(() => {
+          this.authRouter.navigateByUrl("/zalogowano"); 
+        });
       }
 
       this.supabaseClient.auth.signUp({email, password}).then(response => {
@@ -80,7 +91,7 @@ export class AuthService {
 
   async logOut(){
     const {error} = await this.supabaseClient.auth.signOut();
-    if(!error || error === null){
+    if(!error && error === null){
       this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
       this.authRouter.navigateByUrl('/');
     }
@@ -90,7 +101,6 @@ export class AuthService {
     const userToDelete = {
       delete_user: true
     };
-
     const {error} = await this.supabaseClient
     .from("users")
     .update(userToDelete).match({email: email});
