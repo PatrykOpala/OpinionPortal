@@ -30,7 +30,7 @@ export class OpinieContainerComponent implements OnInit {
 
   protected context: boolean = false;
   protected valu: NonNullable<string> = "";
-  protected globalChangeValue: changeEvent = {id: '', headOpinion: '', content: ''};
+  protected globalChangeValue: changeEvent = {id: '', header: '', content: ''};
 
   constructor(protected op: OpinionsService){}
 
@@ -42,10 +42,10 @@ export class OpinieContainerComponent implements OnInit {
     }
   }
   changeOpinion(e: Event): void{
-    let changeValue: changeEvent = {id: '', headOpinion: '', content: ''};
+    let changeValue: changeEvent = {id: '', header: '', content: ''};
     if(this.paragraph.nativeElement.id !== "undefined"){
       changeValue.id = this.paragraph.nativeElement.id;
-      changeValue.headOpinion = this.headOpn.nativeElement.textContent;
+      changeValue.header = this.headOpn.nativeElement.textContent;
       changeValue.content = this.paragraph.nativeElement.textContent;
 
       this.globalChangeValue = changeValue;
@@ -54,12 +54,12 @@ export class OpinieContainerComponent implements OnInit {
     }
   }
   SendChangeQuery(event: Event) {
-    let changeObj = {id: this.globalChangeValue.id, headOpinion: this.globalChangeValue.headOpinion, content: this.e.nativeElement.value}
-    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj, true);
+    let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}
+    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
   }
   deleteOpinion(e: Event): void{
     if(this.paragraph.nativeElement.id !== "undefined"){
-      this.op.DeleteOpinion({id: this.paragraph.nativeElement.id}, true);
+      this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
       this.context = !this.context;
     }
   }

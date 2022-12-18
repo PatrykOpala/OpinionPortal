@@ -2,7 +2,9 @@
     <ng-template ngPluralCase="0">
         <div class="opinie-container radius">
             <div class="opinie-header">
-                <div style="margin-left: 20px; border-radius: 100%; background-color: #333333; width: 50px; height: 50px; text-align: center;"></div>
+                <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                   <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;">{{user_name[0]}}</span>
+                </div>
                 <div>
                     <h1>{{user_name}}</h1>
                     <span>Zopiniował: <b #headOpn>{{header}}</b></span>
@@ -11,9 +13,9 @@
                         style="margin-left: 20px; width: 50px; height: 50px; text-align: center; cursor: pointer;"
                         (click)="context = !context">
                     <svg width="30" height="50" viewBox="-6 2 30 40">
-                        <circle cx="10" cy="7" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                        <circle cx="10" cy="22.22" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                        <circle cx="10" cy="38" r="6" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                        <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                        <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                        <circle cx="10" cy="38" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
                     </svg>
                 </div>
             </div>
@@ -30,7 +32,37 @@
     <ng-template ngPluralCase="1">
         <div class="edit-container radius" [ngPlural]="op.reMode">
             <ng-template ngPluralCase="100">
-                <button (click)="op.reMode = 101" class="call-to-action radius hover">Dodaj Opinię</button>
+                <button (click)="op.reMode = 101" class="call-to-action radius hover">
+                    <div style="width: 70px; margin-left: 42%; margin-bottom: 2%;">
+                        <svg width="13mm" height="13mm" viewBox="0 0 12.999999 12.999999" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+                        <defs
+                            id="defs2" />
+                        <g
+                            id="layer1">
+                            <g
+                            id="g1963"
+                            transform="matrix(0.83602771,0,0,0.83602771,-1.3803372,-1.0609309)">
+                            <rect
+                                style="fill:hsl(0,0%,99%);fill-opacity:1;stroke:none;stroke-width:1.77691;stroke-linecap:round;paint-order:fill markers stroke"
+                                id="rect61-6"
+                                width="3.9914572"
+                                height="13.290305"
+                                x="-11.190135"
+                                y="2.7035816"
+                                transform="matrix(0.00662113,-0.99997808,0.99998904,0.00468206,0,0)" />
+                            <rect
+                                style="fill:hsl(0,0%,99%);fill-opacity:1;stroke:none;stroke-width:1.77719;stroke-linecap:round;paint-order:fill markers stroke"
+                                id="rect61"
+                                width="3.9914317"
+                                height="13.294538"
+                                x="7.3995004"
+                                y="2.5176723" />
+                            </g>
+                        </g>
+                        </svg>
+                    </div>
+                    Dodaj Opinię
+                </button>
             </ng-template>
 
             <ng-template ngPluralCase="101">
@@ -75,7 +107,7 @@
                 </div>
                 <div>
                     <h1>{{user_name}}</h1>
-                    <span>Zopiniował: <b>{{globalChangeValue.headOpinion}}</b></span>
+                    <span>Zopiniował: <b>{{globalChangeValue.header}}</b></span>
                 </div>
             </div>
             <div class="content edit-content" id="content">

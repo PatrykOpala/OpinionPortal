@@ -2,7 +2,7 @@ import { User, Session } from "@supabase/supabase-js"
 
 export interface changeEvent{
     id: string 
-    headOpinion: string
+    header: string
     content: string
 }
 

@@ -34,20 +34,25 @@ export class OpinionsService extends AuthService {
     }
   }
 
-  async ChangeOpinion(matchId: string, updateContent: changeEvent, local: boolean): Promise<void>{
-    if(local){
+  async ChangeOpinion(matchId: string, updateContent: changeEvent): Promise<void>{
+    const {error} = await this.supabaseClient
+    .from("opinions")
+    .update(updateContent).match({id: matchId});
+    if(error){
+      console.error(error); 
+    }else{
       let bd: Opinions[] = [];
       let sub = this.opinions$.subscribe(
         element => {
           if(matchId != undefined && updateContent != undefined){
-            bd = element.reduce((accu: Opinions[], next: Opinions): Opinions[] =>{
-              if(next.id == Number(matchId)){
-                let j = {...next};
+            bd = element.reduce((accu: Opinions[], nextOpinion: Opinions): Opinions[] =>{
+              if(nextOpinion.id == Number(matchId)){
+                let j = {...nextOpinion};
                 j.content = updateContent.content;
                 accu.push(j);
                 return accu;
               }
-              accu.push(next);
+              accu.push(nextOpinion);
               return accu;
             },[]);
           }
@@ -57,25 +62,18 @@ export class OpinionsService extends AuthService {
         sub.unsubscribe();
         this.OpinionStore.dispatch(changeOpinion({opinion: bd}));
       }
-      // this.AddOpinionsToLocalStorage<Array<Opinions>>(LOCAL_STORAGE_KEYS.op, tmpOpn);
-      // this.GetOpinionFromLocalStorage(true);
-      return;
     }
-    const {error} = await this.supabaseClient
-    .from("opinions")
-    .update(updateContent).match({id: matchId});
-    if(error) console.error(error);
   }
 
-  async DeleteOpinion(changeData: any, local: boolean): Promise<void>{
-    if(local){
-      this.DeleteOpinionFromState(Number(changeData.id));
-      return;
-    }
+  async DeleteOpinion(changeData: any): Promise<void>{
     const {error} = await this.supabaseClient
     .from("opinions")
     .delete().match(changeData);
-    if(error) console.error(error);
+    if(error){
+      console.error(error);
+    }else{
+      this.DeleteOpinionFromState(Number(changeData.id));
+    }
   }
 
   DeleteOpinionFromState(id: number): void{

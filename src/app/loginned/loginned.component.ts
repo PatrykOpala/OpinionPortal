@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import { Component, inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
 import { changeEvent, Opinions } from '../core/types/interfaces';
 
@@ -20,16 +20,5 @@ export class LoginnedComponent implements OnInit{
 
   sendData(data: Opinions){
     this.opinionsService.SendOpinionToDatabase(data);
-  }
-
-  runAdd(vallue?: changeEvent): void{
-    if(vallue !== null){
-     
-      return;
-    }
-  }
-
-  opinionEvent(change: changeEvent){
-    this.runAdd(change);
   }
 }
