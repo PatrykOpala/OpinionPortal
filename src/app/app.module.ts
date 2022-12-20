@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -24,6 +25,7 @@ import { AppRoutesModule } from './app-routes.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutesModule,
     ReactiveFormsModule,
     SharedModule,

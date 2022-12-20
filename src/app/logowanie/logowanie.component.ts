@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, OnDestroy, OnInit} from '@angular/core';
+import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../core/services/auth/auth.service';
 import { NativeTelService } from '../core/services/native-tel.service';
@@ -8,12 +8,12 @@ import { NativeTelService } from '../core/services/native-tel.service';
   templateUrl: './logowanie.component.html',
   styleUrls: ['./logowanie.component.scss'],
 })
-export class LogowanieComponent implements OnInit, AfterViewInit, OnDestroy {
+export class LogowanieComponent implements OnInit{
 
   protected loginForm !: FormGroup;
 
   private loginFormBuilder = inject(FormBuilder);
-  private authService = inject(AuthService);
+  protected authService = inject(AuthService);
 
   constructor(protected readonly nativeTel: NativeTelService) {
     this.loginForm = this.loginFormBuilder.group({
@@ -21,16 +21,11 @@ export class LogowanieComponent implements OnInit, AfterViewInit, OnDestroy {
       password: new FormControl('')
     })
   }
-  ngAfterViewInit(): void {
-    this.nativeTel.teleport('teleported-element', 'vc');
-  }
-  ngOnDestroy(): void {
-    this.nativeTel.finishTeleportation('teleported-element', 'vc');
-  }
 
   ngOnInit(): void {}
 
   onSubmit(): void{
-    this.authService.login(this.loginForm.value.email, this.loginForm.value.password);
+    this.loginForm.disable();
+    this.authService.login(this.loginForm);
   }
 }

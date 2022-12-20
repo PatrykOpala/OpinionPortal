@@ -17,7 +17,7 @@ const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild(loginRoutes),
-	  SharedModule
+	  SharedModule,
   ]
 })
 export class LogowanieModule { }

@@ -1,4 +1,5 @@
 import { inject, Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { createClient, SupabaseClient } from '@supabase/supabase-js'
@@ -16,6 +17,8 @@ import { MenuBarService } from '../menu-bar/menu-bar.service';
 })
 export class AuthService {
   protected supabaseClient: SupabaseClient;
+  public progress: boolean = false;
+  public disabled = false;
   public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
   private opinionStore = inject(Store<OpinionStateInterface>);
@@ -76,14 +79,25 @@ export class AuthService {
     }
   }
 
-  login(email: string, pass: string){
+  login(form: FormGroup<any>){
+    this.progress = true;
     try{
-      this.supabaseClient.auth.signInWithPassword({email, password: pass}).then((value) => {
-        this.opinionStore.dispatch(addUser({user: email}));
-        window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(value));
-        this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-        this.authRouter.navigateByUrl("/zalogowano");
-      })
+      setTimeout(()=>{
+        if(form.value.email === "" && form.value.password === ""){
+          this.progress = false;
+          form.enable();
+          return;
+        }else{
+          this.supabaseClient.auth.signInWithPassword({email: form.value.email, password: form.value.password}).then((value) => {
+            this.opinionStore.dispatch(addUser({user: form.value.email}));
+            window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(value));
+            this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+            this.progress = false;
+            form.enable();
+            this.authRouter.navigateByUrl("/zalogowano");
+          })
+        }
+      }, 1000);
     }catch(e){
       console.error(e)
     }

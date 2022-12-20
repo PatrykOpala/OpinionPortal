@@ -1,5 +1,7 @@
 @use "../core/shared/utils/scss/op-mixins.scss" as *;
 
+$placeholder-color: hsla(0, 0%, 97%, 0.664);
+
 .logowanieContainer{
     @include flexD();
     width: 98vw;
@@ -43,6 +45,78 @@ button{
     padding: 10px;
     background-color: var(--opn-color-green);
     color: #ffffff;
+
+    .progress{
+        display: block;
+        width: 70px;
+        height: 46px;
+        border: 2px solid $placeholder-color;
+        border-radius: 3px;
+        animation: progress-rotate 1.5s infinite;
+
+        .pr1{
+            background-color: $placeholder-color;
+            width: 15px;
+            height: 10px;
+            margin-left: 3px;
+            margin-top: 3px;
+            border-radius: 3px;
+        }
+
+        .pr1::before{
+            content: '';
+            display: block;
+            background-color: $placeholder-color;
+            width: 27px;
+            height: 4.5px;
+            margin-left: 20px;
+            margin-top: 3px;
+        }
+
+        .pr1::after{
+            content: '';
+            display: block;
+            background-color: $placeholder-color;
+            width: 23px;
+            height: 4px;
+            margin-left: 20px;
+            margin-top: 2px;
+        }
+
+        .pr2{
+            background-color: $placeholder-color;
+            width: 50px;
+            height: 4px;
+            margin-left: 7px;
+            margin-top: 7px;
+            border-radius: 3px;
+            position: absolute;
+        }
+
+        .pr2::before, .pr2::after{
+            border-radius: 3px;
+        }
+
+        .pr2::before{
+            content: '';
+            display: block;
+            background-color: $placeholder-color;
+            width: 39px;
+            height: 4px;
+            margin-left: 0px;
+            margin-top: 7px;
+        }
+
+        .pr2::after{
+            content: '';
+            display: block;
+            background-color: $placeholder-color;
+            width: 23px;
+            height: 4px;
+            margin-left: 0px;
+            margin-top: 3px;
+        }
+    }
 }
 
 button:hover{
@@ -51,6 +125,12 @@ button:hover{
 }
 
 button[disabled]{
+    background-color:#cccccc;
+    color: #111111;
+    cursor: default;
+}
+
+input[disabled]{
     background-color:#cccccc;
     color: #111111;
     cursor: default;
@@ -68,4 +148,10 @@ input.ng-untouched{
 }
 input.ng-dirty{
     border-bottom: 1px solid #d3d617;
+}
+
+@keyframes progress-rotate {
+    100%{
+        rotate: 360deg;
+    }
 }

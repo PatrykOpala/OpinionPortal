@@ -1,9 +1,18 @@
 <opn-pane-container>
     <form class="formContainer" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
         <label class="labelC">Logowanie</label>
-        <input type="email" name="Email" class="inputC" placeholder="Adres e-mail" formControlName="email"/>
-        <input type="password" name="Password" id="uPassword" class="inputC" placeholder="Hasło" formControlName="password"/>
-        <button type="submit">Zaloguj się</button>
+        <input type="email" name="Email" class="inputC" placeholder="np. ogorek13@gmail.com" formControlName="email"/>
+        <input type="password" name="Password" id="uPassword" class="inputC" placeholder="****************" formControlName="password"/>
+        <button type="submit">
+            <div *ngIf="authService.progress; else elseButton">
+                <div class="progress">
+                    <div class="pr1"></div>
+                    <div class="pr2"></div>
+                </div>
+            </div>
+            <ng-template #elseButton>Zaloguj się</ng-template>
+        </button>
     </form>
-    <!-- <opn-choose *opnTeleportTo [name]="'Teleport'"></opn-choose> -->
+    <!-- <opn-choose *opnTeleportTo [name]="'Teleport'"></opn-choose>
+     [@rotate]="authService.progress == true" -->
 </opn-pane-container>
