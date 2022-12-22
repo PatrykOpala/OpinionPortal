@@ -22,6 +22,22 @@
     }
 }
 
+.field-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 37vh;
+}
+
+.field{
+    display: block;
+    position: relative;
+    font-size: 1.5rem;
+    top: 13px;
+    left: 20px;
+    width: max-content;
+}
+
 .inputC{
     width: 30vw;
     padding: 10px;
@@ -34,6 +50,10 @@
 
 .inputC:focus{
     border: 1px solid var(--opn-color-green);
+}
+
+.button-container{
+    margin-top: 33vh;
 }
 
 button{
