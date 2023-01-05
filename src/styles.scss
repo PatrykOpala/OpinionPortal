@@ -1,5 +1,5 @@
 :root{
-    --opn-color-dark-green: rgb(13, 175, 13);
+    --opn-color-dark-green: hsl(120, 86%, 37%);
     --opn-background-color: #ededed;
     --opn-hex-color-green: #1ef01e;
     --opn-color-green: #066506;
@@ -19,3 +19,7 @@
 body{
     background-color: var(--opn-background-color);
 }
+
+html, body {  margin: 0;}
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// height: 100%;

@@ -1,0 +1,28 @@
+.dialog-form{
+    width: 500px;
+    height: max-content;
+    display: flex;
+    flex-direction: column;
+
+
+    .description{
+        min-height: 150px;
+        max-height: 400px;
+    }
+}
+
+.buttons-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+    .dialog-button{
+        width: 200px;
+    }
+
+    .action-button{
+        font-weight: bold;
+        color: var(--opn-background-color);
+        background-color: var(--opn-color-dark-green);
+    }
+}

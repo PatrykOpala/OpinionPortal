@@ -1,7 +1,6 @@
 import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../core/services/auth/auth.service';
-import { NativeTelService } from '../core/services/native-tel.service';
 
 @Component({
   selector: 'opn-logowanie',
@@ -15,7 +14,7 @@ export class LogowanieComponent implements OnInit{
   private loginFormBuilder = inject(FormBuilder);
   protected authService = inject(AuthService);
 
-  constructor(protected readonly nativeTel: NativeTelService) {
+  constructor() {
     this.loginForm = this.loginFormBuilder.group({
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('')

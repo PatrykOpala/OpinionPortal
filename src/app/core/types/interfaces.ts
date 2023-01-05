@@ -15,10 +15,14 @@ export interface ChangeState{
     headOpinion: string,
 }
 
-export interface UserLocalStorage{
-    id: string,
+export interface UserM{
+    id: number,
     email: string,
-    role: string
+    name: string,
+    type: string,
+    created_at: string,
+    user_uuid: string,
+    delete_user: boolean
 }
 
 export interface Opinions {

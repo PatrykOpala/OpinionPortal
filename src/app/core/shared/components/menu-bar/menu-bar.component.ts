@@ -19,7 +19,6 @@ export class MenuBarComponent implements OnInit, LogOutUser {
   constructor() { 
     if(window.localStorage?.getItem(LOCAL_STORAGE_KEYS.userAuthentication) !== null){
       this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-      // this.user_name = JSON.parse(window.localStorage?.getItem(LOCAL_STORAGE_KEY) as string)?.data?.user?.email;
     }
   }
 

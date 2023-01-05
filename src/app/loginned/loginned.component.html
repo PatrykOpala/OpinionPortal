@@ -1,21 +1,20 @@
 <opn-pane-container>
     <ng-container #opn></ng-container>
-    <!-- <button class="add__opinion" (click)="runAdd()">Dodaj Opinię</button> -->
     <div class="opinion__container">
         <opn-opinie-container
-         [mode]="1"
-         [loginP]="true"
-         [user_name]="'Anonim'"
-         (addOpinion)="sendData($event)">
+        [mode]="1"
+        [loginP]="true"
+        [user_name]="'Anonim'"
+        (addOpinion)="sendData($event)">
         </opn-opinie-container>
 
-        <ng-template [ngIf]="(opinionsService.opinions$ | async)?.length">
-            <opn-opinie-container *ngFor="let ops of opinionsService.opinions$ | async"
+        <ng-template [ngIf]="opinionsService.state.opinion.length > 0">
+            <opn-opinie-container *ngFor="let ops of opinionsService.state.opinion"
             [loginP]="true"
             [ops]="ops"
             [user_name]="ops.user_name || 'Anonim'"
             (addOpinion)="sendData($event)">
-           </opn-opinie-container>
+            </opn-opinie-container>
         </ng-template>
     </div>
     <!-- *opnTeleportTo -->
@@ -23,3 +22,4 @@
     <!-- <opn-add-opinion *ngIf="!opinionsService.close" (returnedData)="sendData($event)" (close)="closeAddComponent($event)"></opn-add-opinion> -->
     <!-- <opn-context-menu></opn-context-menu> -->
 </opn-pane-container>
+

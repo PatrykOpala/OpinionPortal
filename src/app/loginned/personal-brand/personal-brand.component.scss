@@ -1,0 +1,29 @@
+.drawer-container{
+    width: 100%;
+    height: 90.5vh;
+    margin-top: 30px;
+    background-color: var(--opn-background-color);
+
+    .drawer{
+        width: 300px;
+
+        .drawer-button{
+            width: 100%;
+            border-radius: 0%;
+            font-weight: bold;
+            font-family: Roboto, "Helvetica Neue", sans-serif;
+        }
+    }
+}
+.mat-mdc-button:not(:disabled){
+    color: var(--opn-color-green);
+}
+.mat-primary{
+    color: var(--opn-color-green);
+}
+.mat-mdc-button.mat-primary{
+    --mdc-text-button-label-text-color: var(--opn-color-dark-green);
+}
+.mat-mdc-button.mat-primary, .mat-mdc-outlined-button.mat-primary{
+    --mat-mdc-button-persistent-ripple-color: var(--opn-color-dark-green);
+}

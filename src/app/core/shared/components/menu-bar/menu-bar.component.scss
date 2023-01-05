@@ -81,7 +81,7 @@ header{
 
     .button__primary{
         font-size: 1.4em;
-        color: var(--opn-color-green);
+        // color: var(--opn-color-green);
         letter-spacing: 3px;
         background-color: transparent;
         border: none;
@@ -108,9 +108,11 @@ header{
         top: 10%;
         left: 82vw;
         box-shadow: 0 0 7px 0 hsl(3, 0%, 40%);
+        background-color: var(--opn-background-color);;
         display: flex;
         flex-direction: column;
         align-items: center;
+        z-index: 999;
 
         .profile__options-element{
             width: 99%;

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 import { addUser } from '../../store/actions/opinion.actions';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
-import { OpinionStateInterface } from '../../types/interfaces';
+import { OpinionStateInterface} from '../../types/interfaces';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 // interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
@@ -18,7 +18,8 @@ import { MenuBarService } from '../menu-bar/menu-bar.service';
 export class AuthService {
   protected supabaseClient: SupabaseClient;
   public progress: boolean = false;
-  public disabled = false;
+  public disabled: boolean = false;
+  public f = "";
   public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
   private opinionStore = inject(Store<OpinionStateInterface>);
@@ -38,9 +39,12 @@ export class AuthService {
             type: registerType,
             delete_user: false
           }
+          this.opinionStore.dispatch(addUser({user: email}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.supabaseClient.from('users').insert(userDatabase);
         }).then(() => {
-          this.authRouter.navigateByUrl("/zalogowano")
+          this.authRouter.navigateByUrl("/zalogowano/company");
         });
       }
 
@@ -53,27 +57,32 @@ export class AuthService {
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: email}));
+          this.opinionStore.dispatch(addUser({user: name}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.supabaseClient.from('users').insert(userDatabase);
-        }).then(() => {
-          this.authRouter.navigateByUrl("/zalogowano"); 
+        }).then(()=>{
+          this.authRouter.navigateByUrl("/zalogowano/personal-brand");
         });
       }
 
-      this.supabaseClient.auth.signUp({email, password}).then(response => {
-        const userDatabase = {
-          user_uuid: response.data.user?.id,
-          name,
-          email,
-          type: registerType,
-          delete_user: false
-        }
-        this.opinionStore.dispatch(addUser({user: email}));
-        return this.supabaseClient.from('users').insert(userDatabase);
-      }).then(u => {
-        this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-        this.authRouter.navigateByUrl("/zalogowano");
-      });
+      if(registerType === "user"){
+        this.supabaseClient.auth.signUp({email, password}).then(response => {
+          const userDatabase = {
+            user_uuid: response.data.user?.id,
+            name,
+            email,
+            type: registerType,
+            delete_user: false
+          }
+          this.opinionStore.dispatch(addUser({user: email}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+          return this.supabaseClient.from('users').insert(userDatabase);
+        }).then(()=>{
+          this.authRouter.navigateByUrl("/zalogowano");
+        });
+      }
     }catch(e){
       console.error(e)
     }
@@ -81,26 +90,58 @@ export class AuthService {
 
   login(form: FormGroup<any>){
     this.progress = true;
-    try{
-      setTimeout(()=>{
+      setTimeout(async ()=>{
         if(form.value.email === "" && form.value.password === ""){
           this.progress = false;
           form.enable();
           return;
         }else{
-          this.supabaseClient.auth.signInWithPassword({email: form.value.email, password: form.value.password}).then((value) => {
-            this.opinionStore.dispatch(addUser({user: form.value.email}));
-            window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(value));
-            this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+          const {data, error} = await this.supabaseClient.auth.signInWithPassword({email: form.value.email, password: form.value.password});
+          if(data !== null){
+            if(data.user !== null && data.session !== null){
+              this.progress = false;
+              form.enable();
+              this.opinionStore.dispatch(addUser({user: form.value.email}));
+              window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(data));
+              this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+              this.progress = false;
+              form.enable();
+              this.getUserNameFromDataBase(form.value.email).then(()=>{
+                if(this.f === "user"){
+                  this.authRouter.navigateByUrl("/zalogowano");
+                }
+                if(this.f === "personalBrand"){
+                  this.authRouter.navigateByUrl("/zalogowano/personal-brand");
+                }
+                if(this.f === "company"){
+                  this.authRouter.navigateByUrl("/zalogowano/company");
+                }
+              });
+            }
+          }
+          if(error){
             this.progress = false;
             form.enable();
-            this.authRouter.navigateByUrl("/zalogowano");
-          })
+            console.log(error.message);
+          }
         }
       }, 1000);
-    }catch(e){
-      console.error(e)
+  }
+
+  async getUserNameFromDataBase(email_pass: string = ""){
+    const {data, error} = await this.supabaseClient.from("users").select('*').eq("email", email_pass);
+    if(data != null && data.length > 0){
+      if(data[0].type === "user"){
+        this.f = data[0].type
+      }
+      if(data[0].type === "personalBrand"){
+        this.f = data[0].type
+      }
+      if(data[0].type === "company"){
+        this.f = data[0].type
+      }
     }
+    return error;
   }
 
   async logOut(){

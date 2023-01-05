@@ -20,7 +20,7 @@ export class DefaultAccountComponent implements OnInit {
       name: new FormControl(''),
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', Validators.minLength(MIN_LENGHT))
-    })
+    });
   }
   
   ngOnInit(): void {}

@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
-import { changeEvent, Opinions } from '../core/types/interfaces';
+import { Opinions } from '../core/types/interfaces';
 
 @Component({
   selector: 'opn-loginned',

@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addOpinion, changeOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
-import { opinionSelector } from '../../store/selectors/selectors';
+import { opinionSelector, stateSelector, userSelector } from '../../store/selectors/selectors';
 import { changeEvent, Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
 
@@ -11,13 +11,15 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OpinionsService extends AuthService {
 
-  private OpinionStore = inject(Store<OpinionStateInterface>);
-  opinions$: Observable<Array<Opinions>>;
+  protected OpinionStore = inject(Store<OpinionStateInterface>);
+  opinions$: Observable<OpinionStateInterface>;
+  state: OpinionStateInterface = {user: '', opinion: []}; 
   reMode = 100;
 
   constructor() {
     super()
-    this.opinions$ = this.OpinionStore.select(opinionSelector);
+    this.opinions$ = this.OpinionStore.select(stateSelector);
+    this.opinions$.subscribe(c => this.state = c);
   }
 
   async SendOpinionToDatabase(opinions: Opinions): Promise<void>{
@@ -42,24 +44,19 @@ export class OpinionsService extends AuthService {
       console.error(error); 
     }else{
       let bd: Opinions[] = [];
-      let sub = this.opinions$.subscribe(
-        element => {
-          if(matchId != undefined && updateContent != undefined){
-            bd = element.reduce((accu: Opinions[], nextOpinion: Opinions): Opinions[] =>{
-              if(nextOpinion.id == Number(matchId)){
-                let j = {...nextOpinion};
-                j.content = updateContent.content;
-                accu.push(j);
-                return accu;
-              }
-              accu.push(nextOpinion);
-              return accu;
-            },[]);
+      if(matchId != undefined && updateContent != undefined){
+        bd = this.state.opinion.reduce((accu: Opinions[], nextOpinion: Opinions): Opinions[] =>{
+          if(nextOpinion.id == Number(matchId)){
+            let j = {...nextOpinion};
+            j.content = updateContent.content;
+            accu.push(j);
+            return accu;
           }
-        }
-      );
+          accu.push(nextOpinion);
+          return accu;
+        },[]);
+      }
       if(bd.length != 0){
-        sub.unsubscribe();
         this.OpinionStore.dispatch(changeOpinion({opinion: bd}));
       }
     }
@@ -78,20 +75,19 @@ export class OpinionsService extends AuthService {
 
   DeleteOpinionFromState(id: number): void{
     let newArray: Opinions[] = [];
-    let deletingSub = this.opinions$.subscribe(
-      deleteEl =>{
-        if(id != undefined){
-          newArray = deleteEl.filter(e => e.id !== id);
-        }
-      }
-    );
-    if(newArray.length !== 0){
-      deletingSub.unsubscribe();
+    if(id != undefined){
+      newArray = this.state.opinion.filter(e => e.id !== id);
     }
-    this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
+    if(newArray.length !== 0){
+      this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
+    }
   }
 
   AddOpinionToStore(v: Opinions): void{
     this.OpinionStore.dispatch(addOpinion({opinion: v}));
+  }
+
+  GetUserFromState(){
+    return this.state.user != "" ? this.state.user : "";
   }
 }
