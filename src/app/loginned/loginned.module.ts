@@ -7,6 +7,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
 
 import { LoginnedComponent } from './loginned.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
@@ -39,7 +41,9 @@ const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {pat
     MatSidenavModule,
     MatButtonModule,
     MatDialogModule,
-    MatInputModule
+    MatInputModule,
+    MatFormFieldModule,
+    MatRadioModule
   ],
   exports:[
     LoginnedComponent,

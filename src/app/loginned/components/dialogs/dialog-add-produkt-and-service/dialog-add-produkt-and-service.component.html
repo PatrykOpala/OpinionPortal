@@ -5,6 +5,10 @@
             <mat-label>Nazwa</mat-label>
             <input type="text" matInput [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
         </mat-form-field>
+        <mat-radio-group [formControl]="radioControl" class="radio-group">
+            <mat-radio-button value="Produkt">Auto</mat-radio-button>
+            <mat-radio-button value="Usługa">Always</mat-radio-button>
+        </mat-radio-group>
         <mat-form-field>
             <mat-label>Opis</mat-label>
             <textarea matInput [(ngModel)]="description" [ngModelOptions]="{standalone: true}" class="description"></textarea>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'opn-dialog-add-produkt-and-service',
@@ -9,5 +10,6 @@ export class DialogAddProduktAndServiceComponent {
 
   name: string = "";
   description: string = "";
+  radioControl = new FormControl('Produkt');
 
 }

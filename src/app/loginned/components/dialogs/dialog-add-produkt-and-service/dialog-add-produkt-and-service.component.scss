@@ -1,5 +1,5 @@
 .dialog-form{
-    width: 500px;
+    width: 700px;
     height: max-content;
     display: flex;
     flex-direction: column;
@@ -8,6 +8,10 @@
     .description{
         min-height: 150px;
         max-height: 400px;
+    }
+
+    .radio-group{
+        margin-bottom: 20px;
     }
 }
 
