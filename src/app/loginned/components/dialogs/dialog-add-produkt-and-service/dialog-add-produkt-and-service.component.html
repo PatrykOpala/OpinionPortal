@@ -6,7 +6,7 @@
             <input type="text" matInput [(ngModel)]="name" [ngModelOptions]="{standalone: true}"/>
         </mat-form-field>
         <mat-radio-group [formControl]="radioControl" class="radio-group">
-            <mat-radio-button value="Produkt">Auto</mat-radio-button>
+            <mat-radio-button value="Produkt" class="custom-radio">Auto</mat-radio-button>
             <mat-radio-button value="Usługa">Always</mat-radio-button>
         </mat-radio-group>
         <mat-form-field>
@@ -17,5 +17,5 @@
 </div>
 <div mat-dialog-actions class="buttons-row">
     <button mat-button mat-dialog-close class="dialog-button">Anuluj</button>
-    <button mat-button class="dialog-button action-button">Dodaj</button>
+    <button mat-button class="dialog-button" mat-raised-button color="primary">Dodaj</button>
 </div>
