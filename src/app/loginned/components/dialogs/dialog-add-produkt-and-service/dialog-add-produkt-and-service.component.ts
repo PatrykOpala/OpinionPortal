@@ -8,6 +8,8 @@ import { FormControl } from '@angular/forms';
 })
 export class DialogAddProduktAndServiceComponent {
 
+  //TODO: Wrócić tutaj.
+
   name: string = "";
   description: string = "";
   radioControl = new FormControl('Produkt');

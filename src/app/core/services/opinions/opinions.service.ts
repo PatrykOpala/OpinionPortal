@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addOpinion, changeOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
-import { opinionSelector, stateSelector, userSelector } from '../../store/selectors/selectors';
+import { stateSelector,} from '../../store/selectors/selectors';
 import { changeEvent, Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
 
