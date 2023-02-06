@@ -1,11 +1,13 @@
 import { createClient, SupabaseClient } from "@supabase/supabase-js";
-import { environment } from "src/environments/environment";
-import { IProvider } from "../interfaces/iprovider-interface";
-import { DatabaseQueryes } from "./database-queryes-class";
+import { IProvider, SupabaseCredentials } from "../interfaces/iprovider-interface";
+import { SupabaseQueryes } from "./database-queryes-class";
 
-export class SupabaseProvider implements IProvider<SupabaseClient>{
-    initProvider(): DatabaseQueryes<SupabaseClient> {
-        const supabaseCient = createClient(environment.supabaseUrl, environment.supabaseKey);
-        return new DatabaseQueryes<SupabaseClient>(supabaseCient);
+export class SupabaseProvider implements IProvider{
+    private sClient: SupabaseClient;
+    constructor(credentials: SupabaseCredentials){
+        this.sClient = createClient(credentials.supabaseUrl, credentials.supabaseKey);
+    }
+    initProvider(): SupabaseQueryes{
+        return new SupabaseQueryes(this.sClient);
     }
 }

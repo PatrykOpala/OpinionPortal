@@ -1,69 +1,64 @@
-import { PostgrestError, SupabaseClient } from "@supabase/supabase-js";
+import {SupabaseClient } from "@supabase/supabase-js";
 
-export class DatabaseQueryes<TypeProvider>{
-    private rProvider: TypeProvider extends SupabaseClient ? any : any;
+interface QueriesResult{
+    data: string;
+    success: string;
+    error: string;
+}
+
+export class SupabaseQueryes{
+    private rProvider: SupabaseClient;
     private IsError: boolean = false;
     private IsSuccess: boolean = false;
 
-    constructor(resultProvider: TypeProvider){
-        this.rProvider = resultProvider;
+    constructor(supabaseClient: SupabaseClient){
+        this.rProvider = supabaseClient;
     }
-    pushToDatabase<TypePushData>(databaseColumn: string, pushData: TypePushData): boolean{
-      this.rProvider.from(databaseColumn).insert(pushData).then((returnData: any) => returnData ? this.IsSuccess = true : this.IsSuccess = false)
-      .catch((error: PostgrestError) => error ? this.IsError = true : this.IsError = false);
-      if(this.IsError && this.IsSuccess === false){
-        return false;
+    async pushToDatabase(databaseColumn: string, pushData: any){
+      const {data, error} = await this.rProvider.from(databaseColumn).insert(pushData);
+      if(!error && data !== null){
+        return true;
       }
       return true;
     }
-    getAllFromDatabase<TypeReturnData>(databaseColumn: string): Array<TypeReturnData> | {error: string}{
+    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): Promise<Array<TypeReturnData> | Pick<QueriesResult, 'error'>>{
         let datas: Array<TypeReturnData> = [];
-        this.rProvider.from(databaseColumn).select('*').then((returnData: any) => {if(returnData) {datas = returnData} else{this.IsSuccess = false; this.IsError = true;}})
-        .catch((error: PostgrestError) => error ? this.IsError = true : this.IsError = false);
-        // this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
-        if(this.IsError && this.IsSuccess === false){
+        
+        const {data: returnData, error} = await this.rProvider.from(databaseColumn).select('*');
+        
+        if(error !== null && returnData === null){
             return {error: "true"};
+        }else{
+            datas = returnData;
         }
         return datas;
     }
-    getDataFromDatabase<TypeReturnData>(databaseColumn: string, selectData: string): Array<TypeReturnData> | {error: string}{
-        let datas: Array<TypeReturnData> = [];
-        this.rProvider.from(databaseColumn).select(selectData).then((returnData: any) => {if(returnData) {datas = returnData} else{this.IsSuccess = false; this.IsError = true;}})
-        .catch((error: PostgrestError) => error ? this.IsError = true : this.IsError = false);
-        if(this.IsError && this.IsSuccess === false){
-            return {error: "true"};
+    async deleteDataAtDatabase(databaseColumn: string, deleteData: any): Promise<Omit<QueriesResult, "data">>{
+        const statusObject: Omit<QueriesResult, "data"> = {success: "", error: ""}
+        const {data: deletedData, error} = await this.rProvider.from(databaseColumn).delete().match(deleteData);
+        if(deletedData !== undefined && deletedData !== null && error === null){
+            statusObject.success = "Deleted data from database";
+            this.IsSuccess = true;
+            this.IsError = false;
+        }else{
+            statusObject.error = "Error deleted data";
+            this.IsError = true;
+            this.IsSuccess = false;
         }
-        return datas;
-    }
-    deleteDataAtDatabase<TypeDeleteData>(databaseColumn: string, deleteData: TypeDeleteData): {success: string, error: string}{
-        const statusObject = {success: "", error: ""}
-        this.rProvider.from(databaseColumn).delete().match(deleteData).then((deletedData: any) => {
-            if(deletedData) {
-                statusObject.success = "Deleted data from database";
-                this.IsSuccess = true;
-            }
-        }).catch((error: PostgrestError) =>{
-            if(error){
-                statusObject.error = "Error deleted data";
-                this.IsError = true;
-            }
-        });
         return statusObject;
-        // this.DeleteOpinionFromState(Number(changeData.id));
     }
-    changeDataAtDatabase<TypeChangeData>(databaseColumn: string, changeData: TypeChangeData): {success: string, error: string} {
-        const statusObject = {success: "", error: ""}
-        this.rProvider.from(databaseColumn).delete().match(changeData).then((changedData: any) => {
-            if(changedData) {
-                statusObject.success = "Deleted data from database";
-                this.IsSuccess = true;
-            }
-        }).catch((error: PostgrestError) =>{
-            if(error){
-                statusObject.error = "Error deleted data";
-                this.IsError = true;
-            }
-        });
+    async changeDataAtDatabase(databaseColumn: string, changeData: any): Promise<Omit<QueriesResult, "data">>{
+        const statusObject: Omit<QueriesResult, "data"> = {success: "", error: ""}
+        const {data: changedData, error} = await this.rProvider.from(databaseColumn).delete().match(changeData);
+        if(changedData !== undefined && changedData !== null && error === null){
+            statusObject.success = "Changed data at database.";
+            this.IsSuccess = true;
+            this.IsError = false;
+        }else{
+            statusObject.error = "Error changed data.";
+            this.IsError = true;
+            this.IsSuccess = false;
+        }
         return statusObject;
     }
 }
