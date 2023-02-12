@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { environment } from 'src/environments/environment';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { MenuBarComponent } from '../app/core/shared/components/menu-bar/menu-bar.component';
-import { SharedModule } from '../app/core/shared/shared/shared.module';
+import { SharedModule } from '../app/core/shared/modules/shared.module';
 import { CommonModule } from '@angular/common';
 import { TeleportOutletDirective } from './core/portals/teleports-directive/teleport-outlet.directive';
 import { AppRoutesModule } from './app-routes.module';

@@ -10,25 +10,23 @@ import { LogOutUser} from '../../../types/interfaces';
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss'],
 })
-export class MenuBarComponent implements OnInit, LogOutUser {
-
+export class MenuBarComponent implements OnInit, LogOutUser{
   protected menuBarService = inject(MenuBarService);
   protected authService = inject(AuthService);
   protected profileOptions: boolean = false;
 
-  constructor() { 
-    if(window.localStorage?.getItem(LOCAL_STORAGE_KEYS.userAuthentication) !== null){
-      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-    }
+  constructor() {
+    this.authService.IsAuth.subscribe((auth)=>{
+      if(auth === true){
+        this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      }
+    });
   }
 
   signOut(): void {
     this.profileOptions = !this.profileOptions;
-    window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userAuthentication);
     this.authService.logOut();
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 }

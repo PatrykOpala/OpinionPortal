@@ -12,7 +12,6 @@ export class MainGuard implements CanActivate {
       if(!window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
         return true;
       }
-      
       return this.mainRouter.createUrlTree(['/zalogowano']);
   }
   

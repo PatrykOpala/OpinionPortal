@@ -55,11 +55,11 @@ export class OpinieContainerComponent implements OnInit {
   }
   SendChangeQuery(event: Event) {
     let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}
-    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
+    // this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
   }
   deleteOpinion(e: Event): void{
     if(this.paragraph.nativeElement.id !== "undefined"){
-      this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
+      // this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
       this.context = !this.context;
     }
   }
@@ -70,7 +70,7 @@ export class OpinieContainerComponent implements OnInit {
     }
   }
   giveFeedback(){
-    const {user} = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).data;
+    const user = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).user;
     let newOpinionObj: Opinions = CreateOpinion(user.id, user.email as string, Math.floor(Math.random() * 1000), this.valu, this.e.nativeElement.value);
     this.addOpinion.emit(newOpinionObj);
     this.e.nativeElement.value = "";

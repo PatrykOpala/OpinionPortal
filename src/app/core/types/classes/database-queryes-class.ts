@@ -1,6 +1,6 @@
 import {SupabaseClient } from "@supabase/supabase-js";
 
-interface QueriesResult{
+export interface QueriesResult{
     data: string;
     success: string;
     error: string;
@@ -21,17 +21,17 @@ export class SupabaseQueryes{
       }
       return true;
     }
-    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): Promise<Array<TypeReturnData> | Pick<QueriesResult, 'error'>>{
-        let datas: Array<TypeReturnData> = [];
-        
+    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): Promise<TypeReturnData[]>{
+        let b = [];
         const {data: returnData, error} = await this.rProvider.from(databaseColumn).select('*');
-        
         if(error !== null && returnData === null){
-            return {error: "true"};
-        }else{
-            datas = returnData;
+            // return {error: "true"};
         }
-        return datas;
+        if(returnData !== null){
+            b = returnData
+        }
+
+        return b;
     }
     async deleteDataAtDatabase(databaseColumn: string, deleteData: any): Promise<Omit<QueriesResult, "data">>{
         const statusObject: Omit<QueriesResult, "data"> = {success: "", error: ""}

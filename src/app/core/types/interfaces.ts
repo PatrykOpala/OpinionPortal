@@ -45,8 +45,6 @@ export interface Category{
 }
 
 export interface SupabaseUser{
-    data:{
-        user: User,
-        session: Session
-    }
+    user: User,
+    session: Session
 }

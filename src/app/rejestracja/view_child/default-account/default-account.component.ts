@@ -12,7 +12,7 @@ import { MIN_LENGHT } from 'src/app/core/types/constants';
 export class DefaultAccountComponent implements OnInit {
 
   protected defaultAccountService = inject(FormService);
-  protected userForm: FormGroup;
+  public userForm: FormGroup;
   private dafaultAuthService = inject(AuthService);
 
   constructor(private registerFormBuilder: FormBuilder) { 

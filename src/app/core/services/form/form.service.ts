@@ -21,6 +21,4 @@ export class FormService {
   getTypeAccount(): string{
     return this.typeAccount;
   }
-
-
 }

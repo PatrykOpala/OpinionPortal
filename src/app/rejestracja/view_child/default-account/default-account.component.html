@@ -1,7 +1,7 @@
 <opn-pane-container>
     <form class="formContainer step1" (submit)="signUpUser($event)" [formGroup]="userForm">
         <span class="labelC account">{{defaultAccountService.getTypeAccount() || "Typ konta"}}</span>
-        <opn-rejestracja-step [step]="2"></opn-rejestracja-step>
+        <!-- <opn-rejestracja-step [step]="2"></opn-rejestracja-step> -->
         <div class="field-container">
             <label class="field">Nazwa Użytkownika</label>
             <input type="text" name="userName" 

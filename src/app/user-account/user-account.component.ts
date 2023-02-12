@@ -19,14 +19,14 @@ export class UserAccountComponent implements OnInit {
 
   ngOnInit(): void {
     if(getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)!== null){
-      this.userName = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).data.user.email as string;
+      this.userName = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).user.email as string;
       this.nameAvatar = this.userName[0];
     }
   }
 
   deleteAccount(): void{
     if(getDataFromLocalStorage(LOCAL_STORAGE_KEYS.userAuthentication)){
-      let userEmail = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)?.data?.user?.email;
+      let userEmail = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)?.user?.email;
       this.authService.deleteUser(userEmail as string);
     }
   }

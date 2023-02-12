@@ -12,7 +12,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 import { LoginnedComponent } from './loginned.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
-import { SharedModule } from '../core/shared/shared/shared.module';
+import { SharedModule } from '../core/shared/modules/shared.module';
 import { AddOpinionComponent } from './components/add-opinion/add-opinion.component';
 import { ChooseCompanyComponent } from './components/choose-company/choose-company.component';
 import { PersonalBrandComponent } from './personal-brand/personal-brand.component';

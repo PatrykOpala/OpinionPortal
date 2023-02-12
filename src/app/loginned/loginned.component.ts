@@ -9,15 +9,11 @@ import { Opinions } from '../core/types/interfaces';
 })
 export class LoginnedComponent implements OnInit{
   @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
-
   protected opinionsService = inject(OpinionsService);
-
   constructor() {
-    this.opinionsService.GetOpinionFromDatabase();
+    this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => this.opinionsService.InitialDataInStore(rr));
   }
-
   ngOnInit(): void {}
-
   sendData(data: Opinions){
     this.opinionsService.SendOpinionToDatabase(data);
   }

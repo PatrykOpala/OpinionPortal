@@ -2,9 +2,12 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { createClient, SupabaseClient } from '@supabase/supabase-js'
+import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { addUser } from '../../store/actions/opinion.actions';
+import { DatabaseConnection } from '../../types/classes/database-connection.class';
+import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
+import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
 import { OpinionStateInterface} from '../../types/interfaces';
@@ -16,22 +19,31 @@ import { MenuBarService } from '../menu-bar/menu-bar.service';
   providedIn: 'root'
 })
 export class AuthService {
-  protected supabaseClient: SupabaseClient;
+  // protected supabaseClient: SupabaseClient;
   public progress: boolean = false;
   public disabled: boolean = false;
-  public f = "";
   public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
   private opinionStore = inject(Store<OpinionStateInterface>);
+  private databaseConnection: DatabaseConnection;
+  private supabaseProvider: SupabaseProvider
+  public databaseQuery: SupabaseQueryes;
+  public IsAuth = new BehaviorSubject(false);
 
   constructor() {
-    this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
+    // this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
+    this.databaseConnection = new DatabaseConnection();
+    this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl, supabaseKey: environment.supabaseKey})
+    this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
+    if(window.localStorage?.getItem(LOCAL_STORAGE_KEYS.userAuthentication) !== null){
+      this.IsAuth.next(true);
+    }
   }
 
   register({name, email, password}: any, registerType: string){
     try{
       if(registerType === "company"){
-        this.supabaseClient.auth.signUp({email, password}).then((response) => {
+        this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
             user_uuid: response.data.user?.id,
             name,
@@ -42,14 +54,14 @@ export class AuthService {
           this.opinionStore.dispatch(addUser({user: email}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-          return this.supabaseClient.from('users').insert(userDatabase);
+          return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(() => {
           this.authRouter.navigateByUrl("/zalogowano/company");
         });
       }
 
       if(registerType === "personalBrand"){
-        this.supabaseClient.auth.signUp({email, password}).then((response) => {
+        this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
           const userDatabase = {
             user_uuid: response.data.user?.id,
             name,
@@ -60,14 +72,14 @@ export class AuthService {
           this.opinionStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-          return this.supabaseClient.from('users').insert(userDatabase);
+          return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
           this.authRouter.navigateByUrl("/zalogowano/personal-brand");
         });
       }
 
       if(registerType === "user"){
-        this.supabaseClient.auth.signUp({email, password}).then(response => {
+        this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
           const userDatabase = {
             user_uuid: response.data.user?.id,
             name,
@@ -78,7 +90,7 @@ export class AuthService {
           this.opinionStore.dispatch(addUser({user: email}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-          return this.supabaseClient.from('users').insert(userDatabase);
+          return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
           this.authRouter.navigateByUrl("/zalogowano");
         });
@@ -96,7 +108,7 @@ export class AuthService {
           form.enable();
           return;
         }else{
-          const {data, error} = await this.supabaseClient.auth.signInWithPassword({email: form.value.email, password: form.value.password});
+          const {data, error} = await this.supabaseProvider.sClient.auth.signInWithPassword({email: form.value.email, password: form.value.password});
           if(data !== null){
             if(data.user !== null && data.session !== null){
               this.progress = false;
@@ -106,17 +118,7 @@ export class AuthService {
               this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
               this.progress = false;
               form.enable();
-              this.getUserNameFromDataBase(form.value.email).then(()=>{
-                if(this.f === "user"){
-                  this.authRouter.navigateByUrl("/zalogowano");
-                }
-                if(this.f === "personalBrand"){
-                  this.authRouter.navigateByUrl("/zalogowano/personal-brand");
-                }
-                if(this.f === "company"){
-                  this.authRouter.navigateByUrl("/zalogowano/company");
-                }
-              });
+              this.routeTo(form.value.email);
             }
           }
           if(error){
@@ -128,26 +130,31 @@ export class AuthService {
       }, 1000);
   }
 
-  async getUserNameFromDataBase(email_pass: string = ""){
-    const {data, error} = await this.supabaseClient.from("users").select('*').eq("email", email_pass);
-    if(data != null && data.length > 0){
-      if(data[0].type === "user"){
-        this.f = data[0].type
+  routeTo(email_pass: string = ""){
+    this.databaseQuery.getAllFromDatabase<any>('users').then(resolveUser => {
+      let filteredUser = resolveUser.filter(el => el.email === email_pass);
+      if(filteredUser != null && filteredUser.length > 0){
+        if(filteredUser[0].type === "user"){
+          this.authRouter.navigateByUrl('/zalogowano/');
+        }
+        if(filteredUser[0].type === "personalBrand"){
+          this.authRouter.navigateByUrl('/zalogowano/personalBrand');
+        }
+        if(filteredUser[0].type === "company"){
+          this.authRouter.navigateByUrl('/zalogowano/company');
+        }
       }
-      if(data[0].type === "personalBrand"){
-        this.f = data[0].type
-      }
-      if(data[0].type === "company"){
-        this.f = data[0].type
-      }
-    }
-    return error;
+    });
+    
+    // return error;
   }
 
   async logOut(){
-    const {error} = await this.supabaseClient.auth.signOut();
+    const {error} = await this.supabaseProvider.sClient.auth.signOut();
     if(!error && error === null){
       this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
+      window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userAuthentication);
+      this.IsAuth.next(false);
       this.authRouter.navigateByUrl('/');
     }
   }
@@ -156,7 +163,7 @@ export class AuthService {
     const userToDelete = {
       delete_user: true
     };
-    const {error} = await this.supabaseClient
+    const {error} = await this.supabaseProvider.sClient
     .from("users")
     .update(userToDelete).match({email: email});
     if(error) console.error(error);

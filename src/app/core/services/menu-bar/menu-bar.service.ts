@@ -5,13 +5,9 @@ import { UserLoginnedInStateEnum } from '../../types/enums';
   providedIn: 'root'
 })
 export class MenuBarService {
-
-  public IsTheUserLoggedInState :UserLoginnedInStateEnum = UserLoginnedInStateEnum.NOTLOGGEDIN;
-
+  public IsTheUserLoggedInState: UserLoginnedInStateEnum = UserLoginnedInStateEnum.NOTLOGGEDIN;
   constructor() { }
-
   changeUserLoginnedInState(state: UserLoginnedInStateEnum){
     this.IsTheUserLoggedInState = state;
   }
-
 }

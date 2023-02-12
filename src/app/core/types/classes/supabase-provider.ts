@@ -3,7 +3,7 @@ import { IProvider, SupabaseCredentials } from "../interfaces/iprovider-interfac
 import { SupabaseQueryes } from "./database-queryes-class";
 
 export class SupabaseProvider implements IProvider{
-    private sClient: SupabaseClient;
+    public sClient: SupabaseClient;
     constructor(credentials: SupabaseCredentials){
         this.sClient = createClient(credentials.supabaseUrl, credentials.supabaseKey);
     }

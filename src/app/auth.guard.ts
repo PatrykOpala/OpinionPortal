@@ -12,7 +12,6 @@ export class LoginnedGuard implements CanActivate {
       if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
         return true;
       }
-      
       return this.router.createUrlTree(['']);
   }  
 }
