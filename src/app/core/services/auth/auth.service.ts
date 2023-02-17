@@ -19,7 +19,6 @@ import { MenuBarService } from '../menu-bar/menu-bar.service';
   providedIn: 'root'
 })
 export class AuthService {
-  // protected supabaseClient: SupabaseClient;
   public progress: boolean = false;
   public disabled: boolean = false;
   public authRouter = inject(Router);
@@ -31,7 +30,6 @@ export class AuthService {
   public IsAuth = new BehaviorSubject(false);
 
   constructor() {
-    // this.supabaseClient = createClient(environment.supabaseUrl, environment.supabaseKey);
     this.databaseConnection = new DatabaseConnection();
     this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl, supabaseKey: environment.supabaseKey})
     this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
@@ -135,7 +133,7 @@ export class AuthService {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){
-          this.authRouter.navigateByUrl('/zalogowano/');
+          this.authRouter.navigateByUrl('/zalogowano');
         }
         if(filteredUser[0].type === "personalBrand"){
           this.authRouter.navigateByUrl('/zalogowano/personalBrand');

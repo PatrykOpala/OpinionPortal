@@ -3,7 +3,7 @@
 .labelC{
     font-size: 4.4rem;
     letter-spacing: 7px;
-    margin: 23px 0;
+    margin-top: 9vh;
     color: var(--opn-color-green);
     width: max-content;
 }
@@ -11,30 +11,22 @@
 .formContainer{
     width: 30vw;
     height: 50vh;
-    @include flexD(column, none);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     margin-top: 2vh;
-
-    .radioButtons{
-        display: flex;
-        justify-content: space-around;
-        width: fit-content;
-        gap: 15px;
-    }
 }
 
 .field-container{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 37vh;
+    margin-top: 22px;
+    margin-left: 4%;
 }
 
 .field{
     display: block;
-    position: relative;
     font-size: 1.5rem;
-    top: 13px;
-    left: 20px;
     width: max-content;
 }
 
@@ -42,18 +34,13 @@
     width: 30vw;
     padding: 10px;
     outline: 1px solid transparent;
-    margin-top: 3%;
-    margin-left: 4%;
     border: 1px solid #cccccc;
     font-size: 1.8rem;
+    margin-top: 4px;
 }
 
 .inputC:focus{
     border: 1px solid var(--opn-color-green);
-}
-
-.button-container{
-    margin-top: 33vh;
 }
 
 button{
@@ -70,22 +57,3 @@ button:hover{
     cursor: pointer;
     background-color: var(--opn-color-green);
 }
-
-// input.ng-valid, input.ng-valid.required{
-//     border-bottom: 2px solid #42A948;
-//     color: #42A948;
-// }
-
-// input.ng-invalid{
-//     border-bottom: 2px solid #a94442;
-//     color: #a94442;
-// }
-// input.ng-untouched{
-//     border-bottom: 1px solid #cccccc;
-//     color: #000;
-// }
-
-// .dupa{
-//     background-color: #a94442;
-//     height: 30vh;
-// }

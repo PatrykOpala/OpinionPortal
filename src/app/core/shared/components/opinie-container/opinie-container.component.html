@@ -9,9 +9,7 @@
                     <h1>{{user_name}}</h1>
                     <span>Zopiniował: <b #headOpn>{{header}}</b></span>
                 </div>
-                <div *ngIf="login" id="context-m" 
-                        style="margin-left: 20px; width: 50px; height: 50px; text-align: center; cursor: pointer;"
-                        (click)="context = !context">
+                <div *ngIf="login" id="context-m" class="context_m" (click)="context = !context">
                     <svg width="30" height="50" viewBox="-6 2 30 40">
                         <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
                         <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
@@ -24,7 +22,7 @@
             </div>
             <div class="container__menu" *ngIf="context">
                 <button (click)="changeOpinion($event)">Edytuj</button>
-                <button (click)="deleteOpinion($event)">Usuń</button>
+                <button (click)="deleteOpinion()">Usuń</button>
             </div>
         </div>
     </ng-template>
@@ -88,7 +86,7 @@
                     </div>
                     <div>
                         <h1>{{user_name}}</h1>
-                        <span>Zopiniował firmę: {{valu}}</span>
+                        <span>Zopiniował: {{valu}}</span>
                     </div>
                 </div>
                 <div class="content edit-content" id="content">
@@ -112,7 +110,7 @@
             </div>
             <div class="content edit-content" id="content">
                 <textarea #area>{{globalChangeValue.content}}</textarea>
-                <button class="primary radius" (click)="SendChangeQuery($event)">Zmień Opinie</button>
+                <button class="primary radius" (click)="SendChangeQuery()">Zmień Opinie</button>
             </div>
         </div>
     </ng-template>

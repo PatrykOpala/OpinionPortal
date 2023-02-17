@@ -11,7 +11,7 @@
     .opinie-header{
         width: 100%;
         display: grid;
-        grid-template-columns: 20% 60% 20%;
+        grid-template-columns: 20% 66% 12%;
         grid-template-rows: 57px;
         margin-top: 12px;
         h1{
@@ -80,6 +80,13 @@
 
 .radius{
     border-radius: 3px;
+}
+
+.context_m{
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .edit-container{
@@ -272,4 +279,19 @@ svg:hover > .svg__circle{
 
 .primary:hover{
     background-color: var(--opn-color-dark-green);
+}
+
+
+@media (max-width: 1600px) {
+    .opinion__container{
+        .opinie-container{
+            .opinie-header{
+                width: 100%;
+                display: grid;
+                grid-template-columns: 16% 70% 10%;
+                grid-template-rows: 57px;
+                margin-top: 12px;
+            }
+        }
+    }
 }

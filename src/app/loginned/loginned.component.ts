@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit } from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
 import { Opinions } from '../core/types/interfaces';
 
@@ -7,11 +7,13 @@ import { Opinions } from '../core/types/interfaces';
   templateUrl: './loginned.component.html',
   styleUrls: ['./loginned.component.scss']
 })
-export class LoginnedComponent implements OnInit{
-  @ViewChild("opn", {read: ViewContainerRef, static: true}) opn!: ViewContainerRef;
+export class LoginnedComponent implements OnInit, AfterViewInit{
   protected opinionsService = inject(OpinionsService);
   constructor() {
     this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => this.opinionsService.InitialDataInStore(rr));
+  }
+  ngAfterViewInit(): void {
+    
   }
   ngOnInit(): void {}
   sendData(data: Opinions){

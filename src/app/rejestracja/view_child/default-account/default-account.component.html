@@ -1,21 +1,19 @@
 <opn-pane-container>
     <form class="formContainer step1" (submit)="signUpUser($event)" [formGroup]="userForm">
-        <span class="labelC account">{{defaultAccountService.getTypeAccount() || "Typ konta"}}</span>
-        <!-- <opn-rejestracja-step [step]="2"></opn-rejestracja-step> -->
+        <span class="labelC">{{defaultAccountService.getTypeAccount() || "Typ konta"}}</span>
+        <opn-rejestracja-step [step]="2"></opn-rejestracja-step>
         <div class="field-container">
             <label class="field">Nazwa Użytkownika</label>
-            <input type="text" name="userName" 
-            formControlName="name" class="inputC" placeholder="Zbyszek"/>
+            <input type="text" name="userName" formControlName="name" class="inputC" placeholder="Zbyszek"/>
+        </div>
+        <div class="field-container">
             <label class="field">Adres E-mail</label>
-            <input type="email" name="userEmail" 
-            formControlName="email" class="inputC" placeholder="zbyszek634646@onet.pl"/>
+            <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="zbyszek634646@onet.pl"/>
+        </div>
+        <div class="field-container">
             <label class="field">Hasło</label>
-            <input type="password" name="userPassword" 
-            formControlName="password" id="uPassword" class="inputC" 
-            placeholder="****************"/>
+            <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="****************"/>
         </div>
-        <div class="button-container">
-            <button type="submit">Stwórz konto</button>
-        </div>
+        <button type="submit">Stwórz konto</button>
     </form>
 </opn-pane-container>

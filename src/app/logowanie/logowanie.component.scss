@@ -25,17 +25,14 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
 .field-container{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 37vh;
+    margin-top: 38px;
+    margin-left: 4%;
 }
 
 .field{
     display: block;
     margin-top: 10px;
-    position: relative;
     font-size: 1.5rem;
-    top: 30px;
-    left: 20px;
     width: max-content;
 }
 
@@ -43,8 +40,6 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
     width: 30vw;
     padding: 10px;
     outline: none;
-    margin-top: 7%;
-    margin-left: 4%;
     border: 1px solid #cccccc;
     font-size: 1.8rem;
     background-color: #fcfcfc;
@@ -55,7 +50,7 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
 }
 
 .button-container{
-    margin-top: 33vh;
+    margin-top: 38px;
 }
 
 button{
@@ -72,7 +67,7 @@ button{
         height: 46px;
         border: 2px solid $placeholder-color;
         border-radius: 3px;
-        animation: progress-rotate 1.5s infinite;
+        
 
         .pr1{
             background-color: $placeholder-color;
@@ -111,6 +106,7 @@ button{
             margin-top: 7px;
             border-radius: 3px;
             position: absolute;
+            animation: progress-rotate 1.5s infinite;
         }
 
         .pr2::before, .pr2::after{
@@ -160,7 +156,10 @@ input.ng-untouched{
     border-bottom: 1px solid #cccccc;
 }
 @keyframes progress-rotate {
-    100%{
-        rotate: 360deg;
+    0%, 100%{
+        transform: scaleX(1);
+    }
+    50%{
+        transform: scaleX(1.2);
     }
 }

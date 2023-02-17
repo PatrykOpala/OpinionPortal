@@ -22,3 +22,8 @@
     gap: 8px;
     margin: 25px 0;
 }
+@media (max-width: 1600px) {
+    .opinion__container{
+        grid-template-columns: repeat(2, 700px);
+    }
+}

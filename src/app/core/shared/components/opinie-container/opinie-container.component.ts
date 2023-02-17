@@ -53,13 +53,13 @@ export class OpinieContainerComponent implements OnInit {
       this.context = !this.context;
     }
   }
-  SendChangeQuery(event: Event) {
+  SendChangeQuery() {
     let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}
-    // this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
+    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
   }
-  deleteOpinion(e: Event): void{
+  deleteOpinion(): void{
     if(this.paragraph.nativeElement.id !== "undefined"){
-      // this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
+      this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
       this.context = !this.context;
     }
   }

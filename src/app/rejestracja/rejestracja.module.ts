@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RejestracjaComponent } from './rejestracja.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../core/shared/modules/shared.module';
-import { RejestracjaStepComponent } from './view_child/rejestracja-step/rejestracja-step.component';
+import { RejestracjaStepComponent } from './components/rejestracja-step/rejestracja-step.component';
 
 import { FormRegistersComponent } from './view_child/form-registers/form-registers.component';
 
