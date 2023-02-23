@@ -6,7 +6,9 @@ import { LogowanieComponent } from './logowanie.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../core/shared/modules/shared.module';
 
-const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }];
+import { DialogNewOpinionComponent } from '../loginned/components/dialogs/dialog-new-opinion/dialog-new-opinion.component';
+
+const loginRoutes: Routes = [{ path: '', component: LogowanieComponent }, {path: 'test-new-dialog', component: DialogNewOpinionComponent}];
 
 @NgModule({
   declarations: [

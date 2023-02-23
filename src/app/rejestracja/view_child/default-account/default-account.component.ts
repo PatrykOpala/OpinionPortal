@@ -25,8 +25,7 @@ export class DefaultAccountComponent implements OnInit {
   
   ngOnInit(): void {}
 
-  signUpUser(event: Event): void{
-    event.preventDefault();
+  signUpUser(): void{
     this.dafaultAuthService.register(this.userForm.value, "user");
   }
 }

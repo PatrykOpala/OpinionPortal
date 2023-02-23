@@ -16,10 +16,6 @@ export class OpinieComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.opinionsService.GetOpinionFromDatabase().then(op => {
-    //   if(op !== null && op !== undefined){
-    //     this.allOpinions = op;
-    //   }
-    // });
+    this.opinionsService.databaseQuery.getAllFromDatabase<Opinions>('opinions').then(op => this.allOpinions = op);
   }
 }

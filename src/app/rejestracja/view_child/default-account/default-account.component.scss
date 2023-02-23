@@ -1,22 +1,5 @@
 @use "../../../core/shared/utils/scss/op-mixins.scss" as *;
 
-.labelC{
-    font-size: 4.4rem;
-    letter-spacing: 7px;
-    margin-top: 9vh;
-    color: var(--opn-color-green);
-    width: max-content;
-}
-
-.formContainer{
-    width: 30vw;
-    height: 50vh;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 2vh;
-}
-
 .field-container{
     display: flex;
     flex-direction: column;

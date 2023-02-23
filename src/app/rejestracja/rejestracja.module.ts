@@ -22,7 +22,7 @@ const RejesrationRoutes: Routes = [{ path: '', component: RejestracjaComponent},
     FormRegistersComponent,
     DefaultAccountComponent,
     AccountPersonalBrandComponent,
-    AccountCompanyComponent
+    AccountCompanyComponent,
   ],
   imports: [
     CommonModule,

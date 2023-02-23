@@ -1,22 +1,18 @@
 <opn-pane-container>
-    <form class="formContainer step1" (submit)="signUpPersonalBrand($event)" [formGroup]="personalBrandForm">
-        <span class="labelC account">{{accountPersonalBrandFormService.getTypeAccount() || "Typ konta"}}</span>
+    <opn-form-registers (submit)="signUpPersonalBrand($event)" [formGroup]="personalBrandForm" [defaultAccountService]="accountPersonalBrandFormService">
         <opn-rejestracja-step [step]="2"></opn-rejestracja-step>
         <div class="field-container">
             <label class="field">Nazwa Marki</label>
-            <input type="text" name="userName" 
-            formControlName="name" class="inputC" placeholder="Tree Steel"/>
+            <input type="text" name="userName" formControlName="name" class="inputC" placeholder="Tree Steel"/>
+        </div>
+        <div class="field-container">
             <label class="field">Adres E-mail</label>
-            <input type="email" name="userEmail" 
-            formControlName="email" class="inputC" 
-            placeholder="treestl234_313@tree-steel.com"/>
+            <input type="email" name="userEmail" formControlName="email" class="inputC" placeholder="treestl234_313@tree-steel.com"/>
+        </div>
+        <div class="field-container">
             <label class="field">Hasło</label>
-            <input type="password" name="userPassword" 
-            formControlName="password" id="uPassword" class="inputC" 
-            placeholder="****************"/>
+            <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="****************"/>
         </div>
-        <div class="button-container">
-            <button type="submit">Stwórz konto</button>
-        </div>
-    </form>
+        <button type="submit">Stwórz konto</button>
+    </opn-form-registers>
 </opn-pane-container>

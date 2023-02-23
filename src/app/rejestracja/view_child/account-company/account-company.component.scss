@@ -8,25 +8,9 @@
     width: max-content;
 }
 
-.formContainer{
-    width: 30vw;
-    height: 50vh;
-    @include flexD(column, none);
-    margin-top: 2vh;
-
-    .radioButtons{
-        display: flex;
-        justify-content: space-around;
-        width: fit-content;
-        gap: 15px;
-    }
-}
-
 .field-container{
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 37vh;
 }
 
 .field{
@@ -70,22 +54,3 @@ button:hover{
     cursor: pointer;
     background-color: var(--opn-color-green);
 }
-
-// input.ng-valid, input.ng-valid.required{
-//     border-bottom: 2px solid #42A948;
-//     color: #42A948;
-// }
-
-// input.ng-invalid{
-//     border-bottom: 2px solid #a94442;
-//     color: #a94442;
-// }
-// input.ng-untouched{
-//     border-bottom: 1px solid #cccccc;
-//     color: #000;
-// }
-
-// .dupa{
-//     background-color: #a94442;
-//     height: 30vh;
-// }

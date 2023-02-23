@@ -1,6 +1,5 @@
 <opn-pane-container>
-    <form class="formContainer step1" (submit)="signUpUser($event)" [formGroup]="userForm">
-        <span class="labelC">{{defaultAccountService.getTypeAccount() || "Typ konta"}}</span>
+    <opn-form-registers (submit)="signUpUser()" [formGroup]="userForm" [defaultAccountService]="defaultAccountService">
         <opn-rejestracja-step [step]="2"></opn-rejestracja-step>
         <div class="field-container">
             <label class="field">Nazwa Użytkownika</label>
@@ -15,5 +14,5 @@
             <input type="password" name="userPassword" formControlName="password" id="uPassword" class="inputC" placeholder="****************"/>
         </div>
         <button type="submit">Stwórz konto</button>
-    </form>
+    </opn-form-registers>
 </opn-pane-container>

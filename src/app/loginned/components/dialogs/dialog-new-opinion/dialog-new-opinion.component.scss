@@ -1,0 +1,48 @@
+.background-dialog{
+    background-color: hsla(3, 10%, 10%, 0.5);
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+
+    .dialog-container{
+        background-color: hsla(3, 97%, 98%, 1);
+        width: 900px;
+        height: 600px;
+        position: relative;
+        left: 27%;
+        top: 20%;
+        border-radius: 5px;
+
+        .dialog-title{
+            font-size: 2em;
+            display: block;
+            translate: 30px 40px;
+            pointer-events: none;
+        }
+
+        .dialog-content{
+            background-color: red;
+            width: 93%;
+            height: 70%;
+            translate: 30px 70px;
+        }
+
+        .dialog-buttons{
+            translate: 30px 80px;
+            width: 93%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+
+            .button-label{
+                font-size: 1.5em;
+                margin-top: 20px;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+            }
+        }
+    }
+}
