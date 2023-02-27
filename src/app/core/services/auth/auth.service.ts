@@ -10,7 +10,7 @@ import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
-import { OpinionStateInterface} from '../../types/interfaces';
+import { OpinionStateInterface, UserM} from '../../types/interfaces';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 // interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
@@ -27,15 +27,11 @@ export class AuthService {
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
   public databaseQuery: SupabaseQueryes;
-  public IsAuth = new BehaviorSubject(false);
 
   constructor() {
     this.databaseConnection = new DatabaseConnection();
     this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl, supabaseKey: environment.supabaseKey})
     this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
-    if(window.localStorage?.getItem(LOCAL_STORAGE_KEYS.userAuthentication) !== null){
-      this.IsAuth.next(true);
-    }
   }
 
   register({name, email, password}: any, registerType: string){
@@ -49,7 +45,7 @@ export class AuthService {
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: email}));
+          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -67,7 +63,7 @@ export class AuthService {
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: name}));
+          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -85,7 +81,7 @@ export class AuthService {
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: email}));
+          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -111,11 +107,8 @@ export class AuthService {
             if(data.user !== null && data.session !== null){
               this.progress = false;
               form.enable();
-              this.opinionStore.dispatch(addUser({user: form.value.email}));
               window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(data));
               this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-              this.progress = false;
-              form.enable();
               this.routeTo(form.value.email);
             }
           }
@@ -129,22 +122,26 @@ export class AuthService {
   }
 
   routeTo(email_pass: string = ""){
-    this.databaseQuery.getAllFromDatabase<any>('users').then(resolveUser => {
+    this.databaseQuery.getAllFromDatabase<UserM>('users').then(resolveUser => {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){
+          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
           this.authRouter.navigateByUrl('/zalogowano');
         }
         if(filteredUser[0].type === "personalBrand"){
+          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
           this.authRouter.navigateByUrl('/zalogowano/personalBrand');
         }
         if(filteredUser[0].type === "company"){
+          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
           this.authRouter.navigateByUrl('/zalogowano/company');
         }
       }
     });
-    
-    // return error;
   }
 
   async logOut(){
@@ -152,7 +149,7 @@ export class AuthService {
     if(!error && error === null){
       this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
       window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userAuthentication);
-      this.IsAuth.next(false);
+      window.localStorage.removeItem(LOCAL_STORAGE_KEYS.nsdjlnsf)
       this.authRouter.navigateByUrl('/');
     }
   }

@@ -1,8 +1,8 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
-import { getDataFromLocalStorage } from 'src/app/core/shared/utils/ts/localStorage.functions';
-import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
+import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
-import { Opinions, SupabaseUser } from 'src/app/core/types/interfaces';
+import { Opinions } from 'src/app/core/types/interfaces';
+import { DialogServiceService } from './dialog-service.service';
 
 @Component({
   selector: 'opn-dialog-new-opinion',
@@ -16,30 +16,37 @@ export class DialogNewOpinionComponent {
   protected valu = "";
   protected _ViewSelected = 0;
 
+  protected dialogNewService = inject(DialogServiceService);
+  protected opinionsService = inject(OpinionsService);
+
   backView(){
     if(this._ViewSelected === 1){
       this._ViewSelected = 0;
-      this.actionButton.nativeElement.textContent = "Dalej";
     }
   }
 
-  closeDialog(){
-    
+  toogle(e: Event){
+    if(this._ViewSelected === 0){
+      if((e.target as HTMLElement).localName !== "div"){
+        this.valu = (e.target as HTMLElement).textContent as string;
+      }
+      this._ViewSelected = 1;
+    }
   }
 
-  toogle(e: Event){
-    if((e.target as HTMLElement).localName !== "div"){
-      this.valu = (e.target as HTMLElement).textContent as string;
-      this._ViewSelected = 1;
-      this.actionButton.nativeElement.textContent = "Wystaw opinię";
+  emitOpinion(){
+    if(this._ViewSelected === 1){
+      this.giveFeedback();
     }
   }
 
   giveFeedback(){
-    const user = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).user; // TEMPORARY:TODO:Reminder change it!
-    let newOpinionObj: Opinions = CreateOpinion(user.id, user.email as string, Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
+    const {userId, userName} = this.opinionsService.GetUserFromState();
+    let newOpinionObj: Opinions = CreateOpinion(userId, userName, Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
+    console.log(newOpinionObj);
     this.opinionEmitter.emit(newOpinionObj);
     this.textAreaElement.nativeElement.value = "";
-    this._ViewSelected = 100;
+    this._ViewSelected = 0;
+    this.dialogNewService.closeDialog();
   }
 }

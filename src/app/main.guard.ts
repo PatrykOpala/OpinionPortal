@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { AuthService } from './core/services/auth/auth.service';
 import { LOCAL_STORAGE_KEYS } from './core/types/constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MainGuard implements CanActivate {
-  constructor(private mainRouter: Router){}
+  constructor(private mainRouter: Router, private authService: AuthService){}
   canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       if(!window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
         return true;

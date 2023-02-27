@@ -16,11 +16,9 @@ export class MenuBarComponent implements OnInit, LogOutUser{
   protected profileOptions: boolean = false;
 
   constructor() {
-    this.authService.IsAuth.subscribe((auth)=>{
-      if(auth === true){
-        this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-      }
-    });
+    if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
+      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+    }
   }
 
   signOut(): void {

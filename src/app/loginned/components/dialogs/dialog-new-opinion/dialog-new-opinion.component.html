@@ -1,12 +1,11 @@
 <div class="dialog-background">
     <div class="dialog-container">
         <div class="dialog-header">
-            <button class="close" (click)="closeDialog()"></button>
-            <button class="back" (click)="backView()"><span class="back-temp"></span></button>
+            <button class="close" (click)="dialogNewService.closeDialog()"></button>
+            <button class="back"  *ngIf="_ViewSelected > 0" (click)="backView()"><span class="back-temp"></span></button>
             <span class="dialog-title">Wybierz produkt lub usługę.</span>
         </div>
         <div class="dialog-content" [ngPlural]="_ViewSelected">
-            <!-- (click)="op.reMode = 100" -->
             <ng-template ngPluralCase="0">
                 <div class="opinie-container-content">
                     <ul class="list-grid">
@@ -37,12 +36,11 @@
                 <div class="content" id="content">
                     <span>Add star meter there</span>
                     <textarea placeholder="Napisz Opinię" #area></textarea>
-                    <!--  (click)="giveFeedback()" -->
                 </div>
             </ng-template>
         </div>
         <div class="dialog-buttons">
-            <button class="button-label" #actionButton>Dalej</button>
+            <button class="button-label" #actionButton (click)="emitOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
         </div>
     </div>
 </div>

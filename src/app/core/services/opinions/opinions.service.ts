@@ -1,8 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
+import { addOpinion, addUser, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
 import { stateSelector,} from '../../store/selectors/selectors';
+import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { Opinions, OpinionStateInterface } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
 
@@ -13,7 +14,7 @@ export class OpinionsService extends AuthService {
 
   protected OpinionStore = inject(Store<OpinionStateInterface>);
   opinions$: Observable<OpinionStateInterface>;
-  state: OpinionStateInterface = {user: '', opinion: []}; 
+  state: OpinionStateInterface = { user_id: "", user: '', opinion: []}; 
   reMode = 100;
 
   constructor() {
@@ -54,6 +55,10 @@ export class OpinionsService extends AuthService {
   }
 
   InitialDataInStore(data: unknown){
+    if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf)){
+      let {user, user_id} = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
+      this.OpinionStore.dispatch(addUser({user, user_id}));
+    }
     this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
   }
 
@@ -62,6 +67,9 @@ export class OpinionsService extends AuthService {
   }
 
   GetUserFromState(){
-    return this.state.user != "" ? this.state.user : "";
+    return {
+      userId: this.state.user_id,
+      userName: this.state.user
+    };
   }
 }

@@ -35,6 +35,7 @@ export interface Opinions {
 }
 
 export interface OpinionStateInterface{
+    user_id: string;
     user: string;
     opinion: Opinions[];
 }
