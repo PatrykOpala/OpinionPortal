@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
@@ -9,43 +9,38 @@ import { DialogServiceService } from '../dialog-new-opinion/dialog-service.servi
   templateUrl: './dialog-change-opinion.component.html',
   styleUrls: ['./dialog-change-opinion.component.scss']
 })
-export class DialogChangeOpinionComponent {
+export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   @ViewChild('area') textAreaElement!: ElementRef;
-  @ViewChild('actionButton') actionButton!: ElementRef;
+  @Input() opinionAuthor!: string;
+  @Input() opinionId!: number;
+  @Input() headerOpinion!: string;
+  @Input() opinionContent!: string;
   @Output() opinionEmitter = new EventEmitter<Opinions>();
+  protected author = "Anonim";
   protected valu = "";
   protected _ViewSelected = 0;
 
   protected dialogNewService = inject(DialogServiceService);
   protected opinionsService = inject(OpinionsService);
 
-  backView(){
-    if(this._ViewSelected === 1){
-      this._ViewSelected = 0;
+  ngOnInit(): void{
+    if(this.headerOpinion !== ""){
+      this.author = this.opinionAuthor;
+      this.valu = this.headerOpinion;
     }
   }
 
-  toogle(e: Event){
-    if(this._ViewSelected === 0){
-      if((e.target as HTMLElement).localName !== "div"){
-        this.valu = (e.target as HTMLElement).textContent as string;
-      }
-      this._ViewSelected = 1;
+  ngAfterViewInit(): void {
+    if(this.opinionContent !== ""){
+      this.textAreaElement.nativeElement.value = this.opinionContent;
     }
   }
 
-  emitOpinion(){
-    if(this._ViewSelected === 1){
-      this.giveFeedback();
-    }
-  }
-
-  giveFeedback(){
-    const {userId, userName} = this.opinionsService.GetUserFromState();
-    let newOpinionObj: Opinions = CreateOpinion(userId, userName, Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
-    this.opinionEmitter.emit(newOpinionObj);
+  onChangeOpinion(){
+    let changeOpinionObj: Opinions = CreateOpinion(this.opinionsService.GetUserFromState().userId, this.opinionAuthor, this.opinionId, 
+    this.valu, this.textAreaElement.nativeElement.value);
+    this.opinionsService.ChangeOpinion(String(changeOpinionObj.id), {header: changeOpinionObj.header, content: changeOpinionObj.content});
     this.textAreaElement.nativeElement.value = "";
-    this._ViewSelected = 0;
     this.dialogNewService.closeChangeDialog();
   }
 }

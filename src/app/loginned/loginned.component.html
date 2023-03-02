@@ -1,8 +1,8 @@
 <opn-pane-container>
-    <ng-container *ngComponentOutlet="dialogNew.dialogComponentOutlet"></ng-container>
+    <ng-template [opnDialogNew]></ng-template>
     <ng-template [opnDialogChange]></ng-template>
     <div class="opinion__container">
-        <button (click)="dialogNew.openDialog()" style="font-size: 1.6rem; color: var(--opn-background-color); cursor: pointer; height: 263px; border: none; background-color: var(--opn-green-light); border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+        <button (click)="dialogNew.openNewDialog()" style="font-size: 1.6rem; color: var(--opn-background-color); cursor: pointer; height: 263px; border: none; background-color: var(--opn-green-light); border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div style="width: 70px;">
                 <svg width="13mm" height="13mm" viewBox="0 0 12.999999 12.999999" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
                 <defs
@@ -33,19 +33,12 @@
             </div>
             Dodaj Opinię
         </button>
-        <!-- <opn-opinie-container
-        [mode]="1"
-        [loginP]="true"
-        [user_name]="'Anonim'"
-        (addOpinion)="sendData($event)">
-        </opn-opinie-container> -->
 
         <ng-template [ngIf]="opinionsService.state.opinion.length > 0">
             <opn-opinie-container *ngFor="let ops of opinionsService.state.opinion"
             [loginP]="true"
             [ops]="ops"
-            [user_name]="ops.user_name || 'Anonim'"
-            (addOpinion)="sendData($event)">
+            [user_name]="ops.user_name">
             </opn-opinie-container>
         </ng-template>
     </div>

@@ -42,19 +42,11 @@ export class OpinieContainerComponent implements OnInit {
     }
   }
   changeOpinion(): void{
-    // let changeValue: changeEvent = {id: '', header: '', content: ''};
-    // if(this.paragraph.nativeElement.id !== "undefined"){
-    //   changeValue.id = this.paragraph.nativeElement.id;
-    //   changeValue.header = this.headOpn.nativeElement.textContent;
-    //   changeValue.content = this.paragraph.nativeElement.textContent;
+    if(this.paragraph.nativeElement.id !== "undefined"){
+      this.dialogChangeService.openChangeDialog(this.user_name[0], Number(this.paragraph.nativeElement.id), this.headOpn.nativeElement.textContent, this.paragraph.nativeElement.textContent);
+      this.context = !this.context;
+    }
 
-    //   this.globalChangeValue = changeValue;
-    //   this.eMode = 2;
-    //   this.context = !this.context;
-    // }
-
-    this.dialogChangeService.openChangeDialog();
-    this.context = !this.context;
   }
   SendChangeQuery() {
     let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}

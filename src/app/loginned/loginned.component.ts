@@ -1,6 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { OpinionsService } from '../core/services/opinions/opinions.service';
-import { Opinions } from '../core/types/interfaces';
 import { DialogServiceService } from './components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Component({
@@ -12,10 +11,10 @@ export class LoginnedComponent implements OnInit{
   protected opinionsService = inject(OpinionsService);
   protected dialogNew = inject(DialogServiceService);
   constructor() {
-    this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => this.opinionsService.InitialDataInStore(rr));
+    this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => {
+      const nub = rr.filter((r: any)=> r.user_name === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user);
+      this.opinionsService.InitialDataInStore(nub);
+    });
   }
   ngOnInit(): void {}
-  sendData(data: Opinions){
-    this.opinionsService.SendOpinionToDatabase(data);
-  }
 }

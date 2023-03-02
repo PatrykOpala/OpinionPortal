@@ -24,11 +24,9 @@ export class OpinionsService extends AuthService {
   }
 
   SendOpinionToDatabase(opinions: Opinions): void{
-    this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) => {
-      console.log(`ResolveSend: ${resolve}`);
+    this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) =>{
+      this.OpinionStore.dispatch(addOpinion({opinion: resolve}))
     });
-
-    this.databaseQuery.getAllFromDatabase("opinions").then(resolveGet => console.log(resolveGet))
   }
 
   ChangeOpinion(matchId: string, updateContent: any): void{

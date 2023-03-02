@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, inject, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
@@ -9,15 +9,17 @@ import { DialogServiceService } from './dialog-service.service';
   templateUrl: './dialog-new-opinion.component.html',
   styleUrls: ['./dialog-new-opinion.component.scss']
 })
-export class DialogNewOpinionComponent {
+export class DialogNewOpinionComponent implements OnInit {
   @ViewChild('area') textAreaElement!: ElementRef;
-  @ViewChild('actionButton') actionButton!: ElementRef;
-  @Output() opinionEmitter = new EventEmitter<Opinions>();
   protected valu = "";
+  protected author = "Anonim"
   protected _ViewSelected = 0;
-
   protected dialogNewService = inject(DialogServiceService);
   protected opinionsService = inject(OpinionsService);
+
+  ngOnInit(): void{
+    this.author = this.opinionsService.GetUserFromState().userName;
+  }
 
   backView(){
     if(this._ViewSelected === 1){
@@ -34,19 +36,13 @@ export class DialogNewOpinionComponent {
     }
   }
 
-  emitOpinion(){
-    if(this._ViewSelected === 1){
-      this.giveFeedback();
-    }
-  }
-
-  giveFeedback(){
+  onPublishOpinion(){
     const {userId, userName} = this.opinionsService.GetUserFromState();
     let newOpinionObj: Opinions = CreateOpinion(userId, userName, Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
-    console.log(newOpinionObj);
-    this.opinionEmitter.emit(newOpinionObj);
+    // console.log(newOpinionObj);
+    this.opinionsService.SendOpinionToDatabase(newOpinionObj);
     this.textAreaElement.nativeElement.value = "";
     this._ViewSelected = 0;
-    this.dialogNewService.closeDialog();
+    this.dialogNewService.closeNewDialog();
   }
 }

@@ -78,50 +78,9 @@
         }
 
         .dialog-content{
-            // background-color: red;
             width: 93%;
             height: 70%;
             translate: 30px 55px;
-
-            .opinie-container-content{
-                width: 98%;
-                overflow-y: auto;
-                overflow-x: hidden;
-                scrollbar-width: none;
-                height: 44vh;
-                margin-inline: auto;
-                // border:2px solid red;
-        
-                .list-grid{
-                    padding: 0;
-                    display: grid;
-                    grid-template-columns: repeat(3, 32.8%);
-                    gap: 3px;
-                    margin-left: 0.7%;
-                    font-size: 1.3rem;
-        
-                    .element{
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        border:2px solid black;
-                        width: 98%;
-                        height: 122px;
-                        cursor: pointer;
-                        margin-bottom: 3px;
-                        list-style: none;
-                    }
-        
-                    .element:hover{
-                        border:2px solid #555555;
-                    }
-                }
-            }
-        
-            .opinie-container-content::-webkit-scrollbar{
-                display: none;
-            }
 
             .opinie-header{
                 width: 100%;
@@ -149,7 +108,6 @@
                 margin-top: 3vh;
                 height: 80%;
                 p{margin-top: 10px;font-size: 1.9em;}
-                border: 2px solid #555555;
 
                 span{
                     display: block;

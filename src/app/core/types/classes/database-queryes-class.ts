@@ -16,9 +16,9 @@ export class SupabaseQueryes{
         this.rProvider = supabaseClient;
     }
     async pushToDatabase(databaseColumn: string, pushData: any){
-      const {data, error} = await this.rProvider.from(databaseColumn).insert(pushData);
+      const {data, error} = await this.rProvider.from(databaseColumn).insert(pushData).select();
       if(!error && data !== null){
-        return true;
+        return data[0];
       }
       return true;
     }

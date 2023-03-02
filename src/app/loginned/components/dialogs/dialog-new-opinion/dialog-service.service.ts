@@ -6,23 +6,26 @@ import { DialogNewOpinionComponent } from './dialog-new-opinion.component';
   providedIn: 'root'
 })
 export class DialogServiceService {
-
-  public dialogComponentOutlet: any = null;
+  public dialogNewOpinionRef!: ViewContainerRef;
   public dialogChangeOpinionViewRef!: ViewContainerRef;
-
   constructor() { }
 
-  closeDialog(){
-    this.dialogComponentOutlet = null;
+  closeNewDialog(){
+    this.dialogNewOpinionRef.clear();
   }
 
-  openDialog(){
-    this.dialogComponentOutlet = DialogNewOpinionComponent;
+  openNewDialog(){
+    this.dialogNewOpinionRef.clear();
+    const dialogComponentRef = this.dialogNewOpinionRef.createComponent(DialogNewOpinionComponent);
   }
 
-  openChangeDialog(){
+  openChangeDialog(opinionAuthor: string, opinionID: number, opinionHeader: string, opinionContent: string){
     this.dialogChangeOpinionViewRef.clear();
     const dialogComponentRef = this.dialogChangeOpinionViewRef.createComponent(DialogChangeOpinionComponent);
+    dialogComponentRef.instance.opinionAuthor = opinionAuthor;
+    dialogComponentRef.instance.opinionId = opinionID;
+    dialogComponentRef.instance.headerOpinion = opinionHeader;
+    dialogComponentRef.instance.opinionContent = opinionContent;
   }
 
   closeChangeDialog(){

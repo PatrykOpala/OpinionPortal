@@ -1,7 +1,7 @@
 <div class="dialog-background">
     <div class="dialog-container">
         <div class="dialog-header">
-            <button class="close" (click)="dialogNewService.closeDialog()"></button>
+            <button class="close" (click)="dialogNewService.closeNewDialog()"></button>
             <button class="back"  *ngIf="_ViewSelected > 0" (click)="backView()"><span class="back-temp"></span></button>
             <span class="dialog-title">Wybierz produkt lub usługę.</span>
         </div>
@@ -25,12 +25,14 @@
             <ng-template ngPluralCase="1">
                 <div class="opinie-header">
                     <!-- (click)="op.reMode = 101" -->
-                    <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                        <!-- <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;"></span> -->
+                    <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; 
+                    display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: default; 
+                    font-size: 1.9em; color: hsl(3deg, 97%, 98%);">
+                        {{ author[0] }}
                     </div>
                     <div>
-                        <h1>Anonim</h1>
-                        <span>Zopiniował: {{valu}}</span>
+                        <h1>{{  author  }}</h1>
+                        <span>Zopiniował: <b>{{valu}}</b></span>
                     </div>
                 </div>
                 <div class="content" id="content">
@@ -40,7 +42,7 @@
             </ng-template>
         </div>
         <div class="dialog-buttons">
-            <button class="button-label" #actionButton (click)="emitOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
+            <button class="button-label" (click)="onPublishOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
         </div>
     </div>
 </div>
