@@ -19,6 +19,8 @@ import { PersonalBrandComponent } from './personal-brand/personal-brand.componen
 import { CompanyComponent } from './company/company.component';
 import { DialogAddProduktAndServiceComponent } from './components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
 import { DialogNewOpinionComponent } from './components/dialogs/dialog-new-opinion/dialog-new-opinion.component';
+import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change-opinion/dialog-change-opinion.component';
+import { DialogChangeDirective } from '../core/shared/directives/dialog-change.directive';
 
 const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];
@@ -33,6 +35,8 @@ const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {pat
     CompanyComponent,
     DialogAddProduktAndServiceComponent,
     DialogNewOpinionComponent,
+    DialogChangeOpinionComponent,
+    DialogChangeDirective
   ],
   imports: [
     CommonModule,

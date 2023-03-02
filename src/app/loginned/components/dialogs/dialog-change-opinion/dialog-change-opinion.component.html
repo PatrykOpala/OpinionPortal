@@ -1,0 +1,46 @@
+<div class="dialog-background">
+    <div class="dialog-container">
+        <div class="dialog-header">
+            <button class="close" (click)="dialogNewService.closeChangeDialog()"></button>
+            <button class="back"  *ngIf="_ViewSelected > 0" (click)="backView()"><span class="back-temp"></span></button>
+            <span class="dialog-title">Edytuj opinię.</span>
+        </div>
+        <div class="dialog-content" [ngPlural]="_ViewSelected">
+            <ng-template ngPluralCase="0">
+                <div class="opinie-header">
+                    <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px;
+                     display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                        
+                    </div>
+                    <div>
+                        <h1>Anonim</h1>
+                        <span>Zopiniował: {{valu}}</span>
+                    </div>
+                </div>
+                <div class="content" id="content">
+                    <span>Add star meter there</span>
+                    <textarea placeholder="Napisz Opinię" #area></textarea>
+                </div>
+            </ng-template>
+
+            <ng-template ngPluralCase="1">
+                <div class="opinie-container-content">
+                    <ul class="list-grid">
+                        <li class="element radius" (click)="toogle($event)">Microsoft</li>
+                        <li class="element radius" (click)="toogle($event)">Google</li>
+                        <li class="element radius" (click)="toogle($event)">Android</li>
+                        <li class="element radius" (click)="toogle($event)">Apple</li>
+                        <li class="element radius" (click)="toogle($event)">Xiaomi</li>
+                        <li class="element radius" (click)="toogle($event)">Firefox</li>
+                        <li class="element radius" (click)="toogle($event)">Chrome</li>
+                        <li class="element radius" (click)="toogle($event)">Brave</li>
+                        <li class="element radius" (click)="toogle($event)">Opinier</li>
+                    </ul>
+                </div>
+            </ng-template>
+        </div>
+        <div class="dialog-buttons">
+            <button class="button-label" #actionButton (click)="emitOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
+        </div>
+    </div>
+</div>

@@ -1,5 +1,6 @@
 <opn-pane-container>
     <ng-container *ngComponentOutlet="dialogNew.dialogComponentOutlet"></ng-container>
+    <ng-template [opnDialogChange]></ng-template>
     <div class="opinion__container">
         <button (click)="dialogNew.openDialog()" style="font-size: 1.6rem; color: var(--opn-background-color); cursor: pointer; height: 263px; border: none; background-color: var(--opn-green-light); border-radius: 3px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
             <div style="width: 70px;">

@@ -21,7 +21,7 @@
                 <p [id]="opID" #paragraph>{{content}}</p>
             </div>
             <div class="container__menu" *ngIf="context">
-                <button (click)="changeOpinion($event)">Edytuj</button>
+                <button (click)="changeOpinion()">Edytuj</button>
                 <button (click)="deleteOpinion()">Usuń</button>
             </div>
         </div>

@@ -1,16 +1,16 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { Opinions } from 'src/app/core/types/interfaces';
 import {CreateOpinion} from 'src/app/core/types/functions';
 import { getDataFromLocalStorage } from '../../utils/ts/localStorage.functions';
 import {SupabaseUser, changeEvent} from '../../../types/interfaces';
 import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
+import { DialogServiceService } from 'src/app/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Component({
   selector: 'opn-opinie-container',
   templateUrl: './opinie-container.component.html',
   styleUrls: ['./opinie-container.component.scss'],
-  encapsulation: ViewEncapsulation.None
 })
 export class OpinieContainerComponent implements OnInit {
 
@@ -32,7 +32,7 @@ export class OpinieContainerComponent implements OnInit {
   protected valu: NonNullable<string> = "";
   protected globalChangeValue: changeEvent = {id: '', header: '', content: ''};
 
-  constructor(protected op: OpinionsService){}
+  constructor(protected op: OpinionsService, private dialogChangeService: DialogServiceService){}
 
   ngOnInit(): void {
     if(this.ops !== undefined){
@@ -41,17 +41,20 @@ export class OpinieContainerComponent implements OnInit {
       this.opID = this.ops.id;
     }
   }
-  changeOpinion(e: Event): void{
-    let changeValue: changeEvent = {id: '', header: '', content: ''};
-    if(this.paragraph.nativeElement.id !== "undefined"){
-      changeValue.id = this.paragraph.nativeElement.id;
-      changeValue.header = this.headOpn.nativeElement.textContent;
-      changeValue.content = this.paragraph.nativeElement.textContent;
+  changeOpinion(): void{
+    // let changeValue: changeEvent = {id: '', header: '', content: ''};
+    // if(this.paragraph.nativeElement.id !== "undefined"){
+    //   changeValue.id = this.paragraph.nativeElement.id;
+    //   changeValue.header = this.headOpn.nativeElement.textContent;
+    //   changeValue.content = this.paragraph.nativeElement.textContent;
 
-      this.globalChangeValue = changeValue;
-      this.eMode = 2;
-      this.context = !this.context;
-    }
+    //   this.globalChangeValue = changeValue;
+    //   this.eMode = 2;
+    //   this.context = !this.context;
+    // }
+
+    this.dialogChangeService.openChangeDialog();
+    this.context = !this.context;
   }
   SendChangeQuery() {
     let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}
