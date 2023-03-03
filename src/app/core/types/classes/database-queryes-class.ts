@@ -24,10 +24,7 @@ export class SupabaseQueryes{
     }
     async getAllFromDatabase<TypeReturnData>(databaseColumn: string): Promise<TypeReturnData[]>{
         let b = [];
-        const {data: returnData, error} = await this.rProvider.from(databaseColumn).select('*');
-        if(error !== null && returnData === null){
-            // return {error: "true"};
-        }
+        const {data: returnData} = await this.rProvider.from(databaseColumn).select('*');
         if(returnData !== null){
             b = returnData
         }
@@ -49,7 +46,6 @@ export class SupabaseQueryes{
                         return accu;
                     },[]);
                 }
-                console.log(bd);
                 if(bd.length != 0){
                   store.dispatch(changeOpinion({opinion: bd}));
                 }

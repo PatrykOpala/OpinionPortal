@@ -1,122 +1,25 @@
-<div [ngPlural]="eMode">
-    <ng-template ngPluralCase="0">
-        <div class="opinie-container radius">
-            <div class="opinie-header">
-                <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                   <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;">{{user_name[0]}}</span>
-                </div>
-                <div>
-                    <h1>{{user_name}}</h1>
-                    <span>Zopiniował: <b #headOpn>{{header}}</b></span>
-                </div>
-                <div *ngIf="login" id="context-m" class="context_m" (click)="context = !context">
-                    <svg width="30" height="50" viewBox="-6 2 30 40">
-                        <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                        <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                        <circle cx="10" cy="38" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                    </svg>
-                </div>
-            </div>
-            <div class="content" id="content ">
-                <p [id]="opID" #paragraph>{{content}}</p>
-            </div>
-            <div class="container__menu" *ngIf="context">
-                <button (click)="changeOpinion()">Edytuj</button>
-                <button (click)="deleteOpinion()">Usuń</button>
-            </div>
+<div class="opinie-container radius">
+    <div class="opinie-header">
+        <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+            <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;">{{user_name[0]}}</span>
         </div>
-    </ng-template>
-
-    <ng-template ngPluralCase="1">
-        <div class="edit-container radius" [ngPlural]="op.reMode">
-            <ng-template ngPluralCase="100">
-                <button (click)="op.reMode = 101" class="call-to-action radius hover">
-                    <div style="width: 70px; margin-left: 42%; margin-bottom: 2%;">
-                        <svg width="13mm" height="13mm" viewBox="0 0 12.999999 12.999999" version="1.1" id="svg5" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
-                        <defs
-                            id="defs2" />
-                        <g
-                            id="layer1">
-                            <g
-                            id="g1963"
-                            transform="matrix(0.83602771,0,0,0.83602771,-1.3803372,-1.0609309)">
-                            <rect
-                                style="fill:hsl(0,0%,99%);fill-opacity:1;stroke:none;stroke-width:1.77691;stroke-linecap:round;paint-order:fill markers stroke"
-                                id="rect61-6"
-                                width="3.9914572"
-                                height="13.290305"
-                                x="-11.190135"
-                                y="2.7035816"
-                                transform="matrix(0.00662113,-0.99997808,0.99998904,0.00468206,0,0)" />
-                            <rect
-                                style="fill:hsl(0,0%,99%);fill-opacity:1;stroke:none;stroke-width:1.77719;stroke-linecap:round;paint-order:fill markers stroke"
-                                id="rect61"
-                                width="3.9914317"
-                                height="13.294538"
-                                x="7.3995004"
-                                y="2.5176723" />
-                            </g>
-                        </g>
-                        </svg>
-                    </div>
-                    Dodaj Opinię
-                </button>
-            </ng-template>
-
-            <ng-template ngPluralCase="101">
-                <h3 style="margin-right: 25px; margin-left: -25px; margin-top: 28px;"><button class="call-to-action-small hover radius" (click)="op.reMode = 100"> Anuluj</button> Wybierz produkt lub firmę</h3>
-                <div class="opinie-container-content">
-                    <ul class="list-grid">
-                        <li class="element radius" (click)="toogle($event)">Microsoft</li>
-                        <li class="element radius" (click)="toogle($event)">Google</li>
-                        <li class="element radius" (click)="toogle($event)">Android</li>
-                        <li class="element radius" (click)="toogle($event)">Apple</li>
-                        <li class="element radius" (click)="toogle($event)">Xiaomi</li>
-                        <li class="element radius" (click)="toogle($event)">Firefox</li>
-                        <li class="element radius" (click)="toogle($event)">Chrome</li>
-                        <li class="element radius" (click)="toogle($event)">Brave</li>
-                        <li class="element radius" (click)="toogle($event)">Opinier</li>
-                    </ul>
-                </div>
-            </ng-template>
-            <ng-template ngPluralCase="102">
-                <div class="opinie-header">
-                    <div (click)="op.reMode = 101" class="primary" style="margin-left: 10px; margin-right: 5px; width: max-content; height: max-content; padding: 4px 12px; margin-top: 10px;">
-                        Wróć
-                    </div>
-                    <div>
-                        <h1>{{user_name}}</h1>
-                        <span>Zopiniował: {{valu}}</span>
-                    </div>
-                </div>
-                <div class="content edit-content" id="content">
-                    <textarea placeholder="Napisz Opinię" #area></textarea>
-                    <button class="primary" (click)="giveFeedback()">Wystaw Opinie</button>
-                </div>
-            </ng-template>
+        <div>
+            <h1>{{user_name}}</h1>
+            <span>Zopiniował: <b #headOpn>{{header}}</b></span>
         </div>
-    </ng-template>
-
-    <ng-template ngPluralCase="2">
-        <div class="edit-container radius">
-            <div class="opinie-header">
-                <div (click)="eMode = 0" class="primary radius" style="margin-left: 10px; margin-right: 5px; width: max-content; height: max-content; padding: 4px 12px; margin-top: 10px;">
-                    Anuluj
-                </div>
-                <div>
-                    <h1>{{user_name}}</h1>
-                    <span>Zopiniował: <b>{{globalChangeValue.header}}</b></span>
-                </div>
-            </div>
-            <div class="content edit-content" id="content">
-                <textarea #area>{{globalChangeValue.content}}</textarea>
-                <button class="primary radius" (click)="SendChangeQuery()">Zmień Opinie</button>
-            </div>
+        <div *ngIf="login" id="context-m" class="context_m" (click)="context = !context">
+            <svg width="30" height="50" viewBox="-6 2 30 40">
+                <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+                <circle cx="10" cy="38" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+            </svg>
         </div>
-    </ng-template>
+    </div>
+    <div class="content" id="content ">
+        <p [id]="opID" #paragraph>{{content}}</p>
+    </div>
+    <div class="container__menu" *ngIf="context">
+        <button (click)="changeOpinion()">Edytuj</button>
+        <button (click)="deleteOpinion()">Usuń</button>
+    </div>
 </div>
-<!--
-background-color: #333333; cursor: pointer;
-<ng-content select="opn-opinie-header"></ng-content>
-<ng-content select="opn-opinie-content"></ng-content>
--->

@@ -1,10 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { Opinions } from 'src/app/core/types/interfaces';
-import {CreateOpinion} from 'src/app/core/types/functions';
-import { getDataFromLocalStorage } from '../../utils/ts/localStorage.functions';
-import {SupabaseUser, changeEvent} from '../../../types/interfaces';
-import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
+import { changeEvent } from '../../../types/interfaces';
 import { DialogServiceService } from 'src/app/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Component({
@@ -13,16 +10,12 @@ import { DialogServiceService } from 'src/app/loginned/components/dialogs/dialog
   styleUrls: ['./opinie-container.component.scss'],
 })
 export class OpinieContainerComponent implements OnInit {
-
-  @ViewChild('area') e!: ElementRef;
   @ViewChild('headOpn') headOpn!: ElementRef;
   @ViewChild('paragraph') paragraph!: ElementRef;
 
   @Input("loginP") login: boolean = false;
-  @Input("mode") eMode: number = 0;
   @Input("ops") ops?: Opinions;
   @Input("user_name") user_name = "";
-  @Output() addOpinion = new EventEmitter<any>();
   
   protected opID?: number;
   protected header?: string;
@@ -41,34 +34,16 @@ export class OpinieContainerComponent implements OnInit {
       this.opID = this.ops.id;
     }
   }
-  changeOpinion(): void{
+  changeOpinion(): void {
     if(this.paragraph.nativeElement.id !== "undefined"){
       this.dialogChangeService.openChangeDialog(this.user_name[0], Number(this.paragraph.nativeElement.id), this.headOpn.nativeElement.textContent, this.paragraph.nativeElement.textContent);
       this.context = !this.context;
     }
-
-  }
-  SendChangeQuery() {
-    let changeObj = {id: this.globalChangeValue.id, header: this.globalChangeValue.header, content: this.e.nativeElement.value}
-    this.op.ChangeOpinion(this.globalChangeValue.id, changeObj);
   }
   deleteOpinion(): void{
     if(this.paragraph.nativeElement.id !== "undefined"){
       this.op.DeleteOpinion({id: this.paragraph.nativeElement.id});
       this.context = !this.context;
     }
-  }
-  toogle(e: Event){
-    if((e.target as HTMLElement).localName !== "div"){
-      this.valu = (e.target as HTMLElement).textContent as string;
-      this.op.reMode = 102;
-    }
-  }
-  giveFeedback(){
-    const user = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication).user;
-    let newOpinionObj: Opinions = CreateOpinion(user.id, user.email as string, Math.floor(Math.random() * 1000), this.valu, this.e.nativeElement.value);
-    this.addOpinion.emit(newOpinionObj);
-    this.e.nativeElement.value = "";
-    this.op.reMode = 100;
   }
 }

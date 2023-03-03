@@ -47,9 +47,7 @@ export class OpinionsService extends AuthService {
     if(id != undefined){
       newArray = this.state.opinion.filter(e => e.id !== id);
     }
-    if(newArray.length !== 0){
-      this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
-    }
+    this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
   }
 
   InitialDataInStore(data: unknown){
