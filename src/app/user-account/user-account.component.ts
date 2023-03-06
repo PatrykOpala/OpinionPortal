@@ -1,5 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../core/services/auth/auth.service';
+import { OpinionsService } from '../core/services/opinions/opinions.service';
 import {getDataFromLocalStorage} from '../core/shared/utils/ts/localStorage.functions';
 import { LOCAL_STORAGE_KEYS } from '../core/types/constants';
 import { SupabaseUser } from '../core/types/interfaces';
@@ -14,6 +15,7 @@ export class UserAccountComponent implements OnInit {
   protected nameAvatar: string = "";
   protected userName: string = "";
   private authService = inject(AuthService);
+  protected opinionsService = inject(OpinionsService);
 
   constructor() { }
 
@@ -29,6 +31,11 @@ export class UserAccountComponent implements OnInit {
       let userEmail = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)?.user?.email;
       this.authService.deleteUser(userEmail as string);
     }
+  }
+
+  cancelDeleteAccount(): void{
+    let userEmail = getDataFromLocalStorage<SupabaseUser>(LOCAL_STORAGE_KEYS.userAuthentication)?.user?.email;
+    this.authService.cancelDeleteUser(userEmail as string);
   }
 
 }

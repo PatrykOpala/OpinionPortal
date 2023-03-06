@@ -14,7 +14,7 @@ export class OpinionsService extends AuthService {
 
   protected OpinionStore = inject(Store<OpinionStateInterface>);
   opinions$: Observable<OpinionStateInterface>;
-  state: OpinionStateInterface = { user_id: "", user: '', opinion: []}; 
+  state: OpinionStateInterface = { user: {id: 0, email: "", name: "", type: "", created_at: "", user_uuid: "", delete_user: false}, opinion: []}; 
   reMode = 100;
 
   constructor() {
@@ -52,8 +52,8 @@ export class OpinionsService extends AuthService {
 
   InitialDataInStore(data: unknown){
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf)){
-      let {user, user_id} = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
-      this.OpinionStore.dispatch(addUser({user, user_id}));
+      let {user} = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
+      this.OpinionStore.dispatch(addUser({user}));
     }
     this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
   }
@@ -64,8 +64,7 @@ export class OpinionsService extends AuthService {
 
   GetUserFromState(){
     return {
-      userId: this.state.user_id,
-      userName: this.state.user
+      user: this.state.user
     };
   }
 }

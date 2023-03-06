@@ -38,14 +38,14 @@ export class AuthService {
     try{
       if(registerType === "company"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase = {
-            user_uuid: response.data.user?.id,
+          const userDatabase: UserM = {
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
+          this.opinionStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -56,14 +56,14 @@ export class AuthService {
 
       if(registerType === "personalBrand"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase = {
-            user_uuid: response.data.user?.id,
+          const userDatabase: UserM = {
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
+          this.opinionStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -74,14 +74,14 @@ export class AuthService {
 
       if(registerType === "user"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-          const userDatabase = {
-            user_uuid: response.data.user?.id,
+          const userDatabase: UserM = {
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
             delete_user: false
           }
-          this.opinionStore.dispatch(addUser({user: name, user_id: userDatabase.user_uuid === undefined ? "" : userDatabase.user_uuid}));
+          this.opinionStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
@@ -126,18 +126,18 @@ export class AuthService {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
           this.authRouter.navigateByUrl('/zalogowano');
         }
         if(filteredUser[0].type === "personalBrand"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
           this.authRouter.navigateByUrl('/zalogowano/personalBrand');
         }
         if(filteredUser[0].type === "company"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0].name, user_id: filteredUser[0].user_uuid}));
+          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
           this.authRouter.navigateByUrl('/zalogowano/company');
         }
       }
@@ -155,12 +155,24 @@ export class AuthService {
   }
 
   async deleteUser(email: string){
+      const userToDelete = {
+        delete_user: true
+      };
+      const {data, error} = await this.supabaseProvider.sClient
+      .from("users")
+      .update(userToDelete).match({email: email}).select();
+      this.opinionStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      if(error) console.error(error);
+  }
+
+  async cancelDeleteUser(email: string){
     const userToDelete = {
-      delete_user: true
+      delete_user: false
     };
-    const {error} = await this.supabaseProvider.sClient
-    .from("users")
-    .update(userToDelete).match({email: email});
-    if(error) console.error(error);
+    const {data, error} = await this.supabaseProvider.sClient
+      .from("users")
+      .update(userToDelete).match({email: email}).select();
+      this.opinionStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      if(error) console.error(error);
   }
 }

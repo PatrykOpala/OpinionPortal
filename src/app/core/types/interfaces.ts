@@ -16,11 +16,11 @@ export interface ChangeState{
 }
 
 export interface UserM{
-    id: number,
+    id?: number,
     email: string,
     name: string,
     type: string,
-    created_at: string,
+    created_at?: string,
     user_uuid: string,
     delete_user: boolean
 }
@@ -35,8 +35,7 @@ export interface Opinions {
 }
 
 export interface OpinionStateInterface{
-    user_id: string;
-    user: string;
+    user: UserM;
     opinion: Opinions[];
 }
 

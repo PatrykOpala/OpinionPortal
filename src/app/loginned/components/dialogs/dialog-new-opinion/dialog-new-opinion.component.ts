@@ -18,7 +18,7 @@ export class DialogNewOpinionComponent implements OnInit {
   protected opinionsService = inject(OpinionsService);
 
   ngOnInit(): void{
-    this.author = this.opinionsService.GetUserFromState().userName;
+    this.author = this.opinionsService.GetUserFromState().user.name;
   }
 
   backView(){
@@ -37,9 +37,8 @@ export class DialogNewOpinionComponent implements OnInit {
   }
 
   onPublishOpinion(){
-    const {userId, userName} = this.opinionsService.GetUserFromState();
-    let newOpinionObj: Opinions = CreateOpinion(userId, userName, Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
-    // console.log(newOpinionObj);
+    const {user} = this.opinionsService.GetUserFromState();
+    let newOpinionObj: Opinions = CreateOpinion(user.user_uuid !== undefined ? user.user_uuid : '', user.name !== undefined ? user.name : '', Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
     this.opinionsService.SendOpinionToDatabase(newOpinionObj);
     this.textAreaElement.nativeElement.value = "";
     this._ViewSelected = 0;

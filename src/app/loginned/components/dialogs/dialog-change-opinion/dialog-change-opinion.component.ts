@@ -37,7 +37,7 @@ export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   }
 
   onChangeOpinion(){
-    let changeOpinionObj: Opinions = CreateOpinion(this.opinionsService.GetUserFromState().userId, this.opinionAuthor, this.opinionId, 
+    let changeOpinionObj: Opinions = CreateOpinion(this.opinionsService.GetUserFromState().user.user_uuid, this.opinionAuthor, this.opinionId, 
     this.valu, this.textAreaElement.nativeElement.value);
     this.opinionsService.ChangeOpinion(String(changeOpinionObj.id), {header: changeOpinionObj.header, content: changeOpinionObj.content});
     this.textAreaElement.nativeElement.value = "";
