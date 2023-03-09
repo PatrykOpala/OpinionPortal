@@ -133,7 +133,7 @@ export class AuthService {
         if(filteredUser[0].type === "personalBrand"){
           this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
-          this.authRouter.navigateByUrl('/zalogowano/personalBrand');
+          this.authRouter.navigateByUrl('/zalogowano/personal-brand');
         }
         if(filteredUser[0].type === "company"){
           this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
