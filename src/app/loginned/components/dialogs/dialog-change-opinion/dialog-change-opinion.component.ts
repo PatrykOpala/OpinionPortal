@@ -1,5 +1,6 @@
 import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, AfterViewInit, OnInit } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
+import { UserStoreService } from 'src/app/core/services/user/user-store.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
 import { DialogServiceService } from '../dialog-new-opinion/dialog-service.service';
@@ -21,6 +22,7 @@ export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   protected _ViewSelected = 0;
 
   protected dialogNewService = inject(DialogServiceService);
+  protected userStoreService = inject(UserStoreService);
   protected opinionsService = inject(OpinionsService);
 
   ngOnInit(): void{
@@ -37,7 +39,7 @@ export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   }
 
   onChangeOpinion(){
-    let changeOpinionObj: Opinions = CreateOpinion(this.opinionsService.GetUserFromState().user.user_uuid, this.opinionAuthor, this.opinionId, 
+    let changeOpinionObj: Opinions = CreateOpinion(this.userStoreService.getUserFromStore().user.user_uuid, this.opinionAuthor, this.opinionId, 
     this.valu, this.textAreaElement.nativeElement.value);
     this.opinionsService.ChangeOpinion(String(changeOpinionObj.id), {header: changeOpinionObj.header, content: changeOpinionObj.content});
     this.textAreaElement.nativeElement.value = "";

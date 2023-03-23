@@ -15,16 +15,6 @@ export interface ChangeState{
     headOpinion: string,
 }
 
-export interface UserM{
-    id?: number,
-    email: string,
-    name: string,
-    type: string,
-    created_at?: string,
-    user_uuid: string,
-    delete_user: boolean
-}
-
 export interface Opinions {
     user_uuid: string,
     user_name: string,
@@ -34,8 +24,7 @@ export interface Opinions {
     content: string
 }
 
-export interface OpinionStateInterface{
-    user: UserM;
+export interface IOpinionState{
     opinion: Opinions[];
 }
 

@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { addOpinion, addUser, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
+import { addOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
 import { stateSelector,} from '../../store/selectors/selectors';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
-import { Opinions, OpinionStateInterface } from '../../types/interfaces';
+import { Opinions, IOpinionState } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
 
 @Injectable({
@@ -12,10 +12,9 @@ import { AuthService } from '../auth/auth.service';
 })
 export class OpinionsService extends AuthService {
 
-  protected OpinionStore = inject(Store<OpinionStateInterface>);
-  opinions$: Observable<OpinionStateInterface>;
-  state: OpinionStateInterface = { user: {id: 0, email: "", name: "", type: "", created_at: "", user_uuid: "", delete_user: false}, opinion: []}; 
-  reMode = 100;
+  private OpinionStore = inject(Store<IOpinionState>);
+  opinions$: Observable<IOpinionState>;
+  state: IOpinionState = { opinion: [] };
 
   constructor() {
     super()
@@ -36,13 +35,13 @@ export class OpinionsService extends AuthService {
   async DeleteOpinion(deleteData: any): Promise<void>{
     const {success, error} = await this.databaseQuery.deleteDataAtDatabase('opinions', deleteData);
     if(success !== null && error !== null){
-      this.DeleteOpinionFromState(Number(deleteData.id));
+      this.DeleteOpinionFromStore(Number(deleteData.id));
     }else{
       console.error(error);
     }
   }
 
-  DeleteOpinionFromState(id: number): void{
+  DeleteOpinionFromStore(id: number): void{
     let newArray: Opinions[] = [];
     if(id != undefined){
       newArray = this.state.opinion.filter(e => e.id !== id);
@@ -53,18 +52,12 @@ export class OpinionsService extends AuthService {
   InitialDataInStore(data: unknown){
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf)){
       let {user} = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
-      this.OpinionStore.dispatch(addUser({user}));
+      // this.OpinionStore.dispatch(addUser({user}));
     }
     this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
   }
 
   AddOpinionToStore(v: Opinions): void{
     this.OpinionStore.dispatch(addOpinion({opinion: v}));
-  }
-
-  GetUserFromState(){
-    return {
-      user: this.state.user
-    };
   }
 }

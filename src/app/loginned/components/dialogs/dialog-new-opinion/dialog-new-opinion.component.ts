@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, inject, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
+import { UserStoreService } from 'src/app/core/services/user/user-store.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
 import { DialogServiceService } from './dialog-service.service';
@@ -16,9 +17,10 @@ export class DialogNewOpinionComponent implements OnInit {
   protected _ViewSelected = 0;
   protected dialogNewService = inject(DialogServiceService);
   protected opinionsService = inject(OpinionsService);
+  protected userStoreService = inject(UserStoreService);
 
   ngOnInit(): void{
-    this.author = this.opinionsService.GetUserFromState().user.name;
+    this.author = this.userStoreService.getUserFromStore().user.name;
   }
 
   backView(){
@@ -37,7 +39,7 @@ export class DialogNewOpinionComponent implements OnInit {
   }
 
   onPublishOpinion(){
-    const {user} = this.opinionsService.GetUserFromState();
+    const {user} = this.userStoreService.getUserFromStore();
     let newOpinionObj: Opinions = CreateOpinion(user.user_uuid !== undefined ? user.user_uuid : '', user.name !== undefined ? user.name : '', Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
     this.opinionsService.SendOpinionToDatabase(newOpinionObj);
     this.textAreaElement.nativeElement.value = "";

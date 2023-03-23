@@ -2,15 +2,16 @@ import { inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { addUser } from '../../store/actions/opinion.actions';
+import { addUser } from '../../store/actions/user.actions';
 import { DatabaseConnection } from '../../types/classes/database-connection.class';
 import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
-import { LOCAL_STORAGE_KEYS } from '../../types/constants';
+import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_COMPANY_URL, NAVIGATE_TO_HOME_URL, 
+  NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_PERSONALBRAND_URL } from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
-import { OpinionStateInterface, UserM} from '../../types/interfaces';
+import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
+import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
 // interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
@@ -23,7 +24,7 @@ export class AuthService {
   public disabled: boolean = false;
   public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
-  private opinionStore = inject(Store<OpinionStateInterface>);
+  private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
   public databaseQuery: SupabaseQueryes;
@@ -38,55 +39,58 @@ export class AuthService {
     try{
       if(registerType === "company"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase: UserM = {
+          const userDatabase: IDataBaseUser = {
             user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
-            delete_user: false
+            delete_user: false,
+            isEmpty: false
           }
-          this.opinionStore.dispatch(addUser({user: name}));
+          this.userStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(() => {
-          this.authRouter.navigateByUrl("/zalogowano/company");
+          this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         });
       }
 
       if(registerType === "personalBrand"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase: UserM = {
+          const userDatabase: IDataBaseUser = {
             user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
-            delete_user: false
+            delete_user: false,
+            isEmpty: false
           }
-          this.opinionStore.dispatch(addUser({user: name}));
+          this.userStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
-          this.authRouter.navigateByUrl("/zalogowano/personal-brand");
+          this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         });
       }
 
       if(registerType === "user"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-          const userDatabase: UserM = {
+          const userDatabase: IDataBaseUser = {
             user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
             name,
             email,
             type: registerType,
-            delete_user: false
+            delete_user: false,
+            isEmpty: false
           }
-          this.opinionStore.dispatch(addUser({user: name}));
+          this.userStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
-          this.authRouter.navigateByUrl("/zalogowano");
+          this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
         });
       }
     }catch(e){
@@ -122,23 +126,59 @@ export class AuthService {
   }
 
   routeTo(email_pass: string = ""){
-    this.databaseQuery.getAllFromDatabase<UserM>('users').then(resolveUser => {
+    this.databaseQuery.getAllFromDatabase<IDataBaseUser>('users').then(resolveUser => {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
-          this.authRouter.navigateByUrl('/zalogowano');
+          let loggedUser = {
+            user: {
+              id: filteredUser[0].id,
+              type: filteredUser[0].type,
+              name: filteredUser[0].name,
+              email: filteredUser[0].email,
+              created_at: filteredUser[0].created_at,
+              user_uuid: filteredUser[0].user_uuid,
+              delete_user: filteredUser[0].delete_user,
+              isEmpty: false
+            }
+          };
+          this.userStore.dispatch(addUser(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
         }
         if(filteredUser[0].type === "personalBrand"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
-          this.authRouter.navigateByUrl('/zalogowano/personal-brand');
+          let loggedUser = {
+            user: {
+              id: filteredUser[0].id,
+              type: filteredUser[0].type,
+              name: filteredUser[0].name,
+              email: filteredUser[0].email,
+              created_at: filteredUser[0].created_at,
+              user_uuid: filteredUser[0].user_uuid,
+              delete_user: filteredUser[0].delete_user,
+              isEmpty: false
+            }
+          };
+          this.userStore.dispatch(addUser(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         }
         if(filteredUser[0].type === "company"){
-          this.opinionStore.dispatch(addUser({user: filteredUser[0]}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify({user: filteredUser[0]}));
-          this.authRouter.navigateByUrl('/zalogowano/company');
+          let loggedUser = {
+            user: {
+              id: filteredUser[0].id,
+              type: filteredUser[0].type,
+              name: filteredUser[0].name,
+              email: filteredUser[0].email,
+              created_at: filteredUser[0].created_at,
+              user_uuid: filteredUser[0].user_uuid,
+              delete_user: filteredUser[0].delete_user,
+              isEmpty: false
+            }
+          };
+          this.userStore.dispatch(addUser(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         }
       }
     });
@@ -150,7 +190,7 @@ export class AuthService {
       this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.NOTLOGGEDIN);
       window.localStorage.removeItem(LOCAL_STORAGE_KEYS.userAuthentication);
       window.localStorage.removeItem(LOCAL_STORAGE_KEYS.nsdjlnsf)
-      this.authRouter.navigateByUrl('/');
+      this.authRouter.navigateByUrl(NAVIGATE_TO_HOME_URL);
     }
   }
 
@@ -161,7 +201,7 @@ export class AuthService {
       const {data, error} = await this.supabaseProvider.sClient
       .from("users")
       .update(userToDelete).match({email: email}).select();
-      this.opinionStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
       if(error) console.error(error);
   }
 
@@ -172,7 +212,7 @@ export class AuthService {
     const {data, error} = await this.supabaseProvider.sClient
       .from("users")
       .update(userToDelete).match({email: email}).select();
-      this.opinionStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
       if(error) console.error(error);
   }
 }
