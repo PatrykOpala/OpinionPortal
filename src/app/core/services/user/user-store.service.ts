@@ -21,7 +21,6 @@ export class UserStoreService{
     this._users$.subscribe(u => {
       this.users = u;
     });
-
   }
 
   getUserFromStore(): {user: IDataBaseUser}{

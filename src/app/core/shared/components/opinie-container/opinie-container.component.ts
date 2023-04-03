@@ -1,8 +1,8 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { Opinions } from 'src/app/core/types/interfaces';
 import { changeEvent } from '../../../types/interfaces';
-import { DialogServiceService } from 'src/app/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
+import { DialogServiceService } from '../../../../pages/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Component({
   selector: 'opn-opinie-container',

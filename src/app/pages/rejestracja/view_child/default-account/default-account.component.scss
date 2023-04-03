@@ -1,0 +1,42 @@
+@use "../../../../core/shared/utils/scss/op-mixins.scss" as *;
+
+.field-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 22px;
+    margin-left: 4%;
+}
+
+.field{
+    display: block;
+    font-size: 1.5rem;
+    width: max-content;
+}
+
+.inputC{
+    width: 30vw;
+    padding: 10px;
+    outline: 1px solid transparent;
+    border: 1px solid #cccccc;
+    font-size: 1.8rem;
+    margin-top: 4px;
+}
+
+.inputC:focus{
+    border: 1px solid var(--opn-color-green);
+}
+
+button{
+    margin-top: 7%;
+    font-size: 1.8rem;
+    letter-spacing: 4px;
+    border: 1px solid transparent;
+    padding: 10px;
+    background-color: var(--opn-color-green);
+    color: #ffffff;
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: var(--opn-color-green);
+}

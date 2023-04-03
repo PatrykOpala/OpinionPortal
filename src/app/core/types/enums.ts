@@ -8,3 +8,8 @@ export enum ViewPN{
     POSITIVE = "positive",
     NEGATIVE = "negative"
 }
+
+export enum TypeProduct{
+    PRODUCT = "Product",
+    SERVICE = "Service"
+}

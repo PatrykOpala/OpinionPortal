@@ -1,5 +1,5 @@
 import { Directive, ViewContainerRef } from '@angular/core';
-import { DialogServiceService } from 'src/app/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
+import { DialogServiceService } from '../../../pages/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Directive({
   selector: '[opnDialogNew]'

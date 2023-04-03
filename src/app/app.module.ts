@@ -7,12 +7,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 import { environment } from 'src/environments/environment';
 import { MenuBarComponent } from '../app/core/shared/components/menu-bar/menu-bar.component';
-import { SharedModule } from '../app/core/shared/modules/shared.module';
-import { AppRoutesModule } from './app-routes.module';
+import { SharedModule } from './core/shared/modules/shared.module';
+import { AppRoutesModule } from './routes/app-routes.module';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { userReducer } from './core/store/reducers/user.reducer';
 
