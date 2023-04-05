@@ -19,7 +19,7 @@ export class DialogAddProduktAndServiceComponent {
 
   name: string = "";
   description: string = "";
-  radioControl = new FormControl('produkt');
+  radioControl = new FormControl('');
 
   confirmAddProduct(){
     const checkProduct = this.radioControl.value === "produkt" ? TypeProduct.PRODUCT : TypeProduct.SERVICE;
