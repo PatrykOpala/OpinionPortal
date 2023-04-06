@@ -20,7 +20,7 @@ export class LoginnedComponent implements OnInit{
       this.loginnedUserStoreService.addUserToStore(dbUser);
     }
     else{
-      console.log("a");
+      
     }
     
     this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => {

@@ -9,6 +9,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatListModule} from '@angular/material/list';
 
 import { LoginnedComponent } from './loginned.component';
 import { UserAccountComponent } from '../user-account/user-account.component';
@@ -51,7 +52,8 @@ const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {pat
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    MatRadioModule
+    MatRadioModule,
+    MatListModule
   ],
   exports:[
     LoginnedComponent,

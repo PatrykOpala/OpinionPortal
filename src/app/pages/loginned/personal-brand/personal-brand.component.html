@@ -1,8 +1,12 @@
-<opn-pane-container>
-    <mat-drawer-container class="drawer-container">
-        <mat-drawer mode="side" opened class="drawer">
-            <button mat-button color="primary" class="drawer-button" (click)="openProduktServiceDialog()">Dodaj Produkt lub Usługę</button>
-        </mat-drawer>
-        <mat-drawer-content>Main content</mat-drawer-content>
-    </mat-drawer-container>
-</opn-pane-container>
+<mat-list style="border: 1px solid red; width: 240px;">
+    <mat-list-item>
+        <button mat-button color="primary" class="drawer-button" (click)="openProduktServiceDialog()">Dodaj Produkt lub Usługę</button>
+    </mat-list-item>
+    <mat-list-item>
+        <button mat-button color="primary" style="width: 100%;">Ustawienia konta</button>
+    </mat-list-item>
+    <mat-list-item>
+        <button mat-button color="primary" style="width: 100%;" (click)="authService.logOut()">Wyloguj mnie</button>
+    </mat-list-item>
+</mat-list>
+

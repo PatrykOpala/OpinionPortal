@@ -9,9 +9,11 @@ export class AddProductService extends AuthService {
 
   constructor() { super() }
 
-  SendProductToDatabase(product: Product){
-    this.databaseQuery.pushToDatabase('products', product).then(resolve => {
-      console.log(resolve);
-    });
+  sendProductToDatabase(product: Product){
+    this.databaseQuery.pushToDatabase('products', product).then(resolve => {});
+  }
+
+  deleteProductFromDatabase(product: Product){
+    this.databaseQuery.deleteDataAtDatabase('produts', product).then(deleteResolve => {});
   }
 }
