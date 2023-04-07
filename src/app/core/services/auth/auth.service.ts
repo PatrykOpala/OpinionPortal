@@ -20,13 +20,13 @@ import { MenuBarService } from '../menu-bar/menu-bar.service';
   providedIn: 'root'
 })
 export class AuthService {
-  public progress: boolean = false;
-  public disabled: boolean = false;
-  public authRouter = inject(Router);
   private menubarService = inject(MenuBarService);
   private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
+  public progress: boolean = false;
+  public disabled: boolean = false;
+  public authRouter = inject(Router);
   public databaseQuery: SupabaseQueryes;
 
   constructor() {

@@ -16,4 +16,12 @@ export class AddProductService extends AuthService {
   deleteProductFromDatabase(product: Product){
     this.databaseQuery.deleteDataAtDatabase('produts', product).then(deleteResolve => {});
   }
+
+  getProductsFromDatabase(): Product[]{
+    let n: Product[] = [];
+    this.databaseQuery.getAllFromDatabase<Product>('products').then(getResolve => {
+      n = getResolve;
+    });
+    return n;
+  }
 }
