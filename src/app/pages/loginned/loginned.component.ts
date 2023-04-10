@@ -1,9 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
 import { OpinionsService } from '../../core/services/opinions/opinions.service';
-import { UserStoreService } from '../../core/services/user/user-store.service';
-import { LOCAL_STORAGE_KEYS } from '../../core/types/constants';
-import { IDataBaseUser } from '../../core/types/interfaces/idatabase-user.interface';
 import { DialogServiceService } from './components/dialogs/dialog-new-opinion/dialog-service.service';
 
 @Component({

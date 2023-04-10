@@ -1,12 +1,20 @@
-<mat-list style="border: 1px solid red; width: 240px;">
-    <mat-list-item>
-        <button mat-button color="primary" class="drawer-button" (click)="openProduktServiceDialog()">Dodaj Produkt lub Usługę</button>
-    </mat-list-item>
-    <mat-list-item>
-        <button mat-button color="primary" style="width: 100%;">Ustawienia konta</button>
-    </mat-list-item>
-    <mat-list-item>
-        <button mat-button color="primary" style="width: 100%;" (click)="authService.logOut()">Wyloguj mnie</button>
-    </mat-list-item>
-</mat-list>
+<div class="personal_brand_container">
+    <mat-list style="width: 240px; margin: 0 5px;">
+        <mat-list-item>
+            <button mat-button color="primary" class="drawer-button" (click)="openProduktServiceDialog()">Dodaj Produkt lub Usługę</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button color="primary" style="width: 100%;">Ustawienia konta</button>
+        </mat-list-item>
+        <mat-list-item>
+            <button mat-button color="primary" style="width: 100%;" (click)="authService.logOut()">Wyloguj mnie</button>
+        </mat-list-item>
+    </mat-list>
+    <div class="products_list-container">
+        <div class="test">test</div>
+        <div class="test">test</div>
+        <div class="test">test</div>
+    </div>
+</div>
+
 

@@ -1,6 +1,28 @@
+.personal_brand_container{
+    display: flex;
+}
+
 .drawer-button{
     width: 100%;
     border-radius: 0%;
     font-weight: bold;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    padding: 0 5px;
+}
+
+.products_list-container{
+    width: 85vw;
+    height: 87vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    display: grid;
+    grid-template-columns: 32% 32% 32%;
+    gap: 30px;
+
+    .test{
+        width: 500px;
+        height: 200px;
+        text-align: center;
+        border: 2px solid #676;
+    }
 }
