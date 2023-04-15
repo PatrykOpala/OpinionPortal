@@ -24,6 +24,7 @@ import { DialogNewOpinionComponent } from './components/dialogs/dialog-new-opini
 import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change-opinion/dialog-change-opinion.component';
 import { DialogChangeDirective } from '../../core/shared/directives/dialog-change.directive';
 import { DialogNewDirective } from '../../core/shared/directives/dialog-new.directive';
+import { ProductListCardComponent } from './personal-brand/components/product-list-card/product-list-card.component';
 
 const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];
@@ -40,7 +41,8 @@ const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {pat
     DialogNewOpinionComponent,
     DialogChangeOpinionComponent,
     DialogChangeDirective,
-    DialogNewDirective
+    DialogNewDirective,
+    ProductListCardComponent
   ],
   imports: [
     CommonModule,
