@@ -18,11 +18,16 @@
     display: grid;
     grid-template-columns: 32% 32% 32%;
     gap: 30px;
+    padding-bottom: 20px;
 
     .test{
         width: 500px;
         height: 200px;
         text-align: center;
         border: 2px solid #676;
+    }
+
+    .products_list-card{
+        max-height: 300px;
     }
 }
