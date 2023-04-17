@@ -15,6 +15,7 @@ import { SharedModule } from './core/shared/modules/shared.module';
 import { AppRoutesModule } from './routes/app-routes.module';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { userReducer } from './core/store/reducers/user.reducer';
+import { productReducer } from './core/store/reducers/product.reducer';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { userReducer } from './core/store/reducers/user.reducer';
     ReactiveFormsModule,
     SharedModule,
     CommonModule,
-    StoreModule.forRoot({opinions: opinionReducer, users: userReducer}),
+    StoreModule.forRoot({opinions: opinionReducer, users: userReducer, products: productReducer}),
     StoreDevtoolsModule.instrument({maxAge: 5, logOnly: environment.production}),
   ],
   providers: [],

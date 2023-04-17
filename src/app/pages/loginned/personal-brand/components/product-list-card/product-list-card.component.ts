@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'opn-product-list-card',
@@ -6,6 +6,12 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./product-list-card.component.scss']
 })
 export class ProductListCardComponent {
+  @Input() cardId: number = 0;
   @Input() cardHeader: string = "";
+  @Input() cardSubHeader: string = "";
   @Input() cardContent: string = "";
+  @Output() emitDelete = new EventEmitter<number>();  
+  deleteProduct(){
+    this.emitDelete.emit(this.cardId);
+  }
 }

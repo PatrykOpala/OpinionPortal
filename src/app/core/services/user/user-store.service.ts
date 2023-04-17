@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addUser } from '../../store/actions/user.actions';
-import { userSelector } from '../../store/selectors/user.selectors';
+import { userSelector } from '../../store/selectors/user.selector';
 import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 

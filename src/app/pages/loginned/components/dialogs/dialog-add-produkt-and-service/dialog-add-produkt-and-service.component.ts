@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { AddProductService } from 'src/app/core/services/add-product/add-product.service';
+import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserStoreService } from 'src/app/core/services/user/user-store.service';
 import { TypeProduct } from 'src/app/core/types/enums';
 import { Product } from 'src/app/core/types/models/product.model';
@@ -14,7 +14,7 @@ export class DialogAddProduktAndServiceComponent {
 
   //TODO: Wrócić tutaj.
 
-  private addProductService = inject(AddProductService);
+  private productService = inject(ProductService);
   private userService = inject(UserStoreService);
 
   name: string = "";
@@ -23,7 +23,7 @@ export class DialogAddProduktAndServiceComponent {
 
   confirmAddProduct(){
     const checkProduct = this.radioControl.value === "produkt" ? TypeProduct.PRODUCT : TypeProduct.SERVICE;
-    this.addProductService.sendProductToDatabase(new Product(this.name, checkProduct, this.description, this.userService.getUserFromStore().user.user_uuid));
+    this.productService.sendProductToDatabase(new Product(this.name, checkProduct, this.description, this.userService.getUserFromStore().user.user_uuid));
   }
 
 }

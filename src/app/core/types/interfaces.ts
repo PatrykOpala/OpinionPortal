@@ -1,4 +1,5 @@
 import { User, Session } from "@supabase/supabase-js"
+import { Product } from "./models/product.model"
 
 export interface changeEvent{
     id: string 
@@ -26,6 +27,10 @@ export interface Opinions {
 
 export interface IOpinionState{
     opinion: Opinions[];
+}
+
+export interface IProductState{
+    product: Product[];
 }
 
 export interface Category{

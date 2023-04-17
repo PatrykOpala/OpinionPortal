@@ -1,12 +1,13 @@
 <mat-card class="products_list-card">
     <mat-card-header>
       <mat-card-title style="font-weight: bolder;">{{ cardHeader }}</mat-card-title>
+      <mat-card-subtitle style="font-weight: bold;">{{cardSubHeader}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content style="max-height: 500px; height: 500px;">
         <p>{{ cardContent }}</p>
     </mat-card-content>
     <mat-card-actions style="display: flex; justify-content: space-between;">
         <button mat-button>Zobacz szczegóły</button>
-        <button mat-button color="warn">Usuń Produkt/Usługę</button>
+        <button mat-button color="warn" (click)="deleteProduct()">Usuń Produkt/Usługę</button>
     </mat-card-actions>
 </mat-card>

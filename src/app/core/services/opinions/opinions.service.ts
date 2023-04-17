@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { addOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
-import { stateSelector,} from '../../store/selectors/selectors';
+import { stateSelector,} from '../../store/selectors/selector';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { Opinions, IOpinionState } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
@@ -33,11 +33,11 @@ export class OpinionsService extends AuthService {
   }
 
   async DeleteOpinion(deleteData: any): Promise<void>{
-    const {success, error} = await this.databaseQuery.deleteDataAtDatabase('opinions', deleteData);
-    if(success !== null && error !== null){
+    const deleteD = await this.databaseQuery.deleteDataAtDatabase('opinions', deleteData);
+    if(deleteD.success !== null && deleteD.error !== null){
       this.DeleteOpinionFromStore(Number(deleteData.id));
     }else{
-      console.error(error);
+      console.error(deleteD.error);
     }
   }
 

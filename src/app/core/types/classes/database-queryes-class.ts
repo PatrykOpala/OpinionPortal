@@ -2,6 +2,7 @@ import { Store } from "@ngrx/store";
 import {SupabaseClient } from "@supabase/supabase-js";
 import { changeOpinion } from "../../store/actions/opinion.actions";
 import { Opinions, IOpinionState } from "../interfaces";
+import { Product } from "../models/product.model";
 
 export interface QueriesResult{
     data: any;
@@ -52,15 +53,33 @@ export class SupabaseQueryes{
             }
         });
     }
-    async deleteDataAtDatabase(databaseColumn: string, deleteData:any): Promise<Omit<QueriesResult, "data">>{
-        const statusObject: Omit<QueriesResult, "data"> = {success: "", error: ""}
-        this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id).then(b => {
-            if(b.status === 204){
-                statusObject.success = "Deleted data from database";
-            }else{
-                statusObject.error = "Error deleted data";
+    deleteDataAtDatabase(databaseColumn: string, deleteData:any): Promise<Omit<QueriesResult, "data">>{
+        return new Promise((resolve, reject)=>{
+            const lo: Omit<QueriesResult, "data"> = {success: "", error: ""};
+            this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id).select().then(nbzb => {
+                if(nbzb.status === 200){
+                    lo.success = "Usuwanie zakończyło się.";
+                    resolve(lo);
+                }
+                if(nbzb.error){
+                    lo.error = "Usuwanie niepowiodło się.";
+                    reject(lo);
+                }
+            });
+        });
+    }
+
+    deleteProductAtDatabase(databaseColumn: string, deleteData:any): Promise<number>{
+        return new Promise(async (resolve, reject)=>{
+          const {data, status, error} = await this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id).select();
+            if(status === 200){
+                if(data !== null){
+                    resolve(data[0].id);
+                }
+            }
+            if(error){
+                reject("Usuwanie niepowiodło się.");
             }
         });
-        return statusObject;
     }
 }

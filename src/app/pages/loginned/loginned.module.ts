@@ -25,6 +25,7 @@ import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change
 import { DialogChangeDirective } from '../../core/shared/directives/dialog-change.directive';
 import { DialogNewDirective } from '../../core/shared/directives/dialog-new.directive';
 import { ProductListCardComponent } from './personal-brand/components/product-list-card/product-list-card.component';
+import { StoreModule } from '@ngrx/store';
 
 const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];

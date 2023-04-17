@@ -1,10 +1,10 @@
 import { TypeProduct } from "../enums";
 
 export class Product {
-    private id?: number;
-    private name: string;
-    private type_product: TypeProduct;
-    private description: string;
+     id: number | undefined;
+     name: string;
+     type_product: TypeProduct;
+     description: string;
     private user_id: string;
 
     constructor(name: string, type_product: TypeProduct, description: string, user_id: string){
