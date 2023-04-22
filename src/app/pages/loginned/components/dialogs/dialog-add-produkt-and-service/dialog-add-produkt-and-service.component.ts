@@ -23,7 +23,9 @@ export class DialogAddProduktAndServiceComponent {
 
   confirmAddProduct(){
     const checkProduct = this.radioControl.value === "produkt" ? TypeProduct.PRODUCT : TypeProduct.SERVICE;
-    this.productService.sendProductToDatabase(new Product(this.name, checkProduct, this.description, this.userService.getUserFromStore().user.user_uuid));
+    this.productService.sendProductToDatabase(
+      new Product(this.name, checkProduct, this.description, 
+        this.userService.getUserFromStore().user.user_uuid));
   }
 
 }

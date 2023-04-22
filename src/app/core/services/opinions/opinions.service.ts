@@ -29,7 +29,8 @@ export class OpinionsService extends AuthService {
   }
 
   ChangeOpinion(matchId: string, updateContent: any): void{
-    this.databaseQuery.changeDataAtDatabase('opinions', updateContent, {id: matchId}, this.state, this.OpinionStore);
+    this.databaseQuery.changeDataAtDatabase('opinions', updateContent, {id: matchId}, 
+    this.state, this.OpinionStore);
   }
 
   async DeleteOpinion(deleteData: any): Promise<void>{
@@ -51,7 +52,8 @@ export class OpinionsService extends AuthService {
 
   InitialDataInStore(data: unknown){
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf)){
-      let {user} = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
+      let {user} = JSON.parse(window.localStorage
+        .getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
       // this.OpinionStore.dispatch(addUser({user}));
     }
     this.OpinionStore.dispatch(initOpinions({opinion: data as any}));

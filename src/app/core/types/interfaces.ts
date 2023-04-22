@@ -30,7 +30,7 @@ export interface IOpinionState{
 }
 
 export interface IProductState{
-    product: Product[];
+    products: Product[];
 }
 
 export interface Category{

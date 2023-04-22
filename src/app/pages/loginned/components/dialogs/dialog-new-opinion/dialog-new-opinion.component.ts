@@ -40,7 +40,10 @@ export class DialogNewOpinionComponent implements OnInit {
 
   onPublishOpinion(){
     const {user} = this.userStoreService.getUserFromStore();
-    let newOpinionObj: Opinions = CreateOpinion(user.user_uuid !== undefined ? user.user_uuid : '', user.name !== undefined ? user.name : '', Math.floor(Math.random() * 1000), this.valu, this.textAreaElement.nativeElement.value);
+    let newOpinionObj: Opinions = CreateOpinion(user.user_uuid !== undefined ? 
+      user.user_uuid : '', user.name !== undefined ? user.name : '', 
+      Math.floor(Math.random() * 1000), this.valu, 
+      this.textAreaElement.nativeElement.value);
     this.opinionsService.SendOpinionToDatabase(newOpinionObj);
     this.textAreaElement.nativeElement.value = "";
     this._ViewSelected = 0;

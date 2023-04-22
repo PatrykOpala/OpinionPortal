@@ -4,7 +4,6 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DialogProduktService } from 'src/app/core/services/dialog/dialog-produkt/dialog-produkt.service';
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
-import { Product } from 'src/app/core/types/models/product.model';
 import { DialogAddProduktAndServiceComponent } from '../components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
 
 @Component({
@@ -30,6 +29,7 @@ export class PersonalBrandComponent extends UserStoreAbstract implements OnInit 
   }
 
   deleteProductFromDatabasee(getId: number){
-    this.productService.deleteProductFromDatabase(this.productService.product.filter(x => x.id === getId)[0]);
+    this.productService.deleteProductFromDatabase(this.productService.
+      product.filter(x => x.id === getId)[0]);
   }
 }

@@ -1,7 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { addProduct } from '../../store/actions/product.actions';
+import { addProducts } from '../../store/actions/product.actions';
 import { productSelector } from '../../store/selectors/product.selector';
 import { IProductState } from '../../types/interfaces';
 import { Product } from '../../types/models/product.model'
@@ -17,23 +16,37 @@ export class ProductService extends AuthService {
 
   constructor() { 
     super();
-    this.productStore.select(productSelector).subscribe(p => this._product = p);
+    this.productStore.select(productSelector).subscribe(p => {
+      if(p !== undefined){
+        this._product = [...p];
+      }
+    });
   }
 
   sendProductToDatabase(product: Product){
-    this.databaseQuery.pushToDatabase('products', product).then(resolve => {});
+    this.databaseQuery.pushProductToDatabase('products', product)
+    .then(sendProductResolve => {
+      let returnProduct = Product.returnProduct(sendProductResolve.id,
+         sendProductResolve.name, sendProductResolve.type_product, 
+         sendProductResolve.description, sendProductResolve.user_id);
+         let sendJ = this._product;
+         sendJ.push(returnProduct);
+      this.productStore.dispatch(addProducts({products: sendJ}));
+    });
   }
 
   deleteProductFromDatabase(product: Product){
-    this.databaseQuery.deleteProductAtDatabase('products', product).then(deleteResolve => {
-      let deleteFilterredProducts = this.product.filter(c => c.id !== deleteResolve);
-      this.productStore.dispatch(addProduct({product: deleteFilterredProducts}));
+    this.databaseQuery.deleteProductAtDatabase('products', product)
+    .then(deleteResolve => {
+      let deleteFilterredProducts = this._product.filter(c => c.id !== deleteResolve);
+      this.productStore.dispatch(addProducts({products: deleteFilterredProducts}));
     });
   }
 
   getProductsFromDatabase(): void{
-    this.databaseQuery.getAllFromDatabase<Product>('products').then(getResolve => {
-      this.productStore.dispatch(addProduct({product: getResolve}));
+    this.databaseQuery.getAllProductsFromDatabase('products').then(getResolve => {
+      let j = Product.returnProductArray(getResolve);
+      this.productStore.dispatch(addProducts({products: j}));
     });
   }
 

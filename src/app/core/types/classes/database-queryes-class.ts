@@ -17,13 +17,31 @@ export class SupabaseQueryes{
         this.rProvider = supabaseClient;
     }
     async pushToDatabase(databaseColumn: string, pushData: any){
-      const {data, error} = await this.rProvider.from(databaseColumn).insert(pushData).select();
+      const {data, error} = await this.rProvider.from(databaseColumn)
+      .insert(pushData).select();
       if(!error && data !== null){
         return data[0];
       }
-      return true;
+      return false;
     }
-    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): Promise<TypeReturnData[]>{
+    pushProductToDatabase(databaseColumn: string, pushData: any): Promise<any>{
+        return new Promise(async (resolve, reject)=>{
+            const {data, status, error} = await this.rProvider.from(databaseColumn)
+            .insert(pushData).select();
+            if(status === 201){
+                if(data !== null){
+                    return resolve(data[0]);
+                }
+            }
+            if(error){
+                return reject(
+                    "Dodawanie Produktu / Usługi do bazy danych nie powiodło się."
+                );
+            }
+        });
+    }
+    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): 
+        Promise<TypeReturnData[]>{
         let b = [];
         const {data: returnData} = await this.rProvider.from(databaseColumn).select('*');
         if(returnData !== null){
@@ -31,12 +49,34 @@ export class SupabaseQueryes{
         }
         return b;
     }
-    changeDataAtDatabase(databaseColumn: string, updateContent: any, changeData: any, state: any, store: Store<IOpinionState>){
+    getAllProductsFromDatabase(databaseColumn: string): 
+        Promise<Product[]>{
+            return new Promise(async (resolve, reject)=>{
+                let b = [];
+                const {data: returnData, status, error} = await this.rProvider
+                .from(databaseColumn)
+                .select('*');
+                if(status === 200){
+                    if(returnData !== null){
+                        b = returnData
+                    }
+                    return resolve(b);
+                }
+                if(error){
+                    return reject("Pobieraie Produktów / Usług nie powiodło się.");
+                }
+            });
+        
+    }
+    changeDataAtDatabase(databaseColumn: string, updateContent: any, changeData: any, 
+        state: any, store: Store<IOpinionState>){
         let bd: Opinions[] = [];
-        this.rProvider.from(databaseColumn).update(updateContent).match(changeData).select().then(t => {
+        this.rProvider.from(databaseColumn).update(updateContent).match(changeData)
+        .select().then(t => {
             if(t.data !== null && t.data !== undefined){
                 if(t.data[0] !== null && t.data[0] !== undefined){
-                    bd = state.opinion.reduce((accu: Opinions[], nextOpinion: Opinions): Opinions[] =>{
+                    bd = state.opinion.reduce((accu: Opinions[], nextOpinion: Opinions):
+                     Opinions[] =>{
                         if(nextOpinion.id == Number(changeData.id)){
                             let j = {...nextOpinion};
                             j.content = updateContent.content;
@@ -53,10 +93,12 @@ export class SupabaseQueryes{
             }
         });
     }
-    deleteDataAtDatabase(databaseColumn: string, deleteData:any): Promise<Omit<QueriesResult, "data">>{
+    deleteDataAtDatabase(databaseColumn: string, deleteData:any): 
+    Promise<Omit<QueriesResult, "data">>{
         return new Promise((resolve, reject)=>{
             const lo: Omit<QueriesResult, "data"> = {success: "", error: ""};
-            this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id).select().then(nbzb => {
+            this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id)
+            .select().then(nbzb => {
                 if(nbzb.status === 200){
                     lo.success = "Usuwanie zakończyło się.";
                     resolve(lo);
@@ -71,7 +113,8 @@ export class SupabaseQueryes{
 
     deleteProductAtDatabase(databaseColumn: string, deleteData:any): Promise<number>{
         return new Promise(async (resolve, reject)=>{
-          const {data, status, error} = await this.rProvider.from(databaseColumn).delete().eq('id', deleteData.id).select();
+          const {data, status, error} = await this.rProvider.from(databaseColumn)
+          .delete().eq('id', deleteData.id).select();
             if(status === 200){
                 if(data !== null){
                     resolve(data[0].id);

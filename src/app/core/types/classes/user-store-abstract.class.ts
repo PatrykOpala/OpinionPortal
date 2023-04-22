@@ -11,8 +11,5 @@ export abstract class UserStoreAbstract{
             let dbUser: IDataBaseUser = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
             this.userStoreService.addUserToStore(dbUser);
         }
-        else{
-            console.log("a");
-        }
     }
 }

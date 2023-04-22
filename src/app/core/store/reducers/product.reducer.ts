@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
-import { addProduct, getProduct, deleteProduct } from "../actions/product.actions";
+import { deleteProduct, addProducts } from "../actions/product.actions";
 import { ProductStore } from "../stores/product.store";
 
 export const productReducer = createReducer(
     ProductStore,
-    on(addProduct, (state, action) => ({...state, product: action.product})),
+    on(addProducts, (state, action) => ({...state, products: action.products})),
     on(deleteProduct, (state, action) => ({...state, opinion: action.opinion})),
 );
