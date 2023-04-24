@@ -1,4 +1,5 @@
-import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
+import { map, Subscription } from 'rxjs';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { UserStoreService } from 'src/app/core/services/user/user-store.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
@@ -10,7 +11,7 @@ import { DialogServiceService } from '../dialog-new-opinion/dialog-service.servi
   templateUrl: './dialog-change-opinion.component.html',
   styleUrls: ['./dialog-change-opinion.component.scss']
 })
-export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
+export class DialogChangeOpinionComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;
   @Input() opinionAuthor!: string;
   @Input() opinionId!: number;
@@ -24,6 +25,8 @@ export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   protected dialogNewService = inject(DialogServiceService);
   protected userStoreService = inject(UserStoreService);
   protected opinionsService = inject(OpinionsService);
+
+  private userSub: Subscription | undefined;
 
   ngOnInit(): void{
     if(this.headerOpinion !== ""){
@@ -39,10 +42,21 @@ export class DialogChangeOpinionComponent implements OnInit, AfterViewInit {
   }
 
   onChangeOpinion(){
-    let changeOpinionObj: Opinions = CreateOpinion(this.userStoreService.getUserFromStore().user.user_uuid, this.opinionAuthor, this.opinionId, 
+    let b = "";
+    this.userSub = this.userStoreService.getUserFromStore()
+    .pipe(map((u)=>u.user_uuid))
+    .subscribe(u=>{
+      b = u;
+    })
+    let changeOpinionObj: Opinions = CreateOpinion(b, this.opinionAuthor, this.opinionId, 
     this.valu, this.textAreaElement.nativeElement.value);
-    this.opinionsService.ChangeOpinion(String(changeOpinionObj.id), {header: changeOpinionObj.header, content: changeOpinionObj.content});
+    this.opinionsService.ChangeOpinion(String(changeOpinionObj.id), 
+    {header: changeOpinionObj.header, content: changeOpinionObj.content});
     this.textAreaElement.nativeElement.value = "";
     this.dialogNewService.closeChangeDialog();
+  }
+
+  ngOnDestroy(): void {
+    this.userSub?.unsubscribe();
   }
 }

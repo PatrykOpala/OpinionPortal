@@ -15,7 +15,7 @@
         <div class="test">test</div>
         <div class="test">test</div> -->
         <opn-product-list-card *ngFor="let product of productService.product"
-        [cardId]="product.id !== undefined ? product.id : 0" 
+        [cardId]="product.id" 
         [cardHeader]="product.name" 
         [cardSubHeader]="product.type_product" 
         [cardContent]="product.description" 

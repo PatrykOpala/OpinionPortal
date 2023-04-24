@@ -6,8 +6,11 @@
                 <span class="name">{{userName}}</span>
             </div>
             <div class="business-card__content">
-                <button *ngIf="userStoreService.getUserFromStore().user.delete_user !== true" (click)="deleteAccount()">Usuń konto</button>
-                <button *ngIf="userStoreService.getUserFromStore().user.delete_user" style="color: red;" (click)="cancelDeleteAccount()">Anuluj usuwanie konta</button>
+                <button *ngIf="(userStoreService.getUserFromStore()
+                 | async)?.delete_user !== true" (click)="deleteAccount()">Usuń konto</button>
+                <button *ngIf="(userStoreService.getUserFromStore()
+                | async)?.delete_user" style="color: red;" 
+                (click)="cancelDeleteAccount()">Anuluj usuwanie konta</button>
             </div>
         </div>
     </opn-pane-container>

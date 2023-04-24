@@ -7,17 +7,13 @@ export class Product {
     description: string;
     user_id: string;
 
-    constructor(name: string, type_product: TypeProduct, 
-        description: string, user_id: string, id?: number){
+    constructor(name: string, type_product: TypeProduct, description: string, 
+        user_id: string, id?: number){
         this.name = name;
         this.type_product = type_product;
         this.description = description;
         this.user_id = user_id;
         this.id = id!;
-    }
-
-    setId(id: number){
-        this.id = id;
     }
 
     static returnProduct(id: number, name: string, type_product: TypeProduct,

@@ -14,7 +14,9 @@ import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 
-// interface UserS { data: { user: User | null; session: Session | null; }; error: null; }
+/* interface UserS { data: { user: User | null; session: Session | 
+  null; }; error: null; }
+*/
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +33,8 @@ export class AuthService {
 
   constructor() {
     this.databaseConnection = new DatabaseConnection();
-    this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl, supabaseKey: environment.supabaseKey})
+    this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl,
+       supabaseKey: environment.supabaseKey})
     this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
   }
 
@@ -40,7 +43,8 @@ export class AuthService {
       if(registerType === "company"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
           const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
+             : '',
             name,
             email,
             type: registerType,
@@ -48,8 +52,10 @@ export class AuthService {
             isEmpty: false
           }
           this.userStore.dispatch(addUser({user: name}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
-          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+            JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(
+            UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(() => {
           this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
@@ -59,7 +65,8 @@ export class AuthService {
       if(registerType === "personalBrand"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
           const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id 
+            : '',
             name,
             email,
             type: registerType,
@@ -67,8 +74,10 @@ export class AuthService {
             isEmpty: false
           }
           this.userStore.dispatch(addUser({user: name}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
-          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+            JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(
+            UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
           this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
@@ -78,7 +87,8 @@ export class AuthService {
       if(registerType === "user"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
           const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id : '',
+            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
+             : '',
             name,
             email,
             type: registerType,
@@ -86,8 +96,10 @@ export class AuthService {
             isEmpty: false
           }
           this.userStore.dispatch(addUser({user: name}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(response));
-          this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
+             JSON.stringify(response));
+          this.menubarService.changeUserLoginnedInState(
+            UserLoginnedInStateEnum.LOGGEDIN);
           return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
@@ -106,13 +118,17 @@ export class AuthService {
           form.enable();
           return;
         }else{
-          const {data, error} = await this.supabaseProvider.sClient.auth.signInWithPassword({email: form.value.email, password: form.value.password});
+          const {data, error} = await this.supabaseProvider.
+          sClient.auth.signInWithPassword({email: form.value.email, 
+            password: form.value.password});
           if(data !== null){
             if(data.user !== null && data.session !== null){
               this.progress = false;
               form.enable();
-              window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(data));
-              this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+              window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+                JSON.stringify(data));
+              this.menubarService.changeUserLoginnedInState(
+                UserLoginnedInStateEnum.LOGGEDIN);
               this.routeTo(form.value.email);
             }
           }
@@ -136,14 +152,14 @@ export class AuthService {
               type: filteredUser[0].type,
               name: filteredUser[0].name,
               email: filteredUser[0].email,
-              created_at: filteredUser[0].created_at,
               user_uuid: filteredUser[0].user_uuid,
               delete_user: filteredUser[0].delete_user,
               isEmpty: false
             }
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
+            JSON.stringify(loggedUser));
           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
         }
         if(filteredUser[0].type === "personalBrand"){
@@ -153,14 +169,14 @@ export class AuthService {
               type: filteredUser[0].type,
               name: filteredUser[0].name,
               email: filteredUser[0].email,
-              created_at: filteredUser[0].created_at,
               user_uuid: filteredUser[0].user_uuid,
               delete_user: filteredUser[0].delete_user,
               isEmpty: false
             }
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
+            JSON.stringify(loggedUser));
           this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         }
         if(filteredUser[0].type === "company"){
@@ -170,14 +186,14 @@ export class AuthService {
               type: filteredUser[0].type,
               name: filteredUser[0].name,
               email: filteredUser[0].email,
-              created_at: filteredUser[0].created_at,
               user_uuid: filteredUser[0].user_uuid,
               delete_user: filteredUser[0].delete_user,
               isEmpty: false
             }
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
+            JSON.stringify(loggedUser));
           this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         }
       }

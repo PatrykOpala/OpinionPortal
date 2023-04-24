@@ -6,7 +6,6 @@ export const userState: IUserStore = {
         email: "",
         name: "",
         type: "",
-        created_at: "",
         user_uuid: "",
         delete_user: false,
         isEmpty: true
