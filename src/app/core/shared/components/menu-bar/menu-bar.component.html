@@ -1,5 +1,9 @@
 <header [ngPlural]="menuBarService.IsTheUserLoggedInState">
-    <a routerLink="/" class="link logo-opinier">Opinier</a>
+    <a routerLink="/" class="link logo-opinier">Opinier<small style="font-size: 1.1rem; 
+    color: var(--opn-background-color);
+     background-color: red; 
+     text-align: center; 
+     padding: 2px 5px;">Alpha</small></a>
     <ng-template ngPluralCase="0">
         <nav class="main__menu">
             <a routerLink="/login">Podziel się opinią</a>

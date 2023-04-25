@@ -13,9 +13,6 @@ import { Product } from 'src/app/core/types/models/product.model';
   styleUrls: ['./dialog-add-produkt-and-service.component.scss']
 })
 export class DialogAddProduktAndServiceComponent implements OnDestroy {
-  
-  //TODO: Wrócić tutaj.
-  
   private productService = inject(ProductService);
   private userService = inject(UserStoreService);
   name: string = "";
