@@ -13,7 +13,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
 
 import { LoginnedComponent } from './loginned.component';
-import { UserAccountComponent } from '../user-account/user-account.component';
+import { SettingsAccountComponent } from '../settings-account/settings-account.component';
 import { SharedModule } from '../../core/shared/modules/shared.module';
 import { AddOpinionComponent } from './components/add-opinion/add-opinion.component';
 import { ChooseCompanyComponent } from './components/choose-company/choose-company.component';
@@ -25,15 +25,14 @@ import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change
 import { DialogChangeDirective } from '../../core/shared/directives/dialog-change.directive';
 import { DialogNewDirective } from '../../core/shared/directives/dialog-new.directive';
 import { ProductListCardComponent } from './personal-brand/components/product-list-card/product-list-card.component';
-import { StoreModule } from '@ngrx/store';
 
-const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'user-account', component: UserAccountComponent}, 
+const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'settings-account', component: SettingsAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];
 
 @NgModule({
   declarations: [
     LoginnedComponent,
-    UserAccountComponent,
+    SettingsAccountComponent,
     AddOpinionComponent,
     ChooseCompanyComponent,
     PersonalBrandComponent,

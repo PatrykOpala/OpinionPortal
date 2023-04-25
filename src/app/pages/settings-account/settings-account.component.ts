@@ -1,5 +1,4 @@
-import { Component, inject, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { OpinionsService } from '../../core/services/opinions/opinions.service';
 import { UserStoreService } from '../../core/services/user/user-store.service';
@@ -9,10 +8,10 @@ import { SupabaseUser } from '../../core/types/interfaces';
 
 @Component({
   selector: 'opn-user-account',
-  templateUrl: './user-account.component.html',
-  styleUrls: ['./user-account.component.scss']
+  templateUrl: './settings-account.component.html',
+  styleUrls: ['./settings-account.component.scss']
 })
-export class UserAccountComponent implements OnInit, OnDestroy {
+export class SettingsAccountComponent implements OnInit {
 
   protected nameAvatar: string = "";
   protected userName: string = "";
@@ -44,9 +43,5 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     let userEmail = getDataFromLocalStorage<SupabaseUser>
     (LOCAL_STORAGE_KEYS.userAuthentication)?.user?.email;
     this.authService.cancelDeleteUser(userEmail as string);
-  }
-
-  ngOnDestroy(): void {
-    
   }
 }

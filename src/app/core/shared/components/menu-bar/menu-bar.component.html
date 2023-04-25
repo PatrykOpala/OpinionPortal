@@ -16,7 +16,7 @@
             <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions" *ngIf="c">Konto</button>
             <div *ngIf="profileOptions" class="profile__options">
                 <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
-                <a routerLink="/zalogowano/user-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
+                <a routerLink="/zalogowano/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
             </div>
         </nav>
     </ng-template>
