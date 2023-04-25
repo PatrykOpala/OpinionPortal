@@ -18,7 +18,7 @@ export class SettingsAccountComponent implements OnInit {
   protected userStoreService = inject(UserStoreService);
   protected opinionsService = inject(OpinionsService);
 
-  private authService = inject(AuthService);
+  protected authService = inject(AuthService);
 
   constructor() { }
 

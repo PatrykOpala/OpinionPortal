@@ -6,6 +6,7 @@
                 <span class="name">{{userName}}</span>
             </div>
             <div class="business-card__content">
+                <button (click)="authService.logOut()">Wyloguj mnie</button>
                 <button *ngIf="(userStoreService.getUserFromStore()
                  | async)?.delete_user !== true" (click)="deleteAccount()">Usuń konto</button>
                 <button *ngIf="(userStoreService.getUserFromStore()

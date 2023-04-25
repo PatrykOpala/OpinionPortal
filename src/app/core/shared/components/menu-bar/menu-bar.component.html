@@ -8,7 +8,7 @@
         <nav class="main__menu">
             <a routerLink="/login">Podziel się opinią</a>
             <a class="link" routerLink="/register">Stwórz konto</a>
-            <a class="link" routerLink="/opinie">Zobacz opinie</a>
+            <a class="link" routerLink="/opinion">Zobacz opinie</a>
         </nav>
     </ng-template>
     <ng-template ngPluralCase="1">
@@ -16,7 +16,7 @@
             <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions" *ngIf="c">Konto</button>
             <div *ngIf="profileOptions" class="profile__options">
                 <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
-                <a routerLink="/zalogowano/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
+                <a routerLink="/loginned/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
             </div>
         </nav>
     </ng-template>
