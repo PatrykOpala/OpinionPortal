@@ -9,29 +9,20 @@
             <ng-template ngPluralCase="0">
                 <div class="opinie-container-content">
                     <ul class="list-grid">
-                        <li class="element radius" (click)="toogle($event)">Microsoft</li>
-                        <li class="element radius" (click)="toogle($event)">Google</li>
-                        <li class="element radius" (click)="toogle($event)">Android</li>
-                        <li class="element radius" (click)="toogle($event)">Apple</li>
-                        <li class="element radius" (click)="toogle($event)">Xiaomi</li>
-                        <li class="element radius" (click)="toogle($event)">Firefox</li>
-                        <li class="element radius" (click)="toogle($event)">Chrome</li>
-                        <li class="element radius" (click)="toogle($event)">Brave</li>
-                        <li class="element radius" (click)="toogle($event)">Opinier</li>
+                        <li class="element radius" *ngFor="let n of nm" (click)="toogle(n.name)">{{ n.name }}</li>
                     </ul>
                 </div>
             </ng-template>
 
             <ng-template ngPluralCase="1">
                 <div class="opinie-header">
-                    <!-- (click)="op.reMode = 101" -->
                     <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; 
                     display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: default; 
                     font-size: 1.9em; color: hsl(3deg, 97%, 98%);">
-                        {{ author[0] }}
+                        {{ uName[0] }}
                     </div>
                     <div>
-                        <h1>{{  author  }}</h1>
+                        <h1>{{  uName  }}</h1>
                         <span>Zopiniował: <b>{{valu}}</b></span>
                     </div>
                 </div>

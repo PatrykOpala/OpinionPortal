@@ -16,13 +16,16 @@ export class SupabaseQueryes{
     constructor(supabaseClient: SupabaseClient){
         this.rProvider = supabaseClient;
     }
-    async pushToDatabase(databaseColumn: string, pushData: any){
-      const {data, error} = await this.rProvider.from(databaseColumn)
-      .insert(pushData).select();
-      if(!error && data !== null){
-        return data[0];
-      }
-      return false;
+    pushToDatabase(databaseColumn: string, pushData: any){
+        console.log(pushData);
+        return new Promise(async (resolve, reject)=>{
+            const {data, error} = await this.rProvider.from(databaseColumn)
+            .insert(pushData).select();
+            if(!error && data !== null){
+              return resolve(data[0]);
+            }
+            return reject([]);
+        });
     }
     pushProductToDatabase(databaseColumn: string, pushData: any): Promise<any>{
         return new Promise(async (resolve, reject)=>{
@@ -40,14 +43,18 @@ export class SupabaseQueryes{
             }
         });
     }
-    async getAllFromDatabase<TypeReturnData>(databaseColumn: string): 
+    getAllFromDatabase<TypeReturnData>(databaseColumn: string): 
         Promise<TypeReturnData[]>{
-        let b = [];
-        const {data: returnData} = await this.rProvider.from(databaseColumn).select('*');
-        if(returnData !== null){
-            b = returnData
-        }
-        return b;
+            return new Promise(async (resolve, reject)=>{
+                let b = [];
+                const {data: returnData} = await this.rProvider.from(databaseColumn).select('*');
+                if(returnData !== null){
+                    b = returnData
+                    
+                    resolve(returnData);
+                }
+                // return b;
+            });
     }
     getAllProductsFromDatabase(databaseColumn: string): 
         Promise<Product[]>{

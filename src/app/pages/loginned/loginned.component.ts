@@ -14,10 +14,7 @@ export class LoginnedComponent extends UserStoreAbstract implements OnInit{
   constructor() {
     super()
     
-    this.opinionsService.databaseQuery.getAllFromDatabase('opinions').then(rr => {
-      const nub = rr.filter((r: any)=> r.user_name === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user);
-      this.opinionsService.InitialDataInStore(nub);
-    });
+    this.opinionsService.GetOpinionFromDataBase();
   }
   ngOnInit(): void {}
 }

@@ -43,10 +43,13 @@ export class ProductService extends AuthService {
     });
   }
 
-  getProductsFromDatabase(): void{
-    this.databaseQuery.getAllProductsFromDatabase('products').then(getResolve => {
-      let j = Product.returnProductArray(getResolve);
-      this.productStore.dispatch(addProducts({products: j}));
+  getProductsFromDatabase(): Promise<Product[]>{
+    return new Promise((resolve, reject)=>{
+      this.databaseQuery.getAllProductsFromDatabase('products').then(getResolve => {
+        let j = Product.returnProductArray(getResolve);
+        this.productStore.dispatch(addProducts({products: j}));
+        return resolve(j);
+      });
     });
   }
 

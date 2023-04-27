@@ -1,4 +1,5 @@
 export interface IDataBaseUser{
+    [x: string]: any;
     id?: number,
     email: string,
     name: string,

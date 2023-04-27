@@ -24,7 +24,16 @@ export class OpinionsService extends AuthService {
 
   SendOpinionToDatabase(opinions: Opinions): void{
     this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) =>{
-      this.OpinionStore.dispatch(addOpinion({opinion: resolve}))
+      this.OpinionStore.dispatch(addOpinion({opinion: resolve as Opinions}))
+    });
+  }
+
+  GetOpinionFromDataBase(){
+    this.databaseQuery.getAllFromDatabase<Opinions>('opinions').then(rr => {
+      // console.log(rr);
+      const nub: Opinions[] = rr.filter((r: Opinions)=> r.user_name === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user.name);
+      console.log(nub);
+      this.InitOpinions(nub);
     });
   }
 
@@ -50,13 +59,17 @@ export class OpinionsService extends AuthService {
     this.OpinionStore.dispatch(deleteOpinion({opinion: newArray}));
   }
 
+  InitOpinions(data: Opinions[]){
+    this.OpinionStore.dispatch(initOpinions({opinion: data}))
+  }
+
   InitialDataInStore(data: unknown){
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf)){
       let {user} = JSON.parse(window.localStorage
         .getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
       // this.OpinionStore.dispatch(addUser({user}));
     }
-    this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
+    // this.OpinionStore.dispatch(initOpinions({opinion: data as any}));
   }
 
   AddOpinionToStore(v: Opinions): void{

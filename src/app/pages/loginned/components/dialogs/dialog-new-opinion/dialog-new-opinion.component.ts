@@ -1,9 +1,11 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { map, Subscription } from 'rxjs';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
+import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserStoreService } from 'src/app/core/services/user/user-store.service';
 import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
+import { Product } from 'src/app/core/types/models/product.model';
 import { DialogServiceService } from './dialog-service.service';
 
 @Component({
@@ -14,27 +16,23 @@ import { DialogServiceService } from './dialog-service.service';
 export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;
   protected valu = "";
-  protected author = "Anonim"
   protected _ViewSelected = 0;
   protected dialogNewService = inject(DialogServiceService);
   protected opinionsService = inject(OpinionsService);
   protected userStoreService = inject(UserStoreService);
+  protected productService = inject(ProductService);
+  nm: Product[] = [];
 
-  private uName: string = "";
+  protected uName: string = "Anonim";
   private uUuid: string = "";
-  private sub: Subscription;
+  private sub?: Subscription;
 
   constructor(){
-    this.sub = this.userStoreService.getUserFromStore().pipe(map(u=>{
-      return {
-        uName: u.name,
-        uUuid: u.user_uuid
-      }
-    })).subscribe(t => {
-      this.uName = t.uName;
-      this.uUuid = t.uUuid;
-    })
-    this.author = this.uName;
+    this.uName = this.userStoreService.getUser().user.name;
+    this.uUuid = this.userStoreService.getUser().user.user_uuid;
+    this.productService.getProductsFromDatabase().then(r => {
+      this.nm = r;
+    });
   }
 
   ngOnInit(): void{}
@@ -45,11 +43,9 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
     }
   }
 
-  toogle(e: Event){
+  toogle(str: string){
     if(this._ViewSelected === 0){
-      if((e.target as HTMLElement).localName !== "div"){
-        this.valu = (e.target as HTMLElement).textContent as string;
-      }
+      this.valu = str;
       this._ViewSelected = 1;
     }
   }
@@ -65,6 +61,6 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.sub?.unsubscribe();
   }
 }
