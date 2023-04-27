@@ -6,7 +6,7 @@ header{
 
 .logo-opinier{
     display: block;
-    width: fit-content;
+    width: 430px;
     height: max-content;
     font-size: 3rem;
     color: var(--opn-color-green);
@@ -23,12 +23,12 @@ header{
     align-items: center;
     margin: 1% auto;
     .link{
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin-left: 10px;
         padding: 13px;
         font-weight: 600;
         letter-spacing: 3px;
-        border: none;
+        border:none;
         text-decoration: none;
         background-color: transparent;
         color: var(--opn-color-green);
@@ -82,12 +82,10 @@ header{
 
     .button__primary{
         font-size: 1.4em;
-        // color: var(--opn-color-green);
         letter-spacing: 3px;
         background-color: transparent;
         border: none;
         cursor: pointer;
-        // margin-right: 3%;
     }
 
     .vertical-center{
