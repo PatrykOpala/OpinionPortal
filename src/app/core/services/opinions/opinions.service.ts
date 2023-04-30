@@ -30,9 +30,7 @@ export class OpinionsService extends AuthService {
 
   GetOpinionFromDataBase(){
     this.databaseQuery.getAllFromDatabase<Opinions>('opinions').then(rr => {
-      // console.log(rr);
       const nub: Opinions[] = rr.filter((r: Opinions)=> r.user_name === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user.name);
-      console.log(nub);
       this.InitOpinions(nub);
     });
   }
