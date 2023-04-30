@@ -17,6 +17,15 @@ header{
     padding-top: 5px;
 }
 
+.opinier-small_version{
+    font-size: 1.0rem; 
+    font-family: sans-serif; 
+    color: var(--opn-background-color);
+    background-color: red; 
+    text-align: center; 
+    padding: 5px 5px; width: min-content; margin-inline: 8px;
+}
+
 .main__menu{
     width: 90vw;
     display: flex;
@@ -134,6 +143,26 @@ header{
 
         .text-center{
             line-height: 210%;
+        }
+    }
+}
+
+@media (max-width: 1634px){
+    .logo-opinier{
+        font-size: 2.6rem;
+    }
+
+    .opinier-small_version{
+        font-size: 0.9rem;
+    }
+
+    .main__menu{
+        a{
+            font-size: 1rem;
+        }
+
+        .link{
+            font-size: 1rem;
         }
     }
 }
