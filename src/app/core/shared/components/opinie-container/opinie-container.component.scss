@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    // 25vw
 
     .opinie-header{
         width: 100%;
@@ -228,7 +227,6 @@
         overflow-x: hidden;
         scrollbar-width: none;
         height: 20vh;
-        // border:2px solid red;
 
         .list-grid{
             padding: 0;
@@ -274,7 +272,6 @@ svg:hover > .svg__circle{
     color: var(--opn-background-color);
     background-color: var(--opn-color-green);
     padding: 7px;
-    // border-radius: 7px;
     cursor: pointer;
 }
 

@@ -1,7 +1,7 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
-/dist
+# /dist
 /tmp
 /out-tsc
 /.angular/cache/13.2.6
@@ -49,6 +49,6 @@ pnpm-lock.yaml
 /src/environments/environment.ts
 .angular
 
-/opinion-backend
 Project_Products_database_table.odt
 test.ps1
+src
