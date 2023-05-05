@@ -20,7 +20,7 @@ Apka jest w wersji alpha od ponad 2 lat. Dużo rzeczy działa, ale nie wszystkie
 
 Z przeszkodami z którymi się mierzę to między innymi:
 - Wyzwania z projektowaniem i wdrażaniem UI,
-- Podczas wchodzenia bezpośrednio np. na formularz logowania, np:"https://patrykopala.github.io/OpinionPortal/login" nie łapię mi endpoint'u (dotyczy Github Pages),
+- Podczas wchodzenia bezpośrednio np. na formularz logowania, np:"https://patrykopala.github.io/OpinionPortal/login" nie łapię mi endpoint'u (dotyczy Github Pages)
 
 
 #### Jak uruchomić aplikację u siebie na kompie?
@@ -54,6 +54,58 @@ ng test
 npm run test
 ```
 Analogicznie możesz wykonać także testy end-to-end za pomocą komendy:
+```bash
+ng e2e
+```
+
+### [English]
+
+#### What's in this repo?
+
+Opinion Portal is a repository of applications for inserting opinions by users, and for adding products / services for giving opinions by companies and people with their personal brand.
+
+The application is written in Angular, using the Supabase database.
+
+#### Does the app work?
+
+The app has been in the alpha version for over 2 years. A lot of things work, but not all things work well. For now, the app is hosted on Github Pages and will remain so until I make a dedicated backend.
+
+#### What obstacles do you face?
+
+With obstacles I face, among others:
+- Challenges with the design and implementation of UI,
+- When entering directly, e.g. on the login form, e.g:"https://patrykopala.github.io/OpinionPortal/login" I don't get endpoint (applies Github Pages)
+
+
+#### How to run the application at home on the computer?
+
+If you want to test applications on your environment, all you have to do is:
+
+1. you clone a repo with the help of a command "git clone", e.g:
+```bash
+git clone https://github.com/PatrykOpala/OpinionPortal.git
+```
+2. you will install the necessary dependencies:
+```bash
+npm i
+#or
+npm install
+```
+3. You will run a local server:
+```bash
+npm start 
+#or
+npm run start
+#or
+ng serve
+```
+If you want to test the app using unit tests, all you have to do is execute the command:
+```bash
+ng test
+#or
+npm run test
+```
+Similarly, you can also perform end-to-end tests using the command:
 ```bash
 ng e2e
 ```
