@@ -27,15 +27,20 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   private uUuid: string = "";
   private sub?: Subscription;
 
-  constructor(){
-    this.uName = this.userStoreService.getUser().user.name;
-    this.uUuid = this.userStoreService.getUser().user.user_uuid;
+  constructor(){}
+
+  ngOnInit(): void{
+    if("user" in this.userStoreService.getUser()){
+      this.uName = this.userStoreService.getUser().user.name;
+      this.uUuid = this.userStoreService.getUser().user.user_uuid;
+    }else{
+      this.uName = this.userStoreService.getUser().name;
+      this.uUuid = this.userStoreService.getUser().user_uuid;
+    }
     this.productService.getProductsFromDatabase().then(r => {
       this.nm = r;
     });
   }
-
-  ngOnInit(): void{}
 
   backView(){
     if(this._ViewSelected === 1){
