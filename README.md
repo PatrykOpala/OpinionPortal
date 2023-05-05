@@ -35,22 +35,30 @@ git clone https://github.com/PatrykOpala/OpinionPortal.git
 2. zainstalujesz potrzebne zależności:
 ```bash
 npm i
-#lub
+```
+lub
+```bash
 npm install
 ```
 3. Uruchomisz lokalny serwer:
 ```bash
 npm start 
-#lub
+```
+lub
+```bash
 npm run start
-#lub
+```
+lub
+```bash
 ng serve
 ```
 
 Jeżeli chcesz przetestować apkę za pomocą testów jednostkowych to wystarczy, że wykonasz komendę:
 ```bash
 ng test
-#lub
+```
+lub
+```bash
 npm run test
 ```
 Analogicznie możesz wykonać także testy end-to-end za pomocą komendy:
@@ -88,21 +96,29 @@ git clone https://github.com/PatrykOpala/OpinionPortal.git
 2. you will install the necessary dependencies:
 ```bash
 npm i
-#or
+```
+or
+```bash
 npm install
 ```
 3. You will run a local server:
 ```bash
 npm start 
-#or
+```
+or
+```bash
 npm run start
-#or
+```
+or
+```bash
 ng serve
 ```
 If you want to test the app using unit tests, all you have to do is execute the command:
 ```bash
 ng test
-#or
+```
+or
+```bash
 npm run test
 ```
 Similarly, you can also perform end-to-end tests using the command:
