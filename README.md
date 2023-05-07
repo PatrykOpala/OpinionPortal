@@ -12,6 +12,11 @@ Opinion Portal to repozytorium aplikacji do wstawianie opinii przez użytkownik�
 
 Aplikacja jest pisana w Angularze, przywykorzystaniu bazy danych Supabase.
 
+Dla aplikacji utworzone są konta testowe:
+1. E-mail: test@gmail.com, Hasło: 12345678910111213141516,
+2. E-mail: tree@gmail.com, Hasło: 12345678910111213141516,
+3. E-mail: 1@gmail.com, Hasło: 12345678910111213141516.
+
 #### Czy apka działa?
 
 Apka jest w wersji alpha od ponad 2 lat. Dużo rzeczy działa, ale nie wszystkie rzeczy działają dobrze. Na razie apka jest hostowana na Github Pages i tak pozostanie dopóki nie zrobię dedykowanego backendu.
@@ -73,6 +78,11 @@ ng e2e
 Opinion Portal is a repository of applications for inserting opinions by users, and for adding products / services for giving opinions by companies and people with their personal brand.
 
 The application is written in Angular, using the Supabase database.
+
+Test accounts are created for the application:
+1. E-mail: test@gmail.com, Password: 12345678910111213141516,
+2. E-mail: tree@gmail.com, Password: 12345678910111213141516,
+3. E-mail: 1@gmail.com, Password: 12345678910111213141516.
 
 #### Does the app work?
 
