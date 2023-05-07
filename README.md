@@ -12,7 +12,7 @@ Opinion Portal to repozytorium aplikacji do wstawianie opinii przez użytkownik�
 
 Aplikacja jest pisana w Angularze, przywykorzystaniu bazy danych Supabase.
 
-Dla aplikacji utworzone są konta testowe:
+Do aplikacji możesz się zalogować poprzez konta testowe:
 1. E-mail: test@gmail.com, Hasło: 12345678910111213141516,
 2. E-mail: tree@gmail.com, Hasło: 12345678910111213141516,
 3. E-mail: 1@gmail.com, Hasło: 12345678910111213141516.
@@ -79,7 +79,7 @@ Opinion Portal is a repository of applications for inserting opinions by users, 
 
 The application is written in Angular, using the Supabase database.
 
-Test accounts are created for the application:
+You can log in to the application via test accounts:
 1. E-mail: test@gmail.com, Password: 12345678910111213141516,
 2. E-mail: tree@gmail.com, Password: 12345678910111213141516,
 3. E-mail: 1@gmail.com, Password: 12345678910111213141516.
