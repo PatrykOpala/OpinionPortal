@@ -17,11 +17,12 @@
         border-radius: 5px;
 
         .dialog-header{
-            translate: 30px 40px;
+            padding-top: 30px;
+            margin-left: 30px;
             width: 93%;
             display: flex;
 
-            .close, .back{
+            .close{
                 width: 40px;
                 height: 40px;
                 background-color: transparent;
@@ -52,36 +53,19 @@
                 translate: 12.2px -68%;
                 rotate: 45deg;
             }
-
-            .back{
-                margin-left: 10px;
-                margin-right: 10px;
-                // clip-path: polygon(41% 18%, 41% 46%, 100% 46%, 100% 61%, 41% 61%, 40% 84%, 0% 50%);
-                .back-temp{
-                    background-color: var(--opn-color-dark-green);
-                    display: block;
-                    width: 28px;
-                    height:28px;
-                    clip-path: polygon(41% 18%, 41% 46%, 100% 46%, 100% 61%, 41% 61%, 40% 84%, 0% 50%);
-                }
-
-                // .back-temp:hover{
-                // }
-            }
-    
             .dialog-title{
                 font-size: 2em;
                 display: block;
                 pointer-events: none;
-                translate: 4px 30%;
+                margin-left: 10px;
             }
         }
 
         .dialog-content{
-            // background-color: red;
             width: 93%;
             height: 70%;
-            translate: 30px 55px;
+            margin-left: 30px;
+            padding-top: 14px;
 
             .opinie-container-content{
                 width: 98%;
@@ -89,11 +73,8 @@
                 overflow-x: hidden;
                 scrollbar-width: none;
                 height: 44vh;
-                margin-inline: auto;
-                // border:2px solid red;
         
                 .list-grid{
-                    padding: 0;
                     display: grid;
                     grid-template-columns: repeat(3, 32.8%);
                     gap: 3px;
@@ -172,11 +153,27 @@
         }
 
         .dialog-buttons{
-            translate: 30px 60px;
+            margin-left: 30px;
+            padding-top: 15px;
             width: 93%;
             display: flex;
             flex-direction: row;
-            justify-content: flex-end;
+            justify-content: space-around;
+
+            .primary{
+                font-size: 1.5em;
+                margin-top: 20px;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+                padding: 10px;
+                background-color: var(--opn-color-dark-green);
+                color: var(--opn-background-color);
+            }
+
+            .primary:hover{
+                background-color: hsla(120, 86%, 37%, 0.795);
+            }
 
             .button-label{
                 font-size: 1.5em;

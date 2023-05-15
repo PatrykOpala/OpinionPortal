@@ -16,7 +16,7 @@ export class DialogServiceService {
 
   openNewDialog(){
     this.dialogNewOpinionRef.clear();
-    const dialogComponentRef = this.dialogNewOpinionRef.createComponent(DialogNewOpinionComponent);
+    this.dialogNewOpinionRef.createComponent(DialogNewOpinionComponent);
   }
 
   openChangeDialog(opinionAuthor: string, opinionID: number, opinionHeader: string, opinionContent: string){
