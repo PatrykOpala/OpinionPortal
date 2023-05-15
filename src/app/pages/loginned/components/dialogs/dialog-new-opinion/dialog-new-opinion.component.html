@@ -2,7 +2,6 @@
     <div class="dialog-container">
         <div class="dialog-header">
             <button class="close" (click)="dialogNewService.closeNewDialog()"></button>
-            <button class="back"  *ngIf="_ViewSelected > 0" (click)="backView()"><span class="back-temp"></span></button>
             <span class="dialog-title">Wybierz produkt lub usługę.</span>
         </div>
         <div class="dialog-content" [ngPlural]="_ViewSelected">
@@ -33,7 +32,8 @@
             </ng-template>
         </div>
         <div class="dialog-buttons">
-            <button class="button-label" (click)="onPublishOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
+            <button class="button-label" *ngIf="_ViewSelected > 0" (click)="backView()">Wstecz</button>
+            <button class="primary" (click)="onPublishOpinion()" *ngIf="_ViewSelected > 0">Wystaw opinię</button>
         </div>
     </div>
 </div>
