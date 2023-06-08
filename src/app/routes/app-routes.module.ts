@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginnedGuard } from '../core/guards/loginned.guard';
 import { DashboardComponent } from '../pages/dashboard/dashboard.component';
@@ -17,7 +16,6 @@ export const AppRoutes: Routes = [
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
     RouterModule.forRoot(AppRoutes),
   ],
   exports: [RouterModule]

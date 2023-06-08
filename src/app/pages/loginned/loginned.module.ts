@@ -25,6 +25,7 @@ import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change
 import { DialogChangeDirective } from '../../core/shared/directives/dialog-change.directive';
 import { DialogNewDirective } from '../../core/shared/directives/dialog-new.directive';
 import { ProductListCardComponent } from './personal-brand/components/product-list-card/product-list-card.component';
+import { StarMeterModule } from 'src/app/core/shared/modules/star-meter/star-meter.module';
 
 const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'settings-account', component: SettingsAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];
@@ -50,6 +51,7 @@ const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {pat
     ReactiveFormsModule,
     RouterModule.forChild(loginnedRoutes),
     SharedModule,
+    StarMeterModule,
     MatSidenavModule,
     MatButtonModule,
     MatDialogModule,

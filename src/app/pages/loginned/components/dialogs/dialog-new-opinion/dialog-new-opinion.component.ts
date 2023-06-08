@@ -28,7 +28,6 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   private sub?: Subscription;
 
   constructor(){
-    console.log(this.userStoreService.getUser().hasOwnProperty("user"));
     if(this.userStoreService.getUser().hasOwnProperty("user")){
       this.uName = this.userStoreService.getUser().user.name;
       this.uUuid = this.userStoreService.getUser().user.user_uuid;

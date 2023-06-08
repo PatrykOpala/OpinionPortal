@@ -12,11 +12,7 @@ export class OpinieChooseCategoryComponent implements OnInit {
 
   choose: Category[] | undefined = [];
 
-  constructor() { 
-    
-  }
-
-  
+  constructor() { }
 
   ngOnInit(): void {
     this.choose = this.chooseItem
