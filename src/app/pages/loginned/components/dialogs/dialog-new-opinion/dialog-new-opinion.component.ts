@@ -65,6 +65,10 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
     this.dialogNewService.closeNewDialog();
   }
 
+  starMeterOutput(output: number){
+    console.log(output);
+  }
+
   ngOnDestroy(): void {
     this.sub?.unsubscribe();
   }

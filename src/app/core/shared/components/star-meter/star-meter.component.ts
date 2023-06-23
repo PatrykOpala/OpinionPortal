@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 
 @Component({
   selector: 'opn-star-meter',
@@ -8,14 +8,9 @@ import { Component, HostListener } from '@angular/core';
 export class StarMeterComponent {
 
   check: boolean = false;
+  private maxStar = 5;
 
-  // @HostListener('click', ["$event.target"])
-  // debugClick(btn: any){
-  //   if((btn as HTMLElement).localName === "label"){
-  //     console.log(btn);
-  //   }
-  //   return
-  // }
+  @Output() activeNumber = new EventEmitter<number>();
 
   @HostListener('mouseover', ["$event.target"])
   starMeterTestHostListener(btn2: any){
@@ -43,10 +38,22 @@ export class StarMeterComponent {
   @HostListener('click', ["$event.target"])
   starMeterTest(labelElement: any){
     if(labelElement.localName === "label"){
-      let bID = Number((labelElement as HTMLElement).id);
-      let bk = document.getElementById("star_meter-comp")?.childNodes;
-      this.activateElements(bk, bID);
-      this.check = true;
+      if(this.check !== true){
+        let bID = Number((labelElement as HTMLElement).id);
+        let bk = document.getElementById("star_meter-comp")?.childNodes;
+        this.activateElements(bk, bID);
+        this.check = true;
+        this.activeNumber.emit(bID);
+
+        document.getElementById("star_meter-comp")?.childNodes.forEach((v) => {
+          if(Number((v as HTMLElement).id) === this.maxStar){
+            return;
+          }else{
+            document.getElementById(`${Number((v as HTMLElement).id) + 1}`)
+            ?.addEventListener("click", (ev) => ev.preventDefault())
+          }
+        })
+      }
     }
     return;
   }
