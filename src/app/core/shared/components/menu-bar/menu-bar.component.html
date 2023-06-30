@@ -1,6 +1,6 @@
 <header [ngPlural]="menuBarService.IsTheUserLoggedInState">
 
-    <a routerLink="/" class="link logo-opinier">Opinier<small class="opinier-small_version">Alpha v0.1.5</small></a>
+    <a routerLink="/" class="link logo-opinier">Opinier<small class="opinier-small_version">Alpha v0.1.6</small></a>
 
     <ng-template ngPluralCase="0">
         <nav class="main__menu">
@@ -12,7 +12,7 @@
     </ng-template>
     <ng-template ngPluralCase="1">
         <nav class="profile__menu">
-            <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions" *ngIf="c">Konto</button>
+            <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions" *ngIf="c === true">Konto</button>
             <div *ngIf="profileOptions" class="profile__options">
                 <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
                 <a routerLink="/loginned/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
