@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, NgIf, NgPlural } from '@angular/common';
+import { NgIf, NgPlural } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -25,6 +25,7 @@ import { productReducer } from './core/store/reducers/product.reducer';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutesModule,
     ReactiveFormsModule,
     SharedModule,

@@ -5,6 +5,7 @@ import { productSelector } from '../../store/selectors/product.selector';
 import { IProductState } from '../../types/interfaces';
 import { Product } from '../../types/models/product.model'
 import { AuthService } from '../auth/auth.service';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +13,15 @@ import { AuthService } from '../auth/auth.service';
 export class ProductService extends AuthService {
 
   private productStore = inject(Store<IProductState>);
-  private _product: Product[] = [];
+  private _product$: BehaviorSubject<Product[]> = new BehaviorSubject([] as Product[]);
+  // private _product: Product[] = [];
 
   constructor() { 
     super();
     this.productStore.select(productSelector).subscribe(p => {
       if(p !== undefined){
-        this._product = [...p];
+        // this._product = [...p];
+        this._product$.next([...p]);
       }
     });
   }
@@ -29,17 +32,17 @@ export class ProductService extends AuthService {
       let returnProduct = Product.returnProduct(sendProductResolve.id,
          sendProductResolve.name, sendProductResolve.type_product, 
          sendProductResolve.description, sendProductResolve.user_id);
-         let sendJ = this._product;
-         sendJ.push(returnProduct);
-      this.productStore.dispatch(addProducts({products: sendJ}));
+      // let sendJ = this._product;
+      // sendJ.push(returnProduct);
+      // this.productStore.dispatch(addProducts({products: sendJ}));
     });
   }
 
   deleteProductFromDatabase(product: Product){
     this.databaseQuery.deleteProductAtDatabase('products', product)
     .then(deleteResolve => {
-      let deleteFilterredProducts = this._product.filter(c => c.id !== deleteResolve);
-      this.productStore.dispatch(addProducts({products: deleteFilterredProducts}));
+      // let deleteFilterredProducts = this._product.filter(c => c.id !== deleteResolve);
+      // this.productStore.dispatch(addProducts({products: deleteFilterredProducts}));
     });
   }
 
@@ -53,7 +56,8 @@ export class ProductService extends AuthService {
     });
   }
 
-  get product(): Product[]{
-    return this._product;
+  get product(): Observable<Product[]>{
+    // return this._product;
+    return this._product$.asObservable();
   }
 }

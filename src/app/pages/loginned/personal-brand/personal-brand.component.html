@@ -14,7 +14,7 @@
         <!-- <div class="test">test</div>
         <div class="test">test</div>
         <div class="test">test</div> -->
-        <opn-product-list-card *ngFor="let product of productService.product"
+        <opn-product-list-card *ngFor="let product of filteredProduct"
         [cardId]="product.id" 
         [cardHeader]="product.name" 
         [cardSubHeader]="product.type_product" 

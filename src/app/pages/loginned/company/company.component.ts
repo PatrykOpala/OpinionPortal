@@ -5,6 +5,7 @@ import { DialogProduktService } from 'src/app/core/services/dialog/dialog-produk
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
 import { DialogAddProduktAndServiceComponent } from '../components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
+import { Product } from 'src/app/core/types/models/product.model';
 
 @Component({
   selector: 'opn-company',
@@ -15,12 +16,20 @@ export class CompanyComponent extends UserStoreAbstract implements OnInit{
   protected dialogProduktService = inject(DialogProduktService);
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
+  protected filteredProduct: Product[] = [];
 
   constructor(public matDialog: MatDialog){
     super()
   }
   ngOnInit(): void {
     this.productService.getProductsFromDatabase();
+    this.productService.product.subscribe((products)=>{
+      if(products.length > 0){
+        this.filteredProduct = products.filter((product) => {
+          return product.user_id === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user.user_uuid
+        });    
+      }
+    });
   }
 
   openProduktServiceDialog(){
@@ -28,7 +37,6 @@ export class CompanyComponent extends UserStoreAbstract implements OnInit{
   }
 
   deleteProductFromDatabasee(getId: number){
-    this.productService.deleteProductFromDatabase(this.productService.
-      product.filter(x => x.id === getId)[0]);
+    this.productService.deleteProductFromDatabase(this.filteredProduct.filter(x => x.id === getId)[0]);
   }
 }
