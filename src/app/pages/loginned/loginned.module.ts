@@ -25,42 +25,44 @@ import { DialogChangeOpinionComponent } from './components/dialogs/dialog-change
 import { DialogChangeDirective } from '../../core/shared/directives/dialog-change.directive';
 import { DialogNewDirective } from '../../core/shared/directives/dialog-new.directive';
 import { ProductListCardComponent } from './personal-brand/components/product-list-card/product-list-card.component';
+import { StarMeterModule } from "../../core/shared/components/star-meter/star-meter.module";
 
 const loginnedRoutes: Routes = [{ path: '', component: LoginnedComponent }, {path: 'settings-account', component: SettingsAccountComponent}, 
 {path: 'personal-brand', component: PersonalBrandComponent}, {path: 'company', component: CompanyComponent}];
 
 @NgModule({
-  declarations: [
-    LoginnedComponent,
-    SettingsAccountComponent,
-    AddOpinionComponent,
-    ChooseCompanyComponent,
-    PersonalBrandComponent,
-    CompanyComponent,
-    DialogAddProduktAndServiceComponent,
-    DialogNewOpinionComponent,
-    DialogChangeOpinionComponent,
-    DialogChangeDirective,
-    DialogNewDirective,
-    ProductListCardComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    RouterModule.forChild(loginnedRoutes),
-    SharedModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatFormFieldModule,
-    MatRadioModule,
-    MatListModule,
-    MatCardModule
-  ],
-  exports:[
-    LoginnedComponent,
-  ]
+    declarations: [
+        LoginnedComponent,
+        SettingsAccountComponent,
+        AddOpinionComponent,
+        ChooseCompanyComponent,
+        PersonalBrandComponent,
+        CompanyComponent,
+        DialogAddProduktAndServiceComponent,
+        DialogNewOpinionComponent,
+        DialogChangeOpinionComponent,
+        DialogChangeDirective,
+        DialogNewDirective,
+        ProductListCardComponent
+    ],
+    exports: [
+        LoginnedComponent,
+    ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterModule.forChild(loginnedRoutes),
+        SharedModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatDialogModule,
+        MatInputModule,
+        MatFormFieldModule,
+        MatRadioModule,
+        MatListModule,
+        MatCardModule,
+        StarMeterModule
+    ]
 })
 export class LoginnedModule { }

@@ -20,9 +20,8 @@ export class MenuBarComponent implements OnInit, LogOutUser{
   constructor() {
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
       this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-      if(window.location.href.includes("personal-brand")){
+      if(window.location.href.includes("personal-brand") || window.location.href.includes("company")){
         this.c = false;
-        console.log(window.location.href);
       }
     }
   }

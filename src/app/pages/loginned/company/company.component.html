@@ -11,7 +11,7 @@
         </mat-list-item>
     </mat-list>
     <div class="products_list-container">
-        <opn-product-list-card *ngFor="let product of productService.product"
+        <opn-product-list-card *ngFor="let product of filteredProduct"
         [cardId]="product.id" 
         [cardHeader]="product.name" 
         [cardSubHeader]="product.type_product" 

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgForOf } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { OpinieComponent } from './opinie.component';
 
@@ -16,7 +16,7 @@ const opinionRoutes: Routes = [{ path: '', component: OpinieComponent }];
     OpinieChooseCategoryItemComponent,
   ],
   imports: [
-    CommonModule,
+    NgForOf,
     RouterModule.forChild(opinionRoutes),
     SharedModule
   ]

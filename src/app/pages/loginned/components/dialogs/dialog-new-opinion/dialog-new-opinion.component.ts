@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { map, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
 import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserStoreService } from 'src/app/core/services/user/user-store.service';
@@ -63,6 +63,10 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
     this.textAreaElement.nativeElement.value = "";
     this._ViewSelected = 0;
     this.dialogNewService.closeNewDialog();
+  }
+
+  starMeterOutput(output: number){
+    console.log(output);
   }
 
   ngOnDestroy(): void {

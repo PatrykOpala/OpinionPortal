@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { DialogProduktService } from 'src/app/core/services/dialog/dialog-produkt/dialog-produkt.service';
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
 import { DialogAddProduktAndServiceComponent } from '../components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
+import { Product } from 'src/app/core/types/models/product.model';
 
 @Component({
   selector: 'opn-personal-brand',
@@ -16,6 +17,7 @@ export class PersonalBrandComponent extends UserStoreAbstract implements OnInit 
   protected dialogProduktService = inject(DialogProduktService);
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
+  protected filteredProduct: Product[] = [];
 
   constructor(public matDialog: MatDialog){
     super()
@@ -29,7 +31,6 @@ export class PersonalBrandComponent extends UserStoreAbstract implements OnInit 
   }
 
   deleteProductFromDatabasee(getId: number){
-    this.productService.deleteProductFromDatabase(this.productService.
-      product.filter(x => x.id === getId)[0]);
+    this.productService.deleteProductFromDatabase(this.filteredProduct.filter(x => x.id === getId)[0]);
   }
 }

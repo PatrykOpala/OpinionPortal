@@ -1,5 +1,4 @@
-import { Component, inject, OnInit, ViewEncapsulation, } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'opn-app-dashboard',
@@ -8,6 +7,5 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
   constructor() {}
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgIf, NgPlural} from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
@@ -29,7 +29,8 @@ import { productReducer } from './core/store/reducers/product.reducer';
     AppRoutesModule,
     ReactiveFormsModule,
     SharedModule,
-    CommonModule,
+    NgIf, 
+    NgPlural,
     StoreModule.forRoot({opinions: opinionReducer, users: userReducer, products: productReducer}),
     StoreDevtoolsModule.instrument({maxAge: 5, logOnly: environment.production}),
   ],
