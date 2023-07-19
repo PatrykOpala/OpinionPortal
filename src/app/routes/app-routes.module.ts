@@ -6,7 +6,7 @@ import { MainGuard } from '../core/guards/main.guard';
 import { LOGINNED_URL, LOGIN_URL, OPINION_URL, REGISTER_URL } from '../core/types/constants';
 
 export const AppRoutes: Routes = [
-  {path: '', canActivate: [MainGuard] ,component: DashboardComponent},
+  {path: '', canActivate: [MainGuard] ,component: DashboardComponent, pathMatch: 'full'},
   {path: OPINION_URL, loadChildren: () => import('../pages/opinie/opinie.module').then(m => m.OpinieModule)},
   {path: LOGIN_URL, loadChildren: () => import('../pages/logowanie/logowanie.module').then(m => m.LogowanieModule)},
   {path: REGISTER_URL, loadChildren: () => import('../pages/rejestracja/rejestracja.module').then(m => m.RejestracjaModule)},
