@@ -16,11 +16,13 @@ export class SupabaseQueryes{
     constructor(supabaseClient: SupabaseClient){
         this.rProvider = supabaseClient;
     }
+
     pushToDatabase(databaseColumn: string, pushData: any){
-        console.log(pushData);
+        let dataToSend = pushData;
+        delete dataToSend.isEmpty;
         return new Promise(async (resolve, reject)=>{
             const {data, error} = await this.rProvider.from(databaseColumn)
-            .insert(pushData).select();
+            .insert(dataToSend).select();
             if(!error && data !== null){
               return resolve(data[0]);
             }
