@@ -1,16 +1,17 @@
 .formContainer{
-    width: 30vw;
-    height: 50vh;
+    width: 40vw;
+    height: 90vh;
     display: flex;
     align-items: center;
     flex-direction: column;
     margin-top: 2vh;
+    padding-bottom: 3vh;
 }
 
 .labelC{
     font-size: 4.4rem;
     letter-spacing: 7px;
-    margin-top: 9vh;
+    margin-top: 3vh;
     color: var(--opn-color-green);
     width: max-content;
 }

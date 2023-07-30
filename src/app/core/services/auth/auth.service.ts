@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { ElementRef, inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { addUser } from '../../store/actions/user.actions';
 import { DatabaseConnection } from '../../types/classes/database-connection.class';
 import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
+import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_COMPANY_URL, NAVIGATE_TO_HOME_URL, 
   NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_PERSONALBRAND_URL } from '../../types/constants';
@@ -13,6 +14,8 @@ import { UserLoginnedInStateEnum } from '../../types/enums';
 import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
+import { UserQuery } from '../../types/classes/user-query.class';
+import { TeleportService } from '../../portals/teleport.service';
 
 /* interface UserS { data: { user: User | null; session: Session | 
   null; }; error: null; }
@@ -29,7 +32,7 @@ export class AuthService {
   public progress: boolean = false;
   public disabled: boolean = false;
   public authRouter = inject(Router);
-  public databaseQuery: SupabaseQueryes;
+  public databaseQuery: SupabaseQueryesV2;
 
   constructor() {
     this.databaseConnection = new DatabaseConnection();
@@ -38,25 +41,29 @@ export class AuthService {
     this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
   }
 
-  register({name, email, password}: any, registerType: string){
+  transformerDatabaseUser(response: any, name: string, email: string, registerType: string){
+    return {
+      user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
+        : '',
+      name,
+      email,
+      type: registerType,
+      delete_user: false,
+      isEmpty: false
+    }
+  }
+
+  register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
     try{
       if(registerType === "company"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
-             : '',
-            name,
-            email,
-            type: registerType,
-            delete_user: false,
-            isEmpty: false
-          }
+          const userDatabase: IDataBaseUser = this.transformerDatabaseUser(response, name, email, registerType);
           this.userStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
             JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(
             UserLoginnedInStateEnum.LOGGEDIN);
-          return this.databaseQuery.pushToDatabase('users', userDatabase);
+          return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
         }).then(() => {
           this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         });
@@ -64,21 +71,13 @@ export class AuthService {
 
       if(registerType === "personalBrand"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id 
-            : '',
-            name,
-            email,
-            type: registerType,
-            delete_user: false,
-            isEmpty: false
-          }
+          const userDatabase: IDataBaseUser = this.transformerDatabaseUser(response, name, email, registerType);
           this.userStore.dispatch(addUser({user: name}));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
             JSON.stringify(response));
           this.menubarService.changeUserLoginnedInState(
             UserLoginnedInStateEnum.LOGGEDIN);
-          return this.databaseQuery.pushToDatabase('users', userDatabase);
+          return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
         }).then(()=>{
           this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         });
@@ -86,23 +85,24 @@ export class AuthService {
 
       if(registerType === "user"){
         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-          const userDatabase: IDataBaseUser = {
-            user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
-             : '',
-            name,
-            email,
-            type: registerType,
-            delete_user: false,
-            isEmpty: false
+          if(response.error){
+            if(response.error?.message === "User already registered")
+            throw new Error("To konto już istnieje.");
+          }else{
+            const userDatabase: IDataBaseUser = this.transformerDatabaseUser(response, name, email, registerType);
+            this.userStore.dispatch(addUser({user: name}));
+            window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
+               JSON.stringify(response));
+            this.menubarService.changeUserLoginnedInState(
+              UserLoginnedInStateEnum.LOGGEDIN);
+            return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
           }
-          this.userStore.dispatch(addUser({user: name}));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
-             JSON.stringify(response));
-          this.menubarService.changeUserLoginnedInState(
-            UserLoginnedInStateEnum.LOGGEDIN);
-          return this.databaseQuery.pushToDatabase('users', userDatabase);
         }).then(()=>{
           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
+        }).catch(rejected => {
+          summitbutton!.nativeElement.textContent = rejected.message;
+          summitbutton!.nativeElement.style['display'] = "block";
+          return;
         });
       }
     }catch(e){

@@ -1,10 +1,11 @@
 import { SupabaseQueryes } from "../classes/database-queryes-class";
+import { SupabaseQueryesV2 } from "../classes/database-queryes-class-v2";
 
 export interface IProvider{
-    initProvider(): SupabaseQueryes;
+    initProvider(): SupabaseQueryesV2;
 }
 
-export interface SupabaseCredentials{
+export type SupabaseCredentials = {
     supabaseUrl: string;
     supabaseKey: string;
 }

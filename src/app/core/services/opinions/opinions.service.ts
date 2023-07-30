@@ -6,6 +6,7 @@ import { stateSelector,} from '../../store/selectors/selector';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { Opinions, IOpinionState } from '../../types/interfaces';
 import { AuthService } from '../auth/auth.service';
+import { OpinionQuery } from '../../types/classes/opinion-query.class';
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,10 @@ export class OpinionsService extends AuthService {
   }
 
   SendOpinionToDatabase(opinions: Opinions): void{
-    this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) =>{
-      this.OpinionStore.dispatch(addOpinion({opinion: resolve as Opinions}))
-    });
+    this.databaseQuery.pushToDatabase(new OpinionQuery('opinions', opinions));
+    // this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) =>{
+    //   this.OpinionStore.dispatch(addOpinion({opinion: resolve as Opinions}))
+    // });
   }
 
   GetOpinionFromDataBase(){

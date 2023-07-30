@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, ElementRef, inject, OnInit, ViewChild,} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 import { FormService } from 'src/app/core/services/form/form.service';
@@ -10,6 +10,8 @@ import { MIN_LENGHT } from 'src/app/core/types/constants';
   styleUrls: ['./default-account.component.scss']
 })
 export class DefaultAccountComponent implements OnInit {
+
+  @ViewChild("summitpropt") summitElement!: ElementRef;
 
   protected defaultAccountService = inject(FormService);
   public userForm: FormGroup;
@@ -26,6 +28,6 @@ export class DefaultAccountComponent implements OnInit {
   ngOnInit(): void {}
 
   signUpUser(): void{
-    this.dafaultAuthService.register(this.userForm.value, "user");
+    this.dafaultAuthService.register(this.userForm.value, "user", this.summitElement);
   }
 }

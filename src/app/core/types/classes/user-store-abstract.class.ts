@@ -11,7 +11,10 @@ export abstract class UserStoreAbstract implements OnDestroy{
 
     constructor(){
         this.userSubscription = this.userStoreService.getUserFromStore()
-        .pipe(map((u) => u.isEmpty))
+        .pipe(map((u) => {
+            if(u === null){ return Error("U jest nullem") }
+            return u.isEmpty
+        }))
         .subscribe(u => {
             if(u){
                 let dbUser: IDataBaseUser = JSON.parse(window.localStorage.getItem(

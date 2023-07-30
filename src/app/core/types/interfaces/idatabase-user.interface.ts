@@ -6,5 +6,5 @@ export interface IDataBaseUser{
     type: string,
     user_uuid: string,
     delete_user: boolean,
-    isEmpty: boolean
+    isEmpty?: boolean
 }
