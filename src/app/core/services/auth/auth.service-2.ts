@@ -5,7 +5,6 @@ import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
 import { addUser } from '../../store/actions/user.actions';
 import { DatabaseConnection } from '../../types/classes/database-connection.class';
-import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
 import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_COMPANY_URL, NAVIGATE_TO_HOME_URL, 
@@ -15,15 +14,12 @@ import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 import { UserQuery } from '../../types/classes/user-query.class';
-
-/* interface UserS { data: { user: User | null; session: Session | 
-  null; }; error: null; }
-*/
+import { User } from '../../types/classes/user.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService2 {
   private menubarService = inject(MenuBarService);
   private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
@@ -32,12 +28,14 @@ export class AuthService {
   public disabled: boolean = false;
   public authRouter = inject(Router);
   public databaseQuery: SupabaseQueryesV2;
+  public user: User;
 
   constructor() {
     this.databaseConnection = new DatabaseConnection();
     this.supabaseProvider = new SupabaseProvider({supabaseUrl: environment.supabaseUrl,
        supabaseKey: environment.supabaseKey})
     this.databaseQuery = this.databaseConnection.supabaseConnect(this.supabaseProvider);
+    this.user = new User(this.supabaseProvider.sClient, this.databaseQuery);
   }
 
   transformerUser(response: any, name: string, email: string, registerType: string, filteredUser?: any){
@@ -64,58 +62,61 @@ export class AuthService {
     }
   }
 
-  register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
+  async register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
     try{
-      if(registerType === "company"){
-        // this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-        //   const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-        //   this.userStore.dispatch(addUser({user: name}));
-        //   window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-        //     JSON.stringify(response));
-        //   this.menubarService.changeUserLoginnedInState(
-        //     UserLoginnedInStateEnum.LOGGEDIN);
-        //   return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-        // }).then(() => {
-        //   this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
-        // });
-      }
 
-      if(registerType === "personalBrand"){
-        // this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-        //   const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-        //   this.userStore.dispatch(addUser({user: name}));
-        //   window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-        //     JSON.stringify(response));
-        //   this.menubarService.changeUserLoginnedInState(
-        //     UserLoginnedInStateEnum.LOGGEDIN);
-        //   return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-        // }).then(()=>{
-        //   this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
-        // });
-      }
+        await this.user.registerUser(name, email, password, registerType);
 
-      if(registerType === "user"){
-        // this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-        //   if(response.error){
-        //     if(response.error?.message === "User already registered")
-        //     throw new Error("To konto już istnieje.");
-        //   }else{
-        //     const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-        //     this.userStore.dispatch(addUser({user: name}));
-        //     window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
-        //        JSON.stringify(response));
-        //     this.menubarService.changeUserLoginnedInState(
-        //       UserLoginnedInStateEnum.LOGGEDIN);
-        //     return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-        //   }
-        // }).then(()=>{
-        //   this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
-        // }).catch(rejected => {
-        //   summitbutton!.nativeElement.textContent = rejected.message;
-        //   summitbutton!.nativeElement.style['display'] = "block";
-        //   return;
-        // });
-      }
+     //   if(registerType === "company"){
+     //     this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
+     //       const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+     //       this.userStore.dispatch(addUser({user: name}));
+     //       window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+     //         JSON.stringify(response));
+     //       this.menubarService.changeUserLoginnedInState(
+     //         UserLoginnedInStateEnum.LOGGEDIN);
+     //       return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+     //     }).then(() => {
+     //       this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
+     //     });
+     //   }
+
+     //   if(registerType === "personalBrand"){
+    //     this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
+    //       const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+    //       this.userStore.dispatch(addUser({user: name}));
+    //       window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+    //         JSON.stringify(response));
+    //       this.menubarService.changeUserLoginnedInState(
+    //         UserLoginnedInStateEnum.LOGGEDIN);
+    //       return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+    //     }).then(()=>{
+    //       this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
+    //     });
+     //   }
+
+     //   if(registerType === "user"){
+    //     this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
+    //       if(response.error){
+    //         if(response.error?.message === "User already registered")
+    //         throw new Error("To konto już istnieje.");
+    //       }else{
+    //         const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+    //         this.userStore.dispatch(addUser({user: name}));
+    //         window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
+    //            JSON.stringify(response));
+    //         this.menubarService.changeUserLoginnedInState(
+    //           UserLoginnedInStateEnum.LOGGEDIN);
+    //         return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+    //       }
+    //     }).then(()=>{
+    //       this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
+    //     }).catch(rejected => {
+    //       summitbutton!.nativeElement.textContent = rejected.message;
+    //       summitbutton!.nativeElement.style['display'] = "block";
+    //       return;
+    //     });
+     //   }
     }catch(e){
       console.error(e)
     }

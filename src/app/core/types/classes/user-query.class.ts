@@ -1,6 +1,7 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { IQuery } from "../interfaces/iquery";
 import { IDataBaseUser } from "../interfaces/idatabase-user.interface";
+import { QueryResult } from "../enums";
 
 export class UserQuery implements IQuery{
 
@@ -12,22 +13,21 @@ export class UserQuery implements IQuery{
         this.pshData = pushData;
     }
 
-    pushQuery(provider: SupabaseClient): Promise<unknown> {
+    pushQuery(provider: SupabaseClient): Promise<QueryResult> {
         return new Promise(async (resolve, reject)=>{
             if(this.dbColumn === "") return reject([]);
             if(this.pshData === null) return reject([]);
-            const {data, status, error} = await provider.from(this.dbColumn)
+            const {status, error} = await provider.from(this.dbColumn)
             .insert(this.transformer(this.pshData));
-            console.log(status);
             if(status === 201){
-                if(data !== null){
-                    return resolve(data[0]);
-                }
+                return resolve(QueryResult.SUCCESS);
             }
             if(error){
-                return reject("Problem z dodaniem użytkownika.")
+                console.log(error);
+                // "Problem z dodaniem użytkownika."
+                return reject(QueryResult.FAILED);
             }
-            return reject([]);
+            return resolve(QueryResult.PENDING);
         });
     }
 

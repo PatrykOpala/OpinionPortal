@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
 import { FormService } from 'src/app/core/services/form/form.service';
 import { MIN_LENGHT } from 'src/app/core/types/constants';
 
@@ -10,7 +11,7 @@ import { MIN_LENGHT } from 'src/app/core/types/constants';
   styleUrls: ['./account-personal-brand.component.scss']
 })
 export class AccountPersonalBrandComponent implements OnInit {
-  protected accountPersonalBrandService = inject(AuthService);
+  protected accountPersonalBrandService = inject(AuthService2);
   protected accountPersonalBrandFormService = inject(FormService);
   protected personalBrandForm: FormGroup;
   

@@ -17,3 +17,5 @@ export const LOGINNED_URL = 'loginned';
 export const NAVIGATE_TO_LOGINNED_URL = '/loginned';
 export const NAVIGATE_TO_PERSONALBRAND_URL = '/loginned/personal-brand';
 export const NAVIGATE_TO_COMPANY_URL = '/loginned/company';
+
+export const NAVIGATE_TO_ULOGINNED_URL = '/uloginned';

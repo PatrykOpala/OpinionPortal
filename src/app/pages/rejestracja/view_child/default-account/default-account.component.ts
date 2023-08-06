@@ -1,6 +1,7 @@
 import { Component, ElementRef, inject, OnInit, ViewChild,} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
 import { FormService } from 'src/app/core/services/form/form.service';
 import { MIN_LENGHT } from 'src/app/core/types/constants';
 
@@ -15,7 +16,7 @@ export class DefaultAccountComponent implements OnInit {
 
   protected defaultAccountService = inject(FormService);
   public userForm: FormGroup;
-  private dafaultAuthService = inject(AuthService);
+  private dafaultAuthService = inject(AuthService2);
 
   constructor(private registerFormBuilder: FormBuilder) { 
     this.userForm = this.registerFormBuilder.group({

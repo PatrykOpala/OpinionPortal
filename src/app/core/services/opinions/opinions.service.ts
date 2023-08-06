@@ -25,9 +25,6 @@ export class OpinionsService extends AuthService {
 
   SendOpinionToDatabase(opinions: Opinions): void{
     this.databaseQuery.pushToDatabase(new OpinionQuery('opinions', opinions));
-    // this.databaseQuery.pushToDatabase('opinions', opinions).then((resolve) =>{
-    //   this.OpinionStore.dispatch(addOpinion({opinion: resolve as Opinions}))
-    // });
   }
 
   GetOpinionFromDataBase(){

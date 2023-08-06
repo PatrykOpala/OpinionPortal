@@ -1,17 +1,23 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { IQuery } from "../interfaces/iquery";
+import { inject } from "@angular/core";
+import { Store } from "@ngrx/store";
+import { addOpinion } from "../../store/actions/opinion.actions";
+import { IOpinionState, Opinions } from "../interfaces";
+import { QueryResult } from "../enums";
 
 export class OpinionQuery implements IQuery{
 
     private dbColumn: string = "";
     private pshData: any = null;
+    private OpinionStore = inject(Store<IOpinionState>);
 
     constructor(databaseColumn: string, pushData: any){
         this.dbColumn = databaseColumn;
         this.pshData = pushData;
     }
 
-    pushQuery(provider: SupabaseClient): Promise<unknown> {
+    pushQuery(provider: SupabaseClient): Promise<QueryResult> {
         return new Promise(async (resolve, reject)=>{
             if(this.dbColumn === "") return reject([]);
             if(this.pshData === null) return reject([]);
@@ -20,11 +26,15 @@ export class OpinionQuery implements IQuery{
             console.log(status);
             if(status === 201){
                 if(data !== null){
-                    return resolve(data[0]);
+                    if(data[0] !== undefined){
+                        this.OpinionStore.dispatch(addOpinion({opinion: data[0] as Opinions}));
+                        return resolve(QueryResult.SUCCESS);
+                    }
                 }
             }
             if(error){
-                return reject("Problem z dodaniem opinii.")
+                // "Problem z dodaniem opinii."
+                return reject(QueryResult.FAILED);
             }
             return reject([]);
         });

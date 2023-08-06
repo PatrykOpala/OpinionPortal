@@ -16,12 +16,14 @@ import { AppRoutesModule } from './routes/app-routes.module';
 import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { userReducer } from './core/store/reducers/user.reducer';
 import { productReducer } from './core/store/reducers/product.reducer';
+import { UloginnedComponent } from './pages/uloginned/uloginned.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
 	  MenuBarComponent,
+   UloginnedComponent,
   ],
   imports: [
     BrowserModule,
