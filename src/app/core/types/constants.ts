@@ -12,6 +12,7 @@ export const OPINION_URL = 'opinion';
 export const LOGIN_URL = 'login';
 export const REGISTER_URL = 'register';
 export const LOGINNED_URL = 'loginned';
+export const ULOGINNED_URL = 'uloginned';
 
 
 export const NAVIGATE_TO_LOGINNED_URL = '/loginned';

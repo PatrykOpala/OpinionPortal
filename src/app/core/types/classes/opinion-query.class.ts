@@ -28,15 +28,14 @@ export class OpinionQuery implements IQuery{
                 if(data !== null){
                     if(data[0] !== undefined){
                         this.OpinionStore.dispatch(addOpinion({opinion: data[0] as Opinions}));
-                        return resolve(QueryResult.SUCCESS);
+                        resolve(QueryResult.SUCCESS);
                     }
                 }
             }
             if(error){
                 // "Problem z dodaniem opinii."
-                return reject(QueryResult.FAILED);
+                resolve(QueryResult.FAILED);
             }
-            return reject([]);
         });
     }
 }

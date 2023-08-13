@@ -14,20 +14,16 @@ export interface QueriesResult{
 
 export class SupabaseQueryesV2{
     private _rProvider: SupabaseClient;
-    private _queryStatus?: QueryResult;
+    private _result: QueryResult | null = null;
 
     constructor(supabaseClient: SupabaseClient){
         this._rProvider = supabaseClient;
     }
     // databaseColumn: string, pushData: any
     async pushToDatabase(query: IQuery){
-        this._queryStatus = await query.pushQuery(this._rProvider);
-    }
-
-    getQueryStatus(){
-        console.log(this._queryStatus);
-        
-        return this._queryStatus;
+        const f = await query.pushQuery(this._rProvider);
+        this._result = f;
+        return this._result;
     }
 
     pushProductToDatabase(databaseColumn: string, pushData: any): Promise<any>{
