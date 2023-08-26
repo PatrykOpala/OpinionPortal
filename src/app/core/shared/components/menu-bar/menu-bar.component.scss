@@ -1,12 +1,14 @@
 header{
     display: flex;
+    width: 80%;
     flex-direction: row;
     justify-content: space-between;
+    margin-inline: auto;
 }
 
 .logo-opinier{
     display: block;
-    width: 430px;
+    width: 732px;
     height: max-content;
     font-size: 3rem;
     color: var(--opn-color-green);
@@ -27,10 +29,11 @@ header{
 }
 
 .main__menu{
-    width: 90vw;
+    width: 40vw;
     display: flex;
     align-items: center;
-    margin: 1% auto;
+    margin-top: 1%;
+    margin-bottom: 1%;
     .link{
         font-size: 1.2rem;
         margin-left: 10px;
@@ -55,15 +58,15 @@ header{
         letter-spacing: 3px;
         border: none;
         text-decoration: none;
+        cursor: pointer;
     }
     a:hover{
-        cursor: pointer;
         background-color: var(--opn-color-dark-green);
     }
 }
 
 .profile__menu{
-    width: 80vw;
+    width: 40vw;
     height: 60px;
     display: flex;
     flex-direction: row;
@@ -88,7 +91,6 @@ header{
     .button__loginned:hover{
         border-bottom: 2px solid var(--opn-color-green);
     }
-
     .button__primary{
         font-size: 1.4em;
         letter-spacing: 3px;
@@ -96,16 +98,32 @@ header{
         border: none;
         cursor: pointer;
     }
-
     .vertical-center{
         margin-top: 4.3vh;
         margin-right: 7vw;
     }
-
     .button__primary:hover{
         color: var(--opn-color-dark-green);
     }
-
+    .profile__options-element{
+        width: 30%;
+        height: 40px;
+        margin-top: 40px;
+        text-align: center;
+        font-size: 1.2em;
+        border: none;
+        text-decoration: none;
+        background-color: transparent;
+        cursor: pointer;
+        color: var(--opn-color-green);
+    }
+    .profile__options-element:hover{
+        background-color: var(--opn-color-dark-green);
+        color: #fdfdfd;
+    }
+    .text-center{
+        line-height: 210%;
+    }
     .profile__options{
         width: 300px;
         height: max-content;
@@ -121,29 +139,6 @@ header{
         flex-direction: column;
         align-items: center;
         z-index: 999;
-
-        .profile__options-element{
-            width: 99%;
-            height: 40px;
-            margin-top: 3px;
-            margin-left: 0;
-            text-align: center;
-            font-size: 1.2em;
-            border: none;
-            text-decoration: none;
-            line-height: 100%;
-            background-color: transparent;
-            cursor: pointer;
-            color: var(--opn-color-green);
-        }
-        .profile__options-element:hover{
-            background-color: var(--opn-color-dark-green);
-            color: #fdfdfd;
-        }
-
-        .text-center{
-            line-height: 210%;
-        }
     }
 }
 

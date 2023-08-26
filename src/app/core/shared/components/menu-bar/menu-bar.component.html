@@ -1,10 +1,8 @@
 <header [ngPlural]="menuBarService.IsTheUserLoggedInState">
-
-    <a routerLink="/" class="link logo-opinier">Opinier<small class="opinier-small_version">Alpha v0.1.7</small></a>
+    <a routerLink="/" class="link logo-opinier">Opinion-Portal<small class="opinier-small_version">Alpha v0.1.7</small></a>
 
     <ng-template ngPluralCase="0">
         <nav class="main__menu">
-            <a routerLink="/login">Podziel się opinią</a>
             <a class="link" routerLink="/login">Dodaj Produkt/Usługę</a>
             <a class="link" routerLink="/register">Stwórz konto</a>
             <a class="link" routerLink="/opinion">Zobacz opinie</a>
@@ -12,11 +10,8 @@
     </ng-template>
     <ng-template ngPluralCase="1">
         <nav class="profile__menu">
-            <button class="button__primary vertical-center" (click)="profileOptions = !profileOptions" *ngIf="c === true">Konto</button>
-            <div *ngIf="profileOptions" class="profile__options">
-                <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
-                <a routerLink="/loginned/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
-            </div>
+            <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
+            <a routerLink="/loginned/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
         </nav>
     </ng-template>
 </header>

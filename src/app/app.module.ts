@@ -23,7 +23,7 @@ import { UloginnedComponent } from './pages/uloginned/uloginned.component';
     AppComponent,
     DashboardComponent,
 	  MenuBarComponent,
-   UloginnedComponent,
+    UloginnedComponent,
   ],
   imports: [
     BrowserModule,

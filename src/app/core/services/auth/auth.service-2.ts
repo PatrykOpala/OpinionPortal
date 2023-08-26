@@ -13,7 +13,6 @@ import { UserLoginnedInStateEnum } from '../../types/enums';
 import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
-import { UserQuery } from '../../types/classes/user-query.class';
 import { User } from '../../types/classes/user.class';
 
 @Injectable({
@@ -64,7 +63,7 @@ export class AuthService2 {
 
   async register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
     try{
-
+        console.log(summitbutton?.nativeElement);
         await this.user.registerUser(name, email, password, registerType);
 
      //   if(registerType === "company"){

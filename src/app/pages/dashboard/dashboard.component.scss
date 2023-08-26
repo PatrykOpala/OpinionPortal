@@ -34,3 +34,19 @@
         gap: 10px;
     }
 }
+
+a{
+    font-size: 1.3rem;
+    padding: 13px;
+    background-color: var(--opn-color-green);
+    color: #fdfdfd;
+    font-weight: 600;
+    letter-spacing: 3px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+a:hover{
+    background-color: var(--opn-color-dark-green);
+}

@@ -7,7 +7,6 @@ import { IOpinionState, Opinions } from "../interfaces";
 import { QueryResult } from "../enums";
 
 export class OpinionQuery implements IQuery{
-
     private dbColumn: string = "";
     private pshData: any = null;
     private OpinionStore = inject(Store<IOpinionState>);
