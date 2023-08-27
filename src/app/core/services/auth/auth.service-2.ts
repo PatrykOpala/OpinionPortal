@@ -63,59 +63,60 @@ export class AuthService2 {
 
   async register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
     try{
-        console.log(summitbutton?.nativeElement);
+        // console.log(summitbutton?.nativeElement);
         await this.user.registerUser(name, email, password, registerType);
 
-     //   if(registerType === "company"){
-     //     this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-     //       const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-     //       this.userStore.dispatch(addUser({user: name}));
-     //       window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-     //         JSON.stringify(response));
-     //       this.menubarService.changeUserLoginnedInState(
-     //         UserLoginnedInStateEnum.LOGGEDIN);
-     //       return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-     //     }).then(() => {
-     //       this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
-     //     });
-     //   }
+     /*   if(registerType === "company"){
+          this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
+            const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+            this.userStore.dispatch(addUser({user: name}));
+            window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+              JSON.stringify(response));
+            this.menubarService.changeUserLoginnedInState(
+              UserLoginnedInStateEnum.LOGGEDIN);
+            return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+          }).then(() => {
+            this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
+          });
+        }
 
-     //   if(registerType === "personalBrand"){
-    //     this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-    //       const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-    //       this.userStore.dispatch(addUser({user: name}));
-    //       window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-    //         JSON.stringify(response));
-    //       this.menubarService.changeUserLoginnedInState(
-    //         UserLoginnedInStateEnum.LOGGEDIN);
-    //       return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-    //     }).then(()=>{
-    //       this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
-    //     });
-     //   }
+        if(registerType === "personalBrand"){
+         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
+          const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+           this.userStore.dispatch(addUser({user: name}));
+           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+             JSON.stringify(response));
+           this.menubarService.changeUserLoginnedInState(
+             UserLoginnedInStateEnum.LOGGEDIN);
+           return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+         }).then(()=>{
+           this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
+         });
+        }
 
-     //   if(registerType === "user"){
-    //     this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-    //       if(response.error){
-    //         if(response.error?.message === "User already registered")
-    //         throw new Error("To konto już istnieje.");
-    //       }else{
-    //         const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-    //         this.userStore.dispatch(addUser({user: name}));
-    //         window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
-    //            JSON.stringify(response));
-    //         this.menubarService.changeUserLoginnedInState(
-    //           UserLoginnedInStateEnum.LOGGEDIN);
-    //         return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-    //       }
-    //     }).then(()=>{
-    //       this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
-    //     }).catch(rejected => {
-    //       summitbutton!.nativeElement.textContent = rejected.message;
-    //       summitbutton!.nativeElement.style['display'] = "block";
-    //       return;
-    //     });
-     //   }
+        if(registerType === "user"){
+         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
+           if(response.error){
+             if(response.error?.message === "User already registered")
+             throw new Error("To konto już istnieje.");
+           }else{
+             const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+             this.userStore.dispatch(addUser({user: name}));
+             window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
+                JSON.stringify(response));
+             this.menubarService.changeUserLoginnedInState(
+               UserLoginnedInStateEnum.LOGGEDIN);
+             return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
+         }
+         }).then(()=>{
+           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
+         }).catch(rejected => {
+           summitbutton!.nativeElement.textContent = rejected.message;
+           summitbutton!.nativeElement.style['display'] = "block";
+           return;
+         });
+        }*/
+
     }catch(e){
       console.error(e)
     }
