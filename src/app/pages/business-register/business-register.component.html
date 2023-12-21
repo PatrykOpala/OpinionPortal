@@ -1,0 +1,28 @@
+<opn-pane-container>
+    <form class="formContainer" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <label class="labelC">Logowanie</label>
+        <div class="field-container">
+            <label class="field">Nazwa Firmy</label>
+            <input type="text" name="userName" formControlName="name" class="inputC" placeholder="Mleczarnia Rzymska / Tree Steel"/>
+        </div>
+        <div class="field-container">
+            <label class="field">Adres E-mail</label>
+            <input type="email" name="Email" class="inputC" placeholder="np. abcd@abcd.pl" formControlName="email"/>
+        </div>
+        <div class="field-container">
+            <label class="field">Hasło</label>
+            <input type="password" name="Password" id="uPassword" class="inputC" formControlName="password"/>
+        </div>
+        <div class="button-container">
+            <button type="submit">
+                <div *ngIf="authService.progress; else elseButton">
+                    <div class="progress">
+                        <div class="pr1"></div>
+                        <div class="pr2"></div>
+                    </div>
+                </div>
+                <ng-template #elseButton>Zaloguj się</ng-template>
+            </button>
+        </div>
+    </form>
+</opn-pane-container>

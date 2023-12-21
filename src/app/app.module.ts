@@ -17,6 +17,8 @@ import { opinionReducer } from './core/store/reducers/opinion.reducer';
 import { userReducer } from './core/store/reducers/user.reducer';
 import { productReducer } from './core/store/reducers/product.reducer';
 import { UloginnedComponent } from './pages/uloginned/uloginned.component';
+import { BusinessLoginComponent } from './pages/business-login/business-login.component';
+import { BusinessRegisterComponent } from './pages/business-register/business-register.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { UloginnedComponent } from './pages/uloginned/uloginned.component';
     DashboardComponent,
 	  MenuBarComponent,
     UloginnedComponent,
+    BusinessLoginComponent,
+    BusinessRegisterComponent,
   ],
   imports: [
     BrowserModule,
