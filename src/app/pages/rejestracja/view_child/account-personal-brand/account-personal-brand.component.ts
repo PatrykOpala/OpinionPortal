@@ -32,6 +32,6 @@ export class AccountPersonalBrandComponent implements OnInit {
 
   signUpPersonalBrand(event: Event): void{
     event.preventDefault();
-    this.accountPersonalBrandService.register(this.personalBrandForm.value, "personalBrand");
+    //this.accountPersonalBrandService.register(this.personalBrandForm.value, "personalBrand");
   }
 }

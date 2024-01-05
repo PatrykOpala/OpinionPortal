@@ -30,6 +30,6 @@ export class LogowanieComponent implements OnInit{
 
   onSubmit(): void{
     this.loginForm.disable();
-    this.authService.login(this.loginForm);
+    this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password);
   }
 }

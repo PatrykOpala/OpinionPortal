@@ -8,8 +8,7 @@ import { DatabaseConnection } from '../../types/classes/database-connection.clas
 import { SupabaseQueryes } from '../../types/classes/database-queryes-class';
 import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
-import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_COMPANY_URL, NAVIGATE_TO_HOME_URL, 
-  NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_PERSONALBRAND_URL } from '../../types/constants';
+import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_HOME_URL, NAVIGATE_TO_LOGINNED_URL} from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
 import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
@@ -25,7 +24,7 @@ import { UserQuery } from '../../types/classes/user-query.class';
 })
 export class AuthService {
   private menubarService = inject(MenuBarService);
-  private userStore = inject(Store<IUserStore>);
+  //private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
   public progress: boolean = false;
@@ -160,7 +159,7 @@ export class AuthService {
           let loggedUser = {
             user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
           };
-          this.userStore.dispatch(addUser(loggedUser));
+          //this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
             JSON.stringify(loggedUser));
           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
@@ -169,19 +168,19 @@ export class AuthService {
           let loggedUser = {
             user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
           };
-          this.userStore.dispatch(addUser(loggedUser));
+          //this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
             JSON.stringify(loggedUser));
-          this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
+          //this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         }
         if(filteredUser[0].type === "company"){
           let loggedUser = {
             user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
           };
-          this.userStore.dispatch(addUser(loggedUser));
+          //this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
             JSON.stringify(loggedUser));
-          this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
+          //this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         }
       }
     });
@@ -204,7 +203,7 @@ export class AuthService {
       const {data, error} = await this.supabaseProvider.sClient
       .from("users")
       .update(userToDelete).match({email: email}).select();
-      this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      //this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
       if(error) console.error(error);
   }
 
@@ -215,7 +214,7 @@ export class AuthService {
     const {data, error} = await this.supabaseProvider.sClient
       .from("users")
       .update(userToDelete).match({email: email}).select();
-      this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
+      //this.userStore.dispatch(addUser({user: data !== null ? data[0] : {}}));
       if(error) console.error(error);
   }
 }

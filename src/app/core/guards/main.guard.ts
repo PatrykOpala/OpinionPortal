@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_PERSONALBRAND_URL, NAVIGATE_TO_COMPANY_URL } from '../../core/types/constants';
+import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_BUSINESS_DASHBOARD } from '../../core/types/constants';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +16,10 @@ export class MainGuard implements CanActivate {
         return this.mainRouter.createUrlTree([NAVIGATE_TO_LOGINNED_URL]);
       }
       if(JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string).user.type === "personalBrand"){
-        return this.mainRouter.createUrlTree([NAVIGATE_TO_PERSONALBRAND_URL]);
+        return this.mainRouter.createUrlTree([NAVIGATE_TO_BUSINESS_DASHBOARD]);
       }
       if(JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string).user.type === "company"){
-        return this.mainRouter.createUrlTree([NAVIGATE_TO_COMPANY_URL]);
+        return this.mainRouter.createUrlTree([NAVIGATE_TO_BUSINESS_DASHBOARD]);
       }
       return true
   }

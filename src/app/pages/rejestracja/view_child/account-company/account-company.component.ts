@@ -33,6 +33,6 @@ export class AccountCompanyComponent implements OnInit {
 
   signUpCompany(event: Event): void{
     event.preventDefault();
-    this.accountCompanyService.register(this.companyForm.value, "company");
+    //this.accountCompanyService.register(this.companyForm.value, "company");
   }
 }

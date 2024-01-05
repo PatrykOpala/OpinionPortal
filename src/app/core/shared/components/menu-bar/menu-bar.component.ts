@@ -4,7 +4,6 @@ import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
 import { LogOutUser} from '../../../types/interfaces';
-import { NgPlural } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,7 +11,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss'],
   standalone: true,
-  imports: [NgPlural, RouterLink]
+  imports: [RouterLink]
 })
 export class MenuBarComponent implements OnInit, LogOutUser{
   protected menuBarService = inject(MenuBarService);
@@ -23,9 +22,8 @@ export class MenuBarComponent implements OnInit, LogOutUser{
 
   constructor() {
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
-      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
       if(window.location.href.includes("personal-brand") || window.location.href.includes("company")){
-        this.c = false;
+        this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
       }
     }
   }

@@ -26,6 +26,7 @@ export class BusinessRegisterComponent {
 
   onSubmit(): void{
     this.loginForm.disable();
-    this.authService.login(this.loginForm);
+    this.authService.registerBusiness(this.loginForm.value.name, this.loginForm.value.email, this.loginForm.value.password);
+    this.loginForm.enable();
   }
 }

@@ -33,6 +33,10 @@ export class DefaultAccountComponent implements OnInit {
   ngOnInit(): void {}
 
   signUpUser(): void{
-    this.dafaultAuthService.register(this.userForm.value, "user", this.summitElement);
+    if(this.userForm.value.email === "" && this.userForm.value.password === ""){
+      this.userForm.enable();
+      return;
+    }
+    this.dafaultAuthService.registerUser(this.userForm.value.name, this.userForm.value.email, this.userForm.value.password);
   }
 }

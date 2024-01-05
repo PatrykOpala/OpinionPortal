@@ -7,13 +7,14 @@ import { addUser } from '../../store/actions/user.actions';
 import { DatabaseConnection } from '../../types/classes/database-connection.class';
 import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2';
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
-import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_COMPANY_URL, NAVIGATE_TO_HOME_URL, 
-  NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_PERSONALBRAND_URL } from '../../types/constants';
-import { UserLoginnedInStateEnum } from '../../types/enums';
+import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_HOME_URL, NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_BUSINESS_DASHBOARD } from '../../types/constants';
+import { QueryResult, UserLoginnedInStateEnum } from '../../types/enums';
 import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
 import { IUserStore } from '../../types/interfaces/user-store.interface';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 import { User } from '../../types/classes/user.class';
+import { UserQuery } from '../../types/classes/user-query.class';
+import { AuthError } from '@supabase/supabase-js';
 
 @Injectable({
   providedIn: 'root'
@@ -37,120 +38,60 @@ export class AuthService2 {
     this.user = new User(this.supabaseProvider.sClient, this.databaseQuery);
   }
 
-  transformerUser(response: any, name: string, email: string, registerType: string, filteredUser?: any){
-    if(response !== null && response !== undefined){
-      return {
-        user_uuid: response.data.user?.id !== undefined ? response.data.user?.id
-          : '',
-        name,
-        email,
-        type: registerType,
-        delete_user: false,
-        isEmpty: false
+  async registerUser(name: string, email: string, password: string): Promise<AuthError | undefined>{
+    const {error, data} = await this.supabaseProvider.sClient.auth.signUp({email, password});
+    const registerTransformeUser: IDataBaseUser = this.user.transformerUser(data, name, email);
+    const result = await this.databaseQuery.pushToDatabase(new UserQuery("users", registerTransformeUser));
+
+    if(result === QueryResult.SUCCESS){
+      this.user.addUserToStore(registerTransformeUser);
+      window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(registerTransformeUser));
+      this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
+    }
+    if(error){
+      return error;
+    }
+    return;
+  }
+
+  async registerBusiness(name: string, email: string, password: string): Promise<AuthError | undefined>{
+    const {error, data} = await this.supabaseProvider.sClient.auth.signUp({email, password});
+    const registerTransformerBusiness: IDataBaseUser = this.user.transformerUser(data, name, email);
+    const result = await this.databaseQuery.pushToDatabase(new UserQuery("users", registerTransformerBusiness));
+
+    if(result === QueryResult.SUCCESS){
+      this.user.addUserToStore(registerTransformerBusiness);
+      window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(registerTransformerBusiness));
+      this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      this.authRouter.navigateByUrl(NAVIGATE_TO_BUSINESS_DASHBOARD);
+    }
+    if(error){
+      return error;
+    }
+    return;
+  }
+
+  async loginUser(email: string, password: string): Promise<AuthError | undefined>{
+    const {data, error} = await this.supabaseProvider.
+    sClient.auth.signInWithPassword({email: email, password: password});
+    if(data !== null){
+      if(data.user !== null && data.session !== null){
+        window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
+          JSON.stringify(data));
+        this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+        this.user.addUserToStore(this.user.transformerUser(data, email, password));
+        this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
       }
     }
-
-    return{
-      id: filteredUser.id,
-      type: filteredUser.type,
-      name: filteredUser.name,
-      email: filteredUser.email,
-      user_uuid: filteredUser.user_uuid,
-      delete_user: filteredUser.delete_user,
-      isEmpty: false
+    if(error){
+      return error;
     }
+    return;
   }
 
-  async register({name, email, password}: any, registerType: string, summitbutton?: ElementRef){
-    try{
-        // console.log(summitbutton?.nativeElement);
-        await this.user.registerUser(name, email, password, registerType);
-
-     /*   if(registerType === "company"){
-          this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-            const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-            this.userStore.dispatch(addUser({user: name}));
-            window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-              JSON.stringify(response));
-            this.menubarService.changeUserLoginnedInState(
-              UserLoginnedInStateEnum.LOGGEDIN);
-            return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-          }).then(() => {
-            this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
-          });
-        }
-
-        if(registerType === "personalBrand"){
-         this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-          const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-           this.userStore.dispatch(addUser({user: name}));
-           window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-             JSON.stringify(response));
-           this.menubarService.changeUserLoginnedInState(
-             UserLoginnedInStateEnum.LOGGEDIN);
-           return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-         }).then(()=>{
-           this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
-         });
-        }
-
-        if(registerType === "user"){
-         this.supabaseProvider.sClient.auth.signUp({email, password}).then(response => {
-           if(response.error){
-             if(response.error?.message === "User already registered")
-             throw new Error("To konto już istnieje.");
-           }else{
-             const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
-             this.userStore.dispatch(addUser({user: name}));
-             window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
-                JSON.stringify(response));
-             this.menubarService.changeUserLoginnedInState(
-               UserLoginnedInStateEnum.LOGGEDIN);
-             return this.databaseQuery.pushToDatabase(new UserQuery("users", userDatabase));
-         }
-         }).then(()=>{
-           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
-         }).catch(rejected => {
-           summitbutton!.nativeElement.textContent = rejected.message;
-           summitbutton!.nativeElement.style['display'] = "block";
-           return;
-         });
-        }*/
-
-    }catch(e){
-      console.error(e)
-    }
-  }
-
-  login(form: FormGroup<any>){
-    this.progress = true;
-      setTimeout(async ()=>{
-        if(form.value.email === "" && form.value.password === ""){
-          this.progress = false;
-          form.enable();
-          return;
-        }else{
-          const {data, error} = await this.supabaseProvider.
-          sClient.auth.signInWithPassword({email: form.value.email, 
-            password: form.value.password});
-          if(data !== null){
-            if(data.user !== null && data.session !== null){
-              this.progress = false;
-              form.enable();
-              window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-                JSON.stringify(data));
-              this.menubarService.changeUserLoginnedInState(
-                UserLoginnedInStateEnum.LOGGEDIN);
-              this.routeTo(form.value.email);
-            }
-          }
-          if(error){
-            this.progress = false;
-            form.enable();
-            console.log(error.message);
-          }
-        }
-      }, 1000);
+  async loginBusiness(email: string, password: string): Promise<AuthError | undefined>{
+    return;
   }
 
   routeTo(email_pass: string = ""){
@@ -159,7 +100,7 @@ export class AuthService2 {
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){
           let loggedUser = {
-            user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
+            user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
@@ -168,21 +109,21 @@ export class AuthService2 {
         }
         if(filteredUser[0].type === "personalBrand"){
           let loggedUser = {
-            user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
+            user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
             JSON.stringify(loggedUser));
-          this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
+          //this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         }
         if(filteredUser[0].type === "company"){
           let loggedUser = {
-            user: this.transformerUser(null, "", "", filteredUser[0].type, filteredUser[0])
+            user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
           window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
             JSON.stringify(loggedUser));
-          this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
+          //this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         }
       }
     });
