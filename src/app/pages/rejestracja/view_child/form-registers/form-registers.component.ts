@@ -5,6 +5,7 @@ import { FormService } from 'src/app/core/services/form/form.service';
   selector: 'opn-form-registers',
   templateUrl: './form-registers.component.html',
   styleUrls: ['./form-registers.component.scss'],
+  standalone: true
 })
 export class FormRegistersComponent implements OnInit {
   @Input() defaultAccountService?: FormService;

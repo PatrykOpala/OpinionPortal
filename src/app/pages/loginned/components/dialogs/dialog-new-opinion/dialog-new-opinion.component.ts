@@ -7,11 +7,15 @@ import { CreateOpinion } from 'src/app/core/types/functions';
 import { Opinions } from 'src/app/core/types/interfaces';
 import { Product } from 'src/app/core/types/models/product.model';
 import { DialogServiceService } from './dialog-service.service';
+import { StarMeterComponent } from 'src/app/core/shared/components/star-meter/star-meter.component';
+import { NgFor, NgIf, NgPlural } from '@angular/common';
 
 @Component({
   selector: 'opn-dialog-new-opinion',
   templateUrl: './dialog-new-opinion.component.html',
-  styleUrls: ['./dialog-new-opinion.component.scss']
+  styleUrls: ['./dialog-new-opinion.component.scss'],
+  standalone: true,
+  imports: [StarMeterComponent, NgFor, NgPlural, NgIf]
 })
 export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;

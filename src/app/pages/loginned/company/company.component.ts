@@ -6,11 +6,18 @@ import { ProductService } from 'src/app/core/services/product/product.service';
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
 import { DialogAddProduktAndServiceComponent } from '../components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
 import { Product } from 'src/app/core/types/models/product.model';
+import { ProductListCardComponent } from '../personal-brand/components/product-list-card/product-list-card.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'opn-company',
   templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss']
+  styleUrls: ['./company.component.scss'],
+  standalone: true,
+  imports:[
+    ProductListCardComponent,
+    NgFor,
+  ]
 })
 export class CompanyComponent extends UserStoreAbstract implements OnInit{
   protected dialogProduktService = inject(DialogProduktService);

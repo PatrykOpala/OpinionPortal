@@ -6,11 +6,15 @@ import { DialogProduktService } from 'src/app/core/services/dialog/dialog-produk
 import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
 import { DialogAddProduktAndServiceComponent } from '../components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
 import { Product } from 'src/app/core/types/models/product.model';
+import { NgFor } from '@angular/common';
+import { ProductListCardComponent } from './components/product-list-card/product-list-card.component';
 
 @Component({
   selector: 'opn-personal-brand',
   templateUrl: './personal-brand.component.html',
-  styleUrls: ['./personal-brand.component.scss']
+  styleUrls: ['./personal-brand.component.scss'],
+  standalone: true,
+  imports: [NgFor, ProductListCardComponent]
 })
 export class PersonalBrandComponent extends UserStoreAbstract implements OnInit {
 

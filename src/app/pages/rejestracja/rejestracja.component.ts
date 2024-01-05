@@ -1,10 +1,15 @@
 import { Component, inject, OnInit, } from '@angular/core';
 import { FormService } from '../../core/services/form/form.service';
+import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
+import { RejestracjaStepComponent } from './components/rejestracja-step/rejestracja-step.component';
+import { ChooseComponent } from 'src/app/core/shared/components/choose/choose.componnet';
 
 @Component({
   selector: 'opn-rejestracja',
   templateUrl: './rejestracja.component.html',
   styleUrls: ['./rejestracja.component.scss'],
+  standalone: true,
+  imports: [PaneContainerComponent, RejestracjaStepComponent, ChooseComponent],
 })
 export class RejestracjaComponent implements OnInit {
   private formService = inject(FormService);

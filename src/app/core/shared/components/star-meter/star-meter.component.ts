@@ -3,7 +3,8 @@ import { Component, EventEmitter, HostListener, Output } from '@angular/core';
 @Component({
   selector: 'opn-star-meter',
   templateUrl: './star-meter.component.html',
-  styleUrls: ['./star-meter.component.scss']
+  styleUrls: ['./star-meter.component.scss'],
+  standalone: true
 })
 export class StarMeterComponent {
 

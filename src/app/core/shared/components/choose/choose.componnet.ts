@@ -3,7 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'opn-choose',
   templateUrl: './choose.component.html',
-  styleUrls: ['./choose.component.scss']
+  styleUrls: ['./choose.component.scss'],
+  standalone: true,
 })
 export class ChooseComponent implements OnInit {
 

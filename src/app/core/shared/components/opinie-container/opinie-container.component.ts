@@ -3,11 +3,14 @@ import { OpinionsService } from 'src/app/core/services/opinions/opinions.service
 import { Opinions } from 'src/app/core/types/interfaces';
 import { changeEvent } from '../../../types/interfaces';
 import { DialogServiceService } from '../../../../pages/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'opn-opinie-container',
   templateUrl: './opinie-container.component.html',
   styleUrls: ['./opinie-container.component.scss'],
+  standalone: true,
+  imports: [NgIf]
 })
 export class OpinieContainerComponent implements OnInit {
   @ViewChild('headOpn') headOpn!: ElementRef;

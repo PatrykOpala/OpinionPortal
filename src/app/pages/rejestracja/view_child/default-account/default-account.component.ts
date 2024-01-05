@@ -1,13 +1,18 @@
 import { Component, ElementRef, inject, OnInit, ViewChild,} from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
 import { FormService } from 'src/app/core/services/form/form.service';
+import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
 import { MIN_LENGHT } from 'src/app/core/types/constants';
+import { FormRegistersComponent } from '../form-registers/form-registers.component';
+import { RejestracjaStepComponent } from '../../components/rejestracja-step/rejestracja-step.component';
 
 @Component({
   selector: 'opn-default-account',
   templateUrl: './default-account.component.html',
-  styleUrls: ['./default-account.component.scss']
+  styleUrls: ['./default-account.component.scss'],
+  standalone: true,
+  imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent]
 })
 export class DefaultAccountComponent implements OnInit {
 

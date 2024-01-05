@@ -2,11 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { RejestracjaComponent } from './rejestracja.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from '../../core/shared/modules/shared.module';
-import { RejestracjaStepComponent } from './components/rejestracja-step/rejestracja-step.component';
-
-import { FormRegistersComponent } from './view_child/form-registers/form-registers.component';
 
 import { DefaultAccountComponent } from './view_child/default-account/default-account.component';
 import { AccountPersonalBrandComponent } from './view_child/account-personal-brand/account-personal-brand.component';
@@ -17,18 +12,10 @@ const RejesrationRoutes: Routes = [{ path: '', component: RejestracjaComponent},
 
 @NgModule({
   declarations: [
-    RejestracjaComponent,
-    RejestracjaStepComponent,
-    FormRegistersComponent,
-    DefaultAccountComponent,
-    AccountPersonalBrandComponent,
-    AccountCompanyComponent,
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(RejesrationRoutes),
-    ReactiveFormsModule,
-    SharedModule
   ]
 })
 export class RejestracjaModule { }

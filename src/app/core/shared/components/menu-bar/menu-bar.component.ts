@@ -4,11 +4,15 @@ import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
 import { LogOutUser} from '../../../types/interfaces';
+import { NgPlural } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'opn-menu-bar',
   templateUrl: './menu-bar.component.html',
   styleUrls: ['./menu-bar.component.scss'],
+  standalone: true,
+  imports: [NgPlural, RouterLink]
 })
 export class MenuBarComponent implements OnInit, LogOutUser{
   protected menuBarService = inject(MenuBarService);

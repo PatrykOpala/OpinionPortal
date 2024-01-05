@@ -1,12 +1,16 @@
 import { Component, inject, OnInit} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../core/services/auth/auth.service';
 import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
+import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
   styleUrls: ['./logowanie.component.scss'],
+  standalone: true,
+  imports: [PaneContainerComponent, ReactiveFormsModule, NgIf, FormsModule]
 })
 export class LogowanieComponent implements OnInit{
 
