@@ -1,8 +1,7 @@
 import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../core/services/auth/auth.service';
-import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
-import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
+import { AuthService2 } from 'src/app/services/auth/auth.service-2';
+import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -15,9 +14,11 @@ import { NgIf } from '@angular/common';
 export class LogowanieComponent implements OnInit{
 
   protected loginForm !: FormGroup;
+  public progress: boolean = false;
+  public disabled: boolean = false;
 
   private loginFormBuilder = inject(FormBuilder);
-  protected authService = inject(AuthService2);
+  private authService = inject(AuthService2);
 
   constructor() {
     this.loginForm = this.loginFormBuilder.group({

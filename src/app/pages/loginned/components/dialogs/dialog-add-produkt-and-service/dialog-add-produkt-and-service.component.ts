@@ -1,11 +1,11 @@
 import { Component, inject, OnDestroy} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, Subscription } from 'rxjs';
-import { ProductService } from 'src/app/core/services/product/product.service';
-import { UserStoreService } from 'src/app/core/services/user/user-store.service';
-import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
-import { TypeProduct } from 'src/app/core/types/enums';
-import { Product } from 'src/app/core/types/models/product.model';
+import { ProductService } from 'src/app/services/product/product.service';
+import { UserStoreService } from 'src/app/services/user/user-store.service';
+import { LOCAL_STORAGE_KEYS } from 'src/app/types/constants';
+import { TypeProduct } from 'src/app/types/enums';
+import { Product } from 'src/app/types/models/product.model';
 
 @Component({
   selector: 'opn-dialog-add-produkt-and-service',

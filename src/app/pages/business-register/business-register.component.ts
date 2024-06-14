@@ -1,8 +1,8 @@
 import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
-import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
+import { AuthService2 } from 'src/app/services/auth/auth.service-2';
+import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 
 @Component({
   selector: 'opn-business-register',
@@ -15,6 +15,8 @@ export class BusinessRegisterComponent {
   protected loginForm !: FormGroup;
   private loginFormBuilder = inject(FormBuilder);
   protected authService = inject(AuthService2);
+  public progress: boolean = false;
+  public disabled: boolean = false;
 
   constructor() {
     this.loginForm = this.loginFormBuilder.group({

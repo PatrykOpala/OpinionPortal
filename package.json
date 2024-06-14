@@ -1,11 +1,15 @@
 {
   "name": "opinion-portal",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "supabase:init": "supabase init",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase_local:run": "supabase bootstrap",
     "test": "ng test"
   },
   "private": true,
@@ -38,6 +42,7 @@
     "karma-coverage": "~2.2.1",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "supabase": "^1.159.1",
     "typescript": "~5.2.2"
   }
 }

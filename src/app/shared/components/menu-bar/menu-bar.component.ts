@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { LOCAL_STORAGE_KEYS } from 'src/app/core/types/constants';
-import { UserLoginnedInStateEnum } from 'src/app/core/types/enums';
+import { LOCAL_STORAGE_KEYS } from 'src/app/types/constants';
+import { UserLoginnedInStateEnum } from 'src/app/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
 import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
 import { LogOutUser} from '../../../types/interfaces';
@@ -22,9 +22,7 @@ export class MenuBarComponent implements OnInit, LogOutUser{
 
   constructor() {
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
-      if(window.location.href.includes("personal-brand") || window.location.href.includes("company")){
-        this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
-      }
+      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
     }
   }
 

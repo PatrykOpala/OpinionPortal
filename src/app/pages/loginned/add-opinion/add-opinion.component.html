@@ -1,0 +1,27 @@
+@switch (_ViewSelected) {
+    @case (0) {
+        <span class="dialog-header dialog-title">Wybierz produkt lub usługę</span>
+        <div class="opinie-container-content">
+            <ul class="list-grid">
+                @for (n of nm; track $index) {
+                    <li class="element radius" (click)="toogle(n.name)">{{ n.name }}</li>
+                }
+            </ul>
+        </div>
+    }
+    @case (1) {
+        <span class="dialog-header dialog-title">Napisz swoją opinię</span>
+        <div class="opinie-header">
+            <div style="width: max-content;">
+                <span>Wybrano: <span style="font-weight: bold;">{{valu}}</span></span>
+            </div>
+            <div class="content" id="content">
+                <textarea placeholder="Napisz Opinię" #area></textarea>
+            </div>
+            <div class="dialog-buttons">
+                <button class="button-label" (click)="backView()">Wstecz</button>
+                <button class="primary" (click)="onPublishOpinion()">Wystaw opinię</button>
+            </div>
+        </div>
+    }
+}

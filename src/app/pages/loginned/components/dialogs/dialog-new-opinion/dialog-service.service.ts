@@ -11,12 +11,14 @@ export class DialogServiceService {
   constructor() { }
 
   closeNewDialog(){
-    this.dialogNewOpinionRef.clear();
+    // console.log(this.dialogNewOpinionRef);
+    // this.dialogNewOpinionRef.clear();
   }
 
   openNewDialog(){
-    this.dialogNewOpinionRef.clear();
-    this.dialogNewOpinionRef.createComponent(DialogNewOpinionComponent);
+    console.log(this.dialogNewOpinionRef);
+    // this.dialogNewOpinionRef.clear();
+    // this.dialogNewOpinionRef.createComponent(DialogNewOpinionComponent);
   }
 
   openChangeDialog(opinionAuthor: string, opinionID: number, opinionHeader: string, opinionContent: string){

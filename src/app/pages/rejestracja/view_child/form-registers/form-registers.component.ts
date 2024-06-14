@@ -1,9 +1,11 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { FormService } from 'src/app/core/services/form/form.service';
+import { FormService } from 'src/app/services/form/form.service';
 
 @Component({
   selector: 'opn-form-registers',
-  templateUrl: './form-registers.component.html',
+  template: `<form class="formContainer">
+              <ng-content></ng-content>
+            </form>`,
   styleUrls: ['./form-registers.component.scss'],
   standalone: true
 })

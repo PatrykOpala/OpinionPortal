@@ -24,8 +24,6 @@ export class AuthService2 {
   private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
-  public progress: boolean = false;
-  public disabled: boolean = false;
   public authRouter = inject(Router);
   public databaseQuery: SupabaseQueryesV2;
   public user: User;
@@ -81,7 +79,7 @@ export class AuthService2 {
           JSON.stringify(data));
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.user.addUserToStore(this.user.transformerUser(data, email, password));
-        this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
+        //this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
       }
     }
     if(error){

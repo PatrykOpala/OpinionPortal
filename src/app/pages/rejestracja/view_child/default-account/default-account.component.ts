@@ -34,7 +34,6 @@ export class DefaultAccountComponent implements OnInit {
 
   signUpUser(): void{
     if(this.userForm.value.email === "" && this.userForm.value.password === ""){
-      this.userForm.enable();
       return;
     }
     this.dafaultAuthService.registerUser(this.userForm.value.name, this.userForm.value.email, this.userForm.value.password);

@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { OpinionsService } from '../../core/services/opinions/opinions.service';
-import { Opinions } from '../../core/types/interfaces';
+import { OpinionsService } from '../../services/opinions/opinions.service';
+import { Opinions } from '../../types/interfaces';
 import { NgForOf, NgIf } from '@angular/common';
-import { OpinieChooseCategoryItemComponent } from 'src/app/core/shared/components/opinie-choose-category/opinie-choose-category-item/opinie-choose-category-item.component';
-import { OpinieChooseCategoryComponent } from 'src/app/core/shared/components/opinie-choose-category/opinie-choose-category.component';
-import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
-import { OpinieContainerComponent } from 'src/app/core/shared/components/opinie-container/opinie-container.component';
+import { OpinieChooseCategoryItemComponent } from 'src/app/shared/components/opinie-choose-category/opinie-choose-category-item/opinie-choose-category-item.component';
+import { OpinieChooseCategoryComponent } from 'src/app/shared/components/opinie-choose-category/opinie-choose-category.component';
+import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { OpinieContainerComponent } from 'src/app/shared/components/opinie-container/opinie-container.component';
 
 @Component({
   selector: 'opn-opinie',

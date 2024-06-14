@@ -1,4 +1,4 @@
-@use "../../core/shared/utils/scss/op-mixins.scss" as *;
+@use "../../shared/utils/scss/op-mixins.scss" as *;
 
 $placeholder-color: hsla(0, 0%, 97%, 0.664);
 
@@ -19,7 +19,7 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
     width: 30vw;
     height: 50vh;
     @include flexD(column, none);
-    margin-top: 15vh;
+    margin-top: 6vh;
 }
 
 .field-container{

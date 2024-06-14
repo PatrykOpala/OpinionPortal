@@ -1,11 +1,11 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
-import { DialogProduktService } from 'src/app/core/services/dialog/dialog-produkt/dialog-produkt.service';
-import { ProductService } from 'src/app/core/services/product/product.service';
-import { Product } from 'src/app/core/types/models/product.model';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { DialogProduktService } from 'src/app/services/dialog/dialog-produkt/dialog-produkt.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { Product } from 'src/app/types/models/product.model';
 import { DialogAddProduktAndServiceComponent } from '../loginned/components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
-import { UserStoreAbstract } from 'src/app/core/types/classes/user-store-abstract.class';
+import { UserStoreAbstract } from 'src/app/types/classes/user-store-abstract.class';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';

@@ -1,21 +1,20 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { OpinionsService } from 'src/app/core/services/opinions/opinions.service';
-import { ProductService } from 'src/app/core/services/product/product.service';
-import { UserStoreService } from 'src/app/core/services/user/user-store.service';
-import { CreateOpinion } from 'src/app/core/types/functions';
-import { Opinions } from 'src/app/core/types/interfaces';
-import { Product } from 'src/app/core/types/models/product.model';
+import { OpinionsService } from 'src/app/services/opinions/opinions.service';
+import { ProductService } from 'src/app/services/product/product.service';
+import { UserStoreService } from 'src/app/services/user/user-store.service';
+import { CreateOpinion } from 'src/app/types/functions';
+import { Opinions } from 'src/app/types/interfaces';
+import { Product } from 'src/app/types/models/product.model';
 import { DialogServiceService } from './dialog-service.service';
-import { StarMeterComponent } from 'src/app/core/shared/components/star-meter/star-meter.component';
-import { NgFor, NgIf, NgPlural } from '@angular/common';
+import { StarMeterComponent } from 'src/app/shared/components/star-meter/star-meter.component';
+import { NgFor, NgForOf, NgIf, NgPlural } from '@angular/common';
 
 @Component({
   selector: 'opn-dialog-new-opinion',
   templateUrl: './dialog-new-opinion.component.html',
   styleUrls: ['./dialog-new-opinion.component.scss'],
   standalone: true,
-  imports: [StarMeterComponent, NgFor, NgPlural, NgIf]
+  imports: [StarMeterComponent, NgForOf, NgPlural, NgIf]
 })
 export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;
@@ -29,7 +28,6 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
 
   protected uName: string = "Anonim";
   private uUuid: string = "";
-  private sub?: Subscription;
 
   constructor(){
     if(this.userStoreService.getUser() !== null){
@@ -76,6 +74,6 @@ export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.sub?.unsubscribe();
+    // this.sub?.unsubscribe();
   }
 }

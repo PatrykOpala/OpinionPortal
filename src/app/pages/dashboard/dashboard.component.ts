@@ -1,12 +1,13 @@
 import { Component, OnInit, } from '@angular/core';
-import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
+import { RouterLink } from '@angular/router';
+import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 
 @Component({
   selector: 'opn-app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   standalone: true,
-  imports: [PaneContainerComponent]
+  imports: [PaneContainerComponent, RouterLink]
 })
 export class DashboardComponent implements OnInit {
   constructor() {}
