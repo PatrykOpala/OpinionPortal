@@ -1,5 +1,5 @@
-import { IOpinionState } from "../../types/interfaces";
+import { OpinionState } from "../../types/types";
 
-export const OpinionState: IOpinionState = {
+export const OpinionStore: OpinionState = {
     opinion: [],
 };

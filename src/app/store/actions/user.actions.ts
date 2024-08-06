@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { IDataBaseUser } from "../../types/interfaces/idatabase-user.interface";
+import { DatabaseUser } from "../../types/types";
 
 export const addUser = createAction('[AuthService] addUser', 
-props<{user: IDataBaseUser}>());
+props<{user: DatabaseUser}>());

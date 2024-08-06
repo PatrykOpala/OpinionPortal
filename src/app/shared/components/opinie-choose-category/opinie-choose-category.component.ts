@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Category } from '../../../types/interfaces';
+import { Category } from '../../../types/types';
 import { NgFor } from '@angular/common';
 
 @Component({

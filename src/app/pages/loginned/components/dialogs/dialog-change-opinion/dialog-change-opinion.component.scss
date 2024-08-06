@@ -1,3 +1,4 @@
+@use "../../../../../shared/utils/scss/op-colors.scss" as op-colors;
 .dialog-background{
     background-color: hsla(3, 10%, 10%, 0.5);
     position: absolute;
@@ -36,7 +37,7 @@
             .close::before{
                 content: '';
                 display: block;
-                background-color: var(--opn-color-dark-green);
+                background-color: op-colors.$opn-color-dark-green;
                 width: 5px;
                 height: 23px;
                 translate: 12.2px 8px;
@@ -46,7 +47,7 @@
             .close::after{
                 content: '';
                 display: block;
-                background-color: var(--opn-color-dark-green);
+                background-color: op-colors.$opn-color-dark-green;
                 width: 5px;
                 height: 23px;
                 translate: 12.2px -68%;
@@ -56,17 +57,13 @@
             .back{
                 margin-left: 10px;
                 margin-right: 10px;
-                // clip-path: polygon(41% 18%, 41% 46%, 100% 46%, 100% 61%, 41% 61%, 40% 84%, 0% 50%);
                 .back-temp{
-                    background-color: var(--opn-color-dark-green);
+                    background-color: op-colors.$opn-color-dark-green;
                     display: block;
                     width: 28px;
                     height:28px;
                     clip-path: polygon(41% 18%, 41% 46%, 100% 46%, 100% 61%, 41% 61%, 40% 84%, 0% 50%);
                 }
-
-                // .back-temp:hover{
-                // }
             }
     
             .dialog-title{
@@ -89,6 +86,12 @@
                 grid-template-columns: 15% 85%;
                 grid-template-rows: 57px;
                 translate: 0 12px;
+
+                .author-header{
+                    margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px;
+                    display: flex; flex-direction: column; justify-content: center; align-items: center;
+                    color: op-colors.$opn-background-color; font-size: 1.7rem;
+                }
         
                 h1{
                     margin-top: 0;
@@ -122,7 +125,7 @@
                     font-size: 1.9rem;
                     font-family: Arial, Helvetica, sans-serif;
                     border: none;
-                    background-color: var(--opn-background-color);
+                    background-color: op-colors.$opn-background-color;
                     border-radius: 3px;
                     margin-top: 5vh;
                     margin-left: 0.8%;

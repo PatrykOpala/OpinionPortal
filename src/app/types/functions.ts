@@ -1,4 +1,4 @@
-import { Opinions } from "./interfaces"
+import { Opinions } from "./types"
 
 export function CreateOpinion(_user_id: string, _user_name: string, 
     _content_id: number, _head: string, _content: string): Opinions{

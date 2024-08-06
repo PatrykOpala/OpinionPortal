@@ -2,9 +2,8 @@ import { Component, ElementRef, ViewChild, inject } from '@angular/core';
 import { OpinionsService } from 'src/app/services/opinions/opinions.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { StarMeterComponent } from 'src/app/shared/components/star-meter/star-meter.component';
 import { CreateOpinion } from 'src/app/types/functions';
-import { Opinions } from 'src/app/types/interfaces';
+import { Opinions } from 'src/app/types/types';
 import { Product } from 'src/app/types/models/product.model';
 import { DialogServiceService } from '../components/dialogs/dialog-new-opinion/dialog-service.service';
 import { TypeProduct } from 'src/app/types/enums';
@@ -12,7 +11,7 @@ import { TypeProduct } from 'src/app/types/enums';
 @Component({
   selector: 'opn-add-opinion',
   standalone: true,
-  imports: [StarMeterComponent],
+  imports: [],
   templateUrl: './add-opinion.component.html',
   styleUrl: './add-opinion.component.scss'
 })

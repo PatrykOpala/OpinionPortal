@@ -1,9 +1,9 @@
 import { createReducer, on } from "@ngrx/store";
 import { addOpinion, changeOpinion, deleteOpinion, getOpinion, initOpinions } from "../actions/opinion.actions";
-import { OpinionState } from "../stores/opinion.store";
+import { OpinionStore } from "../stores/opinion.store";
 
 export const opinionReducer = createReducer(
-    OpinionState,
+    OpinionStore,
     on(initOpinions, (state, action) => ({...state, opinion: action.opinion})),
     on(addOpinion, (state, action) => ({...state, opinion: [...state.opinion, action.opinion]})),
     on(getOpinion, (state) => ({...state})),

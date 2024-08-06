@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { Opinions } from "../../types/interfaces";
+import { Opinions } from "../../types/types";
 
 export const initOpinions = createAction('[OpinionsService] init', 
 props<{opinion: Array<Opinions> | Array<any>}>());

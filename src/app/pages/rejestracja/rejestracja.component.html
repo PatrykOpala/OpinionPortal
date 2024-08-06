@@ -1,12 +1,10 @@
 <opn-pane-container>
-    <opn-form-registers class="formContainer" [formGroup]="userForm" (submit)="$event.preventDefault()">
-        <label class="labelC">Rejestracja</label>
+    <opn-form-registers class="w-max flex flex-col items-center" [formGroup]="userForm" (submit)="$event.preventDefault()">
+        <label class="text-7xl tracking-[7px] text-green">Rejestracja</label>
         <opn-rejestracja-step [step]="1"></opn-rejestracja-step>
         <opn-form-input label="Nazwa Użytkownika" formControlName="name" name="userName" />
         <opn-form-input label="Adres E-mail" type="email" formControlName="email" name="userEmail" />
         <opn-form-input label="Hasło" type="password" formControlName="password" name="userPassword" />
-        <span style="display: none; background-color: red; color: var(--opn-background-color); padding: 4px; margin-top: 20px; width: max-content; height: 40px;"
-        #summitpropt></span>
-        <button type="submit" (click)="signUpUser()">Stwórz konto</button>
+        <button type="submit" (click)="signUpUser()" class="text-3xl tracking-[4px] border-none p-2 bg-green text-white hover:bg-dark-green mt-4">Stwórz konto</button>
     </opn-form-registers>
 </opn-pane-container>

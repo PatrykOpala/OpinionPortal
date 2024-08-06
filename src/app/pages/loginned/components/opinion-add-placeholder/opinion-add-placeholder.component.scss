@@ -1,24 +1,33 @@
+@use "../../../../shared/utils/scss/op-colors.scss" as op-colors;
 .add-opinion__button{
     font-size: 1.4rem;
-    color: var(--opn-background-color);
+    color:op-colors.$opn-background-color;
     cursor: pointer; border: none;
-    background-color: var(--opn-green-light);
+    background-color: op-colors.$opn-green-light;
     border-radius: 3px; padding: 13px; translate: -10px 0;
     width: 13rem; text-align: center; text-decoration: none;
 }
 .add-opinion__button:hover{
-    background-color: var(--opn-color-dark-green);
+    background-color: op-colors.$opn-color-dark-green;
 }
 .add__opinion{
     position: fixed;
     margin-left: 80vw; margin-top: 76vh; border-radius: 7px;
     padding: 7px; border: none; width: 180px; height: 55px; font-size: 1.7em;
-    color: var(--opn-background-color); background-color: var(--opn-color-green);
+    color: op-colors.$opn-background-color; background-color: op-colors.$opn-color-green;
     z-index: 10; cursor: pointer;
 }
-.add__opinion:hover{background-color: var(--opn-color-dark-green);}
+.add__opinion:hover{background-color: op-colors.$opn-color-dark-green;}
 .opinion-add__placeholder{
     width: 90vw;
     height: 80vh;
     margin: 25px 0;
+}
+.plus-icon{
+    fill: op-colors.$opn-green-light;
+    fill-opacity:1;
+    stroke:none;
+    stroke-width:1.77719;
+    stroke-linecap:round;
+    paint-order:fill markers stroke;
 }

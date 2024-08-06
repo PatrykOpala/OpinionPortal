@@ -1,13 +1,13 @@
+@use "../../../shared/utils/scss/op-colors.scss" as op-colors;
 .opinie-container{
     width: 100%;
     min-height: 257.317px;
     height: 28cqh;
-    background-color: var(--opn-green-light);
-    color: var(--opn-background-color);
+    background-color: op-colors.$opn-green-light;
+    color: op-colors.$opn-background-color;
     display: flex;
     flex-direction: column;
     align-items: center;
-    // 25vw
 
     .opinie-header{
         width: 100%;
@@ -52,7 +52,7 @@
             font-size: 1.4em;
             border: none;
             background-color: transparent;
-            color: var(--opn-color-green);
+            color: op-colors.$opn-color-green;
             cursor: pointer;
         }
         button:hover{
@@ -60,7 +60,7 @@
             height: 40px;
             margin-top: 5px;
             font-size: 1.4em;
-            background-color: var(--opn-green-light);
+            background-color: op-colors.$opn-green-light;
             color: #fdfdfd;
         }
     }
@@ -94,8 +94,8 @@
     min-width: 477px;
     width: 100%;
     min-height: 28vh;
-    background-color: var(--opn-green-light);
-    color: var(--opn-background-color);
+    background-color: op-colors.$opn-green-light;
+    color: op-colors.$opn-background-color;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -105,8 +105,8 @@
         height: 28vh;
         font-size: 1.7rem;
         font-weight: bold;
-        color: var(--opn-background-color);
-        background-color: var(--opn-color-green);
+        color: op-colors.$opn-background-color;
+        background-color: op-colors.$opn-color-green;
         border: none;
         cursor: pointer;
     }
@@ -116,7 +116,7 @@
         height: max-content;
         font-size: 1.2rem;
         font-weight: bold;
-        color: var(--opn-background-color);
+        color: op-colors.$opn-background-color;
         background-color: transparent;
         border: none;
         cursor: pointer;
@@ -129,11 +129,11 @@
     }
 
     .call-to-action-small:hover{
-        background-color: var(--opn-color-green);
+        background-color: op-colors.$opn-color-green;
     }
 
     .hover:hover{
-        background-color: var(--opn-color-dark-green);
+        background-color: op-colors.$opn-color-dark-green;
     }
 
     .opinie-header{
@@ -167,7 +167,7 @@
             font-size: 1.9rem;
             font-family: Arial, Helvetica, sans-serif;
             border: none;
-            background-color: var(--opn-background-color);
+            background-color: op-colors.$opn-background-color;
             border-radius: 3px;
         }
     }
@@ -204,7 +204,7 @@
             font-size: 1.4em;
             border: none;
             background-color: transparent;
-            color: var(--opn-color-green);
+            color: op-colors.$opn-color-green;
             cursor: pointer;
         }
 
@@ -213,7 +213,7 @@
             height: 40px;
             margin-top: 5px;
             font-size: 1.4em;
-            background-color: var(--opn-green-light);
+            background-color: op-colors.$opn-green-light;
             color: #fdfdfd;
         }
     }
@@ -228,7 +228,6 @@
         overflow-x: hidden;
         scrollbar-width: none;
         height: 20vh;
-        // border:2px solid red;
 
         .list-grid{
             padding: 0;
@@ -271,15 +270,14 @@ svg:hover > .svg__circle{
     height: 44px;
     font-size: 1.1em;
     font-weight: bold;
-    color: var(--opn-background-color);
-    background-color: var(--opn-color-green);
+    color: op-colors.$opn-background-color;
+    background-color: op-colors.$opn-color-green;
     padding: 7px;
-    // border-radius: 7px;
     cursor: pointer;
 }
 
 .primary:hover{
-    background-color: var(--opn-color-dark-green);
+    background-color: op-colors.$opn-color-dark-green;
 }
 
 

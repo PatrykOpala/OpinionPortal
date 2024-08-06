@@ -1,0 +1,9 @@
+@use "../../../shared/utils/scss/op-colors.scss" as opn-colors;
+.formContainer{
+    width: 40vw;
+    height: 39em;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 1em;
+}

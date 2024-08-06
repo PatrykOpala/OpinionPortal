@@ -1,5 +1,5 @@
-import { IProductState } from "../../types/interfaces";
+import { ProductState } from "../../types/types";
 
-export const ProductStore: IProductState = {
+export const ProductStore: ProductState = {
     products: [],
 };

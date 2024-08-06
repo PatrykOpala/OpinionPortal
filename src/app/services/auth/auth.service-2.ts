@@ -9,8 +9,8 @@ import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_HOME_URL, NAVIGATE_TO_LOGINNED_URL, NAVIGATE_TO_BUSINESS_DASHBOARD } from '../../types/constants';
 import { QueryResult, UserLoginnedInStateEnum } from '../../types/enums';
-import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
-import { IUserStore } from '../../types/interfaces/user-store.interface';
+import { DatabaseUser } from '../../types/types';
+import { UserStore } from '../../types/types';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 import { User } from '../../types/classes/user.class';
 import { UserQuery } from '../../types/classes/user-query.class';
@@ -21,7 +21,7 @@ import { AuthError } from '@supabase/supabase-js';
 })
 export class AuthService2 {
   private menubarService = inject(MenuBarService);
-  private userStore = inject(Store<IUserStore>);
+  private userStore = inject(Store<UserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
   public authRouter = inject(Router);
@@ -38,7 +38,7 @@ export class AuthService2 {
 
   async registerUser(name: string, email: string, password: string): Promise<AuthError | undefined>{
     const {error, data} = await this.supabaseProvider.sClient.auth.signUp({email, password});
-    const registerTransformeUser: IDataBaseUser = this.user.transformerUser(data, name, email);
+    const registerTransformeUser: DatabaseUser = this.user.transformerUser(data, name, email);
     const result = await this.databaseQuery.pushToDatabase(new UserQuery("users", registerTransformeUser));
 
     if(result === QueryResult.SUCCESS){
@@ -55,7 +55,7 @@ export class AuthService2 {
 
   async registerBusiness(name: string, email: string, password: string): Promise<AuthError | undefined>{
     const {error, data} = await this.supabaseProvider.sClient.auth.signUp({email, password});
-    const registerTransformerBusiness: IDataBaseUser = this.user.transformerUser(data, name, email);
+    const registerTransformerBusiness: DatabaseUser = this.user.transformerUser(data, name, email);
     const result = await this.databaseQuery.pushToDatabase(new UserQuery("users", registerTransformerBusiness));
 
     if(result === QueryResult.SUCCESS){
@@ -93,7 +93,7 @@ export class AuthService2 {
   }
 
   routeTo(email_pass: string = ""){
-    this.databaseQuery.getAllFromDatabase<IDataBaseUser>('users').then(resolveUser => {
+    this.databaseQuery.getAllFromDatabase<DatabaseUser>('users').then(resolveUser => {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){

@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store/src/selector";
-import { IOpinionState } from "../../types/interfaces";
+import { OpinionState } from "../../types/types";
 
-const opinionSelectorState = createFeatureSelector<IOpinionState>("opinions");
+const opinionSelectorState = createFeatureSelector<OpinionState>("opinions");
 export const opinionSelector = createSelector(opinionSelectorState, (state) => state.opinion);
 export const stateSelector = createSelector(opinionSelectorState, (state)=> state);

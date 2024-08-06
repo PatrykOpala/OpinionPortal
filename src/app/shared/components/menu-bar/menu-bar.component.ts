@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { LOCAL_STORAGE_KEYS } from 'src/app/types/constants';
 import { UserLoginnedInStateEnum } from 'src/app/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
-import { MenuBarService } from '../../../services/menu-bar/menu-bar.service';
 import { LogOutUser} from '../../../types/interfaces';
 import { RouterLink } from '@angular/router';
 
@@ -14,7 +13,6 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink]
 })
 export class MenuBarComponent implements OnInit, LogOutUser{
-  protected menuBarService = inject(MenuBarService);
   protected authService = inject(AuthService);
   protected profileOptions: boolean = false;
 
@@ -22,7 +20,7 @@ export class MenuBarComponent implements OnInit, LogOutUser{
 
   constructor() {
     if(window.localStorage.getItem(LOCAL_STORAGE_KEYS.userAuthentication)){
-      this.menuBarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
+      this.authService.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
     }
   }
 

@@ -1,25 +1,12 @@
 <opn-pane-container>
-    <form class="formContainer" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-        <label class="labelC">Logowanie</label>
-        <div class="field-container">
-            <label class="field">Adres E-mail</label>
-            <input type="email" name="Email" class="inputC" placeholder="np. ogorek13@gmail.com" formControlName="email"/>
-        </div>
-        <div class="field-container">
-            <label class="field">Hasło</label>
-            <input type="password" name="Password" id="uPassword" class="inputC" placeholder="****************" formControlName="password"/>
-        </div>
-        <div class="button-container">
-            <button type="submit">
-                @if(progress){
-                    <div class="progress">
-                        <div class="pr1"></div>
-                        <div class="pr2"></div>
-                    </div>
-                } @else {
-                    Zaloguj się
-                }
+    <opn-form-registers class="w-max flex flex-col items-center" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <label class="text-7xl tracking-[7px] text-green">Logowanie</label>
+        <opn-form-input label="Adres E-mail" type="email" formControlName="email" name="Email" />
+        <opn-form-input label="Hasło" type="password" formControlName="password" name="Password" />
+        <div class="mt-9">
+            <button type="submit" class="text-3xl tracking-[4px] border-none p-2 bg-green text-white hover:bg-dark-green">
+                Zaloguj się
             </button>
         </div>
-    </form>
+    </opn-form-registers>
 </opn-pane-container>

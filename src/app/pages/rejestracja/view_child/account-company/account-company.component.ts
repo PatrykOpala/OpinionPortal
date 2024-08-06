@@ -5,7 +5,7 @@ import { AuthService2 } from 'src/app/core/services/auth/auth.service-2';
 import { FormService } from 'src/app/core/services/form/form.service';
 import { PaneContainerComponent } from 'src/app/core/shared/components/pane-container/pane-container.component';
 import { MIN_LENGHT } from 'src/app/core/types/constants';
-import { FormRegistersComponent } from '../form-registers/form-registers.component';
+import { FormRegistersComponent } from '../../../../shared/components/form-registers/form-registers.component';
 import { RejestracjaStepComponent } from '../../components/rejestracja-step/rejestracja-step.component';
 
 @Component({

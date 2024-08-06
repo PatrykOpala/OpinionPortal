@@ -3,13 +3,13 @@ import { IQuery } from "../interfaces/iquery";
 import { inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { addOpinion } from "../../store/actions/opinion.actions";
-import { IOpinionState, Opinions } from "../interfaces";
+import { OpinionState, Opinions } from "../types";
 import { QueryResult } from "../enums";
 
 export class OpinionQuery implements IQuery{
     private dbColumn: string = "";
     private pshData: any = null;
-    private OpinionStore = inject(Store<IOpinionState>);
+    private OpinionStore = inject(Store<OpinionState>);
 
     constructor(databaseColumn: string, pushData: any){
         this.dbColumn = databaseColumn;

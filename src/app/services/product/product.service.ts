@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { addProducts } from '../../store/actions/product.actions';
 import { productSelector } from '../../store/selectors/product.selector';
-import { IProductState } from '../../types/interfaces';
+import { ProductState } from '../../types/types';
 import { Product } from '../../types/models/product.model'
 import { AuthService } from '../auth/auth.service';
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class ProductService extends AuthService {
 
-  private productStore = inject(Store<IProductState>);
+  private productStore = inject(Store<ProductState>);
   private _product$: BehaviorSubject<Product[]> = new BehaviorSubject([] as Product[]);
   // private _product: Product[] = [];
 

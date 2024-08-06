@@ -1,7 +1,7 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { IUserStore } from "../../types/interfaces/user-store.interface";
+import { UserStore } from "../../types/types";
 
-const userSelectorState = createFeatureSelector<IUserStore>("users");
+const userSelectorState = createFeatureSelector<UserStore>("users");
 
 export const userSelector = createSelector(userSelectorState, 
     (state)=> state.user);

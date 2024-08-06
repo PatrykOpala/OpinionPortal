@@ -1,6 +1,6 @@
 import { SupabaseClient } from "@supabase/supabase-js";
 import { IQuery } from "../interfaces/iquery";
-import { IDataBaseUser } from "../interfaces/idatabase-user.interface";
+import { DatabaseUser } from "../types";
 import { QueryResult } from "../enums";
 
 export class UserQuery implements IQuery{
@@ -30,7 +30,7 @@ export class UserQuery implements IQuery{
         });
     }
 
-    private transformer(objectToTransform: IDataBaseUser):unknown{
+    private transformer(objectToTransform: DatabaseUser):unknown{
         let cv = objectToTransform;
         delete cv.isEmpty;
         return cv;

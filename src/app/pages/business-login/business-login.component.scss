@@ -1,4 +1,5 @@
 @use "../../shared/utils/scss/op-mixins.scss" as *;
+@use "../../shared/utils/scss/op-colors.scss" as *;
 
 $placeholder-color: hsla(0, 0%, 97%, 0.664);
 
@@ -6,7 +7,7 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
     font-size: 4.4rem;
     letter-spacing: 7px;
     margin-bottom: 20px;
-    color: var(--opn-color-green);
+    color: $opn-color-green;
 }
 
 .formContainer{
@@ -40,7 +41,7 @@ $placeholder-color: hsla(0, 0%, 97%, 0.664);
 }
 
 .inputC:focus{
-    border-bottom: 2px solid var(--opn-color-green);
+    border-bottom: 2px solid $opn-color-green;
 }
 
 .button-container{
@@ -52,7 +53,7 @@ button{
     letter-spacing: 4px;
     border: none;
     padding: 10px;
-    background-color: var(--opn-color-green);
+    background-color: $opn-color-green;
     color: #ffffff;
 
     .progress{
@@ -131,7 +132,7 @@ button{
 
 button:hover{
     cursor: pointer;
-    background-color: var(--opn-color-green-hover);
+    background-color:$opn-color-green-hover;
 }
 
 button[disabled]{

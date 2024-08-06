@@ -2,7 +2,7 @@ import { Directive, inject, OnDestroy } from "@angular/core";
 import { map, Subscription } from "rxjs";
 import { UserStoreService } from "../../services/user/user-store.service";
 import { LOCAL_STORAGE_KEYS } from "../constants";
-import { IDataBaseUser } from "../interfaces/idatabase-user.interface";
+import { DatabaseUser } from "../types";
 
 @Directive()
 export abstract class UserStoreAbstract implements OnDestroy{
@@ -12,13 +12,12 @@ export abstract class UserStoreAbstract implements OnDestroy{
     constructor(){
         this.userSubscription = this.userStoreService.getUserFromStore()
         .pipe(map((u) => {
-            if(u === null){ return Error("U jest nullem") }
-            return u.isEmpty
+            if(u === null){ return Error("Error") }
+            return u
         }))
         .subscribe(u => {
             if(u){
-                let dbUser: IDataBaseUser = JSON.parse(window.localStorage.getItem(
-                        LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
+                let dbUser: DatabaseUser = JSON.parse(window.localStorage.getItem(LOCAL_STORAGE_KEYS.nsdjlnsf) as string);
                 this.userStoreService.addUserToStore(dbUser);
             }
         })

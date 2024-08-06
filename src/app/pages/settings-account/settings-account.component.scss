@@ -18,7 +18,7 @@ $avatar-height: 40vh;
         height: $avatar-height;
         border-radius: 3px;
         text-align: center;
-        background-color: op-colors.$op-color-green;
+        background-color: op-colors.$opn-color-green;
         margin-left: 20px;
         margin-top: calc(20vh / 2);
 
@@ -60,7 +60,7 @@ $avatar-height: 40vh;
                 font-size: 2em;
                 margin-top: 9vh;
                 cursor: pointer;
-                color: var(--opn-background-color);
+                color: op-colors.$opn-background-color;
             }
             button:hover{
                 color: #cdcdcd;

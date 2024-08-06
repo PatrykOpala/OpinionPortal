@@ -1,3 +1,4 @@
+@use "../../../shared/utils/scss/op-colors.scss" as op-colors;
 header{
     display: flex;
     width: 80%;
@@ -11,8 +12,8 @@ header{
     width: 732px;
     height: max-content;
     font-size: 1.9rem;
-    color: var(--opn-color-green);
-    font-weight: 600;
+    color: op-colors.$opn-color-green;
+    // font-weight: 600;
     letter-spacing: 3px;
     margin: 14px 30px;
     text-decoration: none;
@@ -22,28 +23,22 @@ header{
 .opinier-small_version{
     font-size: 1.0rem; 
     font-family: sans-serif; 
-    color: var(--opn-background-color);
+    color: op-colors.$opn-background-color;
     background-color: red; 
     text-align: center; 
     padding: 5px 5px; width: min-content; margin-inline: 8px;
 }
 
 .main__menu{
-    width: 40vw;
+    width: max-content;
     display: flex;
     align-items: center;
     margin-top: 1%;
     margin-bottom: 1%;
     .link{
         font-size: 1.2rem;
-        margin-left: 10px;
-        padding: 13px;
-        font-weight: 600;
-        letter-spacing: 3px;
-        border:none;
-        text-decoration: none;
         background-color: transparent;
-        color: var(--opn-color-green);
+        color: op-colors.$opn-color-green;
     }
     .link:hover{
         color: #fdfdfd;
@@ -52,7 +47,7 @@ header{
         font-size: 1.3rem;
         margin-left: 10px;
         padding: 13px;
-        background-color: var(--opn-color-green);
+        background-color: op-colors.$opn-color-green;
         color: #fdfdfd;
         font-weight: 600;
         letter-spacing: 3px;
@@ -61,7 +56,7 @@ header{
         cursor: pointer;
     }
     a:hover{
-        background-color: var(--opn-color-dark-green);
+        background-color: op-colors.$opn-color-dark-green;
     }
 }
 
@@ -82,14 +77,14 @@ header{
         padding: 6px;
         letter-spacing: 2px;
         border: 2px solid transparent;
-        color: var(--opn-color-green);
+        color: op-colors.$opn-color-green;
         background-color: transparent;
         font-weight: 580;
         cursor: pointer;
         text-decoration: none;
     }
     .button__loginned:hover{
-        border-bottom: 2px solid var(--opn-color-green);
+        border-bottom: 2px solid op-colors.$opn-color-green;
     }
     .button__primary{
         font-size: 1.4em;
@@ -103,7 +98,7 @@ header{
         margin-right: 7vw;
     }
     .button__primary:hover{
-        color: var(--opn-color-dark-green);
+        color: op-colors.$opn-color-dark-green;
     }
     .profile__options-element{
         width: 30%;
@@ -115,10 +110,10 @@ header{
         text-decoration: none;
         background-color: transparent;
         cursor: pointer;
-        color: var(--opn-color-green);
+        color: op-colors.$opn-color-green;
     }
     .profile__options-element:hover{
-        background-color: var(--opn-color-dark-green);
+        background-color: op-colors.$opn-color-dark-green;
         color: #fdfdfd;
     }
     .text-center{
@@ -134,7 +129,7 @@ header{
         top: 10%;
         left: 82vw;
         box-shadow: 0 0 7px 0 hsl(3, 0%, 40%);
-        background-color: var(--opn-background-color);;
+        background-color: op-colors.$opn-background-color;
         display: flex;
         flex-direction: column;
         align-items: center;

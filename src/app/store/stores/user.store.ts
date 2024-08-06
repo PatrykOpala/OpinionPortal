@@ -1,6 +1,6 @@
-import { IUserStore } from "../../types/interfaces/user-store.interface";
+import { UserStore } from "../../types/types";
 
-export const userState: IUserStore = {
+export const userState: UserStore = {
     user: {
         id: 0,
         email: "",

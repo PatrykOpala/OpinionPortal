@@ -2,14 +2,16 @@ import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService2 } from 'src/app/services/auth/auth.service-2';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { FormRegistersComponent } from '../../shared/components/form-registers/form-registers.component';
+import { FormInputComponent } from 'src/app/shared/components/form-input/form-input.component';
 import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
-  styleUrls: ['./logowanie.component.scss'],
+  styles: [`input.ng-untouched{border-bottom: 1px solid #cccccc;}`],
   standalone: true,
-  imports: [PaneContainerComponent, ReactiveFormsModule, NgIf, FormsModule]
+  imports: [PaneContainerComponent, FormRegistersComponent, FormInputComponent, ReactiveFormsModule, NgIf, FormsModule]
 })
 export class LogowanieComponent implements OnInit{
 
@@ -23,7 +25,7 @@ export class LogowanieComponent implements OnInit{
   constructor() {
     this.loginForm = this.loginFormBuilder.group({
       email: new FormControl('', [Validators.email, Validators.required]),
-      password: new FormControl('')
+      password: new FormControl('', [Validators.required])
     })
   }
 

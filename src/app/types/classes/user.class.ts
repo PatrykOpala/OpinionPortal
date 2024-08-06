@@ -1,19 +1,18 @@
 import { SupabaseClient } from "@supabase/supabase-js";
-import { IUser } from "../interfaces/iuser.interface";
 import { addUser } from "../../store/actions/user.actions";
-import { IDataBaseUser } from "../interfaces/idatabase-user.interface";
+import { DatabaseUser } from "../types";
 import { SupabaseQueryesV2 } from "./database-queryes-class-v2";
 import { inject } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { IUserStore } from "../interfaces/user-store.interface";
+import { UserStore } from "../types";
 
 export class User{
 
-  private _userStore = inject(Store<IUserStore>);
+  private _userStore = inject(Store<UserStore>);
 
   constructor(provider: SupabaseClient, dbQuery: SupabaseQueryesV2){ }
 
-  public addUserToStore(user: IDataBaseUser){
+  public addUserToStore(user: DatabaseUser){
     this._userStore.dispatch(addUser({user}));
   }
 

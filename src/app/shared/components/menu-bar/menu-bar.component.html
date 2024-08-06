@@ -1,18 +1,17 @@
 <header>
-    <a routerLink="/" class="link logo-opinier">OMS<small class="opinier-small_version">Alpha v0.1.7</small></a>
-    @switch(menuBarService.IsTheUserLoggedInState){
-        @case (0) {
-            <nav class="main__menu">
-                <a class="link" routerLink="/login">Dodaj Produkt/Usługę</a>
-                <a class="link" routerLink="/register">Stwórz konto</a>
-                <a class="link" routerLink="/opinion">Zobacz opinie</a>
-            </nav>
-        }
-        @case (1){
+    <a routerLink="/" class="w-64 text-green text-3xl font-bold my-3.5 mx-7 py-[5px] tracking-[3px]">
+        OMS<small class="text-base bg-[red] text-center p-1 w-min mx-2 text-white">Alpha v0.1.7</small>
+    </a>
+    <nav class="w-max flex items-center my-3.5">
+        <a class="text-lg bg-transparent text-green p-3 tracking-[3px] border-none font-bold hover:text-white-hover hover:bg-dark-green" routerLink="/login">Dodaj Produkt/Usługę</a>
+        <a class="ml-2 text-lg bg-transparent text-green p-3 tracking-[3px] border-none font-bold hover:text-white-hover hover:bg-dark-green" routerLink="/register">Stwórz konto</a>
+        <a class="ml-2 text-lg bg-transparent text-green p-3 tracking-[3px] border-none font-bold hover:text-white-hover hover:bg-dark-green" routerLink="/opinion">Zobacz opinie</a>
+    </nav>
+</header>
+
+<!-- @case (1){
             <nav class="profile__menu">
                 <button class="profile__options-element" (click)="signOut()">Wyloguj mnie</button>
                 <a routerLink="/loginned/settings-account" class="profile__options-element text-center" (click)="profileOptions = !profileOptions">Ustawienia Konta</a>
             </nav>
-        }
-    }
-</header>
+        } -->

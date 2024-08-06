@@ -1,3 +1,4 @@
+@use "../../../../../shared/utils/scss/op-colors.scss" as op-colors;
 .dialog-form{
     width: 700px;
     height: max-content;
@@ -25,7 +26,7 @@
 
     .action-button{
         font-weight: bold;
-        color: var(--opn-background-color);
-        background-color: var(--opn-color-dark-green);
+        color:op-colors.$opn-background-color;
+        background-color: op-colors.$opn-color-dark-green;
     }
 }

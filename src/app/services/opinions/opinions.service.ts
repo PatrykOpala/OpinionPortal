@@ -4,18 +4,19 @@ import { Observable } from 'rxjs';
 import { addOpinion, deleteOpinion, initOpinions } from '../../store/actions/opinion.actions';
 import { stateSelector,} from '../../store/selectors/selector';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
-import { Opinions, IOpinionState } from '../../types/interfaces';
+import { OpinionState } from '../../types/types';
 import { AuthService } from '../auth/auth.service';
 import { OpinionQuery } from '../../types/classes/opinion-query.class';
+import { Opinions } from 'src/app/types/types';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OpinionsService extends AuthService {
 
-  private OpinionStore = inject(Store<IOpinionState>);
-  opinions$: Observable<IOpinionState>;
-  state: IOpinionState = { opinion: [] };
+  private OpinionStore = inject(Store<OpinionState>);
+  opinions$: Observable<OpinionState>;
+  state: OpinionState = { opinion: [] };
 
   constructor() {
     super()
@@ -27,7 +28,7 @@ export class OpinionsService extends AuthService {
     this.databaseQuery.pushToDatabase(new OpinionQuery('opinions', opinions));
   }
 
-  GetOpinionFromDataBase(){
+  GetOpinionFromDatabase(){
     this.databaseQuery.getAllFromDatabase<Opinions>('opinions').then(rr => {
       const nub: Opinions[] = rr.filter((r: Opinions)=> r.user_name === JSON.parse(localStorage.getItem("nsdjlnsf") as string).user.name);
       this.InitOpinions(nub);

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { ChangeState, Opinions} from 'src/app/core/types/interfaces';
+// import { ChangeState, Opinions} from '../../../../types';
 
 @Component({
   selector: 'opn-add-opinion',

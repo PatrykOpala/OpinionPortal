@@ -1,4 +1,4 @@
-<div class="field-container">
-    <label class="field">{{ label }}</label>
-    <input [type]="inputType" [name]="inputName" class="inputC" (change)="setValue($event)" [value]="value"/>
+<div class="flex flex-col">
+    <label class="block mt-2 text-2xl w-max">{{ label }}</label>
+    <input [type]="inputType" [name]="inputName" class="w-[35.1rem] p-2 border border-solid border-[#cccccc] text-3xl bg-white-hover" (change)="setValue($event)" [value]="value"/>
 </div>

@@ -10,8 +10,8 @@ import { SupabaseQueryesV2 } from '../../types/classes/database-queryes-class-v2
 import { SupabaseProvider } from '../../types/classes/supabase-provider';
 import { LOCAL_STORAGE_KEYS, NAVIGATE_TO_HOME_URL, NAVIGATE_TO_LOGINNED_URL} from '../../types/constants';
 import { UserLoginnedInStateEnum } from '../../types/enums';
-import { IDataBaseUser } from '../../types/interfaces/idatabase-user.interface';
-import { IUserStore } from '../../types/interfaces/user-store.interface';
+import { DatabaseUser } from '../../types/types';
+import { UserStore } from '../../types/types';
 import { MenuBarService } from '../menu-bar/menu-bar.service';
 import { UserQuery } from '../../types/classes/user-query.class';
 
@@ -23,7 +23,7 @@ import { UserQuery } from '../../types/classes/user-query.class';
   providedIn: 'root'
 })
 export class AuthService {
-  private menubarService = inject(MenuBarService);
+  public menubarService = inject(MenuBarService);
   //private userStore = inject(Store<IUserStore>);
   private databaseConnection: DatabaseConnection;
   private supabaseProvider: SupabaseProvider
@@ -67,7 +67,7 @@ export class AuthService {
     try{
       if(registerType === "company"){
         // this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-        //   const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+        //   const userDatabase: DatabaseUser = this.transformerUser(response, name, email, registerType);
         //   this.userStore.dispatch(addUser({user: name}));
         //   window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
         //     JSON.stringify(response));
@@ -81,7 +81,7 @@ export class AuthService {
 
       if(registerType === "personalBrand"){
         // this.supabaseProvider.sClient.auth.signUp({email, password}).then((response) => {
-        //   const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+        //   const userDatabase: DatabaseUser = this.transformerUser(response, name, email, registerType);
         //   this.userStore.dispatch(addUser({user: name}));
         //   window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
         //     JSON.stringify(response));
@@ -99,7 +99,7 @@ export class AuthService {
         //     if(response.error?.message === "User already registered")
         //     throw new Error("To konto już istnieje.");
         //   }else{
-        //     const userDatabase: IDataBaseUser = this.transformerUser(response, name, email, registerType);
+        //     const userDatabase: DatabaseUser = this.transformerUser(response, name, email, registerType);
         //     this.userStore.dispatch(addUser({user: name}));
         //     window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication,
         //        JSON.stringify(response));
@@ -152,7 +152,7 @@ export class AuthService {
   }
 
   routeTo(email_pass: string = ""){
-    this.databaseQuery.getAllFromDatabase<IDataBaseUser>('users').then(resolveUser => {
+    this.databaseQuery.getAllFromDatabase<DatabaseUser>('users').then(resolveUser => {
       let filteredUser = resolveUser.filter(el => el.email === email_pass);
       if(filteredUser != null && filteredUser.length > 0){
         if(filteredUser[0].type === "user"){

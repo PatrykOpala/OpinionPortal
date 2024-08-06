@@ -1,7 +1,7 @@
 import { Store } from "@ngrx/store";
 import {SupabaseClient } from "@supabase/supabase-js";
 import { changeOpinion } from "../../store/actions/opinion.actions";
-import { Opinions, IOpinionState } from "../interfaces";
+import { Opinions, OpinionState } from "../types";
 import { Product } from "../models/product.model";
 
 export interface QueriesResult{
@@ -76,7 +76,7 @@ export class SupabaseQueryes{
         
     }
     changeDataAtDatabase(databaseColumn: string, updateContent: any, changeData: any, 
-        state: any, store: Store<IOpinionState>){
+        state: any, store: Store<OpinionState>){
         let bd: Opinions[] = [];
         this.rProvider.from(databaseColumn).update(updateContent).match(changeData)
         .select().then(t => {

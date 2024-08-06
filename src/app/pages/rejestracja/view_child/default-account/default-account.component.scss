@@ -23,7 +23,7 @@
 }
 
 .inputC:focus{
-    border: 1px solid var(--opn-color-green);
+    border: 1px solid $opn-color-green;
 }
 
 button{
@@ -32,11 +32,11 @@ button{
     letter-spacing: 4px;
     border: 1px solid transparent;
     padding: 10px;
-    background-color: var(--opn-color-green);
+    background-color: $opn-color-green;
     color: #ffffff;
 }
 
 button:hover{
     cursor: pointer;
-    background-color: var(--opn-color-green);
+    background-color: $opn-color-green;
 }
