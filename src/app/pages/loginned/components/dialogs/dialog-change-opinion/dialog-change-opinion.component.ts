@@ -2,8 +2,7 @@ import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, 
 import { map, Subscription } from 'rxjs';
 import { OpinionsService } from 'src/app/services/opinions/opinions.service';
 import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { CreateOpinion } from 'src/app/types/functions';
-import { Opinions } from 'src/app/types/types';
+import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
 import { DialogServiceService } from '../dialog-new-opinion/dialog-service.service';
 
 @Component({

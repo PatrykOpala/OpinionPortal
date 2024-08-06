@@ -1,5 +1,6 @@
 import { User, Session } from "@supabase/supabase-js"
 import { Product } from "./models/product.model"
+import { Opinions } from "./models/opinion.model";
 
 export type DatabaseUser = {
     [x: string]: any;
@@ -25,15 +26,6 @@ export type changeEvent = {
 export type ChangeState = {
     formArm: string,
     headOpinion: string,
-}
-
-export type Opinions = {
-    user_uuid: string,
-    user_name: string,
-    id?: number,
-    created_at?: string,
-    header: string,
-    content: string
 }
 
 export type OpinionState = {

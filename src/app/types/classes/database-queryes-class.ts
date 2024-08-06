@@ -1,7 +1,8 @@
 import { Store } from "@ngrx/store";
 import {SupabaseClient } from "@supabase/supabase-js";
 import { changeOpinion } from "../../store/actions/opinion.actions";
-import { Opinions, OpinionState } from "../types";
+import { OpinionState } from "../types";
+import { Opinions } from "../models/opinion.model";
 import { Product } from "../models/product.model";
 
 export interface QueriesResult{

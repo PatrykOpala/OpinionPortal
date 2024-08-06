@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { OpinionsService } from '../../services/opinions/opinions.service';
-import { Opinions } from '../../types/types';
+import { Opinions } from '../../types/models/opinion.model';
 import { NgForOf, NgIf } from '@angular/common';
 import { OpinieChooseCategoryItemComponent } from 'src/app/shared/components/opinie-choose-category/opinie-choose-category-item/opinie-choose-category-item.component';
 import { OpinieChooseCategoryComponent } from 'src/app/shared/components/opinie-choose-category/opinie-choose-category.component';

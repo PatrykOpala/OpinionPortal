@@ -1,18 +1,7 @@
 <div class="personal_brand_container">
-    <!-- <mat-list style="width: 240px; margin: 0 5px;">
-        <mat-list-item>
-            <button mat-button color="primary" class="drawer-button" (click)="openProduktServiceDialog()">Dodaj Produkt lub Usługę</button>
-        </mat-list-item>
-        <mat-list-item>
-            <button mat-button color="primary" style="width: 100%;" routerLink="/loginned/settings-account">Ustawienia konta</button>
-        </mat-list-item>
-        <mat-list-item>
-            <button mat-button color="primary" style="width: 100%;" (click)="authService.logOut()">Wyloguj mnie</button>
-        </mat-list-item>
-    </mat-list> -->
     <div class="products_list-container">
         <opn-product-list-card *ngFor="let product of filteredProduct"
-        [cardId]="product.id" 
+        [cardId]="product.id ? product.id : 1" 
         [cardHeader]="product.name" 
         [cardSubHeader]="product.type_product" 
         [cardContent]="product.description" 

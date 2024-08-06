@@ -7,7 +7,7 @@ import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { OpinionState } from '../../types/types';
 import { AuthService } from '../auth/auth.service';
 import { OpinionQuery } from '../../types/classes/opinion-query.class';
-import { Opinions } from 'src/app/types/types';
+import { Opinions } from 'src/app/types/models/opinion.model';
 
 @Injectable({
   providedIn: 'root'

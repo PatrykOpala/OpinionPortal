@@ -34,9 +34,7 @@ export class DialogAddProduktAndServiceComponent implements OnDestroy {
       }
       const checkProduct = this.radioControl.value === "produkt" ? 
       TypeProduct.PRODUCT : TypeProduct.SERVICE;
-      this.productService.sendProductToDatabase(
-        new Product(this.name, checkProduct, this.description, 
-          h));
+      this.productService.sendProductToDatabase({name: this.name, type_product: checkProduct, description: this.description, user_id: h});
     })
     }
     ngOnDestroy(): void {

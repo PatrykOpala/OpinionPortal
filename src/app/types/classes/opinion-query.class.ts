@@ -3,7 +3,8 @@ import { IQuery } from "../interfaces/iquery";
 import { inject } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { addOpinion } from "../../store/actions/opinion.actions";
-import { OpinionState, Opinions } from "../types";
+import { OpinionState } from "../types";
+import { Opinions } from "../models/opinion.model";
 import { QueryResult } from "../enums";
 
 export class OpinionQuery implements IQuery{
@@ -32,7 +33,6 @@ export class OpinionQuery implements IQuery{
                 }
             }
             if(error){
-                // "Problem z dodaniem opinii."
                 resolve(QueryResult.FAILED);
             }
         });

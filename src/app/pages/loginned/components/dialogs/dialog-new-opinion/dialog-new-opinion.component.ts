@@ -2,12 +2,11 @@ import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@an
 import { OpinionsService } from 'src/app/services/opinions/opinions.service';
 import { ProductService } from 'src/app/services/product/product.service';
 import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { CreateOpinion } from 'src/app/types/functions';
-import { Opinions } from 'src/app/types/types';
+import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
 import { Product } from 'src/app/types/models/product.model';
 import { DialogServiceService } from './dialog-service.service';
 // import { StarMeterComponent } from 'src/app/shared/components/star-meter/star-meter.component';
-import { NgFor, NgForOf, NgIf, NgPlural } from '@angular/common';
+import { NgForOf, NgIf, NgPlural } from '@angular/common';
 
 @Component({
   selector: 'opn-dialog-new-opinion',

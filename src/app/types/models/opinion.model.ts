@@ -1,4 +1,11 @@
-import { Opinions } from "./types"
+export type Opinions = {
+    user_uuid: string,
+    user_name: string,
+    id?: number,
+    created_at?: string,
+    header: string,
+    content: string
+}
 
 export function CreateOpinion(_user_id: string, _user_name: string, 
     _content_id: number, _head: string, _content: string): Opinions{

@@ -1,6 +1,6 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { OpinionsService } from 'src/app/services/opinions/opinions.service';
-import { Opinions } from 'src/app/types/types';
+import { Opinions } from 'src/app/types/models/opinion.model';
 import { changeEvent } from '../../../types/types';
 import { DialogServiceService } from '../../../pages/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
 import { NgIf } from '@angular/common';

@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { addProducts } from '../../store/actions/product.actions';
 import { productSelector } from '../../store/selectors/product.selector';
 import { ProductState } from '../../types/types';
-import { Product } from '../../types/models/product.model'
+import { Product, returnProductArray } from '../../types/models/product.model'
 import { AuthService } from '../auth/auth.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -29,9 +29,8 @@ export class ProductService extends AuthService {
   sendProductToDatabase(product: Product){
     this.databaseQuery.pushProductToDatabase('products', product)
     .then(sendProductResolve => {
-      let returnProduct = Product.returnProduct(sendProductResolve.id,
-         sendProductResolve.name, sendProductResolve.type_product, 
-         sendProductResolve.description, sendProductResolve.user_id);
+      let product: Product = {id: sendProductResolve.id, name: sendProductResolve.name, type_product: sendProductResolve.type_product,
+        description: sendProductResolve.description, user_id: sendProductResolve.user_id};
       // let sendJ = this._product;
       // sendJ.push(returnProduct);
       // this.productStore.dispatch(addProducts({products: sendJ}));
@@ -49,7 +48,7 @@ export class ProductService extends AuthService {
   getProductsFromDatabase(): Promise<Product[]>{
     return new Promise((resolve, reject)=>{
       this.databaseQuery.getAllProductsFromDatabase('products').then(getResolve => {
-        let j = Product.returnProductArray(getResolve);
+        let j = returnProductArray(getResolve);
         this.productStore.dispatch(addProducts({products: j}));
         return resolve(j);
       });
@@ -57,7 +56,6 @@ export class ProductService extends AuthService {
   }
 
   get product(): Observable<Product[]>{
-    // return this._product;
     return this._product$.asObservable();
   }
 }

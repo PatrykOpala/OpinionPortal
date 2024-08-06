@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { LOCAL_STORAGE_KEYS } from 'src/app/types/constants';
 import { UserLoginnedInStateEnum } from 'src/app/types/enums';
 import { AuthService } from '../../../services/auth/auth.service';
-import { LogOutUser} from '../../../types/interfaces';
+import { ILogoutUser } from '../../../types/interfaces/IlogoutUser.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink]
 })
-export class MenuBarComponent implements OnInit, LogOutUser{
+export class MenuBarComponent implements OnInit, ILogoutUser{
   protected authService = inject(AuthService);
   protected profileOptions: boolean = false;
 
