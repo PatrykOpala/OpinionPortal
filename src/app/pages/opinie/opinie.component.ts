@@ -6,6 +6,7 @@ import { OpinieChooseCategoryItemComponent } from 'src/app/shared/components/opi
 import { OpinieChooseCategoryComponent } from 'src/app/shared/components/opinie-choose-category/opinie-choose-category.component';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 import { OpinieContainerComponent } from 'src/app/shared/components/opinie-container/opinie-container.component';
+import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
   selector: 'opn-opinie',
@@ -17,6 +18,7 @@ import { OpinieContainerComponent } from 'src/app/shared/components/opinie-conta
     OpinieChooseCategoryItemComponent,
     PaneContainerComponent,
     OpinieContainerComponent,
+    MenuBarComponent,
     NgForOf,
     NgIf
   ]

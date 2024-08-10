@@ -4,14 +4,14 @@ import { AuthService2 } from 'src/app/services/auth/auth.service-2';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 import { FormRegistersComponent } from '../../shared/components/form-registers/form-registers.component';
 import { FormInputComponent } from 'src/app/shared/components/form-input/form-input.component';
-import { NgIf } from '@angular/common';
+import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
   selector: 'opn-logowanie',
   templateUrl: './logowanie.component.html',
   styles: [`input.ng-untouched{border-bottom: 1px solid #cccccc;}`],
   standalone: true,
-  imports: [PaneContainerComponent, FormRegistersComponent, FormInputComponent, ReactiveFormsModule, NgIf, FormsModule]
+  imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, FormInputComponent, ReactiveFormsModule, FormsModule]
 })
 export class LogowanieComponent implements OnInit{
 

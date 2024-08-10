@@ -1,32 +1,22 @@
-<opn-pane-container>
-    <form class="formContainer" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-        <label class="labelC">Logowanie</label>
-        <!-- <div class="field-container">
-            <label class="field">Nazwa Firmy / Marki Osobistej</label>
-            <input type="text" name="userName" formControlName="name" class="inputC" placeholder="Mleczarnia Rzymska / Tree Steel"/>
-        </div> -->
-        <div class="field-container">
-            <label class="field">Adres E-mail</label>
-            <input type="email" name="Email" class="inputC" placeholder="np. abcd@abcd.pl" formControlName="email"/>
+<opn-menu-bar></opn-menu-bar>
+<div class="bg-[#333] flex flex-col items-center w-[100%] h-[52.8em]">
+    <form class="w-max flex flex-col items-center my-44" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+        <label class="text-7xl tracking-[7px] text-green">Logowanie</label>
+        <div class="flex flex-col my-7">
+            <label class="block mt-2 text-2xl w-max text-white">Adres E-mail</label>
+            <input type="email" name="Email" 
+            class="inputC" formControlName="email"/>
         </div>
-        <div class="field-container">
-            <label class="field">Hasło</label>
-            <input type="password" name="Password" id="uPassword" class="inputC" formControlName="password"/>
+        <div class="flex flex-col">
+            <label class="block mt-2 text-2xl w-max text-white">Hasło</label>
+            <input type="password" name="Password" id="uPassword" 
+            class="inputC" formControlName="password"/>
         </div>
         <div style="justify-content: right; margin-left: 41%;" class="field-container">
-            <label style="font-size: 1.1rem; width: max-content;">Jeżeli nie masz konta to <a href="/business/register" style="font-weight: 600;">załóż konto</a>.</label>
+            <label class="w-max text-lg text-white">Jeżeli nie masz konta to
+                <a href="/business/register" class="font-semibold">załóż konto</a>.
+            </label>
         </div>
-        <div class="button-container">
-            <button type="submit">
-                <!-- <div *ngIf="progress; else elseButton">
-                    <div class="progress">
-                        <div class="pr1"></div>
-                        <div class="pr2"></div>
-                    </div>
-                </div>
-                <ng-template #elseButton>Zaloguj się</ng-template> -->
-                Zaloguj się
-            </button>
-        </div>
+        <button type="submit" class="my-7 text-3xl border-none tracking-wider p-3 py-2 bg-green text-white hover:bg-dark-green">Zaloguj się</button>
     </form>
-</opn-pane-container>
+</div>

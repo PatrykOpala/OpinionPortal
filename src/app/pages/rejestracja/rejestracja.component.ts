@@ -6,13 +6,14 @@ import { AuthService2 } from 'src/app/services/auth/auth.service-2';
 import { MIN_LENGHT } from 'src/app/types/constants';
 import { FormRegistersComponent } from '../../shared/components/form-registers/form-registers.component';
 import { FormInputComponent } from 'src/app/shared/components/form-input/form-input.component';
+import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
   selector: 'opn-rejestracja',
   templateUrl: './rejestracja.component.html',
   styleUrls: ['./rejestracja.component.css'],
   standalone: true,
-  imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent, FormInputComponent]
+  imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent, FormInputComponent]
 })
 export class RejestracjaComponent implements OnInit {
   public userForm: FormGroup;

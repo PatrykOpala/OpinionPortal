@@ -8,14 +8,12 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'opn-menu-bar',
   templateUrl: './menu-bar.component.html',
-  styleUrls: ['./menu-bar.component.scss'],
   standalone: true,
   imports: [RouterLink]
 })
 export class MenuBarComponent implements OnInit, ILogoutUser{
   protected authService = inject(AuthService);
   protected profileOptions: boolean = false;
-
   protected c = true;
 
   constructor() {

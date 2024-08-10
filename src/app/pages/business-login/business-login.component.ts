@@ -3,13 +3,14 @@ import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { AuthService2 } from 'src/app/services/auth/auth.service-2';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
   selector: 'opn-business-login',
   templateUrl: './business-login.component.html',
   styleUrls: ['./business-login.component.scss'],
   standalone: true,
-  imports: [PaneContainerComponent, NgIf, ReactiveFormsModule]
+  imports: [PaneContainerComponent, NgIf, MenuBarComponent, ReactiveFormsModule]
 })
 export class BusinessLoginComponent {
   protected loginForm !: FormGroup;

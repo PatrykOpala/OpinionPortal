@@ -6,7 +6,6 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   standalone: true,
   imports: [],
   templateUrl: './form-input.component.html',
-  styleUrl: './form-input.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
