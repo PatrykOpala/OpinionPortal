@@ -1,5 +1,5 @@
-<div class="personal_brand_container">
-    <div class="products_list-container">
+<div class="flex">
+    <div class="w-[85vw] h-[87vh] overflow-y-auto overflow-x-hidden grid grid-cols-[32% 32% 32%] gap-8 pb-5" style="grid-template-columns: 32% 32% 32%;">
         <opn-product-list-card *ngFor="let product of filteredProduct"
         [cardId]="product.id ? product.id : 1" 
         [cardHeader]="product.name" 

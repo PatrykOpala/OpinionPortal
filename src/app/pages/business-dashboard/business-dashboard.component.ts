@@ -7,6 +7,7 @@ import { DialogAddProduktAndServiceComponent } from '../loginned/components/dial
 import { UserStoreAbstract } from 'src/app/types/classes/user-store-abstract.class';
 import { NgFor } from '@angular/common';
 import { ProductListCardComponent } from '../loginned/personal-brand/components/product-list-card/product-list-card.component';
+import { TypeProduct } from 'src/app/types/enums';
 
 @Component({
   selector: 'opn-business-dashboard',
@@ -22,7 +23,21 @@ export class BusinessDashboardComponent extends UserStoreAbstract implements OnI
   protected dialogProduktService = inject(DialogProduktService);
   protected authService = inject(AuthService);
   protected productService = inject(ProductService);
-  protected filteredProduct: Product[] = [];
+  protected filteredProduct: Product[] = [
+    {
+      id: 2,
+      name: "dupa1",
+      type_product: TypeProduct.PRODUCT,
+      description: "opis 1",
+      user_id: "xxxx-xxxxx-xxxx-xxxx"
+    }, {
+      id: 4,
+      name: "dupa2",
+      type_product: TypeProduct.PRODUCT,
+      description: "opis 2",
+      user_id: "xxxx-xxxxx-xxxx-xxxx"
+    },
+  ];
 
   constructor(){
     super()
