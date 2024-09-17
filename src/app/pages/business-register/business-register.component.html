@@ -1,21 +1,21 @@
 <div class="bg-[#333] flex flex-col items-center w-[100%] h-[100vh]">
     <a routerLink="/business" class="w-max text-green text-6xl font-bold mt-20 py-[5px] tracking-[3px] flex flex-col items-center">
-        OMS<small class="w-max text-base bg-[#f1b668] px-1 mx-2 text-white">For Business</small>
+        OMS<small class="w-max text-base text-[#f1b668] px-1 mx-2">Business</small>
     </a>
     <form class="w-max flex flex-col items-center mt-16" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
         <label class="text-5xl tracking-[7px] text-green">Rejestracja</label>
         <div class="flex flex-col mb-3">
-            <label class="block mt-2 text-2xl w-max text-white">Nazwa Firmy</label>
-            <input type="text" name="userName" formControlName="name" class="inputC"/>
+            <label class="block mt-2 text-2xl w-max text-white/75">Nazwa Firmy</label>
+            <input type="text" name="userName" formControlName="name" class="w-[30vw] p-3 border border-solid border-[#aaa] rounded-lg bg-[#aaa] focus:border-[#ccc] focus:bg-[#ccc]"/>
         </div>
         <div class="flex flex-col mb-3">
-            <label class="block mt-2 text-2xl w-max text-white">Adres E-mail</label>
-            <input type="email" name="Email" class="inputC" formControlName="email"/>
+            <label class="block mt-2 text-2xl w-max text-white/75">Adres E-mail</label>
+            <input type="email" name="Email" class="w-[30vw] p-3 border border-solid border-[#aaa] rounded-lg bg-[#aaa] focus:border-[#ccc] focus:bg-[#ccc]" formControlName="email"/>
         </div>
         <div class="flex flex-col mb-3">
-            <label class="block mt-2 text-2xl w-max text-white">Hasło</label>
-            <input type="password" name="Password" id="uPassword" class="inputC" formControlName="password"/>
+            <label class="block mt-2 text-2xl w-max text-white/75">Hasło</label>
+            <input type="password" name="Password" id="uPassword" class="w-[30vw] p-3 border border-solid border-[#aaa] rounded-lg bg-[#aaa] focus:border-[#ccc] focus:bg-[#ccc]" formControlName="password"/>
         </div>
-        <button type="submit" class="my-7 text-3xl border-none tracking-wider p-3 py-2 bg-green text-white hover:bg-dark-green">Zarejestruj się</button>
+        <button type="submit" class="my-7 text-xl border-none tracking-wider px-9 py-3 bg-green/85 text-white hover:bg-dark-green rounded-lg">Zarejestruj się</button>
     </form>
 </div>

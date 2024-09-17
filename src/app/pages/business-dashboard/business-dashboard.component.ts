@@ -5,9 +5,9 @@ import { ProductService } from 'src/app/services/product/product.service';
 import { Product } from 'src/app/types/models/product.model';
 import { DialogAddProduktAndServiceComponent } from '../loginned/components/dialogs/dialog-add-produkt-and-service/dialog-add-produkt-and-service.component';
 import { UserStoreAbstract } from 'src/app/types/classes/user-store-abstract.class';
-import { NgFor } from '@angular/common';
 import { ProductListCardComponent } from '../loginned/personal-brand/components/product-list-card/product-list-card.component';
 import { TypeProduct } from 'src/app/types/enums';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'opn-business-dashboard',
@@ -15,7 +15,7 @@ import { TypeProduct } from 'src/app/types/enums';
   styleUrls: ['./business-dashboard.component.scss'],
   standalone: true,
   imports: [
-    NgFor,
+    RouterLink,
     ProductListCardComponent
   ]
 })

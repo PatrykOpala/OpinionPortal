@@ -3,7 +3,6 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'opn-product-list-card',
   templateUrl: './product-list-card.component.html',
-  styleUrls: ['./product-list-card.component.scss'],
   standalone: true,
 })
 export class ProductListCardComponent {

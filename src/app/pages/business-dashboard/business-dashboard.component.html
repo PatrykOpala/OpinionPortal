@@ -1,10 +1,19 @@
-<div class="flex">
-    <div class="w-[85vw] h-[87vh] overflow-y-auto overflow-x-hidden grid grid-cols-[32% 32% 32%] gap-8 pb-5" style="grid-template-columns: 32% 32% 32%;">
-        <opn-product-list-card *ngFor="let product of filteredProduct"
-        [cardId]="product.id ? product.id : 1" 
-        [cardHeader]="product.name" 
-        [cardSubHeader]="product.type_product" 
-        [cardContent]="product.description" 
-        (emitDelete)="deleteProductFromDatabasee($event)" />
+<div class="flex bg-[#333] h-full">
+    <!--bg-[#877198]-->
+    <div class="w-24 h-full text-white flex flex-col items-center">
+        <span class="w-[2.65em] h-max mt-3 text-green font-bold text-3xl text-center flex flex-col">OMS <span class="text-sm pt-[-2em] text-[#f1b668]">business</span></span>
+        <a class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm cursor-pointer rounded-lg">Dodaj</a>
+        <a class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm cursor-pointer rounded-lg">Profil</a>
+        <button class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm rounded-lg">Wyloguj</button>
+    </div>
+    <div class="w-[85vw] h-[87vh] overflow-y-auto overflow-x-hidden grid grid-cols-[32% 32% 32%] gap-8 pb-5 pt-2 mx-auto" style="grid-template-columns: 32% 32% 32%;">
+        @for(product of filteredProduct; track product.id){
+         <opn-product-list-card 
+         [cardId]="product.id ? product.id : 1" 
+         [cardHeader]="product.name" 
+         [cardSubHeader]="product.type_product" 
+         [cardContent]="product.description" 
+         (emitDelete)="deleteProductFromDatabasee($event)" />
+        }
     </div>
 </div>

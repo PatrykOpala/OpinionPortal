@@ -1,13 +1,13 @@
-<div class="products_list-card">
-    <div>
-      <p style="font-weight: bolder;">{{ cardHeader }}</p>
-      <p style="font-weight: bold;">{{cardSubHeader}}</p>
+<div class="h-max border border-[#222] rounded-lg">
+    <div class="text-white py-3 px-3 bg-[#444] rounded-tl-lg rounded-tr-lg">
+      <p class="font-bold">{{ cardHeader }}</p>
+      <p>{{cardSubHeader}}</p>
     </div>
-    <div style="max-height: 500px; height: 500px;">
-        <p>{{ cardContent }}</p>
+    <div class="text-white min-h-52 mt-2 px-3">
+        {{ cardContent }}
     </div>
-    <div style="display: flex; justify-content: space-between;">
-        <button mat-button>Zobacz cały opis</button>
-        <button mat-button color="warn" (click)="deleteProduct()">Usuń Produkt/Usługę</button>
+    <div class="text-white flex justify-between mt-2 py-2 px-3 bg-[#444] rounded-bl-lg rounded-br-lg">
+        <button class="px-4 rounded-lg bg-green/55 hover:bg-green/70 text-xs h-9">Edytuj opis</button>
+        <button (click)="deleteProduct()" class="px-4 rounded-lg bg-green/55 hover:bg-green/70 text-xs h-9">Usuń</button>
     </div>
 </div>
