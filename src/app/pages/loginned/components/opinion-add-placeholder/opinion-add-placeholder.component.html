@@ -1,8 +1,8 @@
 <div class="opinion-add__placeholder" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-    <div style="width: 90px; margin-bottom: 12px;">
-        <svg width="20mm" 
-            height="20mm" viewBox="1 0 12.999999 12.999999" 
-            version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+    <div style="width: 80px; height: 50px; margin-bottom: 12px;" class="rounded-lg bg-green flex items-center justify-center">
+        <div class="bg-white w-2 h-8 translate-x-1"></div>
+        <div class="bg-white w-2 h-8 rotate-90 translate-x-[-45%]"></div>
+        <!--<svg width="17mm" height="17mm" viewBox="1 0 12.999999 12.999999" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
                 <g transform="matrix(0.83602771,0,0,0.83602771,-1.3803372,-1.0609309)">
                     <rect
                         class="plus-icon" width="3.9914572" height="13.290305" x="-11.190135" y="2.7035816"
@@ -10,8 +10,8 @@
                     <rect
                         class="plus-icon" width="3.9914317" height="13.294538" x="7.3995004" y="2.5176723" />
                 </g>
-        </svg>
+        </svg>-->
     </div>
     <span style="font-size: 1.2rem; margin-bottom: 20px;">Nie opublikowałeś/aś opinii.</span>
-    <button class="add-opinion__button" (click)="sendNavigateToEvent()">Opublikuj Opinię</button>
+    <button class="bg-green text-white text-xl rounded-lg px-4 py-3" (click)="sendNavigateToEvent()">Opublikuj Opinię</button>
 </div>

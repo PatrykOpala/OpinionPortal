@@ -2,12 +2,10 @@
 <opn-pane-container>
     <opn-form-registers class="w-max flex flex-col items-center" (ngSubmit)="onSubmit()" [formGroup]="loginForm">
         <label class="text-7xl tracking-[7px] text-green">Logowanie</label>
-        <opn-form-input label="Adres E-mail" type="email" formControlName="email" name="Email" />
+        <opn-form-input label="Adres E-mail" type="email" formControlName="email" name="Email" class="mt-8" />
         <opn-form-input label="Hasło" type="password" formControlName="password" name="Password" />
         <div class="mt-9">
-            <button type="submit" class="text-3xl tracking-[4px] border-none p-2 bg-green text-white hover:bg-dark-green">
-                Zaloguj się
-            </button>
+            <button type="submit" class="text-xl tracking-[2px] border-none px-6 py-3 bg-green text-white hover:bg-dark-green rounded-lg">Zaloguj się</button>
         </div>
     </opn-form-registers>
 </opn-pane-container>

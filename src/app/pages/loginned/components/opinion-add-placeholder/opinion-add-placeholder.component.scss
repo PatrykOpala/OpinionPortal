@@ -1,11 +1,11 @@
 @use "../../../../shared/utils/scss/op-colors.scss" as op-colors;
 .add-opinion__button{
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     color:op-colors.$opn-background-color;
     cursor: pointer; border: none;
     background-color: op-colors.$opn-green-light;
-    border-radius: 3px; padding: 13px; translate: -10px 0;
-    width: 13rem; text-align: center; text-decoration: none;
+    padding: 13px; translate: -10px 0;
+    width: 11rem; text-align: center; text-decoration: none;
 }
 .add-opinion__button:hover{
     background-color: op-colors.$opn-color-dark-green;

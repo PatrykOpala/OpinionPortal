@@ -18,8 +18,8 @@ import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.comp
 export class RejestracjaComponent implements OnInit {
   public userForm: FormGroup;
   private dafaultAuthService = inject(AuthService2);
-
-  constructor(private registerFormBuilder: FormBuilder) {
+  private registerFormBuilder = inject(FormBuilder);
+  constructor() {
     this.userForm = this.registerFormBuilder.group({
       name: new FormControl(''),
       email: new FormControl('', [Validators.email, Validators.required]),

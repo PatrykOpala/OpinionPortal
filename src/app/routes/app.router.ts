@@ -17,9 +17,9 @@ export const AppRoutes: Routes = [
   {path: '', canActivate: [MainGuard], component: DashboardComponent, pathMatch: 'full'},
   {path: OPINION_URL, component: OpinieComponent},
   {path: LOGIN_URL, component: LogowanieComponent},
-
-  {path: 'business', children:[{path: '', redirectTo: 'login', pathMatch: 'full'}, {path: 'login', component: BusinessLoginComponent},
-  {path: 'register', component: BusinessRegisterComponent}, {path: 'dashboard', component: BusinessDashboardComponent}]},
+  {path: "business/login", component: BusinessLoginComponent},
+  {path: "business/register", component: BusinessRegisterComponent},
+  {path: "business/dashboard", component: BusinessDashboardComponent},
 
   {path: REGISTER_URL, children: [{path: '', component: RejestracjaComponent}, {path: ':register_step', component: RejestracjaComponent}]},
 
