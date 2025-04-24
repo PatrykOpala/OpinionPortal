@@ -12,6 +12,8 @@ import { OpinieComponent } from '../pages/opinie/opinie.component';
 import { LogowanieComponent } from '../pages/logowanie/logowanie.component';
 import { AddOpinionComponent } from '../pages/loginned/add-opinion/add-opinion.component';
 import { OpinionsListComponent } from '../pages/loginned/opinions-list/opinions-list.component';
+import { AuthComponent } from '../pages/auth/auth.component';
+import { AuthRegisterComponent } from '../pages/auth-register/auth-register.component';
 
 export const AppRoutes: Routes = [
   {path: '', canActivate: [MainGuard], component: DashboardComponent, pathMatch: 'full'},
@@ -26,7 +28,9 @@ export const AppRoutes: Routes = [
   {path: LOGINNED_URL, loadComponent: () => import('../pages/loginned/loginned.component').then(m => m.LoginnedComponent),
    children:[{path: 'settings-account', component: SettingsAccountComponent}, {path: 'add-opinion', component: AddOpinionComponent},
    {path: 'opinions-list', component: OpinionsListComponent}]},
-  {path: ULOGINNED_URL, component: UloginnedComponent}
+  {path: ULOGINNED_URL, component: UloginnedComponent},
+  {path: "auth/:type", component: AuthComponent},
+  {path: "auth/register/:type", component: AuthRegisterComponent},
 ];
 
 // canActivate: [LoginnedGuard]

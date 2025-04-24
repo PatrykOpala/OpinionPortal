@@ -1,5 +1,4 @@
-import { ElementRef, inject, Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
@@ -75,8 +74,7 @@ export class AuthService2 {
     sClient.auth.signInWithPassword({email: email, password: password});
     if(data !== null){
       if(data.user !== null && data.session !== null){
-        window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, 
-          JSON.stringify(data));
+        window.localStorage.setItem(LOCAL_STORAGE_KEYS.userAuthentication, JSON.stringify(data));
         this.menubarService.changeUserLoginnedInState(UserLoginnedInStateEnum.LOGGEDIN);
         this.user.addUserToStore(this.user.transformerUser(data, email, password));
         //this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
@@ -101,8 +99,7 @@ export class AuthService2 {
             user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
-            JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
           this.authRouter.navigateByUrl(NAVIGATE_TO_LOGINNED_URL);
         }
         if(filteredUser[0].type === "personalBrand"){
@@ -110,8 +107,7 @@ export class AuthService2 {
             user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
-            JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
           //this.authRouter.navigateByUrl(NAVIGATE_TO_PERSONALBRAND_URL);
         }
         if(filteredUser[0].type === "company"){
@@ -119,8 +115,7 @@ export class AuthService2 {
             user: this.user.transformerFilteredUser(filteredUser[0])
           };
           this.userStore.dispatch(addUser(loggedUser));
-          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, 
-            JSON.stringify(loggedUser));
+          window.localStorage.setItem(LOCAL_STORAGE_KEYS.nsdjlnsf, JSON.stringify(loggedUser));
           //this.authRouter.navigateByUrl(NAVIGATE_TO_COMPANY_URL);
         }
       }
