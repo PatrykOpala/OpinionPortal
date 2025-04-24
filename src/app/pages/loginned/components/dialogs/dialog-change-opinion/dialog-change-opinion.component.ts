@@ -6,9 +6,10 @@ import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
 import { DialogServiceService } from '../dialog-new-opinion/dialog-service.service';
 
 @Component({
-  selector: 'opn-dialog-change-opinion',
-  templateUrl: './dialog-change-opinion.component.html',
-  styleUrls: ['./dialog-change-opinion.component.scss']
+    selector: 'opn-dialog-change-opinion',
+    templateUrl: './dialog-change-opinion.component.html',
+    styleUrls: ['./dialog-change-opinion.component.scss'],
+    standalone: false
 })
 export class DialogChangeOpinionComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;

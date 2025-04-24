@@ -8,11 +8,10 @@ import { FormRegistersComponent } from '../../../../shared/components/form-regis
 import { RejestracjaStepComponent } from '../../components/rejestracja-step/rejestracja-step.component';
 
 @Component({
-  selector: 'opn-default-account',
-  templateUrl: './default-account.component.html',
-  styleUrls: ['./default-account.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent]
+    selector: 'opn-default-account',
+    templateUrl: './default-account.component.html',
+    styleUrls: ['./default-account.component.scss'],
+    imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent]
 })
 export class DefaultAccountComponent implements OnInit {
 

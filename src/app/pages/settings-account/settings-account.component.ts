@@ -9,11 +9,10 @@ import { PaneContainerComponent } from 'src/app/shared/components/pane-container
 import { AsyncPipe, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'opn-user-account',
-  templateUrl: './settings-account.component.html',
-  styleUrls: ['./settings-account.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, NgIf, AsyncPipe]
+    selector: 'opn-user-account',
+    templateUrl: './settings-account.component.html',
+    styleUrls: ['./settings-account.component.scss'],
+    imports: [PaneContainerComponent, NgIf, AsyncPipe]
 })
 export class SettingsAccountComponent implements OnInit {
 

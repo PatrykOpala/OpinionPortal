@@ -9,19 +9,18 @@ import { OpinieContainerComponent } from 'src/app/shared/components/opinie-conta
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
-  selector: 'opn-opinie',
-  templateUrl: './opinie.component.html',
-  styleUrls: ['./opinie.component.scss'],
-  standalone: true,
-  imports: [
-    OpinieChooseCategoryComponent,
-    OpinieChooseCategoryItemComponent,
-    PaneContainerComponent,
-    OpinieContainerComponent,
-    MenuBarComponent,
-    NgForOf,
-    NgIf
-  ]
+    selector: 'opn-opinie',
+    templateUrl: './opinie.component.html',
+    styleUrls: ['./opinie.component.scss'],
+    imports: [
+        OpinieChooseCategoryComponent,
+        OpinieChooseCategoryItemComponent,
+        PaneContainerComponent,
+        OpinieContainerComponent,
+        MenuBarComponent,
+        NgForOf,
+        NgIf
+    ]
 })
 export class OpinieComponent implements OnInit {
 

@@ -9,12 +9,11 @@ import { FormRegistersComponent } from '../../../../shared/components/form-regis
 import { RejestracjaStepComponent } from '../../components/rejestracja-step/rejestracja-step.component';
 
 @Component({
-  selector: 'opn-account-company',
-  templateUrl: './account-company.component.html',
-  styleUrls: ['./account-company.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  standalone: true,
-  imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent]
+    selector: 'opn-account-company',
+    templateUrl: './account-company.component.html',
+    styleUrls: ['./account-company.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    imports: [PaneContainerComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent]
 })
 export class AccountCompanyComponent implements OnInit {
   protected accountCompanyService = inject(AuthService2);

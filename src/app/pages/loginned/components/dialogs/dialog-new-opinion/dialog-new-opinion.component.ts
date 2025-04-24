@@ -9,11 +9,10 @@ import { DialogServiceService } from './dialog-service.service';
 import { NgForOf, NgIf, NgPlural } from '@angular/common';
 
 @Component({
-  selector: 'opn-dialog-new-opinion',
-  templateUrl: './dialog-new-opinion.component.html',
-  styleUrls: ['./dialog-new-opinion.component.scss'],
-  standalone: true,
-  imports: [NgForOf, NgPlural, NgIf]
+    selector: 'opn-dialog-new-opinion',
+    templateUrl: './dialog-new-opinion.component.html',
+    styleUrls: ['./dialog-new-opinion.component.scss'],
+    imports: [NgForOf, NgPlural, NgIf]
 })
 export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;

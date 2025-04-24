@@ -3,11 +3,10 @@ import { Category } from '../../../types/types';
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'opn-opinie-choose-category',
-  templateUrl: './opinie-choose-category.component.html',
-  styleUrls: ['./opinie-choose-category.component.scss'],
-  standalone: true,
-  imports: [NgFor]
+    selector: 'opn-opinie-choose-category',
+    templateUrl: './opinie-choose-category.component.html',
+    styleUrls: ['./opinie-choose-category.component.scss'],
+    imports: [NgFor]
 })
 export class OpinieChooseCategoryComponent implements OnInit {
 

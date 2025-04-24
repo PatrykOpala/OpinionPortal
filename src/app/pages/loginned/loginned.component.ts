@@ -7,11 +7,10 @@ import { NgForOf, NgIf } from '@angular/common';
 import { Router, RouterOutlet} from '@angular/router';
 
 @Component({
-  selector: 'opn-loginned',
-  templateUrl: './loginned.component.html',
-  styleUrls: ['./loginned.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, OpinieContainerComponent, NgIf, NgForOf, RouterOutlet]
+    selector: 'opn-loginned',
+    templateUrl: './loginned.component.html',
+    styleUrls: ['./loginned.component.scss'],
+    imports: [PaneContainerComponent, OpinieContainerComponent, NgIf, NgForOf, RouterOutlet]
 })
 export class LoginnedComponent extends UserStoreAbstract{
   protected dialogNew = inject(DialogServiceService);

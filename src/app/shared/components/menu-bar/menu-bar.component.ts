@@ -6,10 +6,9 @@ import { ILogoutUser } from '../../../types/interfaces/IlogoutUser.interface';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'opn-menu-bar',
-  templateUrl: './menu-bar.component.html',
-  standalone: true,
-  imports: [RouterLink]
+    selector: 'opn-menu-bar',
+    templateUrl: './menu-bar.component.html',
+    imports: [RouterLink]
 })
 export class MenuBarComponent implements OnInit, ILogoutUser{
   protected authService = inject(AuthService);

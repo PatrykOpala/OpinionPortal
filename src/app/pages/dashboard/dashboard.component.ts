@@ -4,11 +4,10 @@ import { PaneContainerComponent } from 'src/app/shared/components/pane-container
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
-  selector: 'opn-app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, MenuBarComponent, RouterLink]
+    selector: 'opn-app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    imports: [PaneContainerComponent, MenuBarComponent, RouterLink]
 })
 export class DashboardComponent implements OnInit {
   constructor() {}

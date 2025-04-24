@@ -5,11 +5,10 @@ import { AuthService2 } from 'src/app/services/auth/auth.service-2';
 import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
 
 @Component({
-  selector: 'opn-business-register',
-  templateUrl: './business-register.component.html',
-  styleUrls: ['./business-register.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, NgIf, ReactiveFormsModule]
+    selector: 'opn-business-register',
+    templateUrl: './business-register.component.html',
+    styleUrls: ['./business-register.component.scss'],
+    imports: [PaneContainerComponent, NgIf, ReactiveFormsModule]
 })
 export class BusinessRegisterComponent {
   protected loginForm !: FormGroup;

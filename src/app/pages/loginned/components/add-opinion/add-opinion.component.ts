@@ -3,9 +3,10 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 // import { ChangeState, Opinions} from '../../../../types';
 
 @Component({
-  selector: 'opn-add-opinion',
-  templateUrl: './add-opinion.component.html',
-  styleUrls: ['./add-opinion.component.scss'],
+    selector: 'opn-add-opinion',
+    templateUrl: './add-opinion.component.html',
+    styleUrls: ['./add-opinion.component.scss'],
+    standalone: false
 })
 export class AddOpinionComponent implements OnInit {
 

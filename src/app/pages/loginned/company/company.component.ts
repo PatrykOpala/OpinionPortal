@@ -10,14 +10,13 @@ import { ProductListCardComponent } from '../personal-brand/components/product-l
 import { NgFor } from '@angular/common';
 
 @Component({
-  selector: 'opn-company',
-  templateUrl: './company.component.html',
-  styleUrls: ['./company.component.scss'],
-  standalone: true,
-  imports:[
-    ProductListCardComponent,
-    NgFor,
-  ]
+    selector: 'opn-company',
+    templateUrl: './company.component.html',
+    styleUrls: ['./company.component.scss'],
+    imports: [
+        ProductListCardComponent,
+        NgFor,
+    ]
 })
 export class CompanyComponent extends UserStoreAbstract implements OnInit{
   protected dialogProduktService = inject(DialogProduktService);

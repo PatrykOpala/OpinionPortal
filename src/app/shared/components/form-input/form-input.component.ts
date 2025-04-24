@@ -2,17 +2,16 @@ import { Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
-  selector: 'opn-form-input',
-  standalone: true,
-  imports: [],
-  templateUrl: './form-input.component.html',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: FormInputComponent,
-      multi: true,
-    },
-  ],
+    selector: 'opn-form-input',
+    imports: [],
+    templateUrl: './form-input.component.html',
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: FormInputComponent,
+            multi: true,
+        },
+    ]
 })
 export class FormInputComponent implements ControlValueAccessor{
   @Input("label")

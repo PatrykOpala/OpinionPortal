@@ -10,11 +10,10 @@ import { NgFor } from '@angular/common';
 import { ProductListCardComponent } from './components/product-list-card/product-list-card.component';
 
 @Component({
-  selector: 'opn-personal-brand',
-  templateUrl: './personal-brand.component.html',
-  styleUrls: ['./personal-brand.component.scss'],
-  standalone: true,
-  imports: [NgFor, ProductListCardComponent]
+    selector: 'opn-personal-brand',
+    templateUrl: './personal-brand.component.html',
+    styleUrls: ['./personal-brand.component.scss'],
+    imports: [NgFor, ProductListCardComponent]
 })
 export class PersonalBrandComponent extends UserStoreAbstract implements OnInit {
 

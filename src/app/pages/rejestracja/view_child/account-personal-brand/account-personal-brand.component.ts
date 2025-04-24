@@ -9,11 +9,10 @@ import { FormRegistersComponent } from '../../../../shared/components/form-regis
 import { RejestracjaStepComponent } from '../../components/rejestracja-step/rejestracja-step.component';
 
 @Component({
-  selector: 'opn-account-personal-brand',
-  templateUrl: './account-personal-brand.component.html',
-  styleUrls: ['./account-personal-brand.component.scss'],
-  standalone: true,
-  imports: [PaneContainerComponent, FormRegistersComponent, RejestracjaStepComponent, ReactiveFormsModule]
+    selector: 'opn-account-personal-brand',
+    templateUrl: './account-personal-brand.component.html',
+    styleUrls: ['./account-personal-brand.component.scss'],
+    imports: [PaneContainerComponent, FormRegistersComponent, RejestracjaStepComponent, ReactiveFormsModule]
 })
 export class AccountPersonalBrandComponent implements OnInit {
   protected accountPersonalBrandService = inject(AuthService2);

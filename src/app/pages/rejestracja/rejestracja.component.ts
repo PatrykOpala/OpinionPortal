@@ -9,11 +9,10 @@ import { FormInputComponent } from 'src/app/shared/components/form-input/form-in
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
-  selector: 'opn-rejestracja',
-  templateUrl: './rejestracja.component.html',
-  styleUrls: ['./rejestracja.component.css'],
-  standalone: true,
-  imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent, FormInputComponent]
+    selector: 'opn-rejestracja',
+    templateUrl: './rejestracja.component.html',
+    styleUrls: ['./rejestracja.component.css'],
+    imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, ReactiveFormsModule, RejestracjaStepComponent, FormInputComponent]
 })
 export class RejestracjaComponent implements OnInit {
   public userForm: FormGroup;

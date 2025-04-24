@@ -8,11 +8,10 @@ import { DialogServiceService } from '../components/dialogs/dialog-new-opinion/d
 import { TypeProduct } from 'src/app/types/enums';
 
 @Component({
-  selector: 'opn-add-opinion',
-  standalone: true,
-  imports: [],
-  templateUrl: './add-opinion.component.html',
-  styleUrl: './add-opinion.component.scss'
+    selector: 'opn-add-opinion',
+    imports: [],
+    templateUrl: './add-opinion.component.html',
+    styleUrl: './add-opinion.component.scss'
 })
 export class AddOpinionComponent {
   @ViewChild('area') textAreaElement!: ElementRef;

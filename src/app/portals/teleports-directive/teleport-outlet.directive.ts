@@ -2,7 +2,8 @@ import { Directive, OnDestroy, ViewContainerRef } from '@angular/core';
 import { TeleportService } from '../teleport.service';
 
 @Directive({
-  selector: '[opnTeleportOutlet]'
+    selector: '[opnTeleportOutlet]',
+    standalone: false
 })
 export class TeleportOutletDirective implements OnDestroy {
   constructor(

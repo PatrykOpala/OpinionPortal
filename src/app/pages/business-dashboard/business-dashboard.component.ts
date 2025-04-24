@@ -10,14 +10,13 @@ import { TypeProduct } from 'src/app/types/enums';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'opn-business-dashboard',
-  templateUrl: './business-dashboard.component.html',
-  styleUrls: ['./business-dashboard.component.scss'],
-  standalone: true,
-  imports: [
-    RouterLink,
-    ProductListCardComponent
-  ]
+    selector: 'opn-business-dashboard',
+    templateUrl: './business-dashboard.component.html',
+    styleUrls: ['./business-dashboard.component.scss'],
+    imports: [
+        RouterLink,
+        ProductListCardComponent
+    ]
 })
 export class BusinessDashboardComponent extends UserStoreAbstract implements OnInit{
   protected dialogProduktService = inject(DialogProduktService);

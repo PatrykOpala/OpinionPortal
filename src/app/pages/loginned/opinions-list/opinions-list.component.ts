@@ -7,11 +7,10 @@ import { OpinionAddPlaceholderComponent } from '../components/opinion-add-placeh
 import { OpinionsService } from 'src/app/services/opinions/opinions.service';
 
 @Component({
-  selector: 'opn-opinions-list',
-  standalone: true,
-  imports: [PaneContainerComponent, OpinionAddPlaceholderComponent],
-  templateUrl: './opinions-list.component.html',
-  styleUrl: './opinions-list.component.scss'
+    selector: 'opn-opinions-list',
+    imports: [PaneContainerComponent, OpinionAddPlaceholderComponent],
+    templateUrl: './opinions-list.component.html',
+    styleUrl: './opinions-list.component.scss'
 })
 export class OpinionsListComponent extends UserStoreAbstract{
   protected opinionsService = inject(OpinionsService);

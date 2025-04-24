@@ -7,11 +7,10 @@ import { FormInputComponent } from 'src/app/shared/components/form-input/form-in
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
-  selector: 'opn-logowanie',
-  templateUrl: './logowanie.component.html',
-  styles: [`input.ng-untouched{border-bottom: 1px solid #cccccc;}`],
-  standalone: true,
-  imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, FormInputComponent, ReactiveFormsModule, FormsModule]
+    selector: 'opn-logowanie',
+    templateUrl: './logowanie.component.html',
+    styles: [`input.ng-untouched{border-bottom: 1px solid #cccccc;}`],
+    imports: [PaneContainerComponent, MenuBarComponent, FormRegistersComponent, FormInputComponent, ReactiveFormsModule, FormsModule]
 })
 export class LogowanieComponent implements OnInit{
 

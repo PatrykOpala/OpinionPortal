@@ -6,11 +6,10 @@ import { DialogServiceService } from '../../../pages/loginned/components/dialogs
 import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'opn-opinie-container',
-  templateUrl: './opinie-container.component.html',
-  styleUrls: ['./opinie-container.component.scss'],
-  standalone: true,
-  imports: [NgIf]
+    selector: 'opn-opinie-container',
+    templateUrl: './opinie-container.component.html',
+    styleUrls: ['./opinie-container.component.scss'],
+    imports: [NgIf]
 })
 export class OpinieContainerComponent implements OnInit {
   @ViewChild('headOpn') headOpn!: ElementRef;

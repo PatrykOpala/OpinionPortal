@@ -2,7 +2,8 @@ import { Directive, OnDestroy, TemplateRef } from '@angular/core';
 import {TeleportService} from '../teleport.service';
 
 @Directive({
-  selector: '[opnTeleportTo]'
+    selector: '[opnTeleportTo]',
+    standalone: false
 })
 export class TeleportToDirective implements OnDestroy{
 
