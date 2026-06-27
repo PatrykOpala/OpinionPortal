@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-// import { ChangeState, Opinions} from '../../../../types';
+import { ChangeState} from '../../../../types/types';
+import { Opinions } from '../../../../types/models/opinion.model';
 
 @Component({
     selector: 'opn-add-opinion',

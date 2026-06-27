@@ -1,14 +1,14 @@
-import { NgIf } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { AuthService2 } from 'src/app/services/auth/auth.service-2';
-import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { AuthService2 } from '../../services/auth/auth.service-2';
+//import { PaneContainerComponent } from '../../shared/components/pane-container/pane-container.component';
 
 @Component({
     selector: 'opn-business-register',
     templateUrl: './business-register.component.html',
     styleUrls: ['./business-register.component.scss'],
-    imports: [PaneContainerComponent, NgIf, ReactiveFormsModule]
+    imports: [/*PaneContainerComponent,*/ ReactiveFormsModule]
 })
 export class BusinessRegisterComponent {
   protected loginForm !: FormGroup;

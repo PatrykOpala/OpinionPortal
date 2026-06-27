@@ -2,7 +2,7 @@ import { ElementRef, inject, Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 import { addUser } from '../../store/actions/user.actions';
 import { DatabaseConnection } from '../../types/classes/database-connection.class';
 import { SupabaseQueryes } from '../../types/classes/database-queryes-class';

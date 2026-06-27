@@ -1,12 +1,15 @@
-<div class="flex bg-[#333] h-full">
+<div style="display: flex; background-color: var(--bss-bg); height: 100vh;">
     <!--bg-[#877198]-->
-    <div class="w-24 h-full text-white flex flex-col items-center">
-        <span class="w-[2.65em] h-max mt-3 text-green font-bold text-3xl text-center flex flex-col">OMS <span class="text-sm pt-[-2em] text-[#f1b668]">business</span></span>
-        <a class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm cursor-pointer rounded-lg">Dodaj</a>
-        <a class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm cursor-pointer rounded-lg">Profil</a>
-        <button class="hover:bg-green/45 w-[5.7em] py-[1em] m-2 text-center text-sm rounded-lg">Wyloguj</button>
+    <div style="width: 6rem; height: 100%; color: var(--opn-white); display: flex; flex-direction: column;">
+        <span style="width: 2.65em; height:max-content; margin-top: 0.75rem; color: var(--opn-green); font-weight: bold; display:flex; 
+        flex-direction: column; text-align: center; font-size: 1.875rem;">OMS 
+        <span style="padding-top: -2em; color: #f1b668; font-size: 0.875rem;">business</span></span>
+        <a class="link">Dodaj</a>
+        <a class="link">Profil</a>
+        <button class="link">Wyloguj</button>
     </div>
-    <div class="w-[85vw] h-[87vh] overflow-y-auto overflow-x-hidden grid grid-cols-[32% 32% 32%] gap-8 pb-5 pt-2 mx-auto" style="grid-template-columns: 32% 32% 32%;">
+    <div style="display: grid;grid-template-columns: 32% 32% 32%; width: 85vw; height: 87vh; overflow-y: auto; overflow-x: hidden; margin-inline: auto; 
+    gap: 2rem; padding-bottom: 1.25rem; padding-top: 0.5rem;">
         @for(product of filteredProduct; track product.id){
          <opn-product-list-card 
          [cardId]="product.id ? product.id : 1" 

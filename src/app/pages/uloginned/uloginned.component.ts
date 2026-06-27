@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LOCAL_STORAGE_KEYS } from 'src/app/types/constants';
+import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 
 @Component({
     selector: 'opn-uloginned',

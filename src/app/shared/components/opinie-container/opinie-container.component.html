@@ -1,25 +1,29 @@
 <div class="opinie-container radius">
-    <div class="opinie-header">
-        <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;">{{user_name[0]}}</span>
-        </div>
-        <div>
-            <h1>{{user_name}}</h1>
-            <span>Zopiniował: <b #headOpn>{{header}}</b></span>
-        </div>
-        <div *ngIf="login" id="context-m" class="context_m" (click)="context = !context">
-            <svg width="30" height="50" viewBox="-6 2 30 40">
-                <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-                <circle cx="10" cy="38" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
-            </svg>
-        </div>
+  <div class="opinie-header">
+    <div style="margin-left: 10px; border-radius: 3px; background-color: #333333; width: 80px; height: 50px; text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <span style="font-size: 1.9em; text-align: center; padding-top: 40px; cursor: default;">{{user_name[0]}}</span>
     </div>
-    <div class="content" id="content ">
-        <p [id]="opID" #paragraph>{{content}}</p>
+    <div>
+      <h1>{{user_name}}</h1>
+      <span>Zopiniował: <b #headOpn>{{header}}</b></span>
     </div>
-    <div class="container__menu" *ngIf="context">
-        <button (click)="changeOpinion()">Edytuj</button>
-        <button (click)="deleteOpinion()">Usuń</button>
+    @if (login) {
+      <div id="context-m" class="context_m" (click)="context = !context">
+        <svg width="30" height="50" viewBox="-6 2 30 40">
+          <circle cx="10" cy="7" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+          <circle cx="10" cy="22.22" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+          <circle cx="10" cy="38" r="5" fill="hsl(0,0%,99%)" class="svg__circle"/>
+        </svg>
+      </div>
+    }
+  </div>
+  <div class="content" id="content ">
+    <p [id]="opID" #paragraph>{{content}}</p>
+  </div>
+  @if (context) {
+    <div class="container__menu">
+      <button (click)="changeOpinion()">Edytuj</button>
+      <button (click)="deleteOpinion()">Usuń</button>
     </div>
+  }
 </div>

@@ -1,7 +1,9 @@
 <div class="opinie__choose__category">
-    <ul>
-        <li *ngFor="let d of choose">
-            <span>{{d}}</span>
-        </li>
-    </ul>
+  <ul>
+    @for (d of choose; track d) {
+      <li>
+        <span>{{d}}</span>
+      </li>
+    }
+  </ul>
 </div>

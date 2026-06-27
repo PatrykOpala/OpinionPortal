@@ -1,11 +1,11 @@
 import { Component, ElementRef, ViewChild, inject } from '@angular/core';
-import { OpinionsService } from 'src/app/services/opinions/opinions.service';
-import { ProductService } from 'src/app/services/product/product.service';
-import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
-import { Product } from 'src/app/types/models/product.model';
+import { OpinionsService } from '../../../services/opinions/opinions.service';
+import { ProductService } from '../../../services/product/product.service';
+import { UserStoreService } from '../../../services/user/user-store.service';
+import { Opinions, CreateOpinion } from '../../../types/models/opinion.model';
+import { Product } from '../../../types/models/product.model';
 import { DialogServiceService } from '../components/dialogs/dialog-new-opinion/dialog-service.service';
-import { TypeProduct } from 'src/app/types/enums';
+import { TypeProduct } from '../../../types/enums';
 
 @Component({
     selector: 'opn-add-opinion',

@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
     selector: 'opn-auth-register',
     imports: [],
     templateUrl: './auth-register.component.html',
-    styleUrl: './auth-register.component.scss'
+    styleUrl: './auth-register.component.css'
 })
 export class AuthRegisterComponent {
 

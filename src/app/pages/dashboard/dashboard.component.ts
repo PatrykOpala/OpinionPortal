@@ -1,6 +1,6 @@
 import { Component, OnInit, } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { PaneContainerComponent } from '../../shared/components/pane-container/pane-container.component';
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({

@@ -18,7 +18,7 @@ export class UserQuery implements IQuery{
             if(this.dbColumn === "") return reject([]);
             if(this.pshData === null) return reject([]);
             const {status, error} = await provider.from(this.dbColumn)
-            .insert(this.transformer(this.pshData));
+            .insert(this.transformer(this.pshData) as Record<string, any>);
             if(status === 201){
                 resolve(QueryResult.SUCCESS);
             }
@@ -30,7 +30,7 @@ export class UserQuery implements IQuery{
         });
     }
 
-    private transformer(objectToTransform: DatabaseUser):unknown{
+    private transformer(objectToTransform: DatabaseUser):any{
         let cv = objectToTransform;
         delete cv.isEmpty;
         return cv;

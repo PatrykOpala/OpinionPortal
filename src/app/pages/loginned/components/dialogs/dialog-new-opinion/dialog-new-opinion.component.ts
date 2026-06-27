@@ -1,18 +1,18 @@
 import { Component, ElementRef, inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { OpinionsService } from 'src/app/services/opinions/opinions.service';
-import { ProductService } from 'src/app/services/product/product.service';
-import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
-import { Product } from 'src/app/types/models/product.model';
+import { OpinionsService } from '../../../../../services/opinions/opinions.service';
+import { ProductService } from '../../../../../services/product/product.service';
+import { UserStoreService } from '../../../../../services/user/user-store.service';
+import { Opinions, CreateOpinion } from '../../../../../types/models/opinion.model';
+import { Product } from '../../../../../types/models/product.model';
 import { DialogServiceService } from './dialog-service.service';
 // import { StarMeterComponent } from 'src/app/shared/components/star-meter/star-meter.component';
-import { NgForOf, NgIf, NgPlural } from '@angular/common';
+import { NgPlural } from '@angular/common';
 
 @Component({
     selector: 'opn-dialog-new-opinion',
     templateUrl: './dialog-new-opinion.component.html',
     styleUrls: ['./dialog-new-opinion.component.scss'],
-    imports: [NgForOf, NgPlural, NgIf]
+    imports: [NgPlural]
 })
 export class DialogNewOpinionComponent implements OnInit, OnDestroy {
   @ViewChild('area') textAreaElement!: ElementRef;

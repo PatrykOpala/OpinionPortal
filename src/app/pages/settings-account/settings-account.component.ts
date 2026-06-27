@@ -5,14 +5,14 @@ import { UserStoreService } from '../../services/user/user-store.service';
 import {getDataFromLocalStorage} from '../../shared/utils/ts/localStorage.functions';
 import { LOCAL_STORAGE_KEYS } from '../../types/constants';
 import { SupabaseUser } from '../../types/types';
-import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
-import { AsyncPipe, NgIf } from '@angular/common';
+import { PaneContainerComponent } from '../../shared/components/pane-container/pane-container.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'opn-user-account',
     templateUrl: './settings-account.component.html',
     styleUrls: ['./settings-account.component.scss'],
-    imports: [PaneContainerComponent, NgIf, AsyncPipe]
+    imports: [PaneContainerComponent, AsyncPipe]
 })
 export class SettingsAccountComponent implements OnInit {
 

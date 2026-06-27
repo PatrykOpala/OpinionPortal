@@ -1,8 +1,8 @@
 import { Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild, AfterViewInit, OnInit, OnDestroy } from '@angular/core';
 import { map, Subscription } from 'rxjs';
-import { OpinionsService } from 'src/app/services/opinions/opinions.service';
-import { UserStoreService } from 'src/app/services/user/user-store.service';
-import { Opinions, CreateOpinion } from 'src/app/types/models/opinion.model';
+import { OpinionsService } from '../../../../../services/opinions/opinions.service';
+import { UserStoreService } from '../../../../../services/user/user-store.service';
+import { Opinions, CreateOpinion } from '../../../../../types/models/opinion.model';
 import { DialogServiceService } from '../dialog-new-opinion/dialog-service.service';
 
 @Component({

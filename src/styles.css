@@ -1,3 +1,9 @@
-@tailwind base;
-@tailwind utilities;
+:root{
+    --bss-bg: #333333;
+    --opn-green: #0daf0d;
+    --opn-white: #eeeeee;
+    --opn-white-hover: #fdfdfd;
+    --opn-dark-green: #066506;
+    --opn-border-white: #f7f7f7a9;
+}
 body{background-color: #eeeeee;font-family: "Arial"; margin: 0;}

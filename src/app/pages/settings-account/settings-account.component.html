@@ -1,18 +1,22 @@
 <div class="user__account">
-    <opn-pane-container>
-        <div class="business-card">
-            <div class="business-card__header">
-                <span class="avatar">{{nameAvatar}}</span>
-                <span class="name">{{userName}}</span>
-            </div>
-            <div class="business-card__content">
-                <button (click)="authService.logOut()">Wyloguj mnie</button>
-                <button *ngIf="(userStoreService.getUserFromStore()
-                 | async)?.delete_user !== true" (click)="deleteAccount()">Usuń konto</button>
-                <button *ngIf="(userStoreService.getUserFromStore()
-                | async)?.delete_user" style="color: red;" 
-                (click)="cancelDeleteAccount()">Anuluj usuwanie konta</button>
-            </div>
-        </div>
-    </opn-pane-container>
+  <opn-pane-container>
+    <div class="business-card">
+      <div class="business-card__header">
+        <span class="avatar">{{nameAvatar}}</span>
+        <span class="name">{{userName}}</span>
+      </div>
+      <div class="business-card__content">
+        <button (click)="authService.logOut()">Wyloguj mnie</button>
+        @if ((userStoreService.getUserFromStore()
+          | async)?.delete_user !== true) {
+          <button (click)="deleteAccount()">Usuń konto</button>
+        }
+        @if ((userStoreService.getUserFromStore()
+          | async)?.delete_user) {
+          <button style="color: red;"
+          (click)="cancelDeleteAccount()">Anuluj usuwanie konta</button>
+        }
+      </div>
+    </div>
+  </opn-pane-container>
 </div>

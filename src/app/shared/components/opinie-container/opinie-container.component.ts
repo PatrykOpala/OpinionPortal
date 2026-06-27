@@ -1,15 +1,15 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { OpinionsService } from 'src/app/services/opinions/opinions.service';
-import { Opinions } from 'src/app/types/models/opinion.model';
+import { OpinionsService } from '../../../services/opinions/opinions.service';
+import { Opinions } from '../../../types/models/opinion.model';
 import { changeEvent } from '../../../types/types';
 import { DialogServiceService } from '../../../pages/loginned/components/dialogs/dialog-new-opinion/dialog-service.service';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'opn-opinie-container',
     templateUrl: './opinie-container.component.html',
     styleUrls: ['./opinie-container.component.scss'],
-    imports: [NgIf]
+    imports: []
 })
 export class OpinieContainerComponent implements OnInit {
   @ViewChild('headOpn') headOpn!: ElementRef;

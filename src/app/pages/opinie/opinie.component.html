@@ -1,8 +1,10 @@
 <opn-menu-bar></opn-menu-bar>
 <opn-pane-container>
-    <ul class="opinie-grid">
-        <li *ngFor="let mn of allOpinions">
-            <opn-opinie-container [user_name]="mn.user_name" [ops]="mn"></opn-opinie-container>
-        </li>
-    </ul>
+  <ul class="opinie-grid">
+    @for (mn of allOpinions; track mn) {
+      <li>
+        <opn-opinie-container [user_name]="mn.user_name" [ops]="mn"></opn-opinie-container>
+      </li>
+    }
+  </ul>
 </opn-pane-container>

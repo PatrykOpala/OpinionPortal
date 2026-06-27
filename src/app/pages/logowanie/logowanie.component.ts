@@ -1,9 +1,9 @@
 import { Component, inject, OnInit} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService2 } from 'src/app/services/auth/auth.service-2';
-import { PaneContainerComponent } from 'src/app/shared/components/pane-container/pane-container.component';
+import { AuthService2 } from '../../services/auth/auth.service-2';
+import { PaneContainerComponent } from '../../shared/components/pane-container/pane-container.component';
 import { FormRegistersComponent } from '../../shared/components/form-registers/form-registers.component';
-import { FormInputComponent } from 'src/app/shared/components/form-input/form-input.component';
+import { FormInputComponent } from '../../shared/components/form-input/form-input.component';
 import { MenuBarComponent } from '../../shared/components/menu-bar/menu-bar.component';
 
 @Component({
